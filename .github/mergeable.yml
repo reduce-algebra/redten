@@ -7,5 +7,5 @@ mergeable:
       - do: comment
         payload:
           body: >
-            Thanks for your contribution!  Unfortunately, we don't use GitHub pull requests to manage code contributions to this repository.  Instead, please see the [REDTEN Homepage](https://www.utsc.utoronto.ca/~harper/redten.html).
+            Thanks for your contribution!  Unfortunately, we don't use GitHub pull requests to manage code contributions to this repository.  Instead, please visit the [REDTEN Homepage](https://www.utsc.utoronto.ca/~harper/redten.html).
       - do: close
