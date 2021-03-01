@@ -1,122 +1,148 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Generic Names</TITLE>
-<meta name="description" value=" Generic Names">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Generic Names</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html745 HREF="node39.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html743 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html737 HREF="node37.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html747 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html748 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html746 HREF="node39.html"> Other Functions</A>
-<B>Up:</B> <A NAME=tex2html744 HREF="node33.html"> The General Relativity </A>
-<B> Previous:</B> <A NAME=tex2html738 HREF="node37.html"> Covariant derivatives of </A>
-<BR> <HR> <P>
-<H1><A NAME=SECTION00530000000000000000> Generic Names</A></H1>
-<P>
-<A NAME=secgenerics>&#160;</A>	<A NAME=1323>&#160;</A>
-As noted above, each GR function creates an object with a name of the
-form <tt>&lt;metric&gt;_&lt;name&gt;</tt>, so that any number of metrics
-and their families may exist in the system simultaneously. Each object
-has a unique name, and each function returns the object appropriate
-for the metric currently in use. However, these names are not
-particularly convenient for general usage such as building indexed
-expressions. Thus, a set of ``generic'' names has been created that
-allow the user to easily access the objects in the family of the
-current metric.
-<P>
-A generic name is a psuedo-indexed object: it has some properties of
-indexed objects that allow it to be parsed with an index, but it never
-has explicit or implicit values, and it has some extra properties that
-mark it as generic. Specifically, the generic property of a
-generic name contains the type of metric to look at, and the name of
-the property key on that metric to examine. That key is the name of
-the function that created the actual object of interest, and is the
-place where that function stored the name of its output. For example,
-the generic name R has a generic property that refers to
-the tensor metric and the key riemann, which is where the
-function riemann() stores the name of its output.
-<P>
-The system, when it encounters a generic name, immediately examines
-the generic property to locate the target object. If the metric
-is changed, the system will look at the new metric and the generic
-name will refer to some other object. Thus, the same generic name is
-used for the same class of object for many different metrics. If the
-target object does not exist and the generic reference is not part of
-an indexed assignment, it will return unevaluated and will do so until
-the object is made, or the metric is changed to one for which the
-desired object has been created. The user can therefore set up
-expressions involving generic objects, assign them to REDUCE
-algebraic variables before any metrics are created, and then use them
-after some metrics are made to evaluate the same expression for each
-metric. For example,
-<PRE> 
-<tt>#: <i>kr := R[a,b,c,d]*R[@a,@b,@c,@d];   % R has no target yet</i>
+<BODY>
+  <META name="description" value=" Generic Names">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html745" href="node39.html" id="tex2html745"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html743" href="node33.html" id="tex2html743"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html737" href="node37.html" id="tex2html737"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html747" href="node1.html" id="tex2html747"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html748" href="node70.html" id="tex2html748"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html746" href="node39.html" id=
+  "tex2html746">Other Functions</A> <B>Up:</B> <A name="tex2html744" href=
+  "node33.html" id="tex2html744">The General Relativity</A> <B>Previous:</B>
+  <A name="tex2html738" href="node37.html" id="tex2html738">Covariant
+  derivatives of</A><BR>
+  <HR>
+  <H1><A name="SECTION00530000000000000000" id=
+  "SECTION00530000000000000000">Generic Names</A></H1>
+  <P><A name="secgenerics" id="secgenerics"></A> <A name="1323" id=
+  "1323"></A> As noted above, each GR function creates an object with a name
+  of the form <SPAN class="c1">&lt;metric&gt;_&lt;name&gt;</SPAN>, so that
+  any number of metrics and their families may exist in the system
+  simultaneously. Each object has a unique name, and each function returns
+  the object appropriate for the metric currently in use. However, these
+  names are not particularly convenient for general usage such as building
+  indexed expressions. Thus, a set of ``generic'' names has been created that
+  allow the user to easily access the objects in the family of the current
+  metric.</P>
+  <P>A generic name is a psuedo-indexed object: it has some properties of
+  indexed objects that allow it to be parsed with an index, but it never has
+  explicit or implicit values, and it has some extra properties that mark it
+  as generic. Specifically, the generic property of a generic name contains
+  the type of metric to look at, and the name of the property key on that
+  metric to examine. That key is the name of the function that created the
+  actual object of interest, and is the place where that function stored the
+  name of its output. For example, the generic name R has a generic property
+  that refers to the tensor metric and the key riemann, which is where the
+  function riemann() stores the name of its output.</P>
+  <P>The system, when it encounters a generic name, immediately examines the
+  generic property to locate the target object. If the metric is changed, the
+  system will look at the new metric and the generic name will refer to some
+  other object. Thus, the same generic name is used for the same class of
+  object for many different metrics. If the target object does not exist and
+  the generic reference is not part of an indexed assignment, it will return
+  unevaluated and will do so until the object is made, or the metric is
+  changed to one for which the desired object has been created. The user can
+  therefore set up expressions involving generic objects, assign them to
+  REDUCE algebraic variables before any metrics are created, and then use
+  them after some metrics are made to evaluate the same expression for each
+  metric. For example,</P>
+  <PRE> 
+<SPAN class=
+"c1">#: <I>kr := R[a,b,c,d]*R[@a,@b,@c,@d];   % R has no target yet</I>
 
          a b c d
   kr := R        R
                   a b c d
 
-#: <i>% create some metrics and compute their Riemann tensors ...</i>
+#: <I>% create some metrics and compute their Riemann tensors ...</I>
 
-#: <i>setmetric(g1)$</i>
+#: <I>setmetric(g1)$</I>
 
-#: <i>seval(kr);</i>
+#: <I>seval(kr);</I>
 
   &lt;output&gt;
 
-#: <i>setmetric(g2)$</i>
+#: <I>setmetric(g2)$</I>
 
-#: <i>seval(kr);</i>
+#: <I>seval(kr);</I>
 
   &lt;output&gt; 
-</tt></PRE>will evaluate the Kretschmann scalar for the metrics <tt>g1</tt> and <tt>g2</tt>. Of course, if the output of the expression was also indexed, then
-a new object would have to be created each time the expression was
-evaluated.
-<P>
-If, when an expression containing unresolved generic references is
-included in an indexed assignment (such as the call to seval()
-above), and the target objects have not yet been created, they will be
-automatically computed since each generic object also carries
-information on how to make its target. However, it is generally better
-if the user calls the generating functions directly, since the target
-objects can be simpified and examined before being involved in a
-potentially expensive computation (see &#167;<A HREF="node42.html#secexpmanage">5.1</A> for more
-information).
-<P>
-There are a large number of generic names pre-defined in REDTEN;
-for the GR package the commonly used ones are g for the metric,
-c1 and c2 for the Christoffel symbols, R for the
-Riemann tensor, ric and ricsc for the Ricci tensor and
-scalar respectively, C for the Weyl tensor and G for the
-Einstein tensor. More than one generic name can point to the same
-target, thus ri also refers to the Riemann tensor, and ei
-refers to the Einstein tensor.  The function generics() will
-show the user what generic names exist, and whether there is a target
-object present.
-<P>
-The only generic names actually created in REDTEN are those whose
-targets are a parent object. Shifted objects and any other objects
-whose names include a <tt>_</tt> symbol (eg. covariant derivatives) are
-handled by examining the fragments of their names. If the portion of
-the name before the <tt>_</tt> symbol is a generic name, the target name
-replaces the initial portion of the name. Hence, if the current-metric
-is <tt>g1</tt> and the target of R is <tt>g1_R</tt> then the target
-of <tt>R_b</tt> is <tt>g1_R_b</tt>. All functions that take an indexed
-object as input will accept a generic name (actually, the name is
-resolved before the function gets it), and the output of these
-functions will involve the target name.
-<P>
-<BR> <HR><A NAME=tex2html745 HREF="node39.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html743 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html737 HREF="node37.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html747 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html748 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html746 HREF="node39.html"> Other Functions</A>
-<B>Up:</B> <A NAME=tex2html744 HREF="node33.html"> The General Relativity </A>
-<B> Previous:</B> <A NAME=tex2html738 HREF="node37.html"> Covariant derivatives of </A>
-<BR> <HR> <P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+</SPAN></PRE>will evaluate the Kretschmann scalar for the metrics
+  <SPAN class="c1">g1</SPAN> and <SPAN class="c1">g2</SPAN>. Of course, if
+  the output of the expression was also indexed, then a new object would have
+  to be created each time the expression was evaluated.
+  <P>If, when an expression containing unresolved generic references is
+  included in an indexed assignment (such as the call to seval() above), and
+  the target objects have not yet been created, they will be automatically
+  computed since each generic object also carries information on how to make
+  its target. However, it is generally better if the user calls the
+  generating functions directly, since the target objects can be simpified
+  and examined before being involved in a potentially expensive computation
+  (see §<A href="node42.html#secexpmanage">5.1</A> for more information).</P>
+  <P>There are a large number of generic names pre-defined in REDTEN; for the
+  GR package the commonly used ones are g for the metric, c1 and c2 for the
+  Christoffel symbols, R for the Riemann tensor, ric and ricsc for the Ricci
+  tensor and scalar respectively, C for the Weyl tensor and G for the
+  Einstein tensor. More than one generic name can point to the same target,
+  thus ri also refers to the Riemann tensor, and ei refers to the Einstein
+  tensor. The function generics() will show the user what generic names
+  exist, and whether there is a target object present.</P>
+  <P>The only generic names actually created in REDTEN are those whose
+  targets are a parent object. Shifted objects and any other objects whose
+  names include a <SPAN class="c1">_</SPAN> symbol (eg. covariant
+  derivatives) are handled by examining the fragments of their names. If the
+  portion of the name before the <SPAN class="c1">_</SPAN> symbol is a
+  generic name, the target name replaces the initial portion of the name.
+  Hence, if the current-metric is <SPAN class="c1">g1</SPAN> and the target
+  of R is <SPAN class="c1">g1_R</SPAN> then the target of <SPAN class=
+  "c1">R_b</SPAN> is <SPAN class="c1">g1_R_b</SPAN>. All functions that take
+  an indexed object as input will accept a generic name (actually, the name
+  is resolved before the function gets it), and the output of these functions
+  will involve the target name.</P>
+  <P><BR></P>
+  <HR>
+  <A name="tex2html745" href="node39.html" id="tex2html745"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html743" href="node33.html" id="tex2html743"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html737" href="node37.html" id="tex2html737"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html747" href="node1.html" id="tex2html747"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html748" href="node70.html" id="tex2html748"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html746" href="node39.html" id=
+  "tex2html746">Other Functions</A> <B>Up:</B> <A name="tex2html744" href=
+  "node33.html" id="tex2html744">The General Relativity</A> <B>Previous:</B>
+  <A name="tex2html738" href="node37.html" id="tex2html738">Covariant
+  derivatives of</A><BR>
+  <HR>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

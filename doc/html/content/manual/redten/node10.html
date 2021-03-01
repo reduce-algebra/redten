@@ -1,49 +1,73 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> The Indexed Object</TITLE>
-<meta name="description" value=" The Indexed Object">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>The Indexed Object</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html396 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html394 HREF="node9.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html388 HREF="node9.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html398 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html399 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html397 HREF="node11.html"> Using mkobj()</A>
-<B>Up:</B> <A NAME=tex2html395 HREF="node9.html"> Indexed Objects</A>
-<B> Previous:</B> <A NAME=tex2html389 HREF="node9.html"> Indexed Objects</A>
-<BR> <HR> <P>
-<H1><A NAME=SECTION00310000000000000000> The Indexed Object</A></H1>
-<P>
-<A NAME=seciob>&#160;</A>  The fundamental entity in REDTEN is the ``indexed object'',
-<A NAME=269>&#160;</A>
-which consists of an identifier (a name) and an index enclosed in square
-brackets<A NAME=tex2html30 HREF="footnode.html#270"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>, for example:
-<PRE> 
-<tt>R[a,b,c,d], g[a,1], G[1,2].
-</tt></PRE><A NAME=273>&#160;</A>
-An index can either be composed of strictly non-negative integers
-(each of which must lie within the inclusive range for that
-index-element, see below) and which indicates a specific component of
-the indexed object, or it can contain identifiers that represent the
-full range of possible indices, or a combination of both. The contents
-of the index are described more fully in &#167;<A HREF="node21.html#index">2.3</A> below.
-<P>
-An indexed object is a REDUCE kernel: it is an irreducible
-algebraic entity. As such it can be part of any algebraic expression,
-although, depending on circumstances, it may or may not be evaluated
-to a ``simpler'' form<A NAME=tex2html32 HREF="footnode.html#276"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>.  Before using an index with a name that
-name must be made into an indexed object with the mkobj()
-command<A NAME=tex2html33 HREF="footnode.html#4099"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>. If an index is
-applied to a name that has not been declared as indexed, the system will
-prompt for the basic data required to define the object (the
-index-type and symmetries, defined below). It is advisable to fully
-declare indexed objects before they are used.
-<P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+<BODY>
+  <META name="description" value=" The Indexed Object">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html396" href="node11.html" id="tex2html396"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html394" href="node9.html" id="tex2html394"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html388" href="node9.html" id="tex2html388"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html398" href="node1.html" id="tex2html398"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html399" href="node70.html" id="tex2html399"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html397" href="node11.html" id=
+  "tex2html397">Using mkobj()</A> <B>Up:</B> <A name="tex2html395" href=
+  "node9.html" id="tex2html395">Indexed Objects</A> <B>Previous:</B> <A name=
+  "tex2html389" href="node9.html" id="tex2html389">Indexed Objects</A><BR>
+  <HR>
+  <H1><A name="SECTION00310000000000000000" id=
+  "SECTION00310000000000000000">The Indexed Object</A></H1>
+  <P><A name="seciob" id="seciob"></A> The fundamental entity in REDTEN is
+  the ``indexed object'', <A name="269" id="269"></A> which consists of an
+  identifier (a name) and an index enclosed in square brackets<A name=
+  "tex2html30" href="footnode.html#270" id="tex2html30"><IMG align="bottom"
+  alt=".png&quot;" src="../../../images/latex/foot_motif.png"></A>, for
+  example:</P>
+  <PRE> 
+<SPAN class="c1">R[a,b,c,d], g[a,1], G[1,2].
+</SPAN></PRE><A name="273" id="273"></A> An index can either be composed of
+strictly non-negative integers (each of which must lie within the inclusive
+range for that index-element, see below) and which indicates a specific
+component of the indexed object, or it can contain identifiers that represent
+the full range of possible indices, or a combination of both. The contents of
+the index are described more fully in §<A href="node21.html#index">2.3</A>
+below.
+  <P>An indexed object is a REDUCE kernel: it is an irreducible algebraic
+  entity. As such it can be part of any algebraic expression, although,
+  depending on circumstances, it may or may not be evaluated to a ``simpler''
+  form<A name="tex2html32" href="footnode.html#276" id=
+  "tex2html32"><IMG align="bottom" alt=".png&quot;" src=
+  "../../../images/latex/foot_motif.png"></A>. Before using an index with a
+  name that name must be made into an indexed object with the mkobj()
+  command<A name="tex2html33" href="footnode.html#4099" id=
+  "tex2html33"><IMG align="bottom" alt=".png&quot;" src=
+  "../../../images/latex/foot_motif.png"></A>. If an index is applied to a
+  name that has not been declared as indexed, the system will prompt for the
+  basic data required to define the object (the index-type and symmetries,
+  defined below). It is advisable to fully declare indexed objects before
+  they are used.</P>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

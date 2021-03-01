@@ -1,70 +1,93 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> <tt>mkobj()</tt> Examples</TITLE>
-<meta name="description" value=" mkobj() Examples">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE></TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html523 HREF="node21.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html521 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html517 HREF="node19.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html525 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html526 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html524 HREF="node21.html"> The Index</A>
-<B>Up:</B> <A NAME=tex2html522 HREF="node11.html"> Using mkobj()</A>
-<B> Previous:</B> <A NAME=tex2html518 HREF="node19.html"> Other properties</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00327000000000000000> <tt>mkobj()</tt> Examples</A></H2>
-<P>
-<A NAME=mkobjeg>&#160;</A> Following are some simple examples of the creation of an indexed
-object, and the use of symmetries to canonicalize the index. 
-<PRE> 
-<tt>#: <i>mkobj('q,'(1 1));    % q is a rank-2 contravariant tensor.</i>
+<BODY>
+  <SPAN class="c1">mkobj()</SPAN> Examples
+  <META name="description" value=" mkobj() Examples">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html523" href="node21.html" id="tex2html523"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html521" href="node11.html" id="tex2html521"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html517" href="node19.html" id="tex2html517"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html525" href="node1.html" id="tex2html525"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html526" href="node70.html" id="tex2html526"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html524" href="node21.html" id="tex2html524">The
+  Index</A> <B>Up:</B> <A name="tex2html522" href="node11.html" id=
+  "tex2html522">Using mkobj()</A> <B>Previous:</B> <A name="tex2html518"
+  href="node19.html" id="tex2html518">Other properties</A><BR>
+  <HR>
+  <H2><A name="SECTION00327000000000000000" id=
+  "SECTION00327000000000000000"><SPAN class="c1">mkobj()</SPAN>
+  Examples</A></H2>
+  <P><A name="mkobjeg" id="mkobjeg"></A> Following are some simple examples
+  of the creation of an indexed object, and the use of symmetries to
+  canonicalize the index.</P>
+  <PRE> 
+<SPAN class=
+"c1">#: <I>mkobj('q,'(1 1));    % q is a rank-2 contravariant tensor.</I>
 
   a b
  q
 
-	<i>% w is like q, but is also symmetric.</i>
-#: <i>mkobj('w,'(1 1),'((1 1 2)));</i>
+        <I>% w is like q, but is also symmetric.</I>
+#: <I>mkobj('w,'(1 1),'((1 1 2)));</I>
 
   a b
  w
 
-	<i>% r is covariant, and is also flagged implicit.</i>
-#: <i>mkobj ('r,'(-1 -1),'(),'t);	</i>
+        <I>% r is covariant, and is also flagged implicit.</I>
+#: <I>mkobj ('r,'(-1 -1),'(),'t);       </I>
 
  r
   a b
 
-#: <i>q[b,a];  	% this index will be unchanged.</i>
+#: <I>q[b,a];   % this index will be unchanged.</I>
 
   b a
  q
 
-#: <i>w[b,a];      % because w is symmetric, the index is mapped to a</i>
-<i>% canonical form.</i>
+#: <I>w[b,a];      % because w is symmetric, the index is mapped to a</I>
+<I>% canonical form.</I>
   a b
  w
 
-#: <i>q[1,2];  % There are no components in q, so zero is returned.</i>
+#: <I>q[1,2];  % There are no components in q, so zero is returned.</I>
 
  0
 
-#: <i>r[1,2];  % Since r is implicit, the implicit value is returned.</i>
+#: <I>r[1,2];  % Since r is implicit, the implicit value is returned.</I>
 
  r
   1 2
 
-</tt></PRE>Finally, if mkobj() is given a single name as an argument,
-<A NAME=mkobjbare>&#160;</A>   without even an empty index-type list, a ``bare'' declaration is
-made. The name is given the minimum number of properties that allow it
-to be correctly parsed with an index; it is assumed that the object
-will be correctly made later, usually during an indexed assignment.
-This use is somewhat sloppy, however, and is not encouraged.
-<P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+</SPAN></PRE>Finally, if mkobj() is given a single name as an argument,
+<A name="mkobjbare" id="mkobjbare"></A> without even an empty index-type
+list, a ``bare'' declaration is made. The name is given the minimum number of
+properties that allow it to be correctly parsed with an index; it is assumed
+that the object will be correctly made later, usually during an indexed
+assignment. This use is somewhat sloppy, however, and is not encouraged.
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

@@ -1,58 +1,77 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Newman-Penrose Operators</TITLE>
-<meta name="description" value=" Newman-Penrose Operators">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Newman-Penrose Operators</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html916 HREF="node53.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html914 HREF="node51.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html910 HREF="node51.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html918 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html919 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html917 HREF="node53.html"> Enhancements</A>
-<B>Up:</B> <A NAME=tex2html915 HREF="node51.html"> The Newman-Penrose Package</A>
-<B> Previous:</B> <A NAME=tex2html911 HREF="node51.html"> The Newman-Penrose Package</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00731000000000000000> Newman-Penrose Operators</A></H2>
-<P>
-<A NAME=ssecNPop>&#160;</A>  The four Newman-Penrose operators require the existence of the
-connection object and operate on algebraic expressions. They are
-defined as follows:
-<<2195><P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6442.gif"><P>
-<P>
-The REDTEN functions npD(), npDEL(), npdel(), and
-npdelc() implement each of the operators, respectively. For
-example, 
-<PRE> 
-<tt>#: <i>npD(th*sin(r));</i>
+<BODY>
+  <META name="description" value=" Newman-Penrose Operators">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html916" href="node53.html" id="tex2html916"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html914" href="node51.html" id="tex2html914"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html910" href="node51.html" id="tex2html910"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html918" href="node1.html" id="tex2html918"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html919" href="node70.html" id="tex2html919"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html917" href="node53.html" id=
+  "tex2html917">Enhancements</A> <B>Up:</B> <A name="tex2html915" href=
+  "node51.html" id="tex2html915">The Newman-Penrose Package</A>
+  <B>Previous:</B> <A name="tex2html911" href="node51.html" id=
+  "tex2html911">The Newman-Penrose Package</A><BR>
+  <HR>
+  <H2><A name="SECTION00731000000000000000" id=
+  "SECTION00731000000000000000">Newman-Penrose Operators</A></H2>
+  <P><A name="ssecNPop" id="ssecNPop"></A> The four Newman-Penrose operators
+  require the existence of the connection object and operate on algebraic
+  expressions. They are defined as follows: &lt;&lt;2195&gt;</P>
+  <P><IMG align="bottom" src="_10787_displaymath6442.png"></P>
+  <P>The REDTEN functions npD(), npDEL(), npdel(), and npdelc() implement
+  each of the operators, respectively. For example,</P>
+  <PRE> 
+<SPAN class="c1">#: <I>npD(th*sin(r));</I>
 
   sqrt(2) cos(r) th
  -------------------
           2
 
-#: <i>npDEL(th*sin(r));</i>
+#: <I>npDEL(th*sin(r));</I>
 
    - sqrt(2) cos(r) delta th
  ----------------------------
-           <code>____</code>
+           <CODE>____</CODE>
          4 rhob rhob
 
-#: <i>npdel(th*sin(r));</i>
+#: <I>npdel(th*sin(r));</I>
 
   sin(r)
  --------
   2 rhob
 
-#: <i>npdelc(th*sin(r));</i>
+#: <I>npdelc(th*sin(r));</I>
 
   sin(r)
  --------
-    <code>____</code>
+    <CODE>____</CODE>
   2 rhob
-</tt></PRE><BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+</SPAN></PRE><BR>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

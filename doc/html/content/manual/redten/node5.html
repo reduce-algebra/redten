@@ -1,55 +1,72 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Case Sensitivity</TITLE>
-<meta name="description" value=" Case Sensitivity">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Case Sensitivity</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html319 HREF="node6.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html317 HREF="node4.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html311 HREF="node4.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html321 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html322 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html320 HREF="node6.html"> Notation</A>
-<B>Up:</B> <A NAME=tex2html318 HREF="node4.html"> Concepts in REDUCE</A>
-<B> Previous:</B> <A NAME=tex2html312 HREF="node4.html"> Concepts in REDUCE</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00221000000000000000> Case Sensitivity</A></H2>
-<P>
-<A NAME=sseccase>&#160;</A>  REDUCE is by default case insensitive,
-<A NAME=153>&#160;</A>
-and depending on the installation the default behaviour may be to map
-upper case characters to lower case, or the reverse. This
-insensitivity is primarily to allow for greater portability of the
-REDUCE code, it is however, somewhat undesirable for a mathematical
-system, since the same symbol in different case is often used to
-represent different quantities.
-<P>
-By default, REDTEN is a case-sensitive system: it clears the
-control switches raise and lower
-at startup (these switches can be
-<A NAME=4088>&#160;</A>
-<A NAME=4089>&#160;</A>
-set by the user with the commands on  or off
-<A NAME=tex2html9 HREF="footnode.html#4090"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>). In an upper-case system the
-raise switch is on, while the lower switch is off, the
-reverse may be true in lower-case systems, but the exact combination
-is implementation dependent. 
-Improperly setting these switches can
-trap the user in the system, with no way to gracefully exit or reset
-the switches (the REDUCE quote character ``<tt>!</tt>'' can be used to
-inhibit the case-mapping of the system, see below).
-<A NAME=4091>&#160;</A>
-<P>
-If the REDUCE system is upper-case by default, a package to map the
-names of many of the commonly used operators and functions to lower
-case is available<A NAME=tex2html11 HREF="footnode.html#4092"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A> (see &#167;<A HREF="node58.html#seccase">7.4</A>); this is not needed if the system is
-by default lower-case. In this document it is assumed that the
-REDUCE system is lower-case.
-<P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+<BODY>
+  <META name="description" value=" Case Sensitivity">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html319" href="node6.html" id="tex2html319"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html317" href="node4.html" id="tex2html317"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html311" href="node4.html" id="tex2html311"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html321" href="node1.html" id="tex2html321"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html322" href="node70.html" id="tex2html322"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html320" href="node6.html" id=
+  "tex2html320">Notation</A> <B>Up:</B> <A name="tex2html318" href=
+  "node4.html" id="tex2html318">Concepts in REDUCE</A> <B>Previous:</B>
+  <A name="tex2html312" href="node4.html" id="tex2html312">Concepts in
+  REDUCE</A><BR>
+  <HR>
+  <H2><A name="SECTION00221000000000000000" id=
+  "SECTION00221000000000000000">Case Sensitivity</A></H2>
+  <P><A name="sseccase" id="sseccase"></A> REDUCE is by default case
+  insensitive, <A name="153" id="153"></A> and depending on the installation
+  the default behaviour may be to map upper case characters to lower case, or
+  the reverse. This insensitivity is primarily to allow for greater
+  portability of the REDUCE code, it is however, somewhat undesirable for a
+  mathematical system, since the same symbol in different case is often used
+  to represent different quantities.</P>
+  <P>By default, REDTEN is a case-sensitive system: it clears the control
+  switches raise and lower at startup (these switches can be <A name="4088"
+  id="4088"></A> <A name="4089" id="4089"></A> set by the user with the
+  commands on or off <A name="tex2html9" href="footnode.html#4090" id=
+  "tex2html9"><IMG align="bottom" alt=".png&quot;" src=
+  "../../../images/latex/foot_motif.png"></A>). In an upper-case system the
+  raise switch is on, while the lower switch is off, the reverse may be true
+  in lower-case systems, but the exact combination is implementation
+  dependent. Improperly setting these switches can trap the user in the
+  system, with no way to gracefully exit or reset the switches (the REDUCE
+  quote character ``<SPAN class="c1">!</SPAN>'' can be used to inhibit the
+  case-mapping of the system, see below). <A name="4091" id="4091"></A></P>
+  <P>If the REDUCE system is upper-case by default, a package to map the
+  names of many of the commonly used operators and functions to lower case is
+  available<A name="tex2html11" href="footnode.html#4092" id=
+  "tex2html11"><IMG align="bottom" alt=".png&quot;" src=
+  "../../../images/latex/foot_motif.png"></A> (see §<A href=
+  "node58.html#seccase">7.4</A>); this is not needed if the system is by
+  default lower-case. In this document it is assumed that the REDUCE system
+  is lower-case.</P>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

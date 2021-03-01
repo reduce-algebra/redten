@@ -1,167 +1,179 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Entering Components</TITLE>
-<meta name="description" value=" Entering Components">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Entering Components</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html609 HREF="node28.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html607 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html601 HREF="node26.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html611 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html612 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html610 HREF="node28.html"> Accessing and Displaying </A>
-<B>Up:</B> <A NAME=tex2html608 HREF="node25.html"> The Robertson-Walker Metric</A>
-<B> Previous:</B> <A NAME=tex2html602 HREF="node26.html"> coords()</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00342000000000000000> Entering Components</A></H2>
-<P>
-<A NAME=sseccomp>&#160;</A>    To make use of this metric we must first set the correct coordinates
-as above, and then create an appropriate indexed object and enter
-values for its components. Since this is a metric tensor, it will have
-two covariant tensor indices, and will be symmetric:
-<PRE> 
-<tt>#: <i>mkobj ('h, '(-1 -1), '((1 1 2)), '(), 'metric);</i>
+<BODY>
+  <META name="description" value=" Entering Components">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html609" href="node28.html" id="tex2html609"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html607" href="node25.html" id="tex2html607"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html601" href="node26.html" id="tex2html601"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html611" href="node1.html" id="tex2html611"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html612" href="node70.html" id="tex2html612"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html610" href="node28.html" id=
+  "tex2html610">Accessing and Displaying</A> <B>Up:</B> <A name="tex2html608"
+  href="node25.html" id="tex2html608">The Robertson-Walker Metric</A>
+  <B>Previous:</B> <A name="tex2html602" href="node26.html" id=
+  "tex2html602">coords()</A><BR>
+  <HR>
+  <H2><A name="SECTION00342000000000000000" id=
+  "SECTION00342000000000000000">Entering Components</A></H2>
+  <P><A name="sseccomp" id="sseccomp"></A> To make use of this metric we must
+  first set the correct coordinates as above, and then create an appropriate
+  indexed object and enter values for its components. Since this is a metric
+  tensor, it will have two covariant tensor indices, and will be
+  symmetric:</P>
+  <PRE> 
+<SPAN class="c1">#: <I>mkobj ('h, '(-1 -1), '((1 1 2)), '(), 'metric);</I>
 
  h
   a b
 
-#: <i>depend rt, t;</i>
+#: <I>depend rt, t;</I>
 
-#: <i>let s = sin(sqrt(k)*om)/sqrt(k);</i>
-</tt></PRE>Notice that we have set up the object so that the itype is <tt>metric</tt>, and have used an empty list for the undesired implicit
-parameter. It is common to use the name g for a metric, but in
-REDTEN it has been made into a ``<b>generic</b>'' (qv) name, and
-should not be disturbed; we shall use <tt>h</tt> in this example
-instead. We have also set up the time-dependence of <tt>rt</tt> (using
-<tt>rt</tt> instead of
-R, since <tt>R</tt> is generic too) and defined a <tt>let</tt> rule to 
-evaluate <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6244.gif">. This last part could be done as easily with a REDUCE
-assignment.
-<P>
-There are two ways to enter the values of the components of <tt>h</tt>.
-The first method involves the expected assignment operation, where
-the left-hand side, referring to a specific element with a fixed
-index, is assigned the value on the right hand side. Unlike the normal
-REDUCE assignment operation which uses the symbol <tt>:=</tt>, the 
-<A NAME=689>&#160;</A>
-<A NAME=690>&#160;</A>
-<A NAME=691>&#160;</A>
-REDTEN indexed assignment operation uses the symbol <tt>==</tt>. Attempting to
-assign a value to an indexed object element with the <tt>:=</tt> operator
-will result in a REDUCE <tt>Missing Operator</tt> error
-mclear()
-message<A NAME=tex2html64 HREF="footnode.html#4113"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>.
-We can proceed as follows:
-<PRE> 
-<tt>#: <i>h[0,0] == 1;</i>
+#: <I>let s = sin(sqrt(k)*om)/sqrt(k);</I>
+</SPAN></PRE>Notice that we have set up the object so that the itype is
+<SPAN class="c1">metric</SPAN>, and have used an empty list for the undesired
+implicit parameter. It is common to use the name g for a metric, but in
+REDTEN it has been made into a ``<B>generic</B>'' (qv) name, and should not
+be disturbed; we shall use <SPAN class="c1">h</SPAN> in this example instead.
+We have also set up the time-dependence of <SPAN class="c1">rt</SPAN> (using
+<SPAN class="c1">rt</SPAN> instead of R, since <SPAN class="c1">R</SPAN> is
+generic too) and defined a <SPAN class="c1">let</SPAN> rule to evaluate
+<IMG align="bottom" src="_10787_tex2html_wrap6244.png">. This last part could
+be done as easily with a REDUCE assignment.
+  <P>There are two ways to enter the values of the components of <SPAN class=
+  "c1">h</SPAN>. The first method involves the expected assignment operation,
+  where the left-hand side, referring to a specific element with a fixed
+  index, is assigned the value on the right hand side. Unlike the normal
+  REDUCE assignment operation which uses the symbol <SPAN class=
+  "c1">:=</SPAN>, the <A name="689" id="689"></A> <A name="690" id="690"></A>
+  <A name="691" id="691"></A> REDTEN indexed assignment operation uses the
+  symbol <SPAN class="c1">==</SPAN>. Attempting to assign a value to an
+  indexed object element with the <SPAN class="c1">:=</SPAN> operator will
+  result in a REDUCE <SPAN class="c1">Missing Operator</SPAN> error mclear()
+  message<A name="tex2html64" href="footnode.html#4113" id=
+  "tex2html64"><IMG align="bottom" alt=".png&quot;" src=
+  "../../../images/latex/foot_motif.png"></A>. We can proceed as follows:</P>
+  <PRE> 
+<SPAN class="c1">#: <I>h[0,0] == 1;</I>
 
    1
 
-#: <i>h[1,1] == -rt^2;</i>
+#: <I>h[1,1] == -rt^2;</I>
 
       2
    -rt
 
-#: <i>h[2,2] == -s^2*rt^2;</i>
+#: <I>h[2,2] == -s^2*rt^2;</I>
 
                     2   2
    - sin(sqrt(k) om)  rt
  -------------------------
              k
 
-#: <i>h[3,3] == -sin(th)^2*s^2*rt^2;</i>
+#: <I>h[3,3] == -sin(th)^2*s^2*rt^2;</I>
 
                     2        2   2
    - sin(sqrt(k) om)  sin(th)  rt
  ----------------------------------
                  k
 
-</tt></PRE>As each value is entered, the system then reads the object to determine the
-actual value stored for that component, since it is possible for the
-assignment to fail due to symmetries or write-protection of the
-object. These are explicit components for <tt>h</tt>, and since <tt>h</tt>
-was not declared as an ``implicit'' object, any missing components are
-taken as 0. If any component already had a non-zero value, that value
-is overwritten (unless the object is write-protected).
-<P>
-When  a large number of elements are to be assigned to the same
-object, a more convenient method is to use the function ias(). This
-function takes an indexed object as input and guides the user through
-the assignment process. At its simplest, ias() attempts to
-assign to the whole object, keeping in mind the intrinsic symmetries
-that are present. The user may also attach an index that indicates the
-assignments are to be to a particular row or column of the object.
-Using ias() the assignment to <tt>h</tt> would proceed as follows:
-<PRE> 
-<tt>#: <i>ias(h);</i>
-  h[0,0] = <i>1;</i>
-  h[0,1] = <i>;</i>
-  h[0,2] = <i>;</i>
-  h[0,3] = <i>;</i>
-  h[1,1] = <i>-rt^2;</i>
-  h[1,2] = <i>;</i>
-  h[1,3] = <i>;</i>
-  h[2,2] = <i>-s^2*rt^2;</i>
-  h[2,3] = <i>;</i>
-  h[3,3] = <i>-sin(th)^2*s^2*rt^2;</i>
+</SPAN></PRE>As each value is entered, the system then reads the object to
+determine the actual value stored for that component, since it is possible
+for the assignment to fail due to symmetries or write-protection of the
+object. These are explicit components for <SPAN class="c1">h</SPAN>, and
+since <SPAN class="c1">h</SPAN> was not declared as an ``implicit'' object,
+any missing components are taken as 0. If any component already had a
+non-zero value, that value is overwritten (unless the object is
+write-protected).
+  <P>When a large number of elements are to be assigned to the same object, a
+  more convenient method is to use the function ias(). This function takes an
+  indexed object as input and guides the user through the assignment process.
+  At its simplest, ias() attempts to assign to the whole object, keeping in
+  mind the intrinsic symmetries that are present. The user may also attach an
+  index that indicates the assignments are to be to a particular row or
+  column of the object. Using ias() the assignment to <SPAN class=
+  "c1">h</SPAN> would proceed as follows:</P>
+  <PRE> 
+<SPAN class="c1">#: <I>ias(h);</I>
+  h[0,0] = <I>1;</I>
+  h[0,1] = <I>;</I>
+  h[0,2] = <I>;</I>
+  h[0,3] = <I>;</I>
+  h[1,1] = <I>-rt^2;</I>
+  h[1,2] = <I>;</I>
+  h[1,3] = <I>;</I>
+  h[2,2] = <I>-s^2*rt^2;</I>
+  h[2,3] = <I>;</I>
+  h[3,3] = <I>-sin(th)^2*s^2*rt^2;</I>
 
   h
-</tt></PRE>At each prompt the user may enter the desired value; a semi-colon
-alone is equivalent to zero. If the user types <tt>nil</tt><A NAME=tex2html65 HREF="footnode.html#4120"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>
-then the assignment process is terminated, and any remaining
-unassigned components will be unchanged.
-<P>
-The function iclear() can be used to remove all of the components
-of several indexed objects (and the multiplier), without disturbing
-any of the other properties.
-<P>
-
-<P>
-So far we have created only a rank-2 object with some symmetries and
-values, the rest of the structure associated with a metric is not yet
-present. The function metric() is used to fully qualify an object
-as a metric: it attaches the required properties, adjusts some system
-variables and creates the metric inverse. We may apply metric() to
-<tt>h</tt> very simply:
-<PRE> 
-<tt>#: <i>metric(h);</i>
+</SPAN></PRE>At each prompt the user may enter the desired value; a
+semi-colon alone is equivalent to zero. If the user types <SPAN class=
+"c1">nil</SPAN><A name="tex2html65" href="footnode.html#4120" id=
+"tex2html65"><IMG align="bottom" alt=".png&quot;" src=
+"../../../images/latex/foot_motif.png"></A> then the assignment process is
+terminated, and any remaining unassigned components will be unchanged.
+  <P>The function iclear() can be used to remove all of the components of
+  several indexed objects (and the multiplier), without disturbing any of the
+  other properties.</P>
+  <P>So far we have created only a rank-2 object with some symmetries and
+  values, the rest of the structure associated with a metric is not yet
+  present. The function metric() is used to fully qualify an object as a
+  metric: it attaches the required properties, adjusts some system variables
+  and creates the metric inverse. We may apply metric() to <SPAN class=
+  "c1">h</SPAN> very simply:</P>
+  <PRE> 
+<SPAN class="c1">#: <I>metric(h);</I>
 
  invert finished.
 
  h
-</tt></PRE>At the end of this process <tt>h</tt> has been declared the
-``current-metric'', and its name is installed in the system variable
-currentmetric.
-Among other things, this means that <tt>h</tt> will be used by
-shift() when raising or lowering tensor indices. The generic metric 
-<A NAME=745>&#160;</A>
-g will also refer to this object (see <A HREF="node38.html#secgenerics">4.3</A>).
-The metric inverse will be given the name <tt>h_inv</tt>, it is created
-from the metric by the matrix function invert() (qv).
-<A NAME=750>&#160;</A>
-The indexed object passed to metric() must be a rank-2 covariant
-object, and is assumed to be symmetric. If it is actually diagonal (as
-this example is), the symmetry will be adjusted to reflect this. A
-diagonal symmetry helps the system to run faster for many operations
-involving the metric, particularly in the raising and lowering of
-indices with shift().
-<P>
-metric() can also be used to create a new indexed object suitable
-for filling with metric coefficients. To do this, give metric()
-no arguments, the object it creates will have a name in the usual
-sequence of metric objects described below. After the user has
-entered the metric coefficients, metric() should be called again
-as demonstrated above to finish the job of setting up the metric. In
-this situation, the newly created object must be accessed by name, it
-is not the target of the generic metric, since it is not yet a proper
-metric.
-<P>
-A package for General Relativity is included in REDTEN (described
-in Chapter <A HREF="node33.html#gr">4</A>), and allows
-the user to enter a metric directly from the line-element:
-<PRE> 
-<tt>#: <i>ds2 := d(t)^2-rt^2*(d(om)^2+s^2*(d(th)^2+sin(th)^2*d(ph)^2));</i>
+</SPAN></PRE>At the end of this process <SPAN class="c1">h</SPAN> has been
+declared the ``current-metric'', and its name is installed in the system
+variable currentmetric. Among other things, this means that <SPAN class="c1">
+  h</SPAN> will be used by shift() when raising or lowering tensor indices.
+  The generic metric <A name="745" id="745"></A> g will also refer to this
+  object (see <A href="node38.html#secgenerics">4.3</A>). The metric inverse
+  will be given the name <SPAN class="c1">h_inv</SPAN>, it is created from
+  the metric by the matrix function invert() (qv). <A name="750" id=
+  "750"></A> The indexed object passed to metric() must be a rank-2 covariant
+  object, and is assumed to be symmetric. If it is actually diagonal (as this
+  example is), the symmetry will be adjusted to reflect this. A diagonal
+  symmetry helps the system to run faster for many operations involving the
+  metric, particularly in the raising and lowering of indices with shift().
+  <P>metric() can also be used to create a new indexed object suitable for
+  filling with metric coefficients. To do this, give metric() no arguments,
+  the object it creates will have a name in the usual sequence of metric
+  objects described below. After the user has entered the metric
+  coefficients, metric() should be called again as demonstrated above to
+  finish the job of setting up the metric. In this situation, the newly
+  created object must be accessed by name, it is not the target of the
+  generic metric, since it is not yet a proper metric.</P>
+  <P>A package for General Relativity is included in REDTEN (described in
+  Chapter <A href="node33.html#gr">4</A>), and allows the user to enter a
+  metric directly from the line-element:</P>
+  <PRE> 
+<SPAN class=
+"c1">#: <I>ds2 := d(t)^2-rt^2*(d(om)^2+s^2*(d(th)^2+sin(th)^2*d(ph)^2));</I>
 
                  2     2        2                2        2   2
  ds2 := ( - d(om)  k rt  - d(ph)  sin(sqrt(k) om)  sin(th)  rt
@@ -169,44 +181,54 @@ the user to enter a metric directly from the line-element:
                 2          2                2   2
           + d(t)  k - d(th)  sin(sqrt(k) om)  rt )/k
 
-#: <i>metric (ds2);</i>
+#: <I>metric (ds2);</I>
 
  computing g1
  invert finished.
 
  g1
-</tt></PRE>In this case, the metric name is defined by the system. It will have
-the form <tt>g&lt;sequence number&gt;</tt>, where <tt>&lt;sequence number&gt;</tt> is
-<A NAME=770>&#160;</A>
-initially 1, and increments for every new metric that is created in
-this fashion. An optional second argument allows the user to specify
-the name that will be used instead for the metric.  This method is more
-convenient for simple metrics that are ordinarily presented in the
-form of a line-element, while the first method is often useful for very
-complicated metrics that are too troublesome to express in
-line-element form.
-<P>
-The line-element is written as a REDUCE expression containing the
-differential operator d(). This operator computes the total
-derivative of its argument with respect to the current coordinates; if
-the argument is one of the coordinate names, d() returns
-unevaluated. By examining the expression for d() operators the
-system can determine the structure of the metric, and can also tell if
-the metric is diagonal or simply symmetric.
-<P>
-metric()
-<P>
-Once the elements of the metric are in place, one needs a way to
-examine the object to ensure all is well.
-<P>
-<BR> <HR><A NAME=tex2html609 HREF="node28.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html607 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html601 HREF="node26.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html611 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html612 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html610 HREF="node28.html"> Accessing and Displaying </A>
-<B>Up:</B> <A NAME=tex2html608 HREF="node25.html"> The Robertson-Walker Metric</A>
-<B> Previous:</B> <A NAME=tex2html602 HREF="node26.html"> coords()</A>
-<BR> <HR> <P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+</SPAN></PRE>In this case, the metric name is defined by the system. It will
+have the form <SPAN class="c1">g&lt;sequence number&gt;</SPAN>, where
+<SPAN class="c1">&lt;sequence number&gt;</SPAN> is <A name="770" id=
+"770"></A> initially 1, and increments for every new metric that is created
+in this fashion. An optional second argument allows the user to specify the
+name that will be used instead for the metric. This method is more convenient
+for simple metrics that are ordinarily presented in the form of a
+line-element, while the first method is often useful for very complicated
+metrics that are too troublesome to express in line-element form.
+  <P>The line-element is written as a REDUCE expression containing the
+  differential operator d(). This operator computes the total derivative of
+  its argument with respect to the current coordinates; if the argument is
+  one of the coordinate names, d() returns unevaluated. By examining the
+  expression for d() operators the system can determine the structure of the
+  metric, and can also tell if the metric is diagonal or simply
+  symmetric.</P>
+  <P>metric()</P>
+  <P>Once the elements of the metric are in place, one needs a way to examine
+  the object to ensure all is well.</P>
+  <P><BR></P>
+  <HR>
+  <A name="tex2html609" href="node28.html" id="tex2html609"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html607" href="node25.html" id="tex2html607"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html601" href="node26.html" id="tex2html601"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html611" href="node1.html" id="tex2html611"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html612" href="node70.html" id="tex2html612"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html610" href="node28.html" id=
+  "tex2html610">Accessing and Displaying</A> <B>Up:</B> <A name="tex2html608"
+  href="node25.html" id="tex2html608">The Robertson-Walker Metric</A>
+  <B>Previous:</B> <A name="tex2html602" href="node26.html" id=
+  "tex2html602">coords()</A><BR>
+  <HR>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

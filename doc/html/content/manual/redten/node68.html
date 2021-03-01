@@ -1,75 +1,114 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Modifications to REDUCE</TITLE>
-<meta name="description" value=" Modifications to REDUCE">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Modifications to REDUCE</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html1110 HREF="node69.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1108 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1102 HREF="node67.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1112 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1113 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html1111 HREF="node69.html"> New Features</A>
-<B>Up:</B> <A NAME=tex2html1109 HREF="root.html">No Title</A>
-<B> Previous:</B> <A NAME=tex2html1103 HREF="node67.html"> Renaming Internal Functions</A>
-<BR> <HR> <P>
-<H1><A NAME=SECTION001800000000000000000> Modifications to REDUCE</A></H1>
-<P>
-A few special modifications were made to the REDUCE source code in
-order to provide the hooks required for the interaction of the
-REDUCE algebra engine with some REDTEN constructs. In most cases
-the modifications consist of no more than a few added lines to a
-REDUCE function.  The modified sources are in the files <tt>local3{3,4,5}.red</tt>, the filename relects the version of REDUCE
-for which it is useful. Other functions have been replaced by renaming
-them, and interposing a new function under the old name.
-This appendix briefly lists these
-modifications; for a complete description see the relevant source files.
-<P>
-<OL><LI> A minor cosmetic modification involves changing the print
-character for multiplication from ``<tt>*</tt>'' to a blank, so that, for
-example, <tt>a * b</tt> is now displayed as <tt>a b</tt>. There is some
-justification for this, since a complicated expression can be hard to
-see when it is full of <tt>*</tt> symbols (and indexed expressions can be
-worse), but this modification also has a detrimental effect when the REDUCE
-switch nat is off. The user can either restore the old
-behaviour with the command
-<PRE> 
-<tt>#: <i>lisp put ('times, 'prtch, &quot;*&quot;);</i>
-</tt></PRE>or comment the relevant line out of the local source file.
-<LI> The function inprint() has been modified to add the
-required hook to permit the printing of indexed objects.
-<LI> The function diffp() has been modified to add the
-required hook for applying the df() operator to an indexed
-object. 
-<LI> The function xread1() has a modification to allow parsing
-of ``incomplete'' index-operations such as those used by symz().
-<LI> The function prin2!*() has a modification to permit
-names containing special characters to print without embedded <tt>!</tt> symbols. 
-<LI> The function terpri!*() has been modified to support the
-output pager code.
-<LI> The function begin1() has been modified to support
-environments, the pager, and the beep switch.
-<LI> The function setk1() has been redefined to support
-environments, and to catch attempts at algebraic assignments to
-indexed object names (see <tt>save.red</tt>).
-<LI> The primative function scan() has been redefined to save
-the previous two tokens encountered in the input stream. This allows
-the system to find the un-indexed name to which an index has been attached
-and prompt the user for its proper creation (see <tt>io.red</tt>).
-<LI> The token() function is redefined as described in
-&#167;<A HREF="node67.html#rename">F.1</A> to implement the renaming of REDTEN functions and
-variables during compilation. This modification is not present in the
-final REDTEN system (see <tt>rename.red</tt>).
-</OL>
-    <BR> <HR><A NAME=tex2html1110 HREF="node69.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1108 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1102 HREF="node67.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1112 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1113 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html1111 HREF="node69.html"> New Features</A>
-<B>Up:</B> <A NAME=tex2html1109 HREF="root.html">No Title</A>
-<B> Previous:</B> <A NAME=tex2html1103 HREF="node67.html"> Renaming Internal Functions</A>
-<BR> <HR> <P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+<BODY>
+  <META name="description" value=" Modifications to REDUCE">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html1110" href="node69.html" id="tex2html1110"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html1108" href="root.html" id="tex2html1108"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html1102" href="node67.html" id="tex2html1102"><IMG align="bottom"
+  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html1112" href="node1.html" id="tex2html1112"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html1113" href="node70.html" id="tex2html1113"><IMG align="bottom"
+  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html1111" href="node69.html" id=
+  "tex2html1111">New Features</A> <B>Up:</B> <A name="tex2html1109" href=
+  "root.html" id="tex2html1109">No Title</A> <B>Previous:</B> <A name=
+  "tex2html1103" href="node67.html" id="tex2html1103">Renaming Internal
+  Functions</A><BR>
+  <HR>
+  <H1><A name="SECTION001800000000000000000" id=
+  "SECTION001800000000000000000">Modifications to REDUCE</A></H1>
+  <P>A few special modifications were made to the REDUCE source code in order
+  to provide the hooks required for the interaction of the REDUCE algebra
+  engine with some REDTEN constructs. In most cases the modifications consist
+  of no more than a few added lines to a REDUCE function. The modified
+  sources are in the files <SPAN class="c1">local3{3,4,5}.red</SPAN>, the
+  filename relects the version of REDUCE for which it is useful. Other
+  functions have been replaced by renaming them, and interposing a new
+  function under the old name. This appendix briefly lists these
+  modifications; for a complete description see the relevant source
+  files.</P>
+  <OL>
+    <LI>A minor cosmetic modification involves changing the print character
+    for multiplication from ``<SPAN class="c1">*</SPAN>'' to a blank, so
+    that, for example, <SPAN class="c1">a * b</SPAN> is now displayed as
+    <SPAN class="c1">a b</SPAN>. There is some justification for this, since
+    a complicated expression can be hard to see when it is full of
+    <SPAN class="c1">*</SPAN> symbols (and indexed expressions can be worse),
+    but this modification also has a detrimental effect when the REDUCE
+    switch nat is off. The user can either restore the old behaviour with the
+    command
+      <PRE> 
+<SPAN class="c1">#: <I>lisp put ('times, 'prtch, "*");</I>
+</SPAN></PRE>or comment the relevant line out of the local source file.
+    </LI>
+    <LI>The function inprint() has been modified to add the required hook to
+    permit the printing of indexed objects.</LI>
+    <LI>The function diffp() has been modified to add the required hook for
+    applying the df() operator to an indexed object.</LI>
+    <LI>The function xread1() has a modification to allow parsing of
+    ``incomplete'' index-operations such as those used by symz().</LI>
+    <LI>The function prin2!*() has a modification to permit names containing
+    special characters to print without embedded <SPAN class="c1">!</SPAN>
+    symbols.</LI>
+    <LI>The function terpri!*() has been modified to support the output pager
+    code.</LI>
+    <LI>The function begin1() has been modified to support environments, the
+    pager, and the beep switch.</LI>
+    <LI>The function setk1() has been redefined to support environments, and
+    to catch attempts at algebraic assignments to indexed object names (see
+    <SPAN class="c1">save.red</SPAN>).</LI>
+    <LI>The primative function scan() has been redefined to save the previous
+    two tokens encountered in the input stream. This allows the system to
+    find the un-indexed name to which an index has been attached and prompt
+    the user for its proper creation (see <SPAN class=
+    "c1">io.red</SPAN>).</LI>
+    <LI>The token() function is redefined as described in §<A href=
+    "node67.html#rename">F.1</A> to implement the renaming of REDTEN
+    functions and variables during compilation. This modification is not
+    present in the final REDTEN system (see <SPAN class=
+    "c1">rename.red</SPAN>).
+    </LI>
+  </OL><BR>
+  <HR>
+  <A name="tex2html1110" href="node69.html" id="tex2html1110"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html1108" href="root.html" id="tex2html1108"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html1102" href="node67.html" id="tex2html1102"><IMG align="bottom"
+  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html1112" href="node1.html" id="tex2html1112"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html1113" href="node70.html" id="tex2html1113"><IMG align="bottom"
+  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html1111" href="node69.html" id=
+  "tex2html1111">New Features</A> <B>Up:</B> <A name="tex2html1109" href=
+  "root.html" id="tex2html1109">No Title</A> <B>Previous:</B> <A name=
+  "tex2html1103" href="node67.html" id="tex2html1103">Renaming Internal
+  Functions</A><BR>
+  <HR>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

@@ -1,68 +1,84 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> <tt>coords()</tt></TITLE>
-<meta name="description" value=" coords()">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>...</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html597 HREF="node27.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html595 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html589 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html599 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html600 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html598 HREF="node27.html"> Entering Components</A>
-<B>Up:</B> <A NAME=tex2html596 HREF="node25.html"> The Robertson-Walker Metric</A>
-<B> Previous:</B> <A NAME=tex2html590 HREF="node25.html"> The Robertson-Walker Metric</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00341000000000000000> <tt>coords()</tt></A></H2>
-<P>
-<A NAME=fncoords>&#160;</A>   <A NAME=637>&#160;</A>
-<A NAME=638>&#160;</A>
-<A NAME=639>&#160;</A>
-Some of the properties of objects newly created by mkobj() are
-derived from lisp variables that define the ``tensor environment'' of
-the system, namely
-coords!*, which contains the coordinate names; and
-defindextype!*, which contains the definitions of index-types 
-and the runs of indices (i.e. the integer range over which an index of
-a given type can vary). The length of the coords!* list is the
-dimension of the space time; the default value is <tt>'(t r th
-ph)</tt>. The coords!* variable is set with the function
-coords() and the defindextype!* variable is set with
-the function defindextype().
-<P>
-The coords() function takes the list of coordinates as its first
-argument, and an optional second argument is used to determine the
-starting value for the tensor index-run, the default is
-0. 
-The default ranges of indices are shown in
-table <A HREF="node13.html#tabindextype">2.1</A>.  The coords() function also creates a
-coordinate-vector whose default name is the value of mkcoords.
-<P>
-For example, to change  from the default spherical coordinates to
-those appropriate to the Robertson-Walker metric:
-<PRE> 
-<tt>  #: <i>coords '(t om th ph);</i>
+<BODY>
+  <SPAN class="c1">coords()</SPAN>
+  <META name="description" value=" coords()">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html597" href="node27.html" id="tex2html597"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html595" href="node25.html" id="tex2html595"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html589" href="node25.html" id="tex2html589"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html599" href="node1.html" id="tex2html599"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html600" href="node70.html" id="tex2html600"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html598" href="node27.html" id=
+  "tex2html598">Entering Components</A> <B>Up:</B> <A name="tex2html596"
+  href="node25.html" id="tex2html596">The Robertson-Walker Metric</A>
+  <B>Previous:</B> <A name="tex2html590" href="node25.html" id=
+  "tex2html590">The Robertson-Walker Metric</A><BR>
+  <HR>
+  <H2><A name="SECTION00341000000000000000" id=
+  "SECTION00341000000000000000"><SPAN class="c1">coords()</SPAN></A></H2>
+  <P><A name="fncoords" id="fncoords"></A> <A name="637" id="637"></A>
+  <A name="638" id="638"></A> <A name="639" id="639"></A> Some of the
+  properties of objects newly created by mkobj() are derived from lisp
+  variables that define the ``tensor environment'' of the system, namely
+  coords!*, which contains the coordinate names; and defindextype!*, which
+  contains the definitions of index-types and the runs of indices (i.e. the
+  integer range over which an index of a given type can vary). The length of
+  the coords!* list is the dimension of the space time; the default value is
+  <SPAN class="c1">'(t r th ph)</SPAN>. The coords!* variable is set with the
+  function coords() and the defindextype!* variable is set with the function
+  defindextype().</P>
+  <P>The coords() function takes the list of coordinates as its first
+  argument, and an optional second argument is used to determine the starting
+  value for the tensor index-run, the default is 0. The default ranges of
+  indices are shown in table <A href="node13.html#tabindextype">2.1</A>. The
+  coords() function also creates a coordinate-vector whose default name is
+  the value of mkcoords.</P>
+  <P>For example, to change from the default spherical coordinates to those
+  appropriate to the Robertson-Walker metric:</P>
+  <PRE> 
+<SPAN class="c1">  #: <I>coords '(t om th ph);</I>
  (t om th ph)
-</tt></PRE>(Observe that as a function with one argument, the enclosing
-parenthesis are not required, but are required in the example below,
-where <tt>coords()</tt> has two arguments).  If the user prefers to
-regard <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6242.gif">, then the following would be used:
-<PRE> 
-<tt>  #: <i>coords ('(om th ph t), 1);</i>
+</SPAN></PRE>(Observe that as a function with one argument, the enclosing
+parenthesis are not required, but are required in the example below, where
+<SPAN class="c1">coords()</SPAN> has two arguments). If the user prefers to
+regard <IMG align="bottom" src="_10787_tex2html_wrap6242.png">, then the
+following would be used:
+  <PRE> 
+<SPAN class="c1">  #: <I>coords ('(om th ph t), 1);</I>
  (t om th ph)
-</tt></PRE>and the tensor index range will be 1--4.
-coords() prints the new coordinate list, or the current list if
-no argument is given. The old coordinates are saved in
-oldcoords!*. The old coordinates can be reset with the command
-<PRE> 
-<tt>  #: <i>lisp coords oldcoords!*;</i>
+</SPAN></PRE>and the tensor index range will be 1--4. coords() prints the new
+coordinate list, or the current list if no argument is given. The old
+coordinates are saved in oldcoords!*. The old coordinates can be reset with
+the command
+  <PRE> 
+<SPAN class="c1">  #: <I>lisp coords oldcoords!*;</I>
  (t r th ph)
-</tt></PRE>
-<P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+</SPAN></PRE>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

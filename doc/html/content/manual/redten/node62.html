@@ -1,389 +1,309 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Functions</TITLE>
-<meta name="description" value=" Functions">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Functions</TITLE>
+  <STYLE type="text/css">
+  address.c3 {font-style: italic}
+  dd.c2 {font-style: italic}
+  dt.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html1038 HREF="node63.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1036 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1030 HREF="node61.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1040 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1041 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html1039 HREF="node63.html"> Switches</A>
-<B>Up:</B> <A NAME=tex2html1037 HREF="root.html">No Title</A>
-<B> Previous:</B> <A NAME=tex2html1031 HREF="node61.html"> REDTEN FunctionsVariables, </A>
-<BR> <HR> <P>
-<H1><A NAME=SECTION001200000000000000000> Functions</A></H1>
-<P>
-<A NAME=func>&#160;</A>	
-This section gives the details of the calling sequence and return
-values of each of the REDTEN user-callable functions. For a detailed
-description of what each function does, see the relevant section of
-the main manual.
-<P>
-The argument type will be one of
-<DL ><DT><i>id
-<DD> --- an identifier is expected.
-<DT><i>list
-<DD> --- the argument is a list, this implies the use of <tt>'</tt> (see <A HREF="node7.html#sseclvar">1.2.3</A>). Following the Standard Lisp Report (Marti
-et.al. 1979) a list of homogeneous entities is denoted by <i>xxx</i>-list, where <i>xxx</i> is the class of items in the list. For
-example, an id-list is a list of identifiers.
-<DT><i>string
-<DD> --- a string, enclosed in double-quotes is expected.
-<DT><i>bool
-<DD> --- either 't or 'nil.
-<DT><i>lit
-<DD> --- the argument is the literal value shown.
-<DT><i>any
-<DD> --- any kind of argument may be given.
-<DT><i>int
-<DD> --- the argument is an integer.
-<DT><i>plist
-<DD> --- the argument is a property list.
-<DT><i>alist
-<DD> --- the argument is an association list.
-<DT><i>aexp
-<DD> --- the argument is an algebraic expression.
-<DT><i>iexp
-<DD> --- the argument is an indexed expression.
-<DT><i>iobj[n]
-<DD> --- the argument is an indexed object (either the name
-alone, or with an index), of rank n if specified.
-<DT><i>index
-<DD> --- the index of an indexed object, including the enclosing
-square brackets.
-<P>
- </DL>
-Any argument name beginning with a <tt>'</tt> indicates that the 
-<A NAME=4196>&#160;</A>
-lisp quote function should be applied (i.e. type <b>'</b> before the
-argument). This will most often apply to arguments of type <b>list</b>,
-and on occasion to <b>id</b>'s as well.
-<P>
-Argument types preceeded by a quote character (<b>'</b>) indicate that
-the argument <em>must</em> be quoted when calling the function, failing
-to do so will likely result in an error. Quoting an argument that is
-not supposed to be quoted will likewise generate an error.
-<P>
-<UL>
-<LI> <b>altmetric</b> (name:<i>iobj</i>, metric:<i>iobj</i>):<i>id</i>=&lt;name
-altmetric()
-<P>
-<LI> <b>christoffel1</b> ({name:<i>id</i>}):<i>id</i>=&lt;christoffel1&lt;name
-christoffel1()
-<P>
-<LI> <b>christoffel2</b>({name:<i>id</i>}):<i>id</i>=&lt;christoffel2&lt;name 
-christoffel2()
-<P>
-<LI> <b>cleartmp</b> ():<i>t</i>
-cleartmp()
-<P>
-<LI> <b>cmod</b> (val:<i>aexp</i>):<i>aexp</i>
-cmod()
-<P>
-<LI> <b>cofactor</b> (name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>iobj</i>, name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>id</i>,	{transpose_flag:<i>bool</i>}):<i>id</i>=&lt;name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">
-cofactor()
-<P>
-<LI> <b>complex</b> (val:<i>aexp</i>):<i>aexp</i>
-complex()
-<P>
-<LI> <b>copyfam</b> (metric:<i>iobj</i>, new_metric:<i>id</i>):<i>id</i>=&lt;new_metric
-copyfam()
-<P>
-<LI> <b>cnj</b> (val:<i>aexp</i>):<i>aexp</i>
-cnj()
-<P>
-<LI> <b>cov</b> (name:<i>iobj</i>):<i>id</i>=&lt;name_CD
-cov()
-<P>
-<LI> <b>d</b> (val:<i>aexp</i>):<i>aexp</i>
-d()
-<P>
-<LI> <b>dalembert</b> (val:<i>aexp</i>):<i>aexp</i>
-dalembert()
-<P>
-<LI> <b>defindextype</b> ('range :<i>list</i>, n :<i>int</i>,
-	 {name :<i>id</i>}, 
-	{format :<i>string</i>},
-<BR>  {flg :<i>bool</i>}) :<i>id</i>=&lt;name|user&lt;n
-defindextype()
-<P>
-<LI> <b>delta</b> (name:<i>id</i>, type:<i>int</i>):<i>id</i>=&lt;name
-delta()
-<P>
-<LI> <b>describe</b> (name:<i>iobj</i>,
-{description:<i>string</i>}):<i>id</i>=&lt;name  <BR>describe()
-This function has a side effect.
-<P>
-<LI> <b>det</b> (name:<i>iobj[2]</i>,{val:<i>aexp</i>}):<i>aexp</i>=?&lt;val 
-det()
-<P>
-<LI> <b>determ</b> (name:<i>iobj[2]</i>, cofname:<i>id</i>,{trans_flag:<i>bool</i>}):<i>id</i>=&lt;cofname
-determ()
-<P>
-<LI> <b>dir</b> ():<i>bool</i>=t
-dir()
-<P>
-<LI> <b>div</b> (name:<i>iobj</i>,output:<i>id</i>):<i>id</i>=&lt;output&lt;name_D
-div()
-<P>
-<LI> <b>einstein</b> ({name:<i>id</i>}):<i>id</i>=&lt;einstein&lt;name 
-einstein()
-<P>
-<LI> <b>fn</b> (func:<i>function name</i>, index:<i>index</i>):<i>aexp</i><BR>fn()
-need to declare fname
-<P>
-<LI> <b>freinstein</b> ({name:<i>id</i>}):<i>id</i>&lt;freinstein&lt;name 
-freinstein()
-<P>
-<LI> <b>frmetric</b> ({name:<i>id</i>}):<i>id</i>&lt;frmetric&lt;name 
-frmetric()
-<P>
-<LI> <b>frricci</b> ({name:<i>id</i>}):<i>id</i>&lt;fricci&lt;name 
-frricci()
-<P>
-<LI> <b>frriccisc</b> ({name:<i>id</i>}):<i>id</i>&lt;friccisc&lt;name 
-frriccisc()
-<P>
-<LI> <b>frriemann</b> ({name:<i>id</i>}):<i>id</i>&lt;friemann&lt;name 
-frriemann()
-<P>
-<LI> <b>frweyl</b> ({name:<i>id</i>}):<i>id</i>&lt;frweyl&lt;name 
-frweyl()
-<P>
-<LI> <b>gamma</b> ({name:<i>id</i>}):<i>id</i>&lt;gamma&lt;name 
-gamma()
-<P>
-<LI> <b>generics</b>({name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>id, }</i>):<i>bool</i>=t<BR>generics()
-side effect: prints generic links of specified names, or all of them
-<P>
-<LI> <b>geodesic</b> (name:<i>id</i>, {affine:<i>kernel</i>):<i>id</i>=&lt;name
-geodesic()
-<P>
-<LI> <b>getcon</b> (n:<i>int</i>, m:<i>int</i>):<i>id</i>=name of connection
-getcon()
-<P>
-<LI> <b>getmetric</b> (n:<i>int</i>):<i>id</i>=name of metric of type n
-getmetric()
-<P>
-<LI> <b>help</b> ({name:<i>id</i>}):<i>bool</i>=t
-help()
-<P>
-<LI> <b>ias</b> (name:<i>iobj</i>, {flag:<i>bool</i>}):<i>id</i>=&lt;name
-ias()
-<P>
-<LI> <b>iclear</b>(name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>iobj</i>{,name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>iobj</i>, ...}):<i>bool</i>
-iclear()
-<P>
-<LI> <b>icopy</b> (in:<i>iobj</i>, out:<i>id</i>):<i>id</i>=&lt;out
-icopy()
-<P>
-<LI> <b>im</b> (val:<i>aexp</i>):<i>aexp</i>
-im()
-<P>
-<LI> <b>indexed</b> (name:<i>iobj</i>):<i>bool</i>
-indexed()
-<P>
-<LI> <b>invert</b> (name:<i>iobj</i>):<i>id</i>=&lt;name_inv
-invert()
-<P>
-<LI> <b>iprop</b> (name:<i>iobj</i>):<i>bool</i>
-iprop()
-<P>
-<LI> <b>killing</b> (name:<i>id</i>,{conf:<i>bool</i>}):<i>id</i>=&lt;name
-killing()
-<P>
-<LI> <b>lie</b> (name:<i>iobj</i>, vec:<i>iobj[1]</i>):<i>id</i>=&lt;name_&lt;vec
-lie()
-<P>
-<LI> <b>mapfi</b> (name:<i>iobj</i>):<i>bool</i>
-mapfi()
-<P>
-<LI> <b>mclear</b> ()
-mclear()
-<P>
-<LI> <b>metric</b> (line:<i>aexp</i>| name:<i>iobj[2]</i>, {name:<i>id</i>}):<i>id</i>=&lt;name&lt;metricmetricseq
-metric()
-<P>
-<LI> <b>mkcoords</b> (name:<i>id</i>):<i>id</i>=&lt;name
-mkcoords()
-<P>
-<LI> <b>mkobj</b> ('name:<i>id| id-list</i>,
-	'indextype :<i>int-list</i>, {'symmetries :<i>list-list</i>}(),
-	{'implicit :<i>bool</i>},
-	<BR> {'itype :<i>id</i>}) :<i>iobj</i>
-mkobj()
-<P>
-<LI> <b>multiplier</b> (name:<i>iobj</i>, {val:<i>aexp</i>}):<i>id</i>=?&lt;val
-multiplier()
-<P>
-<LI> <b>nocomplex</b> (z<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>id</i>, {z<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>id</i>, ...}):<i>bool</i>
-nocomplex()
-<P>
-<LI> <b>nodir</b> (name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>iobj</i>, {name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>iobj</i>, ...}):<i>bool</i>
-nodir()
-<P>
-<LI> <b>npmetric</b>(con:<i>ibobj[2]</i>| l:<i>iobj[1]</i>, n:<i>iobj[1]</i>, m:<i>iobj[1]</i>):<i>id</i>=&lt;metric_&lt;metricseq
-npmetric()
-<P>
-<LI> <b>npnames</b>()
-npnames()
-<P>
-<LI> <b>npspin</b>({name:<i>id</i>})&lt;name&lt;npspin
-npspin()
-<P>
-<LI> <b>npD</b>(val:<i>aexp</i>):<i>aexp</i>
-npD()
-<P>
-<LI> <b>npDEL</b>(val:<i>aexp</i>):<i>aexp</i>
-npDEL()
-<P>
-<LI> <b>npdel</b>(val:<i>aexp</i>):<i>aexp</i>
-npdel()
-<P>
-<LI> <b>npdelc</b>(val:<i>aexp</i>):<i>aexp</i>
-npdelc()
-<P>
-<LI> <b>npricci</b>({name:<i>id</i>}):<i>id</i>&lt;npricci&lt;name 
-npricci()
-<P>
-<LI> <b>npweyl</b>({name:<i>id</i>}):<i>id</i>&lt;npweyl&lt;name 
-npweyl()
-<P>
-<LI> <b>nulltetrad</b> ({name:<i>id</i>}):<i>id</i>&lt;nulltetrad&lt;name 
-nulltetrad()
-<P>
-<LI> <b>odf</b>(name:<i>iobj</i>, {order:<i>int</i>}):<i>id</i>=&lt;name_DF&lt;order
-odf()
-<P>
-<LI> <b>pdf</b> (val:<i>aexp</i>, index:<i>index</i>):<i>indexed expression</i>
-pdf()
-<P>
-<LI> <b>protect</b>  (name:<i>iobj</i>, {k| w | kw:<i>lit</i>}):<i>id</i>=&lt;name
-protect()
-<P>
-<LI> <b>rat</b> (val:<i>aexp</i>):<i>aexp</i>
-rat()
-<P>
-<LI> <b>re</b> (val:<i>aexp</i>):<i>aexp</i>
-re()
-<P>
-<LI> <b>rem</b> (name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>pattern</i>, {name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>pattern</i>}):<i>bool</i>
-rem()
-<P>
-<LI> <b>remi</b> (name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>pattern</i>, {name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>pattern</i>}):<i>bool</i>
-remi()
-<P>
-<LI> <b>restoreobj</b>():<i>id</i>=?
-restoreobj()
-<P>
-<LI> <b>restrict</b>(name:<i>iobj</i>, lb:<i>int</i>, ub:<i>int</i>):<i>id</i>=&lt;name
-restrict()
-<P>
-<LI> <b>ricci</b> ({name:<i>id</i>}):<i>id</i>&lt;ricci&lt;name 
-ricci()
-<P>
-<LI> <b>riccisc</b> ({name:<i>id</i>}):<i>id</i>&lt;riccisc&lt;name 
-riccisc()
-<P>
-<LI> <b>riemann</b> ({name:<i>id</i>}):<i>id</i>&lt;riemann&lt;name 
-riemann()
-<P>
-<LI> <b>setcon</b> (name:<i>iobj[2]</i>):<i>id</i>=&lt;name
-setcon()
-<P>
-<LI> <b>setmetric</b> (name:<i>iobj[2]</i>):<i>id</i>=&lt;name
-setmetric()
-<P>
-<LI> <b>seval</b> (val:<i>indexed expression</i>):<i>aexp</i>
-seval()
-<P>
-<LI> <b>shift</b> (name:<i>iobj</i>):<i>id</i>=&lt;name
-shift()
-<P>
-<LI> <b>spchristoffel</b> ({name:<i>id</i>}):<i>id</i>&lt;spchristoffel&lt;name 
-spchristoffel()
-<P>
-<LI> <b>spinmat</b> ({name:<i>id</i>}):<i>id</i>&lt;spinmat&lt;name 
-spinmat()
-<P>
-<LI> <b>spmetric</b> ({name:<i>id</i>}):<i>id</i>&lt;spmetric&lt;name 
-spmetric()
-<P>
-<LI> <b>symz</b>(exp:<i>iexp</i>):<i>iexp</i>
-symz()
-<P>
-<LI> <b>tenmetric</b>():<i>id</i>=?
-tenmetric()
-<P>
-<LI> <b>trace</b> (name:<i>iobj[2]</i>):<i>aexp</i>
-trace()
-<P>
-<LI> <b>weyl</b> ({name:<i>id</i>}):<i>id</i>&lt;weyl&lt;name 
-weyl()
-<P>
-</UL>
-<P>
-<b>Additional Functions</b>
-<P>
-<UL>
-<LI> <b>addtoenv</b> (name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>id</i>, {name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>id</i>,...}):<i>bool</i>=t
-addtoenv()
-<P>
-<LI> <b>delenv</b>(name:<i>id</i>)
-delenv()
-<P>
-<LI> <b>etime</b>()
-etime()
-<P>
-<LI> <b>newenv</b> ({name:<i>id</i>}):<i>id</i>=previous environment
-newenv()
-<P>
-<LI> <b>restorenv</b>(name:<i>id</i>):<i>id</i>
-restorenv()
-<LI> <b>savec</b> (file:<i>string</i>, name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>id</i>, {name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>id</i>}):<i>bool</i>
-savec()
-<P>
-<LI> <b>savei</b> (file:<i>string</i>, name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6492.gif">:<i>id</i>, {name<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6464.gif">:<i>id</i>}):<i>bool</i>
-savei()
-<P>
-<LI> <b>savenv</b>(name:<i>id</i>):<i>id</i>= ?
-savenv()
-<P>
-<LI> <b>stime</b>()
-stime()
-<P>
-<LI> <b>swapenv</b>(name:<i>id</i>):<i>bool</i>
-swapenv()
-</UL>
-<P>
-<b>Lisp Functions</b>
-<UL>
-<LI> <b>put</b>(name:<i>id</i>, key:<i>id</i>, value:<i>any</i>):<i>any</i>
-put()
-<LI> <b>get</b>(name:<i>idm</i> key:<i>id</i>):<i>any</i>
-get()
-<LI> <b>flag</b>(names:<i>id</i>-list, flag:<i>id</i>):<i>nil</i>
-flag()
-<LI> <b>flagp</b>(name:<i>id</i>, flag:<i>id</i>):<i>bool</i>
-flagp()
-<LI> <b>prop</b>(name:<i>id</i>):<i>plist</i>
-prop()
-<LI> <b>remprop</b>(name:<i>id</i>, key:<i>id</i>):<i>any</i>
-remprop()
-<LI> <b>setprop</b>(name:<i>id</i>, val:<i>plist</i>):<i>plist</i>
-setprop()
-</UL>
-<P>
-</i></i></i></i></i></i></i></i></i></i></i></i></i><BR> <HR><A NAME=tex2html1038 HREF="node63.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1036 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1030 HREF="node61.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1040 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1041 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html1039 HREF="node63.html"> Switches</A>
-<B>Up:</B> <A NAME=tex2html1037 HREF="root.html">No Title</A>
-<B> Previous:</B> <A NAME=tex2html1031 HREF="node61.html"> REDTEN FunctionsVariables, </A>
-<BR> <HR> <P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+<BODY>
+  <META name="description" value=" Functions">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html1038" href="node63.html" id="tex2html1038"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html1036" href="root.html" id="tex2html1036"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html1030" href="node61.html" id="tex2html1030"><IMG align="bottom"
+  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html1040" href="node1.html" id="tex2html1040"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html1041" href="node70.html" id="tex2html1041"><IMG align="bottom"
+  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html1039" href="node63.html" id=
+  "tex2html1039">Switches</A> <B>Up:</B> <A name="tex2html1037" href=
+  "root.html" id="tex2html1037">No Title</A> <B>Previous:</B> <A name=
+  "tex2html1031" href="node61.html" id="tex2html1031">REDTEN
+  FunctionsVariables,</A><BR>
+  <HR>
+  <H1><A name="SECTION001200000000000000000" id=
+  "SECTION001200000000000000000">Functions</A></H1>
+  <P><A name="func" id="func"></A> This section gives the details of the
+  calling sequence and return values of each of the REDTEN user-callable
+  functions. For a detailed description of what each function does, see the
+  relevant section of the main manual.</P>
+  <P>The argument type will be one of</P>
+  <DL>
+    <DT class="c1">id</DT>
+    <DD class="c2">--- an identifier is expected.</DD>
+    <DT class="c1">list</DT>
+    <DD class="c2">
+      --- the argument is a list, this implies the use of <SPAN class=
+      "c1">'</SPAN> (see <A href="node7.html#sseclvar">1.2.3</A>). Following
+      the Standard Lisp Report (Marti et.al. 1979) a list of homogeneous
+      entities is denoted by xxx-list, where xxx is the class of items in the
+      list. For example, an id-list is a list of identifiers.
+    </DD>
+    <DT class="c1">string</DT>
+    <DD class="c2">--- a string, enclosed in double-quotes is expected.</DD>
+    <DT class="c1">bool</DT>
+    <DD class="c2">--- either 't or 'nil.</DD>
+    <DT class="c1">lit</DT>
+    <DD class="c2">--- the argument is the literal value shown.</DD>
+    <DT class="c1">any</DT>
+    <DD class="c2">--- any kind of argument may be given.</DD>
+    <DT class="c1">int</DT>
+    <DD class="c2">--- the argument is an integer.</DD>
+    <DT class="c1">plist</DT>
+    <DD class="c2">--- the argument is a property list.</DD>
+    <DT class="c1">alist</DT>
+    <DD class="c2">--- the argument is an association list.</DD>
+    <DT class="c1">aexp</DT>
+    <DD class="c2">--- the argument is an algebraic expression.</DD>
+    <DT class="c1">iexp</DT>
+    <DD class="c2">--- the argument is an indexed expression.</DD>
+    <DT class="c1">iobj[n]</DT>
+    <DD class="c2">--- the argument is an indexed object (either the name
+    alone, or with an index), of rank n if specified.</DD>
+    <DT class="c1">index</DT>
+    <DD class="c2">--- the index of an indexed object, including the
+    enclosing square brackets.</DD>
+  </DL><I>Any argument name beginning with a <SPAN class="c1">'</SPAN>
+  indicates that the <A name="4196" id="4196"></A> lisp quote function should
+  be applied (i.e. type <B>'</B> before the argument). This will most often
+  apply to arguments of type <B>list</B>, and on occasion to <B>id</B>'s as
+  well.</I>
+  <P><I>Argument types preceeded by a quote character (<B>'</B>) indicate
+  that the argument <EM>must</EM> be quoted when calling the function,
+  failing to do so will likely result in an error. Quoting an argument that
+  is not supposed to be quoted will likewise generate an error.</I></P>
+  <UL>
+    <LI><I><B>altmetric</B> (name:iobj, metric:iobj):id=&lt;name
+    altmetric()</I></LI>
+    <LI><B>christoffel1</B>
+    ({name:<I>id</I>}):<I>id</I>=&lt;christoffel1&lt;name christoffel1()</LI>
+    <LI>
+    <B>christoffel2</B>({name:<I>id</I>}):<I>id</I>=&lt;christoffel2&lt;name
+    christoffel2()</LI>
+    <LI><B>cleartmp</B> ():<I>t</I> cleartmp()</LI>
+    <LI><B>cmod</B> (val:<I>aexp</I>):<I>aexp</I> cmod()</LI>
+    <LI><B>cofactor</B> (name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>iobj</I>, name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6464.png">:<I>id</I>,
+    {transpose_flag:<I>bool</I>}):<I>id</I>=&lt;name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6464.png"> cofactor()</LI>
+    <LI><B>complex</B> (val:<I>aexp</I>):<I>aexp</I> complex()</LI>
+    <LI><B>copyfam</B> (metric:<I>iobj</I>,
+    new_metric:<I>id</I>):<I>id</I>=&lt;new_metric copyfam()</LI>
+    <LI><B>cnj</B> (val:<I>aexp</I>):<I>aexp</I> cnj()</LI>
+    <LI><B>cov</B> (name:<I>iobj</I>):<I>id</I>=&lt;name_CD cov()</LI>
+    <LI><B>d</B> (val:<I>aexp</I>):<I>aexp</I> d()</LI>
+    <LI><B>dalembert</B> (val:<I>aexp</I>):<I>aexp</I> dalembert()</LI>
+    <LI><B>defindextype</B> ('range :<I>list</I>, n :<I>int</I>, {name
+    :<I>id</I>}, {format :<I>string</I>},<BR>
+    {flg :<I>bool</I>}) :<I>id</I>=&lt;name|user&lt;n defindextype()</LI>
+    <LI><B>delta</B> (name:<I>id</I>, type:<I>int</I>):<I>id</I>=&lt;name
+    delta()</LI>
+    <LI><B>describe</B> (name:<I>iobj</I>,
+    {description:<I>string</I>}):<I>id</I>=&lt;name<BR>
+    describe() This function has a side effect.</LI>
+    <LI><B>det</B>
+    (name:<I>iobj[2]</I>,{val:<I>aexp</I>}):<I>aexp</I>=?&lt;val det()</LI>
+    <LI><B>determ</B> (name:<I>iobj[2]</I>,
+    cofname:<I>id</I>,{trans_flag:<I>bool</I>}):<I>id</I>=&lt;cofname
+    determ()</LI>
+    <LI><B>dir</B> ():<I>bool</I>=t dir()</LI>
+    <LI><B>div</B>
+    (name:<I>iobj</I>,output:<I>id</I>):<I>id</I>=&lt;output&lt;name_D
+    div()</LI>
+    <LI><B>einstein</B> ({name:<I>id</I>}):<I>id</I>=&lt;einstein&lt;name
+    einstein()</LI>
+    <LI><B>fn</B> (func:<I>function name</I>,
+    index:<I>index</I>):<I>aexp</I><BR>
+    fn() need to declare fname</LI>
+    <LI><B>freinstein</B> ({name:<I>id</I>}):<I>id</I>&lt;freinstein&lt;name
+    freinstein()</LI>
+    <LI><B>frmetric</B> ({name:<I>id</I>}):<I>id</I>&lt;frmetric&lt;name
+    frmetric()</LI>
+    <LI><B>frricci</B> ({name:<I>id</I>}):<I>id</I>&lt;fricci&lt;name
+    frricci()</LI>
+    <LI><B>frriccisc</B> ({name:<I>id</I>}):<I>id</I>&lt;friccisc&lt;name
+    frriccisc()</LI>
+    <LI><B>frriemann</B> ({name:<I>id</I>}):<I>id</I>&lt;friemann&lt;name
+    frriemann()</LI>
+    <LI><B>frweyl</B> ({name:<I>id</I>}):<I>id</I>&lt;frweyl&lt;name
+    frweyl()</LI>
+    <LI><B>gamma</B> ({name:<I>id</I>}):<I>id</I>&lt;gamma&lt;name
+    gamma()</LI>
+    <LI><B>generics</B>({name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>id, }</I>):<I>bool</I>=t<BR>
+    generics() side effect: prints generic links of specified names, or all
+    of them</LI>
+    <LI><B>geodesic</B> (name:<I>id</I>,
+    {affine:<I>kernel</I>):<I>id</I>=&lt;name geodesic()</LI>
+    <LI><B>getcon</B> (n:<I>int</I>, m:<I>int</I>):<I>id</I>=name of
+    connection getcon()</LI>
+    <LI><B>getmetric</B> (n:<I>int</I>):<I>id</I>=name of metric of type n
+    getmetric()</LI>
+    <LI><B>help</B> ({name:<I>id</I>}):<I>bool</I>=t help()</LI>
+    <LI><B>ias</B> (name:<I>iobj</I>, {flag:<I>bool</I>}):<I>id</I>=&lt;name
+    ias()</LI>
+    <LI><B>iclear</B>(name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>iobj</I>{,name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6464.png">:<I>iobj</I>, ...}):<I>bool</I>
+    iclear()</LI>
+    <LI><B>icopy</B> (in:<I>iobj</I>, out:<I>id</I>):<I>id</I>=&lt;out
+    icopy()</LI>
+    <LI><B>im</B> (val:<I>aexp</I>):<I>aexp</I> im()</LI>
+    <LI><B>indexed</B> (name:<I>iobj</I>):<I>bool</I> indexed()</LI>
+    <LI><B>invert</B> (name:<I>iobj</I>):<I>id</I>=&lt;name_inv invert()</LI>
+    <LI><B>iprop</B> (name:<I>iobj</I>):<I>bool</I> iprop()</LI>
+    <LI><B>killing</B> (name:<I>id</I>,{conf:<I>bool</I>}):<I>id</I>=&lt;name
+    killing()</LI>
+    <LI><B>lie</B> (name:<I>iobj</I>,
+    vec:<I>iobj[1]</I>):<I>id</I>=&lt;name_&lt;vec lie()</LI>
+    <LI><B>mapfi</B> (name:<I>iobj</I>):<I>bool</I> mapfi()</LI>
+    <LI><B>mclear</B> () mclear()</LI>
+    <LI><B>metric</B> (line:<I>aexp</I>| name:<I>iobj[2]</I>,
+    {name:<I>id</I>}):<I>id</I>=&lt;name&lt;metricmetricseq metric()</LI>
+    <LI><B>mkcoords</B> (name:<I>id</I>):<I>id</I>=&lt;name mkcoords()</LI>
+    <LI><B>mkobj</B> ('name:<I>id| id-list</I>, 'indextype :<I>int-list</I>,
+    {'symmetries :<I>list-list</I>}(), {'implicit :<I>bool</I>},<BR>
+    {'itype :<I>id</I>}) :<I>iobj</I> mkobj()</LI>
+    <LI><B>multiplier</B> (name:<I>iobj</I>,
+    {val:<I>aexp</I>}):<I>id</I>=?&lt;val multiplier()</LI>
+    <LI><B>nocomplex</B> (z<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>id</I>, {z<IMG align="bottom" src=
+    "_10787_tex2html_wrap6464.png">:<I>id</I>, ...}):<I>bool</I>
+    nocomplex()</LI>
+    <LI><B>nodir</B> (name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>iobj</I>, {name<IMG align="bottom"
+    src="_10787_tex2html_wrap6464.png">:<I>iobj</I>, ...}):<I>bool</I>
+    nodir()</LI>
+    <LI><B>npmetric</B>(con:<I>ibobj[2]</I>| l:<I>iobj[1]</I>,
+    n:<I>iobj[1]</I>, m:<I>iobj[1]</I>):<I>id</I>=&lt;metric_&lt;metricseq
+    npmetric()</LI>
+    <LI><B>npnames</B>() npnames()</LI>
+    <LI><B>npspin</B>({name:<I>id</I>})&lt;name&lt;npspin npspin()</LI>
+    <LI><B>npD</B>(val:<I>aexp</I>):<I>aexp</I> npD()</LI>
+    <LI><B>npDEL</B>(val:<I>aexp</I>):<I>aexp</I> npDEL()</LI>
+    <LI><B>npdel</B>(val:<I>aexp</I>):<I>aexp</I> npdel()</LI>
+    <LI><B>npdelc</B>(val:<I>aexp</I>):<I>aexp</I> npdelc()</LI>
+    <LI><B>npricci</B>({name:<I>id</I>}):<I>id</I>&lt;npricci&lt;name
+    npricci()</LI>
+    <LI><B>npweyl</B>({name:<I>id</I>}):<I>id</I>&lt;npweyl&lt;name
+    npweyl()</LI>
+    <LI><B>nulltetrad</B> ({name:<I>id</I>}):<I>id</I>&lt;nulltetrad&lt;name
+    nulltetrad()</LI>
+    <LI><B>odf</B>(name:<I>iobj</I>,
+    {order:<I>int</I>}):<I>id</I>=&lt;name_DF&lt;order odf()</LI>
+    <LI><B>pdf</B> (val:<I>aexp</I>, index:<I>index</I>):<I>indexed
+    expression</I> pdf()</LI>
+    <LI><B>protect</B> (name:<I>iobj</I>, {k| w |
+    kw:<I>lit</I>}):<I>id</I>=&lt;name protect()</LI>
+    <LI><B>rat</B> (val:<I>aexp</I>):<I>aexp</I> rat()</LI>
+    <LI><B>re</B> (val:<I>aexp</I>):<I>aexp</I> re()</LI>
+    <LI><B>rem</B> (name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>pattern</I>, {name<IMG align="bottom"
+    src="_10787_tex2html_wrap6464.png">:<I>pattern</I>}):<I>bool</I>
+    rem()</LI>
+    <LI><B>remi</B> (name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>pattern</I>, {name<IMG align="bottom"
+    src="_10787_tex2html_wrap6464.png">:<I>pattern</I>}):<I>bool</I>
+    remi()</LI>
+    <LI><B>restoreobj</B>():<I>id</I>=? restoreobj()</LI>
+    <LI><B>restrict</B>(name:<I>iobj</I>, lb:<I>int</I>,
+    ub:<I>int</I>):<I>id</I>=&lt;name restrict()</LI>
+    <LI><B>ricci</B> ({name:<I>id</I>}):<I>id</I>&lt;ricci&lt;name
+    ricci()</LI>
+    <LI><B>riccisc</B> ({name:<I>id</I>}):<I>id</I>&lt;riccisc&lt;name
+    riccisc()</LI>
+    <LI><B>riemann</B> ({name:<I>id</I>}):<I>id</I>&lt;riemann&lt;name
+    riemann()</LI>
+    <LI><B>setcon</B> (name:<I>iobj[2]</I>):<I>id</I>=&lt;name setcon()</LI>
+    <LI><B>setmetric</B> (name:<I>iobj[2]</I>):<I>id</I>=&lt;name
+    setmetric()</LI>
+    <LI><B>seval</B> (val:<I>indexed expression</I>):<I>aexp</I> seval()</LI>
+    <LI><B>shift</B> (name:<I>iobj</I>):<I>id</I>=&lt;name shift()</LI>
+    <LI><B>spchristoffel</B>
+    ({name:<I>id</I>}):<I>id</I>&lt;spchristoffel&lt;name
+    spchristoffel()</LI>
+    <LI><B>spinmat</B> ({name:<I>id</I>}):<I>id</I>&lt;spinmat&lt;name
+    spinmat()</LI>
+    <LI><B>spmetric</B> ({name:<I>id</I>}):<I>id</I>&lt;spmetric&lt;name
+    spmetric()</LI>
+    <LI><B>symz</B>(exp:<I>iexp</I>):<I>iexp</I> symz()</LI>
+    <LI><B>tenmetric</B>():<I>id</I>=? tenmetric()</LI>
+    <LI><B>trace</B> (name:<I>iobj[2]</I>):<I>aexp</I> trace()</LI>
+    <LI><B>weyl</B> ({name:<I>id</I>}):<I>id</I>&lt;weyl&lt;name weyl()</LI>
+  </UL>
+  <P><B>Additional Functions</B></P>
+  <UL>
+    <LI><B>addtoenv</B> (name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>id</I>, {name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6464.png">:<I>id</I>,...}):<I>bool</I>=t
+    addtoenv()</LI>
+    <LI><B>delenv</B>(name:<I>id</I>) delenv()</LI>
+    <LI><B>etime</B>() etime()</LI>
+    <LI><B>newenv</B> ({name:<I>id</I>}):<I>id</I>=previous environment
+    newenv()</LI>
+    <LI><B>restorenv</B>(name:<I>id</I>):<I>id</I> restorenv()</LI>
+    <LI><B>savec</B> (file:<I>string</I>, name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>id</I>, {name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6464.png">:<I>id</I>}):<I>bool</I> savec()</LI>
+    <LI><B>savei</B> (file:<I>string</I>, name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6492.png">:<I>id</I>, {name<IMG align="bottom" src=
+    "_10787_tex2html_wrap6464.png">:<I>id</I>}):<I>bool</I> savei()</LI>
+    <LI><B>savenv</B>(name:<I>id</I>):<I>id</I>= ? savenv()</LI>
+    <LI><B>stime</B>() stime()</LI>
+    <LI><B>swapenv</B>(name:<I>id</I>):<I>bool</I> swapenv()</LI>
+  </UL>
+  <P><B>Lisp Functions</B></P>
+  <UL>
+    <LI><B>put</B>(name:<I>id</I>, key:<I>id</I>,
+    value:<I>any</I>):<I>any</I> put()</LI>
+    <LI><B>get</B>(name:<I>idm</I> key:<I>id</I>):<I>any</I> get()</LI>
+    <LI><B>flag</B>(names:<I>id</I>-list, flag:<I>id</I>):<I>nil</I>
+    flag()</LI>
+    <LI><B>flagp</B>(name:<I>id</I>, flag:<I>id</I>):<I>bool</I> flagp()</LI>
+    <LI><B>prop</B>(name:<I>id</I>):<I>plist</I> prop()</LI>
+    <LI><B>remprop</B>(name:<I>id</I>, key:<I>id</I>):<I>any</I>
+    remprop()</LI>
+    <LI><B>setprop</B>(name:<I>id</I>, val:<I>plist</I>):<I>plist</I>
+    setprop()</LI>
+  </UL>
+  <P><BR></P>
+  <HR>
+  <A name="tex2html1038" href="node63.html" id="tex2html1038"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html1036" href="root.html" id="tex2html1036"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html1030" href="node61.html" id="tex2html1030"><IMG align="bottom"
+  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html1040" href="node1.html" id="tex2html1040"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html1041" href="node70.html" id="tex2html1041"><IMG align="bottom"
+  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html1039" href="node63.html" id=
+  "tex2html1039">Switches</A> <B>Up:</B> <A name="tex2html1037" href=
+  "root.html" id="tex2html1037">No Title</A> <B>Previous:</B> <A name=
+  "tex2html1031" href="node61.html" id="tex2html1031">REDTEN
+  FunctionsVariables,</A><BR>
+  <HR>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c3">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

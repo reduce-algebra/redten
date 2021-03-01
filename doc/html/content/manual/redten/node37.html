@@ -1,50 +1,71 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Covariant derivatives of shifted objects</TITLE>
-<meta name="description" value=" Covariant derivatives of shifted objects">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Covariant derivatives of shifted objects</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html733 HREF="node38.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html731 HREF="node36.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html727 HREF="node36.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html735 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html736 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html734 HREF="node38.html"> Generic Names</A>
-<B>Up:</B> <A NAME=tex2html732 HREF="node36.html"> Covariant Differentiation</A>
-<B> Previous:</B> <A NAME=tex2html728 HREF="node36.html"> Covariant Differentiation</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00521000000000000000> Covariant derivatives of shifted objects</A></H2>
-<P>
-<A NAME=sseccovshift>&#160;</A>   Because the covariant derivative of the metric is 0 and covariant
-differentiation distributes over products of tensors the covariant
-derivative of a shifted object is the equivalent shift of the
-covariant derivative of the parent object:<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6262.gif"><P>
-This fact makes it possible to compute covariant derivatives of
-shifted objects resonably efficiently, given that actually computing a
-covariant derivative is very costly compared to shifting an object. If
-cov() is given an object that is the offspring of a parent, the
-parent is examined for a covariant derivative, and, if none is found,
-it is computed. That covariant derivative is then shifted so that its
-indices match the original offspring, with the addition of one
-covariant tensor index. Thus, 
-<PRE> 
-<tt>#: <i>cov(R[@a,b,c,d]);</i>
+<BODY>
+  <META name="description" value=" Covariant derivatives of shifted objects">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html733" href="node38.html" id="tex2html733"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html731" href="node36.html" id="tex2html731"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html727" href="node36.html" id="tex2html727"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html735" href="node1.html" id="tex2html735"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html736" href="node70.html" id="tex2html736"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html734" href="node38.html" id=
+  "tex2html734">Generic Names</A> <B>Up:</B> <A name="tex2html732" href=
+  "node36.html" id="tex2html732">Covariant Differentiation</A>
+  <B>Previous:</B> <A name="tex2html728" href="node36.html" id=
+  "tex2html728">Covariant Differentiation</A><BR>
+  <HR>
+  <H2><A name="SECTION00521000000000000000" id=
+  "SECTION00521000000000000000">Covariant derivatives of shifted
+  objects</A></H2>
+  <P><A name="sseccovshift" id="sseccovshift"></A> Because the covariant
+  derivative of the metric is 0 and covariant differentiation distributes
+  over products of tensors the covariant derivative of a shifted object is
+  the equivalent shift of the covariant derivative of the parent object:</P>
+  <P><IMG align="bottom" src="_10787_displaymath6262.png"></P>
+  <P>This fact makes it possible to compute covariant derivatives of shifted
+  objects resonably efficiently, given that actually computing a covariant
+  derivative is very costly compared to shifting an object. If cov() is given
+  an object that is the offspring of a parent, the parent is examined for a
+  covariant derivative, and, if none is found, it is computed. That covariant
+  derivative is then shifted so that its indices match the original
+  offspring, with the addition of one covariant tensor index. Thus,</P>
+  <PRE> 
+<SPAN class="c1">#: <I>cov(R[@a,b,c,d]);</I>
 computing g1_R_CD
 computing g1_R_CD_b 
 SHIFT finished.
 
  g1_R_CD_b
-</tt></PRE>In this way two corresponding families of objects are built, one
-having the original object as the parent, and the other having the
-covariant derivative as the parent. Rather than having to type the
-full object name, the user can read individual components by typing, for
-example, <tt>g1_R[@1,2,1,2,||0]</tt>. An assignment to such a component
-requires the full object name, however.
-<P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+</SPAN></PRE>In this way two corresponding families of objects are built, one
+having the original object as the parent, and the other having the covariant
+derivative as the parent. Rather than having to type the full object name,
+the user can read individual components by typing, for example,
+  <SPAN class="c1">g1_R[@1,2,1,2,||0]</SPAN>. An assignment to such a
+  component requires the full object name, however.
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

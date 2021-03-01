@@ -1,52 +1,70 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> Saving to Disk</TITLE>
-<meta name="description" value=" Saving to Disk">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>Saving to Disk</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html956 HREF="node56.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html954 HREF="node54.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html950 HREF="node54.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html958 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html959 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html957 HREF="node56.html"> The Pager</A>
-<B>Up:</B> <A NAME=tex2html955 HREF="node54.html"> The REDUCE Environment</A>
-<B> Previous:</B> <A NAME=tex2html951 HREF="node54.html"> The REDUCE Environment</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00811000000000000000> Saving to Disk</A></H2>
-<P>
-<A NAME=ssecdisk>&#160;</A>   In addition to saving environments within the system, REDTEN
-includes a package to allow the user to save an environment to disk
-for later use.  The same data structures are used to find the names of
-things to save, and all stored environments  are also saved. This
-package was intended primarily for the saving of indexed objects and
-the environment in which they were created, so that they could be
-re-introduced into a subsequent REDUCE session.
-<P>
-There are two routines in the disk-saving package: savei() and
-savec(). savei() is used to save indexed objects in
-internal form, so that they may be used again in normal fashion.
- savec() is
-similar to savei() in terms of saving the environment, but saves
-indexed objects in component form: new variables of the form <tt>&lt;name&gt;&lt;index&gt;</tt> are created, each holding a component of the object
-<tt>&lt;name&gt;</tt> with fixed index <tt>&lt;index&gt;</tt>. When reloaded, the
-components of these objects must be used as normal algebraic
-variables, the indexed-object structure is no longer present.
-<P>
-Both of these routines save the entire current REDUCE environment,
-and any saved environments. The required first argument of each is a
-file name conforming to the local conventions about such, usually it
-will be a string enclosed in double quotes. Any remaining arguments
-are taken to be the names of indexed objects, and patterns may be
-used. The output file contains lisp code and can be re-read via the
-usual REDUCE in() command. During both the save and reload
-operations, the name of each saved or restored symbol is echoed to
-the screen.
-<P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+<BODY>
+  <META name="description" value=" Saving to Disk">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html956" href="node56.html" id="tex2html956"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html954" href="node54.html" id="tex2html954"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html950" href="node54.html" id="tex2html950"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html958" href="node1.html" id="tex2html958"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html959" href="node70.html" id="tex2html959"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html957" href="node56.html" id="tex2html957">The
+  Pager</A> <B>Up:</B> <A name="tex2html955" href="node54.html" id=
+  "tex2html955">The REDUCE Environment</A> <B>Previous:</B> <A name=
+  "tex2html951" href="node54.html" id="tex2html951">The REDUCE
+  Environment</A><BR>
+  <HR>
+  <H2><A name="SECTION00811000000000000000" id=
+  "SECTION00811000000000000000">Saving to Disk</A></H2>
+  <P><A name="ssecdisk" id="ssecdisk"></A> In addition to saving environments
+  within the system, REDTEN includes a package to allow the user to save an
+  environment to disk for later use. The same data structures are used to
+  find the names of things to save, and all stored environments are also
+  saved. This package was intended primarily for the saving of indexed
+  objects and the environment in which they were created, so that they could
+  be re-introduced into a subsequent REDUCE session.</P>
+  <P>There are two routines in the disk-saving package: savei() and savec().
+  savei() is used to save indexed objects in internal form, so that they may
+  be used again in normal fashion. savec() is similar to savei() in terms of
+  saving the environment, but saves indexed objects in component form: new
+  variables of the form <SPAN class="c1">&lt;name&gt;&lt;index&gt;</SPAN> are
+  created, each holding a component of the object <SPAN class=
+  "c1">&lt;name&gt;</SPAN> with fixed index <SPAN class=
+  "c1">&lt;index&gt;</SPAN>. When reloaded, the components of these objects
+  must be used as normal algebraic variables, the indexed-object structure is
+  no longer present.</P>
+  <P>Both of these routines save the entire current REDUCE environment, and
+  any saved environments. The required first argument of each is a file name
+  conforming to the local conventions about such, usually it will be a string
+  enclosed in double quotes. Any remaining arguments are taken to be the
+  names of indexed objects, and patterns may be used. The output file
+  contains lisp code and can be re-read via the usual REDUCE in() command.
+  During both the save and reload operations, the name of each saved or
+  restored symbol is echoed to the screen.</P>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

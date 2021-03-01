@@ -1,53 +1,68 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> The Complex Arithmetic Package</TITLE>
-<meta name="description" value=" The Complex Arithmetic Package">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>The Complex Arithmetic Package</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html861 HREF="node48.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html859 HREF="node46.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html853 HREF="node46.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html863 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html864 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html862 HREF="node48.html"> Converting basis</A>
-<B>Up:</B> <A NAME=tex2html860 HREF="node46.html"> The Frame Package</A>
-<B> Previous:</B> <A NAME=tex2html854 HREF="node46.html"> The Frame Package</A>
-<BR> <HR> <P>
-<H2><A NAME=SECTION00711000000000000000> The Complex Arithmetic Package</A></H2>
-<P>
-<A NAME=sseccmplx>&#160;</A>  In REDUCE <tt>i</tt> is the pure imaginary number such that <tt>i^2 = -1</tt><A NAME=tex2html97 HREF="footnode.html#4158"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>. Complex
-quantities can be constructed using <tt>i</tt> 
-explicitly and the function cnj() will form the complex
-conjugate by changing the sign of <tt>i</tt>. This applies to simple
-expressions such as sums, products, and quotients. Functions can be
-declared as complex by giving them a conjfn property whose
-value is the name of a lisp-function that knows how to compute the
-conjugate of the given function.
-<P>
-A simple variable can be declared complex via the function
-complex(), and this declaration can be removed with
-nocomplex(). When cnj() is applied to a complex variable, it 
-returns unevaluated, but the display of the output is of the variable
-name overtopped with a bar.
-<P>
-Other functions that apply to complex quantities are re() which
-returns the real part of an expression, im() which return the
-imaginary part, cmod() which returns the modulus, and rat()
-which attempts to rationalize a complex quotient. This last 
-function will not be successful unless the product formed by the
-conjugate of the denominator with the numerator and the denominator do
-not contain common factors that will cancel out again.
-<P>
-
-<P>
-Continuing with the Kerr metric in a null-tetrad, we can compute the
-tensor metric from the connection and the frame metric with the
-function tenmetric(). The tensor metric name is the next in the
-default sequence of names as used by metric(), or the name given
-as the single argument.
-<PRE> 
-<tt>#: <tt>tenmetrc();</tt>
+<BODY>
+  <META name="description" value=" The Complex Arithmetic Package">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html861" href="node48.html" id="tex2html861"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html859" href="node46.html" id="tex2html859"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html853" href="node46.html" id="tex2html853"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html863" href="node1.html" id="tex2html863"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html864" href="node70.html" id="tex2html864"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html862" href="node48.html" id=
+  "tex2html862">Converting basis</A> <B>Up:</B> <A name="tex2html860" href=
+  "node46.html" id="tex2html860">The Frame Package</A> <B>Previous:</B>
+  <A name="tex2html854" href="node46.html" id="tex2html854">The Frame
+  Package</A><BR>
+  <HR>
+  <H2><A name="SECTION00711000000000000000" id=
+  "SECTION00711000000000000000">The Complex Arithmetic Package</A></H2>
+  <P><A name="sseccmplx" id="sseccmplx"></A> In REDUCE <SPAN class=
+  "c1">i</SPAN> is the pure imaginary number such that <SPAN class="c1">i^2 =
+  -1</SPAN><A name="tex2html97" href="footnode.html#4158" id=
+  "tex2html97"><IMG align="bottom" alt=".png&quot;" src=
+  "../../../images/latex/foot_motif.png"></A>. Complex quantities can be
+  constructed using <SPAN class="c1">i</SPAN> explicitly and the function
+  cnj() will form the complex conjugate by changing the sign of <SPAN class=
+  "c1">i</SPAN>. This applies to simple expressions such as sums, products,
+  and quotients. Functions can be declared as complex by giving them a conjfn
+  property whose value is the name of a lisp-function that knows how to
+  compute the conjugate of the given function.</P>
+  <P>A simple variable can be declared complex via the function complex(),
+  and this declaration can be removed with nocomplex(). When cnj() is applied
+  to a complex variable, it returns unevaluated, but the display of the
+  output is of the variable name overtopped with a bar.</P>
+  <P>Other functions that apply to complex quantities are re() which returns
+  the real part of an expression, im() which return the imaginary part,
+  cmod() which returns the modulus, and rat() which attempts to rationalize a
+  complex quotient. This last function will not be successful unless the
+  product formed by the conjugate of the denominator with the numerator and
+  the denominator do not contain common factors that will cancel out
+  again.</P>
+  <P>Continuing with the Kerr metric in a null-tetrad, we can compute the
+  tensor metric from the connection and the frame metric with the function
+  tenmetric(). The tensor metric name is the next in the default sequence of
+  names as used by metric(), or the name given as the single argument.</P>
+  <PRE> 
+<SPAN class="c1">#: <SPAN class="c1">tenmetrc();</SPAN>
 
 computing g1
   computing z_b
@@ -59,48 +74,47 @@ metric finished.
 
  g1
 
-#: <i>mapfi(g)$</i>
+#: <I>mapfi(g)$</I>
 
-#: <i>mapfi(g_inv)$</i>
-</tt></PRE>As in the coordinate basis example, we find it is more convenient to
-not evaluate the metric components fully, so that <tt>rhob</tt>, <tt>rho2</tt>, and <tt>delta</tt> remain unevaluated; <tt>rhob</tt> has been defined
-as complex such that <tt>rhob*cnj(rhob) = rho2</tt>.  It is, however,
-convenient to evaluate the derivatives of these quantities for this
-metric:
-<PRE> 
-<tt>#: <i>let df (rhob,r) = 1;</i>
-#: <i>let df (cnj(rhob),r) = 1;</i>
-#: <i>let df (rhob, th) = -i*a*sin(th);</i>
-#: <i>let df (cnj(rhob), th) = i*a*sin(th);</i>
-#: <i>let df(delta, r) = 2*r-2*m;</i>
-#: <i>let df (rho2, r) = 2*r;</i>
-#: <i>let df(rho2,th)=-2*a^2*sin(th)*cos(th);</i>
-</tt></PRE>Next, we compute the Ricci rotation-coefficients, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6418.gif">, with the
-function gamma(). The default name of this object is of the form
-<tt>&lt;frame-metric&gt;_gam</tt>, while the generic name gam has this as
-its target. Note that the name of the output is stored on the
-gamma property of the <em>tensor</em> metric. The user may supply a name 
-to be used in place of the default name as the only argument to this
-function.
-<P>
-The rotation coeffients are rank-3 objects that are anti-symmetric in
-their first two indices, and are computed from:
-<P><IMG ALIGN=BOTTOM SRC="_10787_eqnarray1979.gif"><P>
-The quantity <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6362.gif"> is used internally by gamma() but is not
-saved.
-<P>
-Each of the interesting tensors (and scalars) of GR can be computed in
-the frame with the functions frriemann(), frricci(),
-frriccisc(), freinstein(), and frweyl(). As with the GR 
-conterparts, each function can take optional argument that is the name
-to use in place of the default name. The default name is constructed
-from the <em>tensor</em> metric name appended with an underscore and a
-trailing segment which is the generic name of the each object and
-which is itself stored on the name of each function.  These functions
-either compute the required object for the current metric if it does
-not exist, or they return its name. 
-<PRE> 
-<tt>#: <i>frricci();</i>
+#: <I>mapfi(g_inv)$</I>
+</SPAN></PRE>As in the coordinate basis example, we find it is more
+convenient to not evaluate the metric components fully, so that
+  <SPAN class="c1">rhob</SPAN>, <SPAN class="c1">rho2</SPAN>, and
+  <SPAN class="c1">delta</SPAN> remain unevaluated; <SPAN class=
+  "c1">rhob</SPAN> has been defined as complex such that <SPAN class=
+  "c1">rhob*cnj(rhob) = rho2</SPAN>. It is, however, convenient to evaluate
+  the derivatives of these quantities for this metric:
+  <PRE> 
+<SPAN class="c1">#: <I>let df (rhob,r) = 1;</I>
+#: <I>let df (cnj(rhob),r) = 1;</I>
+#: <I>let df (rhob, th) = -i*a*sin(th);</I>
+#: <I>let df (cnj(rhob), th) = i*a*sin(th);</I>
+#: <I>let df(delta, r) = 2*r-2*m;</I>
+#: <I>let df (rho2, r) = 2*r;</I>
+#: <I>let df(rho2,th)=-2*a^2*sin(th)*cos(th);</I>
+</SPAN></PRE>Next, we compute the Ricci rotation-coefficients, <IMG align=
+"bottom" src="_10787_tex2html_wrap6418.png">, with the function gamma(). The
+default name of this object is of the form <SPAN class=
+"c1">&lt;frame-metric&gt;_gam</SPAN>, while the generic name gam has this as
+its target. Note that the name of the output is stored on the gamma property
+of the <EM>tensor</EM> metric. The user may supply a name to be used in place
+of the default name as the only argument to this function.
+  <P>The rotation coeffients are rank-3 objects that are anti-symmetric in
+  their first two indices, and are computed from:</P>
+  <P><IMG align="bottom" src="_10787_eqnarray1979.png"></P>
+  <P>The quantity <IMG align="bottom" src="_10787_tex2html_wrap6362.png"> is
+  used internally by gamma() but is not saved.</P>
+  <P>Each of the interesting tensors (and scalars) of GR can be computed in
+  the frame with the functions frriemann(), frricci(), frriccisc(),
+  freinstein(), and frweyl(). As with the GR conterparts, each function can
+  take optional argument that is the name to use in place of the default
+  name. The default name is constructed from the <EM>tensor</EM> metric name
+  appended with an underscore and a trailing segment which is the generic
+  name of the each object and which is itself stored on the name of each
+  function. These functions either compute the required object for the
+  current metric if it does not exist, or they return its name.</P>
+  <PRE> 
+<SPAN class="c1">#: <I>frricci();</I>
 
  computing eta1_frric
    computing eta1_frri
@@ -113,34 +127,47 @@ not exist, or they return its name.
   frriemann finished.
 
  eta1_frric
-</tt></PRE>For this example the final simplification is carried out in a manner
-similar to that in the coordinate basis:
-<PRE> 
-<tt>#: <i>clear r^2;</i>
-#: <i>let rhob = r+i*a*cos(th);</i>
-#: <i>let rho2 = r^2 + a^2 * cos(th)^2;</i>
-#: <i>let delta = r^2-2*m*r+a^2;</i>
-#: <i>mapfi(frric);</i>
+</SPAN></PRE>For this example the final simplification is carried out in a
+manner similar to that in the coordinate basis:
+  <PRE> 
+<SPAN class="c1">#: <I>clear r^2;</I>
+#: <I>let rhob = r+i*a*cos(th);</I>
+#: <I>let rho2 = r^2 + a^2 * cos(th)^2;</I>
+#: <I>let delta = r^2-2*m*r+a^2;</I>
+#: <I>mapfi(frric);</I>
 
  eta1_frric
 
-#: <i>frric[];</i>
+#: <I>frric[];</I>
 
  eta1_frric
-</tt></PRE>Again, the Ricci tensor is zero as it should be. In this example we
-did not examine or simplify the Riemann tensor or even the Rotation
-coefficients, but it is to be emphasized that for complicated or
-unknown metrics, this must be done, or the user risks having the
-calculation fail.
-<P>
-<BR> <HR><A NAME=tex2html861 HREF="node48.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html859 HREF="node46.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html853 HREF="node46.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html863 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html864 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html862 HREF="node48.html"> Converting basis</A>
-<B>Up:</B> <A NAME=tex2html860 HREF="node46.html"> The Frame Package</A>
-<B> Previous:</B> <A NAME=tex2html854 HREF="node46.html"> The Frame Package</A>
-<BR> <HR> <P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+</SPAN></PRE>Again, the Ricci tensor is zero as it should be. In this example
+we did not examine or simplify the Riemann tensor or even the Rotation
+coefficients, but it is to be emphasized that for complicated or unknown
+metrics, this must be done, or the user risks having the calculation fail.
+  <P><BR></P>
+  <HR>
+  <A name="tex2html861" href="node48.html" id="tex2html861"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html859" href="node46.html" id="tex2html859"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html853" href="node46.html" id="tex2html853"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html863" href="node1.html" id="tex2html863"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html864" href="node70.html" id="tex2html864"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html862" href="node48.html" id=
+  "tex2html862">Converting basis</A> <B>Up:</B> <A name="tex2html860" href=
+  "node46.html" id="tex2html860">The Frame Package</A> <B>Previous:</B>
+  <A name="tex2html854" href="node46.html" id="tex2html854">The Frame
+  Package</A><BR>
+  <HR>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>

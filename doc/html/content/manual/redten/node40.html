@@ -1,47 +1,64 @@
-<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<P>
+<HTML>
 <HEAD>
-<TITLE> The Matrix Functions</TITLE>
-<meta name="description" value=" The Matrix Functions">
-<meta name="keywords" value="root">
-<meta name="resource-type" value="document">
-<meta name="distribution" value="global">
+  <TITLE>The Matrix Functions</TITLE>
+  <STYLE type="text/css">
+  address.c1 {font-style: italic}
+  </STYLE>
+  <STYLE type="text/css">
+  span.c1 {font-family: monospace}
+  </STYLE>
 </HEAD>
-<BODY><P>
- <BR> <HR><A NAME=tex2html767 HREF="node41.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html765 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html761 HREF="node39.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html769 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html770 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
-<B> Next:</B> <A NAME=tex2html768 HREF="node41.html"> Utilities</A>
-<B>Up:</B> <A NAME=tex2html766 HREF="node33.html"> The General Relativity </A>
-<B> Previous:</B> <A NAME=tex2html762 HREF="node39.html"> Other Functions</A>
-<BR> <HR> <P>
-<H1><A NAME=SECTION00550000000000000000> The Matrix Functions</A></H1>
-<P>
-<A NAME=secmat>&#160;</A>  The matrix functions all operate on rank-2 objects of any type. The
-function idet() computes the determinant of its argument via the
-cofactor method. The result is an algebraic value that is also stored
-on the object under the key det; future calls to idet()
-will return this value immediately. The user can change the stored
-value of the determinant by giving idet() a second argument.
-<P>
-The functions cofactor() and determ() compute the cofactor
-matrix and the determinant from that matrix. The second argument to
-cofactor() is the name to use for the cofactor matrix, and that
-name is to be used as the second argument to determ() <em>after</em> cofactor has been called. Again, the determinant is
-stored on the object, and can be read-out with either det() or
-determ().
-<P>
-The invert() function computes the matrix inverse of its
-argument, the inverse is given a name of the form <tt>&lt;name&gt;_inv</tt>;
-this is how metric inverses are computed. The shift property of
-the object is updated to include the inverse, and the appropriate
-delta-functions are also added.
-<P>
-Finally, trace() will compute the trace of a rank-2 object in
-the obvious way, and  return a scalar value.
-<P>
-<BR> <HR>
-<P><ADDRESS>
-<I> John Harper <BR>
-Wed Nov 16 13:34:23 EST 1994</I>
-</ADDRESS>
+<BODY>
+  <META name="description" value=" The Matrix Functions">
+  <META name="keywords" value="root">
+  <META name="resource-type" value="document">
+  <META name="distribution" value="global">
+  <P><BR></P>
+  <HR>
+  <A name="tex2html767" href="node41.html" id="tex2html767"><IMG align=
+  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
+  <A name="tex2html765" href="node33.html" id="tex2html765"><IMG align=
+  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
+  "tex2html761" href="node39.html" id="tex2html761"><IMG align="bottom" alt=
+  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
+  "tex2html769" href="node1.html" id="tex2html769"><IMG align="bottom" alt=
+  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
+  "tex2html770" href="node70.html" id="tex2html770"><IMG align="bottom" alt=
+  "index" src="../../../images/latex/index_motif.png"></A><BR>
+  <B>Next:</B> <A name="tex2html768" href="node41.html" id=
+  "tex2html768">Utilities</A> <B>Up:</B> <A name="tex2html766" href=
+  "node33.html" id="tex2html766">The General Relativity</A> <B>Previous:</B>
+  <A name="tex2html762" href="node39.html" id="tex2html762">Other
+  Functions</A><BR>
+  <HR>
+  <H1><A name="SECTION00550000000000000000" id=
+  "SECTION00550000000000000000">The Matrix Functions</A></H1>
+  <P><A name="secmat" id="secmat"></A> The matrix functions all operate on
+  rank-2 objects of any type. The function idet() computes the determinant of
+  its argument via the cofactor method. The result is an algebraic value that
+  is also stored on the object under the key det; future calls to idet() will
+  return this value immediately. The user can change the stored value of the
+  determinant by giving idet() a second argument.</P>
+  <P>The functions cofactor() and determ() compute the cofactor matrix and
+  the determinant from that matrix. The second argument to cofactor() is the
+  name to use for the cofactor matrix, and that name is to be used as the
+  second argument to determ() <EM>after</EM> cofactor has been called. Again,
+  the determinant is stored on the object, and can be read-out with either
+  det() or determ().</P>
+  <P>The invert() function computes the matrix inverse of its argument, the
+  inverse is given a name of the form <SPAN class=
+  "c1">&lt;name&gt;_inv</SPAN>; this is how metric inverses are computed. The
+  shift property of the object is updated to include the inverse, and the
+  appropriate delta-functions are also added.</P>
+  <P>Finally, trace() will compute the trace of a rank-2 object in the
+  obvious way, and return a scalar value.</P>
+  <P><BR></P>
+  <HR>
+  <ADDRESS class="c1">
+    John Harper<BR>
+    Wed Nov 16 13:34:23 EST 1994
+  </ADDRESS>
 </BODY>
+</HTML>
