@@ -23,6 +23,6 @@ Relativity.
 - John F. Harper [\<harper@utsc.utoronto.ca\>](mailto:harper@utsc.utoronto.ca)
 - Charles C. Dyer [\<dyer@astro.utoronto.ca\>](mailto:dyer@astro.utoronto.ca)
 
-## Upstream
+## Homepage
 
-- [REDTEN Home Page](https://www.utsc.utoronto.ca/~harper/redten.html)
+- [REDTEN Homepage](https://www.utsc.utoronto.ca/~harper/redten.html)
