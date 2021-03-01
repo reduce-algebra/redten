@@ -1,0 +1,6 @@
+algebraic forall x let cos (x)^2 = 1 - sin (x)^2$
+algebraic forall x let exp(log(x)) = x$
+algebraic forall x let (exp(-log(x))) = 1/x$
+%algebraic forall x let e^(log(x)) = x$
+%algebraic forall x let (e^(-log(x))) = 1/x$
+$end$

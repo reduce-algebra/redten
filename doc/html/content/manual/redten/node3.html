@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> History</TITLE>
+<meta name="description" value=" History">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html293 HREF="node4.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html291 HREF="node2.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html285 HREF="node2.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html295 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html296 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html294 HREF="node4.html"> Concepts in REDUCE</A>
+<B>Up:</B> <A NAME=tex2html292 HREF="node2.html"> Introduction</A>
+<B> Previous:</B> <A NAME=tex2html286 HREF="node2.html"> Introduction</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00210000000000000000> History</A></H1>
+<P>
+<A NAME=sechist>&#160;</A>  The beginnings of REDTEN go back to 1983, when a summer project was
+begun with the goal of implementing a tensor algebra system in
+MAPLE<A NAME=tex2html1 HREF="footnode.html#92"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>. After many difficulties this project was
+abandoned, but was later taken up again for a Masters thesis, this
+time using muMATH<A NAME=tex2html2 HREF="footnode.html#94"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A> as the base system.
+<P>
+muMATH was a small, relatively simple computer algebra system,
+running on IBM PC's and related INTEL-88  machines. As a
+LISP-based system, and with source code available for all but the
+kernel functions, it was particularly easy to introduce new data
+structures and functions, and, where necessary, re-define existing
+ones.  Thus, in a relatively short time a basic working tensor system
+was produced. After a somewhat longer period a more advanced and
+capable system was available, with essentially all of the major
+features of REDTEN today.
+<P>
+From the outset, it was clear that a new system should implement
+tensor algebra, and not just a few operations with tensors. It was
+intended that the user be able to enter expressions and see results as
+close to the conventional form as was possible with a normal terminal
+screen and keyboard. Rather than calling a function to add two
+tensors, for example, the user would simply type the names and
+associated indices, and assign the result to a new tensor. If the sum
+involved three objects, the user would just add the third name; in
+other systems it might be necessary to break this operation into two
+parts, involving two sums and one intermediate object. It was this
+``serial construction'' that was particularly to be avoided.
+<P>
+To accomplish this goal generally requires modifying the system parser
+to accept new operators. In muMATH this possibility is designed
+into the parser, and is therefore extremely simple. With a new
+assignment operator (in muTENSOR it was ``::'', in REDTEN it is
+``=='') a new function is installed to handle the input: it receives
+the left and right hand sides of the assignment. Since the data
+structure representing algebraic expressions is known, it is a
+straightforward matter for the new system function to treat the
+expression as a tensor expression, and to produce the desired
+result.
+<P>
+As muTENSOR advanced, the amount of code involved soon exceeded
+that in the basic muMATH kernel. Since muMATH was capable of using
+only 256 Kilobytes of memory (even on machines with larger amounts of
+memory), the amount of working space (where algebraic calculations are
+carried out and results stored) gradually decreased.
+Eventually, there was almost no room left to introduce new functions,
+and large calculations could not be performed due to the space required
+to hold all the intermediate results in core. This prompted the
+development of a ``virtual memory'' sub-system, which allowed the
+storage of the components of a tensor in secondary storage, such as a
+hard-disk or ram-disk. A needed component was read in from the disk,
+used, discarded and the results of the computation possibly written to
+disk, all automatically; generally the time required to retrieve the
+component was much less than the time required to do algebra with
+it, so that the overhead was negligible.  This allowed much larger
+problems to be successfully tackled, such as showing that the Kerr
+metric is vacuum, which required about 20 minutes on an IBM AT.
+<P>
+muTENSOR was demonstrated or described at several General
+Relativity conferences, and as a result, a moderately large group of
+users developed in several countries. However, the small amount of
+working space, even with the virtual memory sub-system, and the very
+simple algorithms used to implement algebra in
+muMATH<A NAME=tex2html3 HREF="footnode.html#105"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>
+made it increasingly obvious that a larger more capable base system
+was needed if further advancement was to be made.
+<P>
+In late 1985 it was determined that 
+REDUCEhttp://???
+would provide the power needed for an improved version of muTENSOR,
+to be called REDTEN. Since REDUCE is also LISP-based, the
+transportation of the code to the REDUCE environment was relatively
+simple, the major difficulties being in the interaction with the I/O
+system and the internal data structure of expressions, which although
+similar in concept to those of muMATH, differed in detail.
+Otherwise, most of the code was simply translated directly from
+muSIMP (the base lisp of muMATH) to RLISP (the extended
+syntax of Standard Lisp) in which REDUCE is written. To this day
+there is code in REDTEN with an odd ``flavour'' due to the original
+influence of muSIMP.
+<P>
+For a time the two systems evolved in parallel, each receiving the
+same upgrades and bug fixes as the other. In REDTEN a virtual
+memory system was unnecessary<A NAME=tex2html4 HREF="footnode.html#4086"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>, while at the
+same time more code could be developed to expand the system. Thus,
+REDTEN gradually became more advanced, with several new features
+not available in muTENSOR (such as frame and spinor packages). It
+was found the the REDTEN system was very capable and met all
+expectations.
+<P>
+An attempt was again made to implement a tensor-algebra system in
+MAPLE, using muTENSOR as a model. This system, called
+MapleTensor<A NAME=tex2html5 HREF="footnode.html#127"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>, was partially successful, but met difficulties with
+interacting with the MAPLE I/O system and with accessing the
+internal data structures used for expressions. It therefore lacked the
+same ``feel'' as muTENSOR and REDTEN and was not as convenient to
+use; support for MapleTensor has since been dropped.
+<P>
+In 1988(??)  muMATH was discontinued, and a new product, DERIVE,
+was introduced by the Soft Warehouse. Unfortunately, DERIVE, as a
+much simpler system, does not include a programming environment.
+Hence, muTENSOR became an orphaned system, and its development has
+halted, while that of REDTEN has continued. Although a successor to
+muMATH may become available in the future, many of todays personal
+computers are capable of running REDUCE (and therefore REDTEN),
+so that the need for a small compact system is less of an issue.
+<P>
+Currently REDTEN is at version v4.0, and is continuing to
+evolve. Many improvements have been made in the past few years, and
+the kernel of the system has reached a relatively stable
+configuration.  Recent improvements also include support for
+REDUCE 3.5 (the current version of REDUCE) and a basic
+clean-up of the code. It is hoped that REDTEN will soon become a
+part of the REDUCE network-library of contributed programs, and
+therefore more widely available.
+<P>
+<BR> <HR><A NAME=tex2html293 HREF="node4.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html291 HREF="node2.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html285 HREF="node2.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html295 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html296 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html294 HREF="node4.html"> Concepts in REDUCE</A>
+<B>Up:</B> <A NAME=tex2html292 HREF="node2.html"> Introduction</A>
+<B> Previous:</B> <A NAME=tex2html286 HREF="node2.html"> Introduction</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

@@ -1,0 +1,13 @@
+rewrite merror calls to use rdr!-string and index!-string, and remove
+	(from ???) messages
+
+rewrite code using pop, etc (avoid using pop as second arg to fn, since csl is
+	defective)
+
+rewrite some while loops using foreach.
+
+finish manual
+
+rewrite collecterms()
+
+remove shift flag from shift prop and place on separate flag.

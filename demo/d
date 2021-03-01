@@ -1,0 +1,110 @@
+comment
+This Reduce script evaluates the Ricci tensor for the Kerr metric 
+in Boyer-Lindquist coordinates to show that the metric is  indeed
+a  vacuum  solution.  The  total cpu running-time on a SUN 3/160 
+is about 22 sec. 
+
+Below is the line-element for the metric. The functions  delta(r)
+and  rho2(r,th) will remain unevaluated until the Ricci tensor is
+computed, however, the derivatives of  these  functions  will  be
+evaluated. 
+;
+coords '(t r th ph);
+ds2 := - delta/rho2*(d(t)-a*sin(th)^2*d(ph))^2
+   + sin(th)^2/rho2*((r^2+a^2)*d(ph)-a * d(t))^2
+   + rho2/delta * d(r)^2+rho2*d(th)^2;
+comment
+Define the  general  functions  delta(r),  rho2(r,th)  and  their
+derivatives.
+;
+depend delta,r;
+depend rho2,r,th;
+let df(rho2,r) = 2*r;
+let df(delta,r) = 2*r-2*m;
+let df(rho2,th) = -2*a^2*sin(th)*cos(th);
+comment
+The let rule below is vitally important.  It allows considerable
+simplification of expressions and prevents intermediate expression
+swell.  Without this rule, this demo take more than twice as long to
+run.
+;
+let r^2=sin(th)^2*a^2-a^2+rho2;
+%let df(r,th)=0;
+stime();
+on showindices;
+comment
+Compute the metric tensor from the line-element, and simplify the 
+inverse metric. 
+;
+metric (ds2);
+mapfi(g!_inv);
+comment
+Compute the first  and  second  Christoffel  symbols.  The  first
+Christoffel  symbols  are  symmetric  in  their  first and second
+indices, the second Christoffel symbols are  symmetric  in  their
+second and third indices, and have a contravariant first index. 
+;
+christoffel2();
+comment
+Compute the fully covariant Riemann curvature tensor. This object 
+has the full Riemann symmetry. 
+;
+riemann();
+comment
+Compute  the  fully  covariant  Ricci  tensor.  This  object   is
+symmetric in its two indices. 
+;
+ricci();
+comment
+Display the (unsimplified) components of the  Ricci tensor. 
+;
+weyl();
+comment
+Now define the functions delta(r) and rho2(r,th).
+;
+off mkobjsafe;
+complex rhob;
+rho2 := rhob * cnj(rhob);
+mkobj ('(l n m), '(-1));
+ias (l);
+sqrt(2);
+-sqrt(2)*rho2/delta;
+0;
+-sqrt(2)*a*sin(th)^2;
+ias (n);
+sqrt(2)*delta/ (2*rho2);
+sqrt(2)*1/2;
+0;
+-sqrt(2)*a*delta*sin(th)^2/(2*rho2);
+ias(m);
+i*a*sin(th);
+0;
+-rho2;
+-i*(r^2+a^2)*sin(th);
+multiplier (m, 1/(rhob));
+mapfi(m);
+let df (rhob,r) = 1;
+let df (cnj(rhob),r) = 1;
+let df (rhob, th) = -i*a*sin(th);
+let df (cnj(rhob), th) = i*a*sin(th);
+let df(delta, r) = 2*r-2*m;
+comment
+Simplify the Ricci tensor with the above definitions.
+;
+on xeval;
+p0:=seval(-C[a,b,c,d]*l[@a]*m[@b]*l[@c]*m[@d]);
+p1:=seval(-C[a,b,c,d]*l[@a]*n[@b]*l[@c]*m[@d]);
+p2:=seval(-1/2*C[a,b,c,d]*(l[@a]*m[@b]*l[@c]*m[@d]-l[@a]*n[@b]*m[@c]*cnj(m[@d])));
+p3:=seval(C[a,b,c,d]*l[@a]*n[@b]*n[@c]*cnj(m[@d]));
+p4:=seval(-C[a,b,c,d]*l[@a]*cnj(m[@b])*n[@c]*cnj(m[@d]));
+clear r^2;
+let delta = r^2 - 2*m*r + a^2;
+let rho2 = r^2 + a^2 * cos (th)^2;
+sub(p0);
+sub(p1);
+sub(p2);
+sub(p3);
+sub(p4);
+
+etime();
+;end;

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> New Features</TITLE>
+<meta name="description" value=" New Features">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html1122 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1120 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1114 HREF="node68.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1124 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1125 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1123 HREF="node70.html">Index</A>
+<B>Up:</B> <A NAME=tex2html1121 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1115 HREF="node68.html"> Modifications to REDUCE</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION001900000000000000000> New Features</A></H1>
+<P>
+New in Version 4.0:
+<UL><LI> Completely rewritten symmetrization code using new operators
+<tt>:[</tt> etc. Also can now do symmetrizations across a product of
+objects using <tt>symz()</tt>.
+<LI> Many internal changes.
+</UL>
+<P>
+New in Version 3.5:
+<UL><LI> New code to handle connections between various index-types, much
+more flexible than prevously.
+<LI> As of this version, the default build scripts rename nearly all
+internal function names and variables by prepending them with <tt>r10!-</tt>. Only names that are used directly by the user are unchanged.
+This manual still refers to the original names, as these are what
+actually appear in the source code.
+</UL>
+New in Version 3.4:
+<UL><LI> Various bug fixes.
+<LI> <tt>mkobjsafe</tt> switch; including objects in arguments to <tt>mkobj()</tt>. 
+<LI> 
+</UL>
+New in Version 3.12:
+<UL><LI> Functions <tt>savenv()</tt>, <tt>restorenv()</tt> and related
+functions that allow the user to save and restore named REDUCE
+environments. A REDUCE environment consists of all algebraic
+assignments, <tt>let</tt> and <tt>match</tt> rules, and all defined
+operators.
+<LI> A Newman-Penrose package, still under development.
+</UL>
+New (changed) since the last wide-spread release (v2.80):
+<UL><LI> <tt>mkobj()</tt> is the preferred way to create a new object, <tt>mktnsr()</tt> remains for backward compatibility.
+<LI> relaced use of # with _ in all names.
+<LI> function <i>coords()</i> now sets the coordinates.
+<LI> generic names, allowing the user to conveniently refer to the
+unweildly names required to support multiple metrics.
+<LI> <tt>mkscalar()</tt> routine removed, its funtionality is taken over
+by <tt>mkobj()</tt>.
+</UL>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

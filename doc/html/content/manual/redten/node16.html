@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Constraints</TITLE>
+<meta name="description" value=" Constraints">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html477 HREF="node17.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html475 HREF="node14.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html471 HREF="node15.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html479 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html480 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html478 HREF="node17.html"> implicit value</A>
+<B>Up:</B> <A NAME=tex2html476 HREF="node14.html"> Symmetries</A>
+<B> Previous:</B> <A NAME=tex2html472 HREF="node15.html"> Combining Symmetries</A>
+<BR> <HR> <P>
+<H3><A NAME=SECTION00323200000000000000> Constraints</A></H3>
+<P>
+<A NAME=mkobjsymconstraints>&#160;</A>  <A NAME=400>&#160;</A>
+There are several constraints on the symmetry list that are checked by
+REDTEN, violating any of these will result in an error message.
+<P>
+<UL><LI> the block-size <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6190.gif"> must be an integer.
+<LI> there must be at least two pointers to each independent symmetry.
+<LI> the pointers must be non-negative integers, the first index
+element corresponds to <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6194.gif">.
+<LI> the pointers must be in ascending order.
+<LI> blocks cannot overlap.
+<LI> the corresponding <tt>indextype</tt> sublists must be identical
+(unless the symmetry is a trace symmetry).
+<LI> a block cannot extend beyond the end of the index.
+</UL>
+There are several other constraints, as already mentioned, but a
+direct check for these is not made, and failing to observe them will
+lead to incorrect results.
+<P>
+The user should be aware that the internal form of the symmetry list is
+somewhat different, and is held on the symmetry property of the
+object.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

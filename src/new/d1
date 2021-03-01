@@ -1,0 +1,224 @@
+symbolic;
+
+global '(petrov!-terms!*);
+petrov!-terms!* := 10000000;    % more than this in I^2-27*J^2 and we cheat
+
+fluid '(petrov);
+fluid '(!*read!-undef!-flag!*);
+petrov := 'pet;
+
+makegeneric (petrov, '(2 . petrov),  '(0), 'nil, 'nil);
+restrict!* (petrov, '(0), '(5));  % I, J, I^3-27J^2, G, H, D
+
+put ('petrov, 'simpfn, 'petrov!*);
+
+% Code based on R.A. D'Inverno and R.A. Russel-Clark, JMP, 12, p1258, 1971
+symbolic procedure petrov!* (u);
+begin scalar npc, nptest, p0, p1, p2, p3, p4, lex, zero!*, ptype,
+	 p03, p04, p13, p22, p11, ii, jj, hh, gg, hell, nterms,
+	 flg, store, !*read!-undef!-flag!*, mes;
+  !*read!-undef!-flag!* := 't;
+  npc := get (getmetric (2), 'npweyl);	% see if its already been made
+  if not indexed (npc) then <<
+    write "I won't make ", npweyl, " for you, make it yourself and ensure all substitutions";
+    return 't ./ 1
+  >>;
+  p0 := mk!*sq readtnsr (npc, '(0));
+  p1 := mk!*sq readtnsr (npc, '(1));
+  p2 := mk!*sq readtnsr (npc, '(2));
+  p3 := mk!*sq readtnsr (npc, '(3));
+  p4 := mk!*sq readtnsr (npc, '(4));
+  if u then <<
+        write "making substitutions...", !$eol!$;
+	p0 := subeval append (u, list p0);
+	p1 := subeval append (u, list p1);
+	p2 := subeval append (u, list p2);
+	p3 := subeval append (u, list p3);
+	p4 := subeval append (u, list p4);
+  >>;
+  zero!* := 0;
+  % if p0 = 0, and p4 neq 0, then swap p0,p4, and p1,p3
+  if p0 = zero!* and not (p4 = zero!*) then 
+  <<
+     lex := p4; p4 := p0; p0 := lex;
+     lex := p3; p3 := p1; p1 := lex
+  >>;
+% need some user indication to make fresh (or just have them rem it)
+  if not indexed (store := get (getmetric (2), 'petrov)) then
+  <<
+     store := newnme ('nil, petrov);
+     mktnsr!* (store, '(0), 'nil, 'nil, 'petrov, "Petrov algorithm components");
+     restrict!* (store, '(0), '(5));
+     put (store, 'tvalue, foreach x in igen ('(a!#), get (store, 'restricted),
+		'nil, 'nil) collect list x);
+     put (store, 'subst, u);  % save the user subs used
+     put (getmetric(2), 'petrov, store)
+  >>;
+
+  mes := nil;
+  if p0 = zero!* and p4 = zero!* then <<
+   % this is the easy case, corresponding to table 1 in D'Inverno and Russell-Clark
+     if p1 = zero!* then <<
+       if p2 = zero!* then
+         if p3 = zero!* then ptype := "0"
+         else <<
+           mes := mkmsg (list ("Please ensure that %% is non-zero.",
+				npc, index!-string '(3)));
+	   ptype := "III"
+         >>
+       else
+         if p3 = zero!* then ptype := "D"
+         else <<
+           mes := mkmsg (list ("Please ensure that %% and %% are non-zero.",
+			npc, index!-string '(3), npc, index!-string '(2)));
+	   ptype := "II"
+         >>
+     >> else <<    % p1 != 0
+       if p2 = zero!* then
+         if p3 = zero!* then <<
+           mes := mkmsg (list ("Please ensure that %% is non-zero.",
+		npc, index!-string '(1)));
+
+	  ptype := "III"
+         >> else <<
+           mes := mkmsg (list ("Please ensure that %% and %% are non-zero.",
+		npc, index!-string '(1), npc, npc, index!-string '(3)));
+	   ptype := "I"
+         >>
+       else    % p2 != 0
+         if p3 = zero!* then ptype := "II"
+         else begin scalar dd;
+           if not (dd := readtnsr (store, '(5))) then
+               dd:=  addsq (multsq (9 ./ 1, exptsq (p2,2)), negsq (multsq (16,
+			multsq (p1, p3))));
+           dd := mk!*sq dd;
+           if dd = zero!* then <<
+             mes := mkmsg (list ("Please ensure that %%, %% and %% are non-zero.",
+		npc, index!-string '(1), npc, index!-string '(2), npc, index!-string '(3)));
+	     ptype := "II"
+ 	   >> else <<
+             mes := mkmsg (list ("Please ensure that %%, %%, %% and D are non-zero.",
+		npc, index!-string '(1), npc, index!-string '(2), npc, index!-string '(3)));
+	     ptype := "I"
+	 >>;
+         end
+     >>;
+   goto a;
+  >>;
+
+  p04 := mk!*sq simp list ('times, p0, p4);
+  p03 := mk!*sq simp list ('times, p0, p3);
+  p13 := mk!*sq simp list ('times, p1, p3);
+  p22 := mk!*sq simp list ('expt, p2, 2);
+  p11 := mk!*sq simp list ('expt, p1, 2);
+  if not (ii := readtnsr (store, '(0))) then <<
+    write "computing I", !$eol!$;
+    writetnsr (store, '(0), ii :=  simp list ('plus, p04, 
+	list ('minus, list ('times, 4, p13)),
+		list ('times, 3, p22)), 't)
+  >>;
+  ii := mk!*sq ii;
+  if not (jj := readtnsr (store, '(1))) then <<
+    write "computing J", !$eol!$;
+    jj := writetnsr (store, '(1), simp list ('plus, list ('times, p04, p2), 
+	list('minus, list ('times, p03, p3)),
+	list ('minus, list ('times, p11, p4)),
+      list ('times, 2, p13, p2),
+      list ('minus, list ('times, p22, p2))), 't)
+  >>;
+  jj := mk!*sq jj;
+  if not (hell := readtnsr (store, '(2))) then <<
+    write "computing I^3-27 J^2", !$eol!$;
+    nterms := sizeofexp (atom ii and ii or prepsq cadr ii, 
+			atom jj and jj or prepsq cadr jj);
+    if nterms < petrov!-terms!* then 
+      hell := simp (list ('plus, list ('expt, ii, 3), 
+	  list ('minus, list ('times, 27, list ('expt, jj, 2)))))
+    else begin scalar lex, lex1;
+      write "Cannot compute I^3-27 J^2 directly, it has ",
+	   nterms, " terms (max).", !$eol!$;
+      % pick a coord to subs a value for, and re-evaluate I and J
+  loop:
+      lex := '(0 . nil);
+      foreach y in 		% find coords that is most used
+  % what is the safe way to get the guts of a !*sq ?
+	 countvars (cadr ii . cadr jj, coords!*) do
+	  if car y > car lex then lex := y;
+      if not cdr lex then 
+      <<
+	  tabthenprint "Sorry - no further subs are possible, do it by hand";
+	  ptype := "unknown";
+	  return
+      >>;
+      lex1 := list ('equal, cdr lex, list ('quotient, random (256)+1, 16));   % value to subs for
+      prin2!* "Making this coordinate substitution: ";
+      maprint (lex1, 0); terpri!* 'nil;
+      write "into I ...", !$eol!$;
+      ii := subeval list (lex1, ii);   % new !*sq's with coord sub'd
+      write "and into J ...", !$eol!$;
+      jj := subeval list (lex1, jj);
+      write "done.", !$eol!$;
+      nterms := sizeofexp (prepsq cadr ii, prepsq cadr jj);
+      if nterms < petrov!-terms!* then 
+      <<
+	  write "Reduced I^3-27 J^2 to ",
+		   nterms, " terms, computing...", !$eol!$;
+	  writetnsr (store, '(2), hell := simp (list ('plus, list ('expt, ii, 3), 
+		  list ('minus, list ('times, 27, list ('expt, jj, 2))))), 't);
+	  flg := 't;    % flag indicating a subs was made
+	  goto afterloop
+      >>;
+      goto loop;
+  afterloop:    
+    end;
+    if ptype then goto a;   % error out for unknown type;
+  >>;
+
+  hell := mk!*sq hell;
+  if not (hell = zero!*) then
+   <<
+        mes := "Please ensure that I^3-27J^2 is non-zero.";
+	ptype := "I";
+        goto a
+   >>;
+   if flg then write "Suggest you rerun petrov() to test another coordinate subs";
+
+   if not (gg := readtnsr (store, '(3))) then <<
+     write "computing G", !$eol!$;
+     writetnsr (store, '(3), gg := simp list ('plus, list ('times, p0, p03),
+		list ('minus,  list ('times, 3, p0, p1, p2)),
+		list ('times, 2, p1, p11)), 't)
+   >>;
+   gg := mk!*sq gg;
+
+   if not (ii = zero!* and jj = zero!*) then
+     if gg = zero!* then <<
+        mes := "Please ensure that I and J are both non-zero";
+	ptype := "D"
+     >> else <<
+        mes := "Please ensure that I, J and G are all non-zero";
+        ptype := "II"
+     >>
+   else <<
+     if not (hh := readtnsr (store, '(4))) then <<
+       write "computing H", !$eol!$;
+       writetnsr (store, '(4), hh := simp list ('plus, list ('times, p0, p2), 
+    	  list ('minus, p11)), 't)
+     >>;
+     hh := mk!*sq hh;
+     if gg = zero!* and hh = zero!* then 
+        ptype := "N"
+     else <<
+        mes := "Please ensure that G and H are non-zero";
+        ptype := "III"
+     >>
+   >>;
+a:
+  if mes then <<
+    write mes,!$eol!$;
+    write "If so, then the Petrov type is ", ptype, !$eol!$
+  >> else  write "The Petrov type is ", ptype,!$eol!$;
+  return ptype ./ 1;
+end;
+
+;end;

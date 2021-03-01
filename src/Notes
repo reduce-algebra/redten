@@ -1,0 +1,34 @@
+- In some places the form if not a or not b causes an error. need paren's:
+  if (not a) or (not b) ..., somewhat inconsistent.
+
+- NTH counts from 1 not 0 as in the franz version (args are inverted too)
+
+- APPEND only takes 2 args.
+
+- beware using EQ to compare numbers, better to use EQN (but must be written
+  EQN (n1, n2) not n1 EQN n2, so for now use =.
+
+- PAIR wants its args to be the same length (ick!)
+
+- NUMP is NUMBERP
+
+- for BOUNDP use NOT (UNBOUNDP ())
+
+- COMPRESS does not intern its result. define a new routine MAKENAME which 
+  call INTERN too.
+
+- Calling XREAD in IAS or READCH in REM1 causes the prompt to be printed too.
+  kill the prompt with
+  PROMPTEXP := "";              % kill off the prompt
+  SETPCHAR (PROMPTEXP);
+  before reading.
+
+- SIMP!* does not like getting '(!*SQ ...) although it should. (was missing
+  third arg of nil)
+
+
+- cant do g[a]==k[a]==1 for example.
+- cant do let k[0] = 1 if k is implicit because the k[0] is not evaluated.
+  even if one allows FINDEX and SYMINDEX to be declared functional, it wont
+  work since the system will never see anything in this unevaled form. can
+  do this by simply assigning, things like let k[0]^2 = 1 work.

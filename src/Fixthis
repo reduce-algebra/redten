@@ -1,0 +1,14 @@
+- Similarly, the print function for derivs of indexed objects does not
+do a great job printing these ops. (eg df(k[a],o,p,l) is not sorted
+and prints poorly)
+
+- Need a way of specifying the dependencies of the componenets of an
+implicit object, since telling the system that, eg, df(k[0],t)=0 is
+not possible given the problem of no eval in let rules. (the later part
+of this is now possible, jul 30/88)
+
+- assignments like k[0]==l[0]== value,  do not work (use parenthesis).
+
+- how does one remove an assignment to an implicit object? if k[0]==t^2 and
+i now want k[0] as it was before, how do i do this???
+

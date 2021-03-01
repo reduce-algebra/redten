@@ -1,0 +1,34 @@
+%in "$redten/rename.red";
+faslout "redten";
+in "$redten/decl.red";
+in "$redten/sysfn.red";
+in "$redten/algebra.red";
+in "$redten/cmplx.red";
+in "$redten/dif.red";
+in "$redten/frme.red";
+in "$redten/gr.red";
+in "$redten/np.red";
+in "$redten/indexed.red";
+in "$redten/io.red";
+in "$redten/matrix.red";
+in "$redten/shift.red";
+in "$redten/subobj.red";
+in "$redten/spnr.red";
+in "$redten/sym.red";
+in "$redten/symindex.red";
+in "$redten/utility1.red";
+in "$redten/utility2.red";
+in "$redten/save.red";
+in "$redten/local.red";
+in "$redten/math.red";   % replace this with a better taylor package
+in "$redten/lets";
+in "$redten/sys.env";
+!*paging := 'nil$	% change to default = off - CCD.
+in "$redten/help.txt";
+in "$redten/basecase.red";
+in "$redten/fix38";  % other modules put interfering props on [ and ] which must be removed
+begin!-redten();
+algebraic$				% also done in begin!-redten();
+faslend;
+bye;
+%$end;

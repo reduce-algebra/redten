@@ -1,0 +1,88 @@
+coords '(u r x y);	
+
+comment
+Define the side relations for the partial derivatives of f(x,u).
+;
+depend f,x,u;
+let df(f,x) = -2*u/x*df(f,u);
+let df(f,u,2) = -3*f/(16*k);
+let df(f,u,x) = df(f,x,u);
+
+comment
+Define the partial derivativs for k(u,x).
+;
+depend k,u,x;
+let df(k,u) = 2*u;
+let df(k,x) = 16*x^3;
+
+comment
+When r^2 is replaced below, Reduce assumes a functional 
+dependence of r on x,u.
+;
+let df(r,x) = 0;
+let df(r,u) = 0;
+let df(u,x) = 0;
+
+comment
+Replace all occurances of r^2 with s-p^2, where s is an undefined
+function of u,x,r. The actual form of s is not needed. This 
+substitution causes the determinant of the metric to be a simple
+product, simplifying the form of the inverse metric.
+;
+let r^2 = s - p^2;
+depend s,u,x,r;
+
+comment
+Define the partial derivatives of s(u,x,r).
+;
+let df(s,u) = 4*a^2*x^3*f*df(f,u);
+let df(s,r) = 2*r;
+let df(s,x) = 4*a^2*x^3*f*df(f,x)+3*2*a^2*x^2*f^2;
+
+comment
+Define the functions b(u,x), cc(u,x), p(u,x). (These are defined in
+terms of f(u,x)).
+;
+let b = u * df(f,u)/(x*f) - 3/(4*x);
+let cc = -2*x*df(f,u)/f;
+let p = a^3*x^(3/2)*f;
+
+comment
+Replace all occurances of u^2 with k - 4 x^4, where k is defined
+above. (k is actually defined as u^2 + 4 x^4).
+Also replace a^4 with 2. This is an artifice to avoid a Reduce bug.
+;
+let u^2=k-4*x^4;
+let a^4 = 2;   % a = 2^(1/4)
+
+nulltet();
+ias(z);
+p;
+0;
+0;
+-4*x*p;
+0;
+1;
+-6*p*cc;
+6*p*b;
+p*(b+i*cc);
+0;
+r-i*p;
+p*(1-4*b*x)+i*(r-4*p*cc*x);
+p*(b-i*cc);
+0;
+r+i*p;
+p*(1-4*b*x)-i*(r-4*p*cc*x);
+
+comment
+Tell the system that z is the frame connection.
+;
+setcon (z);
+
+comment
+Compute the metric tensor from the frame connection z and the frame
+metric eta.
+;
+tenmetric();
+
+;end;

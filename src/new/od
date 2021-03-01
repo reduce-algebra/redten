@@ -1,0 +1,138 @@
+;end;
+symbolic procedure petrov!* (u);
+begin scalar npc, nptest, p0, p1, p2, p3, p4, lex, zero!*, ptype,
+	 p03, p04, p13, p22, p11, ii, jj, hh, gg, hell, nterms,
+	 flg;
+  npc := get (getmetric (2), 'npweyl);	% see if its already been made
+  if not indexed (npc) then <<
+    write "I won't make ", npweyl, " for you, make it yourself and ensure all substitutions";
+    return 't ./ 1
+  >>;
+  p0 := mk!*sq readtnsr (npc, '(0));
+  p1 := mk!*sq readtnsr (npc, '(1));
+  p2 := mk!*sq readtnsr (npc, '(2));
+  p3 := mk!*sq readtnsr (npc, '(3));
+  p4 := mk!*sq readtnsr (npc, '(4));
+  if u then <<
+        write "making substitutions...", !$eol!$;
+	p0 := subeval append (u, list p0);
+	p1 := subeval append (u, list p1);
+	p2 := subeval append (u, list p2);
+	p3 := subeval append (u, list p3);
+	p4 := subeval append (u, list p4);
+  >>;
+  zero!* := 0;
+  % if p0 = 0, and p4 neq 0, then swap p0,p4, and p1,p3
+  if p0 = zero!* and not (p4 = zero!*) then 
+  <<
+     lex := p4; p4 := p0; p0 := lex;
+     lex := p3; p3 := p1; p1 := lex
+  >>;
+  if p0 = zero!* and p4 = zero!* then <<
+   % this is the easy case, corresponding to table 1 in D'Inverno and Russell-Clark
+     if p1 = zero!* then <<
+       if p2 = zero!* then
+         if p3 = zero!* then ptype := "0"
+         else ptype := "III"
+       else
+         if p3 = zero!* then ptype := "D"
+         else ptype := "II"
+     >> else <<
+       if p2 = zero!* then
+         if p3 = zero!* then ptype := "III"
+         else ptype := "I"
+       else
+         if p3 = zero!* then ptype := "II"
+         else begin scalar D;
+           D := mk!*sq addsq (multsq (9 ./ 1, exptsq (p2,2)), negsq (multsq (16,
+			multsq (p1, p3))));
+           if D = zero!* then ptype := "II"
+           else ptype := "I";
+         end
+     >>;
+   goto a;
+  >>;
+
+  p04 := mk!*sq simp list ('times, p0, p4);
+  p03 := mk!*sq simp list ('times, p0, p3);
+  p13 := mk!*sq simp list ('times, p1, p3);
+  p22 := mk!*sq simp list ('expt, p2, 2);
+  p11 := mk!*sq simp list ('expt, p1, 2);
+  write "computing I", !$eol!$;
+  ii := mk!*sq simp list ('plus, p04, list ('minus, list ('times, 4, p13)),
+		list ('times, 3, p22));
+  write "computing J", !$eol!$;
+  jj := mk!*sq simp list ('plus, list ('times, p04, p2), 
+	list('minus, list ('times, p03, p3)),
+	list ('minus, list ('times, p11, p4)),
+      list ('times, 2, p13, p2),
+      list ('minus, list ('times, p22, p2)));
+  write "computing I^3-27 J^2", !$eol!$;
+  nterms := sizeofexp (atom ii and ii or prepsq cadr ii, 
+			atom jj and jj or prepsq cadr jj);
+  if nterms < petrov!-terms!* then 
+    hell := mk!*sq simp (list ('plus, list ('expt, ii, 3), 
+  	list ('minus, list ('times, 27, list ('expt, jj, 2)))))
+  else begin scalar lex, lex1;
+    write "Cannot compute I^3-27 J^2 directly, it has ",
+	 nterms, " terms (max).", !$eol!$;
+    % pick a coord to subs a value for, and re-evaluate I and J
+loop:
+    lex := '(0 . nil);
+    foreach y in 		% find coords that is most used
+% what is the safe way to get the guts of a !*sq ?
+       countvars (cadr ii . cadr jj, coords!*) do
+	if car y > car lex then lex := y;
+    if not cdr lex then 
+    <<
+	tabthenprint "Sorry - no further subs are possible, do it by hand";
+        ptype := "unknown";
+	return
+    >>;
+    lex1 := list ('equal, cdr lex, list ('quotient, random (256)+1, 16));   % value to subs for
+    prin2!* "Making this coordinate substitution: ";
+    maprint (lex1, 0); terpri!* 'nil;
+    write "into I ...", !$eol!$;
+    ii := subeval list (lex1, ii);   % new !*sq's with coord sub'd
+    write "and into J ...", !$eol!$;
+    jj := subeval list (lex1, jj);
+    write "done.", !$eol!$;
+    nterms := sizeofexp (prepsq cadr ii, prepsq cadr jj);
+    if nterms < petrov!-terms!* then 
+    <<
+ 	write "Reduced I^3-27 J^2 to ",
+		 nterms, " terms, computing...", !$eol!$;
+        hell := mk!*sq simp (list ('plus, list ('expt, ii, 3), 
+ 	   	list ('minus, list ('times, 27, list ('expt, jj, 2)))));
+        flg := 't;    % flag indicating a subs was made
+	goto afterloop
+    >>;
+    goto loop;
+afterloop:    
+  end;
+  if ptype then goto a;   % error out for unknown type;
+  if not (hell = zero!*) then
+   <<
+	ptype := "I";
+        goto a
+   >>;
+   if flg then write "Suggest you rerun petrov() to test another coordinate subs";
+   write "computing G", !$eol!$;
+   gg := mk!*sq simp list ('plus, list ('times, p0, p03),
+		list ('minus,  list ('times, 3, p0, p1, p2)),
+		list ('times, 2, p1, p11));
+
+   if not (ii = zero!* and jj = zero!*) then
+     if gg = zero!* then ptype := "D"
+     else ptype := "II"
+   else <<
+     write "computing H", !$eol!$;
+     hh := mk!*sq simp list ('plus, list ('times, p0, p2), 
+  	list ('minus, p11));
+     if gg = zero!* and hh = zero!* then ptype := "N"
+     else ptype := "III"
+   >>;
+a:
+  write "The Petrov type is ", ptype,!$eol!$;
+  return ptype ./ 1;
+end;

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Symmetrization</TITLE>
+<meta name="description" value=" Symmetrization">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html572 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html570 HREF="node21.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html566 HREF="node23.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html574 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html575 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html573 HREF="node25.html"> The Robertson-Walker Metric</A>
+<B>Up:</B> <A NAME=tex2html571 HREF="node21.html"> The Index</A>
+<B> Previous:</B> <A NAME=tex2html567 HREF="node23.html"> Shift Operations</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00333000000000000000> Symmetrization</A></H2>
+<P>
+<A NAME=ssecsymz>&#160;</A>   It is frequently the case in General Relativity that a new object of
+interest is constructed from some other object (or objects) by
+permuting its indices and adding the resultant objects together.
+These symmetrization operations can be indicated in the index of an
+object by enclosing the indices to be permuted in symmetrization
+<A NAME=4107>&#160;</A>
+<A NAME=4108>&#160;</A>
+<A NAME=4109>&#160;</A>   <A NAME=4110>&#160;</A>   <A NAME=4111>&#160;</A>
+operators: <tt>:[</tt> and <tt>:]</tt>; or anti-symmetrization operators:
+<tt>:{</tt> and <tt>:}</tt><A NAME=tex2html54 HREF="footnode.html#585"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>.  The anti-symmetrization operators cause a sign change when
+swapping adjacent index elements, whereas the symmetrization operators
+do not.  Using the objects created on page <A HREF="node20.html#mkobjeg"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/cross_ref_motif.gif"></A> we have, for
+example,
+<PRE> 
+<tt>#: <i>q[:[a,b:]];</i>
+
+    a b    b a
+  (q    + q   )/2
+
+#: <i>w[:[a,b:]];</i>
+
+    a b
+   w
+
+#: <i>w[:{a,b:}];</i>
+
+   0
+
+#: <i>3*R[a,b,:{c,d,||e:}];</i>
+
+  R            - R            + R
+   a b c d ||e    a b c e ||d    a b d e ||c
+
+</tt></PRE>Each time the index is permuted according to the indicated
+symmetrization, the intrinsic symmetries of the object are applied to
+put the index into a canonical form. Thus it may be the case that
+significant simplification can occur before the actual evaluation of
+the expression is begun. The last expression above is an example
+of how the Bianchi identities can be calculated, assuming R had
+been given values.
+<P>
+Bach brackets can be used to isolate some indices from the
+<A NAME=4112>&#160;</A>
+<A NAME=595>&#160;</A>
+symmetrization, and these are indicated by writing a <tt>:&amp;</tt> symbol
+in the index as if it were a separate index element, i.e. it has
+commas on both sides, unlike the <tt>@</tt> and <tt>|</tt> operators. 
+<PRE> 
+<tt>#: <i>R[:[a,:&amp;,b,c,:&amp;,d]:];</i>
+
+ (R        + R       )/2
+   a b c d    a c b d
+</tt></PRE>With REDTEN version v4.00 the previous restriction that a
+symmetrization involve no more than 4 indices was removed (although it
+will take much longer to evaluate larger operations, as the number of
+terms grows with the factorial of the number of indices). Also new in
+this version is the function symz(), which can be used to apply a
+symmetrization across the product of several indexed objects. The
+system still cannot apply intermixed symmetrizations separately to
+covariant and contravariant indices.
+<P>
+To use symz() simply give an indexed expression as the single
+argument to the function. At least one pair of matching symmetrization
+operators should appear (it's a no-op otherwise), but they are no
+longer restricted to appearing in the <em>same</em> index: the opening op
+can appear in one index, and the closing op in another. Obviously, the
+opening op should appear before the closing op (the usual REDUCE
+reordering of expressions is suppressed until the symmetrization has
+been evaluated). Writing a distributed symmetrization that is not the
+argument to symz() will result in an error. For example,
+<PRE> 
+<tt>#: <i>symz(q[a,:[b]*w[c:],d]);</i>
+
+   a b  c d    a c  b d
+  q    w    + q    w
+ -----------------------
+            2
+</tt></PRE>All the operators and rules that apply to a symmetrization in a single
+index apply here across the combined index of the terms in the
+expression.
+<P>
+If the switch symzexp is off, the symmetrization operations are
+not evaluated until the expression is involved in an indexed
+assignment. In this case, symz() returns unevaluated:
+<PRE> 
+<tt>#: <i>off symzexp;</i>
+
+#: <i>symz(q[a,:[b]*w[c:],d]);</i>
+
+  a [b  c] d
+ q     w
+</tt></PRE><BR> <HR><A NAME=tex2html572 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html570 HREF="node21.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html566 HREF="node23.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html574 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html575 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html573 HREF="node25.html"> The Robertson-Walker Metric</A>
+<B>Up:</B> <A NAME=tex2html571 HREF="node21.html"> The Index</A>
+<B> Previous:</B> <A NAME=tex2html567 HREF="node23.html"> Shift Operations</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

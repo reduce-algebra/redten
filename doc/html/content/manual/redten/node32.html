@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> <tt>shift()</tt></TITLE>
+<meta name="description" value=" shift()">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html668 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html666 HREF="node30.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html662 HREF="node31.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html670 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html671 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html669 HREF="node33.html"> The General Relativity </A>
+<B>Up:</B> <A NAME=tex2html667 HREF="node30.html"> Metric Contractions</A>
+<B> Previous:</B> <A NAME=tex2html663 HREF="node31.html"> metrics</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00412000000000000000> <tt>shift()</tt></A></H2>
+<P>
+<A NAME=ssecshift>&#160;</A>	In order to perform a metric contraction that will raise or lower an
+index, the user types the index with the <tt>@</tt> operator preceeding
+the appropriate index element. The operation is performed when an
+expression containing the object appears as the right hand side of an
+indexed assignment. If the user wishes to form the shifted object
+immediately, the function shift() can be applied to the object.
+<P>
+The commands
+<PRE> 
+<tt>#: <i>shift(hG[@a,b]);</i>
+
+computing hG_b
+
+   a
+ hG
+     b
+
+#: <i>hG_b[]; </i>
+
+                    2
+            - 3 (rt   + k)
+   0               t
+ hG     = -----------------
+     0             2
+                 rt
+
+                              2
+            - 2 rt    rt - rt   - k
+   1              t,2        t
+ hG     = --------------------------
+     1                 2
+                     rt
+
+                              2
+            - 2 rt    rt - rt   - k
+   2              t,2        t
+ hG     = --------------------------
+     2                 2
+                     rt
+
+                              2
+            - 2 rt    rt - rt   - k
+   3              t,2        t
+ hG     = --------------------------
+     3                 2
+                     rt
+
+ hG_b
+
+#: <i>hG[@0,0];</i>
+
+           2
+   - 3 (rt   + k)
+          t
+ -----------------
+          2
+        rt
+
+</tt></PRE>create and display the ``mixed'' Einstein tensor for the RW metric,
+which has the form expected for a pressureless dust. The last command
+shows a short form for accessing specific elements of a shifted
+object, the full object name need not be typed, only the parent name
+with the proper shift operation. If such a reference is made before
+the offspring is computed, it will return unevaluated unless it was
+the argument to an explicit shift() command.
+<P>
+
+<P>
+The offspring object created by shift() has a name formed by
+appending to the parent name an underscore (<tt>_</tt>) and a lower-case
+letter (or letters) derived from the locations of the shifted indices.
+This name is reported in the <tt>computing &lt;name&gt;_&lt;letter&gt;</tt> message
+that is displayed when shift() is called either explicitly or
+implicitly.  The new object is given the appropriate indextype
+entry, and the same coordinates, print-name and type as the parent.
+The symmetries are derived from the parent's, accounting for the
+shifting of the indices, more is said on this below. Both the parent
+and the offspring are write-protected, so that they cannot be
+inadvertently altered and render the relation inconsistent. The
+offspring object has the parent property set, and the
+description string indicates its origin.  The shift property of
+the parent is updated to show the new object belonging to the
+parent's family.
+<P>
+As the user may call shift() at any time, the environment of the
+system is changed to that of the parent before the operation proceeds.
+This is accomplished by looking at the altmetric property of the
+parent to find the tensor metric that existed at the time the parent
+was created. This is temporarily installed as the current-metric and
+the system coordinates are changed to match. After the offspring is
+created (having been given the correct altmetric and
+coords properties), they system environment is restored. If the user
+aborts the shift operation then the system environment can be reset by
+calling setmetric() with the name of the metric which should be
+the current metric. The altmetric property may be
+examined or changed with the altmetric() function.
+<P>
+When shift() is called, it first determines the index structure
+of the offspring object and checks in the list of existing offspring
+(on the property shift of the parent) for a match. If the object
+exists shift returns quickly. Otherwise, shift() finds the closest
+offspring and forms the metric contractions with it, which presumably
+requires the least amount of work. As the parent object is always
+first in the shift list (after a flag which if <tt>nil</tt>
+indicates that shifting is allowed on this object), it may be that the
+parent will be used. If the user types the name of an offspring object
+and an index indicating a shift, the parent object is determined from
+the parent property, and then the shift relative to the parent
+is computed, allowing shift() to proceed as before.
+<P>
+As noted above, the symmetries of the offspring are determined from
+those of the parent. Any independent symmetry of the parent which, in
+the offspring, relates indices that are all covariant or contravariant
+(but not mixed) is retained. Thus, if the first index of the Riemann
+tensor is raised, only the anti-symmetry in the third and fourth
+indices survives, but if all the indices are raised, the offspring has
+the full Riemann symmetry. To ensure the most efficient operation of
+the system, the parent object should always be the most symmetric of
+the entire family of related objects, since shift() cannot
+determine if any new symmetries will appear.
+<P>
+Normally the application of the intrinsic symmetries of an object to
+canonicalize the index results in the indices being sorted into
+alphabetical order. If an index element is to be shifted, then it
+takes precedence when being sorted, so that indices shifting up are
+moved to the left, and indices shifting down are moved to the right.
+Thus, the canonical form of the shifted object takes priority over the
+canonical form of the index alone. For example,
+<PRE> 
+<tt>#: <i>hG[b,a];</i>
+
+  hG
+    a b
+
+#: <i>hG[@b,a];</i>
+
+    b
+  hG
+      a
+</tt></PRE>Certain objects are shifted by contracting with things other than the
+metric; for these the user can change the altmetric property
+with the altmetric() command. This function takes the name of
+the object whose properties are being modified and the name of a
+rank-2 object that will be the alternate metric. With only one
+argument, altmetric() shows what metrics are defined for the given
+object.
+<P>
+ The tensor metric itself has its indices raised to form the metric
+inverse via a matrix inverse computed by invert(); this function
+sets up the shift property on the metric, and also adds the
+proper delta function to represent a metric with mixed indices. The
+delta functions are created by the function delta(), but
+ordinarily this function need never be called by the user since the
+delta functions are created automatically for each kind of index in
+the system by defindextype(). The delta functions themselves
+form a family of three objects, one with both indices up, one with
+both down, and a mixed object. The names of the delta functions are by
+default of the form <tt>d&lt;n&gt;_c</tt>, <tt>d&lt;n&gt;_d</tt> and <tt>d&lt;n&gt;</tt>,
+respectively, where <tt>&lt;n&gt;</tt> is the type of index the delta function
+is defined for. Unlike the usual naming convention for the delta
+functions, <tt>d&lt;n&gt;_c</tt> is the parent, because it has the symmetries,
+but the mixed object, being most commonly used, is given the simpler
+name <tt>d&lt;n&gt;</tt>; this is the delta function used for the mixed metric.
+<BR> <HR><A NAME=tex2html668 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html666 HREF="node30.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html662 HREF="node31.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html670 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html671 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html669 HREF="node33.html"> The General Relativity </A>
+<B>Up:</B> <A NAME=tex2html667 HREF="node30.html"> Metric Contractions</A>
+<B> Previous:</B> <A NAME=tex2html663 HREF="node31.html"> metrics</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

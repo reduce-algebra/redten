@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Other Functions</TITLE>
+<meta name="description" value=" Other Functions">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html757 HREF="node40.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html755 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html749 HREF="node38.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html759 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html760 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html758 HREF="node40.html"> The Matrix Functions</A>
+<B>Up:</B> <A NAME=tex2html756 HREF="node33.html"> The General Relativity </A>
+<B> Previous:</B> <A NAME=tex2html750 HREF="node38.html"> Generic Names</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00540000000000000000> Other Functions</A></H1>
+<P>
+<A NAME=secothergr>&#160;</A>  
+In addition to those functions listed above that calculate from a
+metric commonly used tensors, there are a number of other computations
+in GR that are conveniently packaged as functions. These compute the
+divergence of a tensor, the D'Alembertian of a scalar, Lie
+derivatives, the Killing equations, and the geodesic equations.  These
+functions either operate on another object or produce output which is
+not usually regarded as a tensor, so they are not grouped with the
+functions above that compute the family members of a metric.
+<P>
+
+<P>
+The divergence function div() computes the divergence of its
+first argument via the formula:<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6264.gif"><P>
+and note that the first index will be raised if need be (however, this
+will be done to the covariant derivative, <em>not</em> to the parent
+object, see &#167;<A HREF="node37.html#sseccovshift">4.2.1</A>).  The output is an object of rank <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6272.gif">, with
+either the optional second argument as its name, or a default name of
+the form <tt>&lt;input&gt;_D</tt>.  The divergence of a vector quantity is an
+indexed scalar. The name of the divergence object is stored on the
+property list of the input object under the key div, and
+div() will immediately return this name if the divergence has already 
+been computed. The symmetries of the output will be those that survive
+the loss of the first index of the parent object.
+<P>
+
+<P>
+The function dalembert() computes the D'Alembertian of a scalar
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6274.gif"> from the equation<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6265.gif"><P>
+and the output of this function is also a (non-indexed) scalar. The
+determinant function det() (described below) is used to compute
+the determinant of the metric tensor.
+<P>
+
+<P>
+lie()
+The function lie() computes the Lie derivative of its first
+argument in the direction of the vector that is the second argument.
+The output object (whose name is formed by concatenating the name of
+the tensor and vector and adding <tt>_lie</tt> to the end<A NAME=tex2html86 HREF="footnode.html#1389"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>) has the same index
+structure as the input object. If the vector given is covariant it
+will be shifted to give a contravariant representation.
+The formula used is
+<P><IMG ALIGN=BOTTOM SRC="_10787_eqnarray1390.gif"><P>
+which is expanded as required to cover each of the objects' indices.
+<P>
+
+<P>
+The function killing() computes the Killing equations for the
+current-metric; this function cannot, however, solve these equations
+for the Killing vectors. The Killing equations are given by<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6266.gif"><P>
+The output of this object is a rank-2 symmetric tensor whose name will
+be the first argument to killing() (there is no default
+name). The optional second argument, if non-<tt>nil</tt>, indicates that
+the conformal Killing equations are to be computed. The Killing vector
+is, by default, given the name <tt>k</tt> (the default name is stored on
+killing), it is created as an implicit covariant vector that
+depends on all the coordinates. The components of the output object
+are then a set of <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6276.gif"> first order differential equations that
+are to be solved for the components of <tt>k</tt>, where <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6278.gif"> is the
+dimension of the space.
+<P>
+It should be noted that computing the Killing equations for the RW
+metric as set up in the examples above will cause difficulties, since
+the Killing vector <tt>k</tt> will be made to depend on the coordinates
+but in the RW metric <tt>k</tt> is a constant. Any subsequent computation
+involving differentiation will be incorrect, since the dependencies
+for an indexed object are created and stored in the same fashion as
+those for non-indexed objects. This may be fixed in future, but
+involves rewritting some REDUCE code. If the switch mkobjsafe
+is on, then mkobj() called from killing() 
+will err-out when it attempts to create the Killing vector for this
+metric.
+<P>
+
+<P>
+In a similar fashion, geodesic() computes the geodesic equations
+from <P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6267.gif"><P>
+The first argument is the name of the output object, which will be a
+covariant vector. The optional second argument is the name of
+the affine parameter, the default (stored on geodesic) is
+geodesic
+<tt>s</tt>. Each of the coordinate names (in coords!*) is made
+to depend on the affine parameter.
+<P>
+
+<P>
+Another occasionally useful function is mkcoords(), which makes
+a contravariant coordinate vector of its single argument, or of the
+default name which is the value of mkcoords[<tt>x</tt>]. The coords()
+function calls mkcoords() whenever the user changes 
+the coordinates so that the vector <tt>x</tt> always contains the current
+coordinates.
+<P>
+<BR> <HR><A NAME=tex2html757 HREF="node40.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html755 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html749 HREF="node38.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html759 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html760 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html758 HREF="node40.html"> The Matrix Functions</A>
+<B>Up:</B> <A NAME=tex2html756 HREF="node33.html"> The General Relativity </A>
+<B> Previous:</B> <A NAME=tex2html750 HREF="node38.html"> Generic Names</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

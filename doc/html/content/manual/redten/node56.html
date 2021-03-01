@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> The Pager</TITLE>
+<meta name="description" value=" The Pager">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html968 HREF="node57.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html966 HREF="node53.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html960 HREF="node55.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html970 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html971 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html969 HREF="node57.html"> Miscellaneous</A>
+<B>Up:</B> <A NAME=tex2html967 HREF="node53.html"> Enhancements</A>
+<B> Previous:</B> <A NAME=tex2html961 HREF="node55.html"> Saving to Disk</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00820000000000000000> The Pager</A></H1>
+<P>
+<A NAME=secpager>&#160;</A>  Since the display of even a relatively simple indexed object can
+occupy several screens it became necessary to introduce a pager to
+handle the scrolling of output. By redefining a REDUCE primitive
+REDTEN is able to page the output, allowing the user a chance to
+see and examine each page at leisure without needing to be quick with
+the no-scroll key; and to abort the output if it is too long-winded,
+without needing to use the sometimes-dangerous abort sequence.
+<P>
+If the switch dopaging is on, any output of an algebraic
+nature<A NAME=tex2html100 HREF="footnode.html#2324"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A> will pause after a pre-determined number of lines. This number is
+stored in lisp:screenlines!*[22] and can be set by the user
+directly, from a startup file (assuming this is supported) or from the
+environment variable SCREENLINES  (again, assuming this is supported).
+At each pause the prompt <tt>Continue?</tt> appears, asking the user for
+input before continuing. Valid inputs are (case is ignored):
+<UL>  <LI> <tt>q</tt> or <tt>n</tt> --- A throw to the top-level input loop is
+made, thus aborting the output
+  <LI> c --- continue the output with no more pauses
+  <LI> d --- make the next page half-height
+  <LI> other  --- any other response continues the output, pausing after
+the next page.
+</UL>
+All of the above responses must be followed by a carriage return to
+become effective; a carriage return alone is ignored.
+<P>
+For the pager to operate properly the up-cursor escape sequence
+upcursor!* must be correctly defined. This allows the pager code 
+to overwrite the prompt and produce a seamless output.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> The General Relativity Package</TITLE>
+<meta name="description" value=" The General Relativity Package">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html680 HREF="node34.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html678 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html672 HREF="node32.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html682 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html683 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html681 HREF="node34.html"> Ordinary Differentiation</A>
+<B>Up:</B> <A NAME=tex2html679 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html673 HREF="node32.html"> shift()</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00500000000000000000> The General Relativity Package</A></H1>
+<P>
+<A NAME=gr>&#160;</A>
+<P>
+This chapter describes the functions in REDTEN that comprise the
+General Relativity package for managing the family of related objects
+that are constructed from the metric tensor (assumed symmetric). The
+user has already encountered the metric() function and seen how
+it can be used to make a metric tensor either from a rank-2 indexed
+object or directly from the line-element. We shall repeat the examples
+of the RW metric to illustrate the use of the GR package.
+<P>
+Constructing the metric tensor from the RW line-element can be done as
+<A NAME=1134>&#160;</A>
+follows: 
+<PRE> 
+<tt>#: <i>ds2 := d(t)^2-rt^2*(d(om)^2+s^2*(d(th)^2+sin(th)^2*d(ph)^2));</i>
+
+               2   2        2        2   2  2       2        2   2  2
+ds2 :=  - d(om)  rt  - d(ph)  sin(th)  rt  s  + d(t)  - d(th)  rt  s
+
+#: <i>metric (ds2);</i>
+
+ computing g1
+ INVERT finished.
+
+  g1
+</tt></PRE>There are several functions to compute the various objects of interest
+starting from a metric. These are christoffel1(), christoffel2(),
+riemann(), ricci(), riccisc(), riccisc(),
+einstein(), and weyl().  The workings of these are so similar 
+that they can be described together, special features of each function
+will be noted.
+<P>
+Each function takes one optional argument, the name to use when
+creating its output. The actual object name is made by concatinating
+the current-metric name and the user name (or the default name),
+separated by a <tt>_</tt> symbol (these names may seem unweildly, see
+&#167;<A HREF="node38.html#secgenerics">4.3</A> below for a simplifying interface). If the user does
+not supply a name, the default name is used which is stored on the function
+name used as a lisp variable. For example, the default name for the
+Christoffel symbol of the first kind is found on the variable
+christoffel1. The defaults are <tt>c1</tt>, <tt>c2</tt>, <tt>R</tt>, <tt>ric</tt>, <tt>ricsc</tt>, <tt>G</tt>, and <tt>C</tt> for the functions listed
+above (these are set in the <tt>sys.env</tt> source file).
+<P>
+Each function stores the name of the object it creates on the property
+list of the current-metric under a key which is the functions' own
+name. Thus, the name of the object created by christoffel1() is
+stored on the metric under the key christoffel1. When these
+functions are called, they look first at the current-metric to see if
+the desired object already exists, if it does its name is returned
+immediately. If it does not exist, then it is created. If the object
+exists but the user provided a name, then it is recomputed with the
+new name.
+<P>
+These functions construct a family of related objects
+derived from the metric tensor, and some REDTEN functions can
+operate on the family as a whole. The names of family members for any
+object can be seen by calling the symbolic-mode function
+getfam().
+<P>
+Since each function except christoffel1() calls the others to get
+the objects it needs, the user does not necessarily need to build the
+objects one at a time (but see &#167;<A HREF="node42.html#secexpmanage">5.1</A> for an important
+consideration).  For example, we can compute all the objects in a
+direct line from the metric tensor to the Weyl tensor with the single
+command:
+<PRE> 
+<tt>#: <i>weyl();</i>
+
+computing g1_C
+  computing g1_ricsc
+    computing g1_ric
+      computing g1_R
+        computing g1_c1
+        christoffel1 finished. 
+        computing g1_c2
+        christoffel2 finished.
+      riemann finished.
+    ricci finished.
+  riccisc finished.
+** this space is conformally flat
+
+ g1_C
+</tt></PRE>The Ricci scalar is created as an indexed scalar by riccisc(). If
+the Weyl tensor can be seen to be zero then weyl() will report
+that the space is conformally flat. If the Ricci tensor is zero then
+ricci() will report that the metric is a vacuum solution. For
+complicated metrics it may take some simplification before these
+objects reduce to zero, so the messages may not appear. Each function
+write-protects its output, so that the user cannot accidentally make
+inconsistent changes; see also mapfi() and protect().
+<P>
+The output of each function is the name of an indexed object. If
+desired, the function can be wrapped in the function calling operator
+fn() allowing it to be used with an index directly. This lets
+the user to make indexed expressions that do not rely on the exact
+names of the various objects; a better method is described in the
+section on generic names below.  For example, to compute the Einstein
+tensor and examine a component in the same command can be done by:
+einstein()
+fn()
+<PRE> 
+<tt>#: <i>fn(einstein(),[1,1]);</i>
+computing g1_G
+einstein finished.
+
+                 2
+ 2 rt    rt + rt   + k
+     t,2        t
+
+</tt></PRE>The fn() operator accepts a function and the index to be attached
+to the output of the function (which must be an indexed object name)
+as its two arguments.
+<P>
+<BR> <HR>
+<UL> 
+<LI> <A NAME=tex2html684 HREF="node34.html#SECTION00510000000000000000"> Ordinary Differentiation</A>
+<UL> 
+<LI> <A NAME=tex2html685 HREF="node35.html#SECTION00511000000000000000"> Partial Differentiation</A>
+</UL> 
+<LI> <A NAME=tex2html686 HREF="node36.html#SECTION00520000000000000000"> Covariant Differentiation</A>
+<UL> 
+<LI> <A NAME=tex2html687 HREF="node37.html#SECTION00521000000000000000"> Covariant derivatives of shifted objects</A>
+</UL> 
+<LI> <A NAME=tex2html688 HREF="node38.html#SECTION00530000000000000000"> Generic Names</A>
+<LI> <A NAME=tex2html689 HREF="node39.html#SECTION00540000000000000000"> Other Functions</A>
+<LI> <A NAME=tex2html690 HREF="node40.html#SECTION00550000000000000000"> The Matrix Functions</A>
+</UL>
+<BR> <HR><A NAME=tex2html680 HREF="node34.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html678 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html672 HREF="node32.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html682 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html683 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html681 HREF="node34.html"> Ordinary Differentiation</A>
+<B>Up:</B> <A NAME=tex2html679 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html673 HREF="node32.html"> shift()</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

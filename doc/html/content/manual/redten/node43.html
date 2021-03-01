@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> <tt>mapfi()</tt></TITLE>
+<meta name="description" value=" mapfi()">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html805 HREF="node44.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html803 HREF="node42.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html799 HREF="node42.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html807 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html808 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html806 HREF="node44.html"> Other Utilities</A>
+<B>Up:</B> <A NAME=tex2html804 HREF="node42.html"> Expression Management</A>
+<B> Previous:</B> <A NAME=tex2html800 HREF="node42.html"> Expression Management</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00611000000000000000> <tt>mapfi()</tt></A></H2>
+<P>
+<A NAME=ssecmapfi>&#160;</A>  mapfi()
+To re-evaluate each of the components of the metric and its inverse
+and actually change the stored components the function
+mapfi()<A NAME=tex2html92 HREF="footnode.html#1563"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A> is used. In its simplest form, mapfi()
+takes an indexed object name and re-evaluates in-place each component
+of the object. We can apply the new <tt>let</tt> rule to the metric and
+its inverse by
+<PRE> 
+<tt>#: <i>mapfi(g);</i>
+
+ g2
+
+#: <i>mapfi(g_inv);</i>
+
+ g2_inv
+</tt></PRE>If the switch showindices is on, the index of each component is
+displayed during the computation. A side effect of mapfi() is
+that the multiplier of an object is combined with each of its
+components, and the multiplier property is reset to 1. The old values
+of the object are saved, and can be recovered if the user immediately
+executes the restoreobj() command. Only one object is saved by
+the system at a time, hence the need to immediately recover. If in
+doubt, the user can also make a backup by copying the object with the
+icopy() function (see below).
+<P>
+The mapfi() function is not limited to such simple things as
+re-evaluating an indexed object in a new environment, it can also be
+used to apply specific functions to specific portions of the object.
+The most general format of the call to mapfi() is
+<PRE> 
+<tt>  mapfi(function(name{index},{args}));
+</tt></PRE>where <tt>&lt;function&gt;</tt> is some function that operates on algebraic
+expressions. The indexed object can either be just a name (so that the
+function is applied to the whole object) or an index that isolates
+part of the object, or even a fixed index, so that a single element is
+affected. mapfi() works by inserting each component of the
+indexed object into the input expression and evaluating it. The input
+can in fact be any expression but is most often a sub() command
+or occasionally a Taylor series function such as ps().
+<P>
+For example, if the user entered a general static spherically
+symmetric metric, and then wanted to substitute <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6314.gif">, it could
+be done in two ways. First, an actual assignment to the variable <tt>f</tt> could be made, followed by an application of mapfi() similar
+to that demonstrated above. However, other objects involving <tt>f</tt>
+would also be affected if they were involved in indexed assignments,
+or if mapfi() were applied. To make the substitution into only a
+single object can be done as follows:
+<PRE> 
+<tt>#: <i>mapfi(sub(f=1-2*m/r,g3));  % g3 is a metric defined in terms of f</i>
+
+   g3
+</tt></PRE>If it were necessary to use a series approximation  to the
+metric coefficients about <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6316.gif">,  this could be done via
+<PRE> 
+<tt>#: <i>mapfi(ps(g3,r,2*m));</i>
+
+   g3
+</tt></PRE>
+<P>
+Continuing with the Kerr metric example, we can define the derivatives
+of the as yet unevaluated symbols <tt>rho2</tt> and <tt>delta</tt>, and
+compute the Ricci tensor:
+<PRE> 
+<tt>#: <i>depend delta,r;</i>
+
+#: <i>depend rho2,r,th;</i>
+
+#: <i>let df(rho2,r) = 2*r;</i>
+
+#: <i>let df(delta,r) = 2*r-2*m;</i>
+
+#: <i>let df(rho2,th) = -2*a^2*sin(th)*cos(th);</i>
+
+#: <i>ricci();</i>
+
+computing g2_ric
+  computing g2_R
+    computing g2_c1
+    christoffel1 finished. 
+    computing g2_c2
+    christoffel2 finished.
+  riemann finished.
+
+ g2_ric
+</tt></PRE>At this point in the calculation, the Ricci tensor <tt>g2_ric</tt> will
+still appear to have non-zero components, since <tt>rho2</tt> and <tt>delta</tt> remain unevaluated. For other metrics it may be found that it
+is better to not evaluate the derivatives, or it may be best to fully
+evaluate everything from the start. It is a matter of trying different
+possibilities to determine which allows the successful completion of
+the calculation. If certain terms remain unevaluated, then sooner or
+later they must be given their actual values; the issue is when to do
+this so as to balance the growth of expressions. Evaluating too soon
+may mean the expressions swell (especially if a sum in a denominator
+is formed in the metric inverse), whereas delayed evaluation may mean
+that many cancellations have not occurred, and a large amount of work
+must now be done to insert the terms. For another example of this sort
+of work, see the Sato metric in Appendix <A HREF="node60.html#appsato">B</A>.
+<A NAME=1607>&#160;</A>
+<P>
+It is in all cases, however, best to avoid the occurrence of radicals
+such as would be formed if the substitution in the Kerr metric were
+for <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6432.gif"> rather than <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6306.gif">. Many algebraic systems seem to have
+difficulties where radicals are concerned, and since the computation
+of the higher order tensors involves differentiation more radicals
+will be formed. It is almost always best to make a substitution for
+the radical since its derivatives can be defined in terms of itself,
+and this often reduces the complexity of expressions.
+<P>
+The final simplication of the Ricci tensor for the Kerr metric can be
+done with a single mapfi() command:
+<PRE> 
+<tt>#: <i>clear r^2;</i>
+
+#: <i>mapfi(sub(delta = r^2+a^2-2*m*r,rho2=r^2+a^2*cos(th)^2,ric));</i>
+
+ g2_ric
+</tt></PRE>Note that is was necessary to clear the substitution rule for <tt>r^2</tt>, since otherwise this would result in a circular evaluation
+for <tt>rho2</tt>. A package for managing the various let rules and
+assignments in the system is described in &#167;<A HREF="node54.html#secredenv">7.1</A>.
+<P>
+ It may be observed that attempting to evaluate the Ricci tensor for
+this metric when <tt>delta</tt> and <tt>rho2</tt> are given their actual
+values at the outset results in a <tt>Heap space exhausted</tt> fatal
+error on some systems.  The value of carefully controlling evaluations
+is therefore apparent.  It is useful to turn on the showindices
+switch when working with an unfamiliar metric, because a judgement can
+then be made as to whether the calculations are proceeding at an acceptable
+rate, and whether a different approach might be more profitable.
+The switch peek when on acts like showindices, but causes
+the system to indicate whether a component has evaluated to zero or
+not. The user can then immediately see if the calculation is
+proceeding correctly  (assuming, as is often the case, that zero is
+the expected answer).
+<P>
+<BR> <HR><A NAME=tex2html805 HREF="node44.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html803 HREF="node42.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html799 HREF="node42.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html807 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html808 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html806 HREF="node44.html"> Other Utilities</A>
+<B>Up:</B> <A NAME=tex2html804 HREF="node42.html"> Expression Management</A>
+<B> Previous:</B> <A NAME=tex2html800 HREF="node42.html"> Expression Management</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

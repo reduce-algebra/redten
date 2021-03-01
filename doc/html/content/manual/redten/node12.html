@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> name</TITLE>
+<meta name="description" value=" name">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html429 HREF="node13.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html427 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html421 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html431 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html432 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html430 HREF="node13.html"> indextype</A>
+<B>Up:</B> <A NAME=tex2html428 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html422 HREF="node11.html"> Using mkobj()</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00321000000000000000> name</A></H2>
+<P>
+<A NAME=mkobjname>&#160;</A>  <A NAME=4102>&#160;</A>
+In REDTEN the name of an indexed object is reserved: it stands for
+itself and cannot be assigned an algebraic value. The name carries a
+property list containing all the information needed to fully describe
+the object, including the index structure, symmetries, and component
+values.  If the switch mkobjsafe is on and if <tt>name</tt> already
+has an algebraic value, dependencies, or is flagged used!* then
+mkobj() will warn that the name is  in use and exit. This
+is intended to protect the user from accidentally supplying a name
+that might be part of an algebraic expression and which might lead to
+conflict between the uses of the name.  The used!* flag (a
+REDUCE internal flag) is set whenever a name is typed to the
+algebraic parser (hence it also includes names with values or
+dependencies), thus it may be that this behaviour is somewhat
+restrictive. If the user immediately repeats the call to
+mkobj() with the same object name, the mkobjsafe switch is
+over-ridden and the object will be created.
+<P>
+In many cases an indexed object name can be used as a variable without
+serious difficulty, but problems, especially where dependencies are
+involved, can occur. If mkobjsafe is off, and if <tt>&lt;name&gt;</tt>
+originally had an algebraic value, that value is lost, and in fact,
+any values or properties associated with <tt>&lt;name&gt;</tt> are removed when
+it is made into an indexed object. The only other time mkobj()
+will fail to create a new object is when <tt>name</tt> is that of a
+kill-protected indexed object (see <A HREF="node44.html#secotherutil">5.2</A>), or has been flagged
+reserved. If the user is creating an object whose name is that of a 
+generic object (qv), the generic object is removed and a warning message is
+printed. The name of the new object is stored in the list
+indexed!-names.
+<P>
+As noted above, it is best to apply the lisp quote-character <tt>'</tt>
+to the object name. Any special characters in the name must also be
+quoted with the escape character <tt>!</tt>. Because the name has been
+quoted, it cannot be an expression or operator that evaluates to a
+name.  The <tt>name</tt> argument to
+mkobj() can also be a quoted list of names, each of which will be
+created with the same index structure and symmetries.
+<P>
+<BR> <HR><A NAME=tex2html429 HREF="node13.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html427 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html421 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html431 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html432 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html430 HREF="node13.html"> indextype</A>
+<B>Up:</B> <A NAME=tex2html428 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html422 HREF="node11.html"> Using mkobj()</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Case Mapping</TITLE>
+<meta name="description" value=" Case Mapping">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html990 HREF="node59.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html988 HREF="node53.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html984 HREF="node57.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html992 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html993 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html991 HREF="node59.html"> Extending REDTEN</A>
+<B>Up:</B> <A NAME=tex2html989 HREF="node53.html"> Enhancements</A>
+<B> Previous:</B> <A NAME=tex2html985 HREF="node57.html"> Miscellaneous</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00840000000000000000> Case Mapping</A></H1>
+<P>
+<A NAME=seccase>&#160;</A>  REDTEN is a two-case system, with the primary input being in
+lower-case. However, the underlying lisp system in which REDUCE is
+implemented may be either upper- or lower-case. If it is upper-case,
+all REDUCE and REDTEN functions will be defined in that case,
+despite the fact that the sources are in lower case, except in special
+protected situations. For these systems a small package is provided to
+map the names of commonly used functions from the lower-case input to
+the upper-case definitions. The user may thus type either sin()
+or <tt>SIN()</tt> to use the sine function; and similarly for a large
+number of other functions, switches and variables. Any identifier that
+is not case mapped may be made so in the following fashion:
+<PRE> 
+<tt>#: PUT ('mapthisname, 'NEWNAM, 'MAPTHISNAME);
+</tt></PRE>which will cause the parser to replace any occurance of the first name
+with the second. This will only work correctly if the default
+REDTEN behaviour of not mapping any characters to an alternate case
+remains enabled (i.e. the REDUCE switches raise and
+lower are both off).
+<P>
+The mapping method shown above cannot be used for the special symbol
+<tt>nil</tt>, since <tt>NIL</tt> as an input to put() removes the
+property on the key <tt>NEWNAM</tt>. For this identifier only, and the,
+the user must use the correct case.
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

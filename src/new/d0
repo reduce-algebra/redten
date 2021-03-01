@@ -1,0 +1,111 @@
+symbolic procedure mapindex (indexx, aindex, exp);
+% MAPINDEX replaces the user input indices with the corresponding ones
+% from the association list AINDEX. The new indices are from the
+% ALPHALIST!* and are not supposed to appear anywhere in the original value.
+% exp is used only for error messages
+begin;
+  indexx := sublis (aindex, indexx);   % make replacements
+  foreach x in indh indexx do 
+    if not memq (x, iops!*) and not fixp x and not assoc2 (x, aindex) then
+      merror (mkmsg list ("free index element % in %.",
+			  x, rdr!-string exp), 't);
+  return (indexx);
+end;
+
+symbolic procedure pre!-eval (value, flg);
+% descend into an expression looking for rdr forms. Look at only those
+% things that have atomic cars, others are sq forms and can be ignored.
+% If a 0 occurs in a times form, replace the whole thing with 0.
+% flg nil means fully replace indexed obj, t mean eval index, but leave
+% rdr-form (this ensures each version of the exp. is different
+% when seen by the algebraic simplifier, so there is no problem with the 
+% cached values in alglist!*).
+begin scalar lex, lis;
+  if atom value then return value
+  else if checktype (value, '(rdr)) then <<
+ % this bit is a lot like eval2()
+   lex := foreach x in mycaddr value collect
+	if memq (x, iops!*) then x
+        else if checktype (x, shift!-iops!*) then
+		list (car x, eval cadr x)
+        else eval x;
+%    lex := mapcar (mycaddr (value), 'eval);
+    if not sloppy!-fixedindex (lex) then 
+     merror (mkmsg list ("bad index: %", 
+			 rdr!-string list ('rdr, mycadr (value), lex)), 't);
+    if not flg and fixedindex (lex) then <<
+      lex := readtnsr (mycadr (value), lex);
+      return if checktype (lex, 'nil) then 0 else mk!*sq lex>>
+    else return list ('rdr, mycadr value, lex)
+  >>
+  else if checktype (value, 'odf!*) then return foreach x in value
+	 collect pre!-eval (x, 't)
+  else if checktype (value, 'times) then return begin
+    loop:
+      if not value then return reverse lis;
+      lex := pre!-eval (pop value, flg);
+      if lex = 0 then return 0 else push (lex, lis);
+    goto loop
+  end
+  else if checktype (value, '!*sq) then return value
+  else if atom mycar value then 
+    return foreach x in value collect pre!-eval (x, flg)
+  else return value;
+end;
+
+symbolic procedure eval2 (value, op);
+begin scalar lex, lex1, lex2, tnsr;
+  if atom value then return value
+  else if free1 (value, '(rdr)) then return (value)  % no op (expensive??)
+  else if checktype (value, 'rdr) then <<	% an indexed form
+    tnsr := mycadr (value);			% object name
+    lex := foreach x in mycaddr value collect
+	if memq (x, iops!*) then x
+        else if checktype (x, shift!-iops!*) then
+		list (car x, eval cadr x)
+        else eval x;
+%    lex := mapcar (mycaddr (value), 'eval);
+    if op neq 'odf!* and fixedindex (lex) then <<
+	% can read a value to replace object (but not stuff in odf*, to
+        % keep simpodf** happy)
+      lex2 := readtnsr (tnsr, lex);
+      if mycar (lex2) then return (mk!*sq (lex2))  % so simp leaves it alone
+      else return ('nil)
+    >>
+        % symmetries say 0 for this subs of contraction indices
+    else if mycadr (syma (lex, get (tnsr, 'symmetry), 
+			  get (tnsr, 'internal!-mapping), 
+		fill!-indextype (lex,'()))) = 0 then
+      return ('nil)
+    else return (list ('rdr, tnsr, lex))   	% return form
+  >>
+  else if get (mycar value, 'simpfn) then
+    return foreach x in value collect eval2 (x, mycar value)
+  else return value;
+end;
+
+symbolic procedure fixedindex (indexx);
+  if memq ('nil, mapcar (indexx, 'fixp)) then 'nil else 't;
+
+symbolic procedure sloppy!-fixedindex (indexx);
+  fixedindex (car stripops (indexx, iops!*));
+
+symbolic procedure get!-odf!-val (tnsrp, indx, tnsrd, indxd);
+begin scalar lex, prv, n, !*read!-undef!-flag!*;
+  !*read!-undef!-flag!* := 't;  % so readtnsr() returns nil, not <undefined>.
+  spread (resolve!-subobj (tnsrp, indx), tnsrp, indx);
+  tnsrd := mycar get (tnsrd, 'subobj) or tnsrd;   % just in case
+  n := length (indxd);
+  if not (lex := readtnsr (tnsrd, append (indx, indxd))) then <<
+     % no value, must get val from prev object and diff it (recursively)
+     prv := mycadr (get (tnsrd, 'odf));
+     lex := simpdf (list (reval mk!*sq get!-odf!-val (tnsrp, indx, prv,
+		 head (indxd, n - 1)), 
+	mynth (coords!*, mynth (indxd, n) + 1 - caaddr getindextype (-1))));
+     fast!-writetnsr (tnsrd, append (indx, indxd), lex, 'nil)
+   >>;
+   return lex;
+end;
+
+
+;end;

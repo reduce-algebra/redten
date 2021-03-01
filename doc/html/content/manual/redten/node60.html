@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> The Sato Metric</TITLE>
+<meta name="description" value=" The Sato Metric">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html1014 HREF="node61.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1012 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1006 HREF="node59.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1016 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1017 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1015 HREF="node61.html"> REDTEN FunctionsVariables, </A>
+<B>Up:</B> <A NAME=tex2html1013 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1007 HREF="node59.html"> Extending REDTEN</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION001000000000000000000> The Sato Metric</A></H1>
+<P>
+<A NAME=appsato>&#160;</A>   
+This appendix provides an example of a very complicated metric that
+pushes the limits of the capabilities of REDUCE and REDTEN. A
+description of the metric may be found in 
+The Sato metric is axially-symmetric and ..
+The metric coefficients are comprised of rational polynomials
+This metric provides  a prime example of ``intermediate expression swell'',
+since the combination of the rational coefficients grows explosively,
+before the final collapse to zero.
+<A NAME=2635>&#160;</A>
+<P>
+Until the introduction of computers with large amounts of real and
+virtual memory, this metric could not be shown to be vacuum by
+REDTEN. The example below causes REDUCE to swell in size to
+somewhat more than 12 Megabytes, an alternative approach to the
+problem once yielded a REDUCE of more than 50 Meg. in size.
+<P>
+This example can be found in the <tt>demo</tt> directory. The output
+below was generated from REDTEN running in REDUCE 3.4 in CSL on
+a MIPS M/120.
+<P>
+<PRE> 
+<tt>#: <i>coords '(t x y ph)$</i>
+#: <i>on time$</i>
+#: <i>depend a,x,y$</i>
+#: <i>depend b,x,y$</i>
+#: <i>depend c,x,y$</i>
+#: <i>let x^2 = u + 1$</i>
+#: <i>let y^2 = 1 - v$</i>
+#: <i>let df(u,x) = 2*x$</i>
+#: <i>let df(v,y) = -2*y$</i>
+#: <i>z := (m*p/2)*x*y;</i>
+
+       m p x y
+ z := ---------
+          2
+
+#: <i>rho := (m*p/2)*sqrt(x^2-1)*sqrt(1-y^2);</i>
+
+         sqrt(v) sqrt(u) m p
+ rho := ---------------------
+                  2
+
+#: <i>om:=2*m*q*c*(1-y^2)/a;</i>
+
+        2 c m q v
+ om := -----------
+            a
+
+</tt></PRE><A NAME=2657>&#160;</A><PRE> 
+<tt>#: <i>egam:=a/(p^4*tmp);</i>
+
+            a
+ egam := --------
+           4
+          p  tmp
+
+#: <i>f := a/b;</i>
+
+       a
+ f := ---
+       b
+
+#: <i>ds := 1/f*(egam*(d(z)^2+d(rho)^2)+rho^2*d(ph)^2)-f*(d(t)-om*d(ph))^2;</i>
+
+             2  2  2  4      2  2           2  2  2  2  2        3
+ ds := (d(ph)  b  m  p  tmp u  v  - 16 d(ph)  c  m  p  q  tmp u v
+
+                                2          2         2  2  2
+         + 16 d(ph) d(t) a c m p  q tmp u v  - 4 d(t)  a  p  tmp u v
+
+               2    2  2           2    2  2  2       2    2  2  2
+         + d(x)  a b  m  u v + d(x)  a b  m  v  + d(y)  a b  m  u
+
+               2    2  2              2
+         + d(y)  a b  m  u v)/(4 a b p  tmp u v)
+
+#: <i>metric (ds);</i>
+
+computing g1
+cofactor finished.
+determ finished.
+invert finished.
+
+ g1
+
+Time: 1150 ms
+
+#: <i>off exp$</i>
+
+#: <i>tmp := (x^2-y^2)^4;</i>
+
+               4
+ tmp := (u + v)
+
+#: <i>on factor$</i>
+#: <i>mapfi (g);</i>
+
+ g1
+
+</tt></PRE><A NAME=2674>&#160;</A><PRE> 
+<tt>Time: 483 ms
+
+#: <i>mapfi(g_inv);</i>
+
+ g1_inv
+
+Time: 334 ms
+
+#: <i>off factor,exp$</i>
+#: <i>christoffel1();</i>
+
+computing g1_c1
+
+ g1_c1
+
+Time: 2133 ms
+
+#: <i>christoffel2();</i>
+
+computing g1_c2
+
+ g1_c2
+
+Time: 1900 ms
+
+#: <i>riemann();</i>
+
+computing g1_R
+
+ g1_R
+
+Time: 11317 ms  plus GC time: 1333 ms
+
+#: <i>ricci();</i>
+
+computing g1_ric
+
+ g1_ric
+
+Time: 7183 ms  plus GC time: 750 ms
+</tt></PRE><A NAME=2683>&#160;</A><PRE> 
+<tt>#: <i>let q^2=1-p^2$</i>
+#: <i>A:=(p^2*(x^2-1)^2+q^2*(1-y^2)^2)^2-4*p^2*q^2*(x^2-1)*(1-y^2)*
+     (x^2-y^2)^2;</i>
+
+        2  2    2  2    2 2       2             2  2
+ A := (p  u  - p  v  + v )  + 4 (p  - 1) (u + v)  p  u v
+
+#: <i>B:=(p^2*x^4+q^2*y^4-1+2*p*x^3-2*p*x)^2+4*q^2*y^2*
+     (p*x^3-p*x*y^2+1-y^2)^2;</i>
+
+         2             2          2  2               2
+ B := ((p  - 1) (v - 1)  - (u + 1)  p  - 2 p u x + 1)
+
+                            2   2
+       + 4 ((u + v) p x + v)  (p  - 1) (v - 1)
+
+#: <i>CC:=p^2*(x^2-1)*((x^2-1)*(1-y^2)-4*x^2*(x^2-y^2))-p^3*x*(x^2-1)*
+     (2*(x^4-1)+(x^2+3)*(1-y^2))+q^2*(1+p*x)*(1-y^2)^3;</i>
+
+                                      2
+ CC :=  - ((4 (u + v) (u + 1) - u v) p  u
+
+                                    2       3
+            + ((u + 4) v + 2 (u + 1)  - 2) p  u x
+
+                2                 3
+            + (p  - 1) (p x + 1) v )
+
+#: <i>on peek$</i>
+#: <i>mapfi(sub(a=A,b=B,c=CC,ric));</i>
+
+(0 0) is zero.
+(0 1) is zero.
+(0 2) is zero.
+(0 3) is zero.
+(1 1) is zero.
+(1 2) is zero.
+(1 3) is zero.
+(2 2) is zero.
+(2 3) is zero.
+(3 3) is zero.
+
+ g1_ric
+<P>
+Time: 590550 ms  plus GC time: 102667 ms
+
+</tt></PRE><A NAME=2731>&#160;</A>
+<P>
+   <BR> <HR><A NAME=tex2html1014 HREF="node61.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1012 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1006 HREF="node59.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1016 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1017 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1015 HREF="node61.html"> REDTEN FunctionsVariables, </A>
+<B>Up:</B> <A NAME=tex2html1013 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1007 HREF="node59.html"> Extending REDTEN</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

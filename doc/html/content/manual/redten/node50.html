@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> The Spinor Package</TITLE>
+<meta name="description" value=" The Spinor Package">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html895 HREF="node51.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html893 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html887 HREF="node49.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html897 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html898 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html896 HREF="node51.html"> The Newman-Penrose Package</A>
+<B>Up:</B> <A NAME=tex2html894 HREF="node45.html"> Other Packages</A>
+<B> Previous:</B> <A NAME=tex2html888 HREF="node49.html"> Covariant differentiation</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00720000000000000000> The Spinor Package</A></H1>
+<P>
+<A NAME=secspinor>&#160;</A> In REDTEN a spinor consists of two objects, the named primary object, and a
+conjugate whose index structure is obtained by swapping each unprimed
+spinor index for a primed spinor index, and the reverse. The conjugate
+is named by taking the primary's name and appending <tt>_cnj</tt> to it.
+Normally conjugate objects are also flagged nodir so that they
+do not appear in directory listings. The conjugate object never has
+explicit components, any reference to it results in a reference to the
+primary object and a conjugation of the input or output value. Note
+also that the index-runs of spinor indices are generally half that of
+the tensor indices, from 1 to 2 by default.
+<P>
+A very rudimentary package for spinors is included in REDTEN
+consisting of the following functions: spmetric(),
+spinmat(), and spchristoffel(). The spinor metric created by 
+spmetric() comes in two parts: one metric for unprimed indices
+(index-type 3), and another for primed indices (index-type 4). Thus a
+total of four objects are created, as each metric is accompanied by
+its conjugate. The default names are e3 and e4. Currently,
+the spinor metrics are not the targets of generic names. This may
+change in future versions as the package develops. The spinor metrics
+have the form<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6364.gif"><P>
+i.e. they are anti-symmetric rank-2 objects.
+<P>
+The function spinmat() creates the spin-matrices associated with
+the current tensor metric; currently it can only do this for diagonal
+metrics. The spin matrices follow the usual naming convention: the
+tensor metric name, an underscore, and the generic name stored on
+spinmat. These objects are of type <tt>connection</tt>.
+ The primary object has an index structure of <tt>(-1
+3 4)</tt> and has a conjugate symmetry between the primed and unprimed
+indices.
+<P>
+The function spchristoffel() computes the Christoffel symbols
+via the equation:<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6365.gif"><P>
+The Christoffel symbol for the primed indices is obtained from the
+above through conjugation.
+<P>
+<BR> <HR><A NAME=tex2html895 HREF="node51.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html893 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html887 HREF="node49.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html897 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html898 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html896 HREF="node51.html"> The Newman-Penrose Package</A>
+<B>Up:</B> <A NAME=tex2html894 HREF="node45.html"> Other Packages</A>
+<B> Previous:</B> <A NAME=tex2html888 HREF="node49.html"> Covariant differentiation</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

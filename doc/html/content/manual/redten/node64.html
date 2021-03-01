@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Error Messages</TITLE>
+<meta name="description" value=" Error Messages">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html1062 HREF="node65.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1060 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1054 HREF="node63.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1064 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1065 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1063 HREF="node65.html"> Internal Details</A>
+<B>Up:</B> <A NAME=tex2html1061 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1055 HREF="node63.html"> Switches</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION001400000000000000000> Error Messages</A></H1>
+<P>
+<UL>
+<P>
+<LI> &quot;bad block size: % in %.&quot;<BR>The indicated block size in the indicated symmetry list (shown in
+  internal format) is not an integer.
+<LI> &quot;bad connection %.&quot;<BR>The object given to setcon() does not have an itype of
+  <tt>connection</tt>.
+<LI> &quot;bad index % for %&quot;<BR>This error may indicate an internal error in the system.
+<LI> &quot;bad indextype element: %&quot;<BR>The indicated element from an indextype list is either not an
+integer, or does not correspond to a defined type.
+<LI> &quot;bad input: % (from %).&quot;<BR>The input to the indicated routine is not a valid indexed object or
+name. 
+<LI> &quot;bad metric: %.&quot;<BR>The metric used as input to either setmetric() or
+altmetric() is either does not have an itype of <tt>metric</tt>, or is not the covariant metric.
+<LI> &quot;bad pointer: % in %&quot;<BR>The indicated pointer of the independent symmetry list is either not
+an integer, or is not positive.
+<LI> &quot;can't make spin matrices -- sorry.&quot;<BR>The spinmat() function only works at present for diagonal
+metrics.
+<LI> &quot;cannot assign to %.&quot;<BR>The  left-hand side of an indexed assignment is either
+not a single indexed object, or the index of that object indicates a
+differentiation operation.
+<LI> &quot;cannot compute cov deriv of generic object: %.&quot;<BR>If this message appears the user has applied cov() to a
+  generic name for which no target has as yet been created. Create the
+  target object, then retry the operation.
+<LI> &quot;% cannot be assigned.&quot;<BR>The indicated name is an indexed object and cannot have an algebraic
+  value assigned to it.
+<LI> &quot;cannot create conjugate %.&quot;<BR>The conjugate object for a spinor cannot be created because it
+already exists and cannot be removed (presumably it is kill-protected).
+<LI> &quot;cannot create object: %&quot;<BR>mkobj() cannot create the object because it either already
+exists and is kill-protected, or the name is a reserved symbol.
+<LI> &quot;connection type % % does not exist.&quot;<BR>The connection object relating the two types of indices does not
+exist. 
+<LI> &quot;coord-indextype mis-match %, %.&quot;<BR>The length of the coordinate list (as given to coords()) is not
+the same length as indicated by the run of tensor indices.
+<LI> &quot;description is not a string or atom: %&quot;<BR>The describe() function will only accept strings or single
+atoms for use as a description of an indexed object.
+<LI> &quot;dif op without an index: %.&quot;<BR>The user has terminated an index with a derivative operation, but no
+following index-element.
+<LI> &quot;% does not have metric structure.&quot;<BR>The named indexed object given to metric() is either not of
+  rank-2, or is not covariant.
+<LI> &quot;empty index!&quot;<BR>May indicate an internal error in the system.
+<LI> &quot;environments do not match: %&quot;<BR><LI> &quot;format not a string.&quot;<BR><LI> &quot;free index element % in %.&quot;<BR><LI> &quot;improper blocks for hermitian symmetry: %.&quot;<BR><LI> &quot;improper contraction: %, %&quot;<BR><LI> &quot;improper line-element: %.&quot;<BR><LI> &quot;improper structure for hermitian symmetry: %.&quot;<BR><LI> &quot;inconsistent indices: %, %&quot;<BR><LI> &quot;index % cannot be shared.(???)&quot;<BR><LI> &quot;index % wrong length for %.&quot;<BR><LI> &quot;index without a name.&quot;<BR><LI> &quot;indices do not match .&quot;<BR>Mixed cov and contra indices in expression
+<P>
+<LI> &quot;input name required (from %)&quot;<BR><LI> &quot;Internal error: name not passed to mkrdr.&quot;<BR>This message indicates a failure in the system and should be
+  reported to the authors along with a sample input and output. It may
+  also reflect a flaw in REDTEN as compiled on the users' system.
+<LI> &quot;internal error (continuing with no contraction symmetry)&quot;<BR><LI> &quot;internal error.&quot;<BR><LI> &quot;internal error, blocks mis-matched (continuing)&quot;<BR><LI> &quot;% invalid as affine connection.&quot;<BR>The optional second parameter to geodesic(), which is the name of
+  the affine parameter to be used in building the geodesic equations, is
+  not an id.
+<LI> &quot;% invalid as index.&quot;<BR>The second argument to pdf() must be a valid object index,
+  including the square brackets.
+<LI> &quot;invalid index ops&quot; <BR><LI> &quot;Invalid index ops: %<BR><LI> &quot;invalid indextype % for %.&quot;<BR><LI> &quot;invalid input: % % % '%' %.&quot;<BR><LI> &quot;invalid input: %.&quot;<BR><LI> &quot;invalid line element: %.&quot;<BR><LI> &quot;invalid pointers for hermitian symmetry: %.&quot;<BR><LI> &quot;invalid symmetry: %&quot;<BR><LI> &quot;% is a singular matrix.&quot;<BR>This message indicates that the named rank-2 object is singular.
+<LI> &quot;% is already in use.&quot;<BR>The name which the user is trying to make into an indexed object is
+  already being used in some fashion. It either has dependencies, an
+  algebraic value, has been entered in another expression, or is
+  already indexed. This error only occurs is the switch
+  mkobjsafe is on. The user can overide the error by immediately
+  repeating the failed call to mkobj().
+<LI> &quot;% is no longer a generic object.&quot;<BR>The named input to mkobj() was a generic object. In making the
+  new object the generic properties have been lost. The user should
+  not steal the generic object names.
+<LI> &quot;% is not a vector.&quot;<BR>The second argument to lie() must be a rank-1 indexed object.
+<LI> &quot;% is write-protected&quot;<BR>This message means that the indicated object cannot have new
+  components written to it, since it is protected. The user can remove
+  the protection with protect() and try again.
+<LI> &quot;LINES env not valid.&quot;<BR>The LINES environment variable is not an integer, or is negative. 
+<LI> &quot;metric % not simplified&quot;<BR><LI> &quot;metric inverse % not simplified&quot;<BR><LI> &quot;metric type % does not exist.&quot;<BR><LI> &quot;mis-matched index ops&quot;<BR><LI> &quot;missing conjugate for % being created.&quot;<BR><LI> &quot;missing differential: %.&quot;<BR><LI> &quot;missing inverse: %.&quot;<BR><LI> &quot;missing tetrad member&quot;<BR><LI> &quot;no such offspring for %&quot;<BR><LI> &quot;non-atomic index element in % for %&quot;<BR><LI> &quot;% not indexed (from %).&quot;<BR>The indicated input to the indicated routine is not an indexed object.
+<LI> &quot;% not of type coordinates.&quot;<BR>The indexed object used as the indeterminate in a df() command
+  is not of itype <tt>coordinates</tt>. This object must either be
+  the default coordinates (whose name is stored in mkcoords), or
+  an object created by the user with a call to mkcoords().
+<LI> &quot;object % must have two indices&quot;<BR><LI> &quot;output % is protected&quot;<BR><LI> &quot;overlapping blocks in %.&quot;<BR><LI> &quot;pointer out of order in %.&quot;<BR><LI> &quot;restricted indices invalid: % %&quot;<BR><LI> &quot;subscript out of range: %&quot;<BR><LI> &quot;symmetry out of order: %&quot;<BR><LI> &quot;symmetry too long: %&quot;<BR><LI> &quot;this shifted object does not exist: %&quot;<BR><LI> &quot;too few pointers in %&quot;<BR><LI> &quot;too many contraction indices: %, %&quot;<BR><LI> &quot;too many indexed objects in arg: % %&quot;<BR><LI> &quot;Update or remove derivatives after changing %.&quot;<BR><LI> &quot;unmatched coordinates: %, %.&quot;<BR></UL>
+<BR> <HR><A NAME=tex2html1062 HREF="node65.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1060 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1054 HREF="node63.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1064 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1065 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1063 HREF="node65.html"> Internal Details</A>
+<B>Up:</B> <A NAME=tex2html1061 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1055 HREF="node63.html"> Switches</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

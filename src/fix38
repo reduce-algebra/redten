@@ -1,0 +1,4 @@
+lisp remprop ('![, 'switch!*);
+lisp remprop ('!], 'switch!*);
+lisp remprop ('!], 'nodel);
+;end;

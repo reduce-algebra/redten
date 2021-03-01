@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> The Newman-Penrose Package</TITLE>
+<meta name="description" value=" The Newman-Penrose Package">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html905 HREF="node52.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html903 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html899 HREF="node50.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html907 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html908 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html906 HREF="node52.html"> Newman-Penrose Operators</A>
+<B>Up:</B> <A NAME=tex2html904 HREF="node45.html"> Other Packages</A>
+<B> Previous:</B> <A NAME=tex2html900 HREF="node50.html"> The Spinor Package</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00730000000000000000> The Newman-Penrose Package</A></H1>
+<P>
+<A NAME=secNP>&#160;</A>  The Newman-Penrose formalism differs from the tetrad (frame)
+formalism mostly in the choice of basis, which is now taken to be null.
+In addition, the usual expression of this formalism draws away from
+the use of indexed objects and instead defines a new set of complex
+quantities. The implementation of the Newman-Penrose formalism in
+REDTEN is based on an article by Esteban and Ramos in <em>Computers in Physics</em>, May/June 1990, p. 285.
+<P>
+BUT: there are many errors in the article, not the least of which is a
+non-zero Ricci tensor for a vacuum metric!. This is due to a
+transcription error, and involves taking a conjugate when one
+shouldn't. To be fair, even the original N-P paper has several
+printing errors!
+<P>
+In the Newman-Penrose fromalism, the tetrad is null, i.e.<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6374.gif"><P>
+and also satisfies the conditions
+<P><IMG ALIGN=BOTTOM SRC="_10787_centering2076.gif"><P>
+<P>
+A connection can be defined in the same fashion as described above for
+the tetrad package, and
+the tensor metric can be defined in term of the basis vectors from<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6375.gif"><P>
+From the basis vectors one computes 12 spin coefficients that are
+commonly known by their greek names. The Newman-Penrose equations can
+then be solved for the 5 components of the tetrad projection of the
+Weyl tensr (<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6386.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6388.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6390.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6392.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6394.gif">), and the
+6 components of the Ricci tensor (<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6396.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6398.gif">,
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6400.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6402.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6404.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6406.gif">), following the 
+reference noted above. The Newman-Penrose equations are rather
+complicated and numerous (there being 18 equations), and are not
+repeated here.
+<P>
+The REDTEN function npmetric() will take either the name of a
+connection, or the names of the three basis vectors <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6408.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6278.gif">, and
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6412.gif">, and compute from them the tensor metric, and, in the latter form
+of input, also create the connection object (the default name is
+stored on npcon). The tensor metric is named according
+to the usual rules of metric names previously described.
+<P>
+The function npspin() computes the spin coefficients, and places
+them in an array whose name is stored on the variable npspin.
+The array has indices that run from 1 to 12. 
+In order, these array components are <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6414.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6416.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6418.gif">,
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6420.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6422.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6362.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6426.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6428.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6430.gif">, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6432.gif">,
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6434.gif">, and <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6436.gif">. For convenience, the REDUCE names <tt>alpha</tt>, <tt>beta</tt>, <tt>gamma</tt>, <tt>eps</tt>, <tt>kappa</tt>, <tt>lambda</tt>,
+<tt>mu</tt>, <tt>nu</tt>, <tt>pi</tt>, <tt>rho</tt>, <tt>sigma</tt>, and <tt>tau</tt>
+can be made equivalent to the array references with the function
+npnames(). This function has no arguments, and causes the names to be 
+mapped by the REDUCE parser. Since some of these names may be
+useful in other situations the mapping behaviour is not on by
+default. Calling npnames() again removes the mapping.
+<P>
+The functions npweyl() and npricci() compute the tetrad
+projections of their respective tensors.  However, in the
+Newman-Penrose formalism, these projections are not normally regarded
+as being indexed objects, the subscripts serving only to distinguish
+the components.  In REDTEN the Weyl components are stored in a
+one-dimensional array whose name is stored on npweyl.  The Ricci
+components are stored in a symmetric two-dimensional array whose name
+in on npricci.
+<P>
+
+<P>
+A demonstration of the  Newman-Penrose package using the Kerr metric
+as an example follows.
+<P>
+We first ask that the spin-coefficient names be mapped by a call to
+npnames(). Then we create and assign the basis vectors (which
+are of course different than in the previous example).
+<PRE> 
+<tt>#: <i>coords '(t r th ph);</i>
+
+#: <i>npnames();</i>
+
+#: <i>mkobj ('(l n m), '(-1));</i>
+
+  l
+   a
+
+  n
+   a
+
+  m
+   a
+
+#: <i>complex rhob;</i>
+
+#: <i>rho2 := rhob * cnj(rhob);</i>
+
+#: <i>ias (l);</i>
+ l[0] = <i>sqrt(2);</i>
+ l[1] = <i>-sqrt(2)*rho2/delta;</i>
+ l[2] = <i>0;</i>
+ l[3] = <i>-sqrt(2)*a*sin(th)^2;</i>
+
+ l
+
+#: <i>ias (n);</i>
+ n[0] = <i>sqrt(2)*delta/(2*rho2);</i>
+ n[1] = <i>1/2;</i>
+ n[2] = <i>sqrt(2)*delta/(2*rho2);</i>
+ n[3] = <i>-sqrt(2)*a*delta*sin(th)^2/(2*rho2);</i>
+
+ n
+
+#: <i>ias(m);</i>
+ m[0] = <i>i*a*sin(th)/rhob;</i>
+ m[1] = <i>0;</i>
+ m[2] = <i>-rho2/rhob;</i>
+ m[3] = <i>-i*(r^2+a^2)*sin(th)/rhob;</i>
+
+ m
+
+#: <i>let r^2=sin(th)^2*a^2-a^2+rho2$</i>
+
+#: <i>let rhob*cnj(rhob)=rho2$</i>
+
+#: <i>let df (rhob,r) = 1;</i>
+
+#: <i>let df (cnj(rhob),r) = 1;</i>
+
+#: <i>let df (rhob, th) = -i*a*sin(th);</i>
+
+#: <i>let df (cnj(rhob), th) = i*a*sin(th);</i>
+
+#: <i>let df(delta, r) = 2*r-2*m;</i>
+</tt></PRE>We can now compute the tensor metric, the spin coefficients and the
+projections of the Weyl and Ricci tensors.
+<PRE> 
+<tt>#: <i>npmetric(l,n,m);</i>
+
+cofactor finished.
+determ finished.
+invert finished.
+metric finished.
+
+ g1
+
+#: <i>mapfi(g);</i>
+
+ g1
+
+#: <i>mapfi(g_inv);</i>
+
+ g1_inv
+
+#: <i>on showindices;</i>
+
+#: <i>npspin();</i>
+
+computing g1_npspc
+  computing npz_CD
+    computing g1_c2
+      computing g1_c1
+      christoffel1 finished.
+    christoffel2 finished.
+  cov finished.
+computing alpha
+  computing npz_c
+  shift finished.
+computing beta
+computing gamma
+computing eps
+computing kappa
+computing lambda
+computing mu
+computing nu
+computing pi
+computing rho
+computing sigma
+computing tau
+
+ g1_npspc
+
+#: <i>npweyl();</i>
+
+computing g1_npC
+computing g1_npC[0]
+computing g1_npC[1]
+computing g1_npC[2]
+computing g1_npC[3]
+computing g1_npC[4]
+
+ g1_npC
+
+#: <i>npricci();</i>
+
+computing g1_npric
+computing g1_npric[0 0]
+computing g1_npric[0 1]
+computing g1_npric[0 2]
+computing g1_npric[1 1]
+computing g1_npric[1 2]
+computing g1_npric[2 2]
+
+ g1_npric
+
+#: <i>off showindices;</i>
+</tt></PRE>The final values for <tt>rhob</tt> and <tt>delta</tt> are entered, and the
+objects are resimplified. The simplification is done in two steps.
+First the new definitions for <tt>rhob</tt> and <tt>delta</tt> are combined
+in each component (which in most cases results in 0), then the
+remaining components are rationalized via the rat() function.  If
+the initial simplification is not done, then a large amount of work
+involved in rationalizing expressions that eventually collapse to zero
+would be wasted.
+<P>
+<PRE> 
+<tt>#: <i>clear r^2;</i>
+
+#: <i>let rhob = r+i*a*cos(th);</i>
+
+#: <i>let delta = r^2-2*m*r+a^2;</i>
+
+#: <i>mapfi (npC);</i>
+
+ g1_npC
+
+#: <i>mapfi (rat (npC));</i>
+
+ g1_npC
+
+#: <i>mapfi (npric);</i>
+
+ g1_npric
+
+#: <i>mapfi (rat (npric));</i>
+
+ g1_npric
+
+#: <i>on factor;</i>
+
+#: <i>npC[2];</i>
+
+           2  2    2      2                         2  2        2
+ (((sin(th)  a  - a  + 3 r ) cos(th) a i + 3 sin(th)  a  r - 3 a  r
+
+       3             2  2    2    2 3
+    + r ) m)/(sin(th)  a  - a  - r )
+
+</tt></PRE>In these results one will notice that <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6438.gif"> has been factored
+in favour of <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6440.gif">, due to the existence of a <tt>let</tt>-rule
+defining the relation. For this metric, a better choice would have
+been the reverse rule.
+<P>
+<BR> <HR>
+<UL> 
+<LI> <A NAME=tex2html909 HREF="node52.html#SECTION00731000000000000000"> Newman-Penrose Operators</A>
+</UL>
+<BR> <HR><A NAME=tex2html905 HREF="node52.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html903 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html899 HREF="node50.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html907 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html908 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html906 HREF="node52.html"> Newman-Penrose Operators</A>
+<B>Up:</B> <A NAME=tex2html904 HREF="node45.html"> Other Packages</A>
+<B> Previous:</B> <A NAME=tex2html900 HREF="node50.html"> The Spinor Package</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

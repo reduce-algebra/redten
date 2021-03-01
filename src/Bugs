@@ -1,0 +1,15 @@
+3) let's do not evaluate (i.e call simp) on their args, so an indexed
+object reference is not fully evaluated. the code seems to take a
+different route depending on whether there is a power involved or not,
+so something like let q[1] = 0 will get messed up, whereas let q[1]^2
+= 0 is ok. if one needs the former kind of let rule, just assign it
+instead. 
+
+6) Putting depends on implicit objects means the name cannot be used
+by itself as an identifier, because it will still have dependencies.
+gnus
+INdexed depends should be separate from the usual scalar ones.
+
+must do fast-writetnsr-cleanup in evaltnsr so that calling routines
+can see neat tvalue and eg detect a zero object.
+df(gam,x[a]) -> 0

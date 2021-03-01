@@ -1,0 +1,41 @@
+%This one takes a LONG time!
+stime();
+coords '(t x y ph)$
+depend a,x,y$
+depend b,x,y$
+depend c,x,y$
+let x^2 = u + 1$
+let y^2 = 1 - v$
+let df(u,x) = 2*x$
+let df(v,y) = -2*y$
+
+z := (m*p/2)*x*y;
+rho := (m*p/2)*sqrt(x^2-1)*sqrt(1-y^2);
+om:=2*m*q*c*(1-y^2)/a;
+egam:=a/(p^4*tmp);
+f := a/ b;
+
+ds := 1/f*(egam*(d(z)^2+d(rho)^2)+rho^2*d(ph)^2)-f*(d(t)-om*d(ph))^2;
+metric (ds);
+off exp$
+tmp := (x^2-y^2)^4;
+on factor$
+mapfi (g);
+mapfi(g_inv);
+off factor,exp$
+on showindices$
+christoffel1();
+christoffel2();
+riemann();
+ricci();
+let q^2=1-p^2$
+A:=(p^2*(x^2-1)^2+q^2*(1-y^2)^2)^2-4*p^2*q^2*(x^2-1)*(1-y^2)*
+    (x^2-y^2)^2;
+B:=(p^2*x^4+q^2*y^4-1+2*p*x^3-2*p*x)^2+4*q^2*y^2*
+    (p*x^3-p*x*y^2+1-y^2)^2;
+CC:=p^2*(x^2-1)*((x^2-1)*(1-y^2)-4*x^2*(x^2-y^2))-p^3*x*(x^2-1)*
+    (2*(x^4-1)+(x^2+3)*(1-y^2))+q^2*(1+p*x)*(1-y^2)^3;
+on peek$
+mapfi(sub(a=A,b=B,c=CC,ric));
+etime();
+;end;

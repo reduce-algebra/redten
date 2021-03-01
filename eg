@@ -1,0 +1,6 @@
+coords '(t r th ph);
+ds:=f*d(t)^2-d(r)^2/f-r^2*d(th)^2-r^2*sin(th)^2*d(ph)^2;
+depend f,r;
+metric(ds);
+christoffel1();
+;end;

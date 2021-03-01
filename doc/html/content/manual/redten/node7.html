@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Lisp Variables</TITLE>
+<meta name="description" value=" Lisp Variables">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html343 HREF="node8.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html341 HREF="node4.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html335 HREF="node6.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html345 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html346 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html344 HREF="node8.html"> Property Lists</A>
+<B>Up:</B> <A NAME=tex2html342 HREF="node4.html"> Concepts in REDUCE</A>
+<B> Previous:</B> <A NAME=tex2html336 HREF="node6.html"> Notation</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00223000000000000000> Lisp Variables</A></H2>
+<P>
+<A NAME=sseclvar>&#160;</A> There are two operating modes in reduce: <tt>algebraic</tt> and <tt>symbolic</tt>. The first is the normal mode for REDUCE in which
+ordinary algebraic expressions may be entered.  The symbolic mode,
+<A NAME=202>&#160;</A>
+<A NAME=203>&#160;</A>
+<A NAME=204>&#160;</A>
+<A NAME=205>&#160;</A>
+<A NAME=206>&#160;</A>
+which accepts RLISP syntax, is an interface to the lower level lisp
+system, and allows the entry of more primitive operations.  The
+setting of the control variable !*mode determines which mode is
+currently active. The commands lisp or
+symbolic<A NAME=tex2html20 HREF="footnode.html#4096"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A> by  
+themselves change the system to symbolic mode; if they precede a
+command on the same line, they cause only that command to evaluated in
+symbolic mode. The command algebraic acts similarly to change to
+algebraic mode.
+<P>
+Nearly all of the user interaction with REDTEN involves the usual
+REDUCE algebraic variables. However, some REDTEN control
+variables are defined in the underlying lisp system, and require care
+in setting or modifying. Most of these are default names for objects
+created by various functions, and a few are lists.
+ Lisp lists are also used as arguments to some REDTEN
+functions and are used because they are the most convenient way to
+represent and input certain parameters and properties of tensors, such
+as the index structure or symmetries.  A list has the form of a
+single quote mark <tt>'</tt>, followed by a parenthesized list of elements
+separated by spaces (<em>not</em> commas):
+<A NAME=219>&#160;</A>
+<PRE>'(t h i s i s a l i s t).</PRE>
+A special case is the empty list, which is represented as
+<tt>'()</tt>. A special lisp symbol, <tt>nil</tt>,
+<A NAME=4097>&#160;</A>
+is used to represent the empty list and it is the usual way the
+lisp printer displays empty lists.
+<P>
+The REDUCE parser, when it encounters a quote mark on the first
+argument to a function, automatically parses the function call in <tt>symbolic</tt> mode,
+so that the following are equivalent<A NAME=tex2html23 HREF="footnode.html#4098"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>:
+<PRE>% this is a crummey example!
+#: val := '(q w e);
+
+(q w e)
+
+#: lisp (val := '(q w e));
+
+(q w e)</PRE>
+The brackets enclosing the command following the lisp command
+ensure that the whole command line is treated in symbolic mode.
+<P>
+The variable <tt>val</tt>, in the above example, is a ``lisp
+variable'', and its lisp value can be examined with
+<A NAME=229>&#160;</A>
+<PRE>#: lisp val;
+
+(q w e)
+
+#: val;
+
+val</PRE>
+and observe that the algebraic value of <tt>val</tt> is not affected. In this
+document, lisp variables used by REDTEN will be distinguished from
+algebraic variables by prepending <tt>lisp:</tt> to the variable name, so
+that, for example, <tt>lisp:coords!*</tt> is the lisp variable containing a
+list of the current coordinates.
+<A NAME=234>&#160;</A>
+<A NAME=235>&#160;</A>
+<P>
+In a similar manner, there are a number of functions that can only be
+accessed while in symbolic mode, these are not required for the
+ordinary operation of the system, but are occasionally of use. The
+property functions described below are of this type. These will also
+be indicated by prepending ``<tt>lisp:</tt>'' to the name, and it is
+understood that to use these functions, the command line should begin
+with the mode changing commands lisp or symbolic.
+Throughout this document, the term ``function'' is applied to numerous
+names in REDTEN; it should be understood that these names are in
+fact the user handle through which the true lisp function is found and
+executed. If the user looks for a definition of, say, <tt>riemann</tt>,
+it will not be found, rather a property value under the key
+simpfn indicates that the real lisp function that is executed is
+named <tt>riemann!*</tt> (however, see &#167;<A HREF="node67.html#rename">F.1</A> for an important
+consideration).
+<P>
+<BR> <HR><A NAME=tex2html343 HREF="node8.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html341 HREF="node4.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html335 HREF="node6.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html345 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html346 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html344 HREF="node8.html"> Property Lists</A>
+<B>Up:</B> <A NAME=tex2html342 HREF="node4.html"> Concepts in REDUCE</A>
+<B> Previous:</B> <A NAME=tex2html336 HREF="node6.html"> Notation</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

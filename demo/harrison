@@ -1,0 +1,53 @@
+comment
+This Reduce script computes the Ricci  tensor  for  the  Harrison
+II-A-7  metric to show that it is a vacuum solution. This example
+is  from  d'Inverno,  R.A.,  (1980).  "General   Relativity   and
+Gravitation", vol 1., 493. 
+The total cpu running-time on a SUN 3/160 is about 54 sec.
+
+Below is the line-element in a slightly modified form  from  that
+in  the  reference  above. In particular, w = x/l, where x is the
+original coordinate and l is a constant. 
+;
+coords ('(t x y w));
+ds := -p^(1+a)*q^(1+2/a)*w^(-1-1/a)*d(t)^2
+   +p^(2+a)*q^(1+2/a)*w^(-1/a)*d(x)^2
+   +p^(-a)*q^(-1)*w^(1/a)*d(y)^2
+   +l^2*p^(3+a)*q^(1+2/a)*w^(-2-1/a)*(v^2-1)/(w-1)*d(w)^2;
+let a^2 = 3;
+comment
+Define the derivatives of p(x,t) and q(w). We will not  need  the
+explicit form of p or q. 
+;
+depend p,x,t;
+depend q,w;
+let df(p,x) = x/(6*l^2);
+let df(p,t) = 1/(a*l);
+let df(q,w) = q*v/w;
+let df(v,w) = (v^2-1)/(4*w)*(2*v/(w-1)+4/a);
+comment
+Compute the metric from the line-element, the Christoffel symbols 
+and the Riemann curvature tensor. 
+;
+metric (ds);
+christoffel2();
+riemann();
+comment
+We substitute f and  h  as  place-holders  for  q^(2/a)  and  p^a
+respectively.  f and h have no properties whatsoever, that we can
+do this is  a  consequence  of  the  fact  mentioned  above:  the
+explicit form of p and q is not required. 
+;
+let q^(2/a) = f;
+let p^a = h;
+comment
+Apply these substitutions to the Riemann tensor  and  the  metric
+inverse before computing the Ricci tensor. 
+;
+mapfi(ri);
+mapfi(g!_inv);
+ricci();
+ri[];
+ric[];
+dir();
+;end;

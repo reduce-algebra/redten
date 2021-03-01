@@ -1,0 +1,15 @@
+fluid '(topop);
+
+topop := 'nil;
+
+symbolic procedure cterms (exp);
+begin scalar lex;
+  if atom exp then return
+  else if checktype (exp, 'rdr) then return list (mycaddr exp);
+  if not topop and memq (mycar exp, '(times plus)) then topop := mycar exp;
+  for each x in exp do lex := append (lex, cterms x);
+  if checktype (exp, '(times plus df)) then return list lex;
+  return lex;
+end;
+
+;end;

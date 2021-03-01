@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Getting Started</TITLE>
+<meta name="description" value=" Getting Started">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html1086 HREF="node67.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1084 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1078 HREF="node65.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1088 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1089 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1087 HREF="node67.html"> Renaming Internal Functions</A>
+<B>Up:</B> <A NAME=tex2html1085 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1079 HREF="node65.html"> Internal Details</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION001600000000000000000> Getting Started</A></H1>
+<P>
+<A NAME=starting>&#160;</A>   
+Since REDTEN is a large package layered onto REDUCE, the first
+prerequisite to running REDTEN is to have a computer that can
+successfully run REDUCE, and to obtain REDUCE
+itself<A NAME=tex2html110 HREF="footnode.html#4212"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>. The range of machines which
+can be used is now very large, from relatively small 286's to large
+super-minis and mainframes. In all cases, at least 4 Megabytes of RAM
+are recomended if any reasonable amount of work is to be done. With
+the ever-decreasing cost of memory, this requirement is no longer
+particularly difficult or expensive to meet.
+<P>
+The REDTEN distribution comes as a compressed tar file of a little
+more than 500 Kbytes. It uncompresses to about 1.4 Mbytes. One needs
+twice this amount of disk space to hold the tar file and the extracted
+sources. The size of the compiled REDTEN varies depeding on the
+lisp system used, but can be a few hundred Kbytes.
+<P>
+Assuming that a REDUCE package has been obtained for a particular
+machine, bringing up REDTEN is a straightforward process of
+compiling the source modules together into a loadable file. The user
+should make note of the following information:
+<UL><LI> The REDUCE version; currently versions 3.5, 3.4 (and
+subversions 
+thereof) and version 3.3 are supported. Support for REDUCE version
+3.2 has fallen off.
+<LI> The kind of lisp system used to support REDUCE. REDTEN has
+been compiled in PSL, CSL, Culisp. Other lisp bases for REDUCE may
+require some minor amount of adjustment to REDTEN before it will
+run correctly (see below). Ask your system manager if you do not know
+which lisp is used.
+<LI> The default case of the base system. This should be evident
+after using REDUCE once: if input typed in lower case is reprinted
+in upper case, the base system is upper case.
+</UL>
+<P>
+This information is used to set up the following files in the
+REDTEN source directory (see also the file <tt>README</tt> in the
+source directory).
+<P>
+<UL><LI> In the <tt>src</tt> directory there are some local files: <tt>local3?.red</tt>. Each of these
+contains the redefinitions of some REDUCE functions for a
+particular version of REDUCE. The appropriate file must be linked
+or copied to <tt>local.red</tt>, which is the file that is loaded with
+the rest of the REDTEN system.
+<LI> There are also some decl files: <tt>decl3?.red</tt>.
+If your REDUCE version is 3.2 or 3.3, copy or link
+<tt>decl33.red</tt> to <tt>decl.red</tt>; if the version is 3.4 or higher
+copy <tt>decl34.red</tt>. 
+<LI> If the base case of your REDUCE is upper, copy (or link) the
+file <tt>bcaseup.red</tt> to <tt>basecase.red</tt>, otherwise copy <tt>bcasedn.red</tt> to <tt>basecase.red</tt>.
+<LI> REDTEN makes use of two functions that are not part of
+Standard Lisp, but which are included in every reasonable lisp. In PSL
+these functions are named prop() and unboundp(). Other
+lisps may use different names. The <tt>src/sysfn</tt> sub-directory
+contains files for the definition of these functions for other
+lisps. Copy or link the appropriate system file into the source
+directory under the name <tt>sysfn.red</tt>. For example, for csl lisp
+copy <tt>src/sysfn/csl.red</tt> to <tt>src/sysfn.red</tt>.
+</UL>
+<P>
+Under a UNIX system (or one that is capable of running shell scripts),
+the shell script <tt>setup</tt> in the root directory of the distribution
+will determine the above information and set-up the first three system
+files correctly. This script assumes a link to the REDUCE
+executable has been made in the root directory of the REDTEN
+distribution. The determination of the lisp type and the copying of
+<tt>sysfn.red</tt> is up to the user.
+<P>
+Finally, REDTEN makes use of a control sequence to move the cursor
+up a line on the screen, this is stored as a list on the variable
+upcursor!*. The default value is set near the top of the <tt>sys.env</tt> file, and is appropriate to a VT100 terminal or similar. If
+different kind of display screen is used, the correct control sequence
+can be defined here (the list consists of literal control character
+and strings). The control variable can also be set from the users
+environment via the UPCUROSR environment variable. This is still a bit
+flakey.
+<P>
+Once the source files are properly set the user must define the <tt>redten</tt> environment variable. Under DOS try
+<PRE> 
+<tt>set redten=&lt;path to root of REDTEN distribution&gt;
+</tt></PRE>and under UNIX (and csh) type
+<PRE> 
+<tt>setenv redten &lt;path to root of REDTEN distribution&gt;
+</tt></PRE>You are now ready to compile REDTEN. The exact details vary
+depending on the underlying lisp system. For PSL and similar lisps,
+move in to the <tt>fasl</tt> directory and start REDUCE. Type the following:
+<PRE> 
+<tt>#: <i>in &quot;$redten/src/redten.gen&quot;$</i>
+</tt></PRE>This will start the REDUCE compiler, load all the source files, and
+leave a file called <tt>redten.b</tt> in the current directory. The
+process may take several minutes to complete, and REDUCE will exit
+at the end of it.
+<P>
+For lisps like CSL, the same commands apply, but a separate compiled
+<tt>redten.b</tt> file is not produced, rather the compiled code is added
+to the REDUCE ``image'', and can be loaded on demand. You may need
+special privileges in order to modify the REDUCE image.
+<P>
+If REDUCE fails to compile the entire set of sources in one go
+(exiting with a ``Heap space exhausted'' message), then REDTEN will
+need to be compiled one source file at a time. This can be done as
+above by using the file <tt>redten1.gen</tt> instead of <tt>redten.gen</tt>.
+If this is done, you must also set the <tt>redten</tt> environment
+variable each time you want to run REDTEN.
+<P>
+To use REDTEN, first start REDUCE, then load the compiled
+REDTEN code. In PSL this is done with the <tt>load()</tt> function:
+<PRE> 
+<tt>#: <i>load &quot;redten&quot;;</i>
+
+ &quot;Reduce-tensor, Version v4.0, Wed Nov 16 13:49:23 EST 1994
+&quot;$
+</tt></PRE>while in CSL the equivalent command is called <tt>load!-module()</tt>.
+<P>
+After REDTEN is loaded for the first time, it should be tested with
+some of the examples found in the <tt>demo</tt> directory. Simply use the
+REDUCE in() command to input any of the demo files.
+<P>
+<BR> <HR><A NAME=tex2html1086 HREF="node67.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1084 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1078 HREF="node65.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1088 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1089 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1087 HREF="node67.html"> Renaming Internal Functions</A>
+<B>Up:</B> <A NAME=tex2html1085 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1079 HREF="node65.html"> Internal Details</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

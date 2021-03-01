@@ -1,0 +1,53 @@
+put ('spweyl, 'simpfn, 'spweyl!*);
+
+symbolic procedure spweyl!* (u);
+begin scalar nptnsr, nptnsr1, lex, lex1, lex2;
+  nptnsr := mycar getnme (mycar (u), '(nil . nil), 'spweyl);
+  lex1 := get (getmetric (1), 'spweyl);	% see if its already been made
+  if not nptnsr and indexed (lex1) then return (lex1 . 1);
+  nptnsr := newnme (nptnsr, npweyl_sp1);		% get a name for it
+  tabprint (list ("computing ", nptnsr, " and ", nptnsr1));% so user knows what the name will be
+  mktnsr!* (nptnsr, '(-3 -3 -3 -3), ifmtsym '((1 1 2 3 4)), 'nil, 'spweyl,
+		"Newman-Penrose Weyl spinor");
+  put (nptnsr, 'printname, npweyl_sp1);
+  put (nptnsr, 'corem, list (nptnsr1));  % so kill takes out both
+  put (nptnsr1, 'corem, list (nptnsr));
+
+  evaltnsr1 (nptnsr, '(1 1 1 1), 
+	list ('times, list ('rdr, mycar weyl!*('nil), '(a!# b!# c!# d!#)),
+	       list ('rdr, getcon (2,1), '((!*at!- 0) (!*at!+ a!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 2) (!*at!+ b!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 0) (!*at!+ c!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 2) (!*at!+ d!#)))), 'nil);
+  evaltnsr1 (nptnsr, '(1 1 1 2), 
+	list ('times, list ('rdr, mycar weyl!*('nil), '(a!# b!# c!# d!#)),
+	       list ('rdr, getcon (2,1), '((!*at!- 0) (!*at!+ a!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 1) (!*at!+ b!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 0) (!*at!+ c!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 2) (!*at!+ d!#)))), 'nil);
+  evaltnsr1 (nptnsr, '(1 1 2 2), 
+	list ('times, list ('rdr, mycar weyl!*('nil), '(a!# b!# c!# d!#)),
+	       list ('rdr, getcon (2,1), '((!*at!- 0) (!*at!+ a!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 2) (!*at!+ b!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 3) (!*at!+ c!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 1) (!*at!+ d!#)))), 'nil);
+  evaltnsr1 (nptnsr, '(1 2 2 2), 
+	list ('times, list ('rdr, mycar weyl!*('nil), '(a!# b!# c!# d!#)),
+	       list ('rdr, getcon (2,1), '((!*at!- 0) (!*at!+ a!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 1) (!*at!+ b!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 3) (!*at!+ c!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 1) (!*at!+ d!#)))), 'nil);
+  evaltnsr1 (nptnsr, '(2 2 2 2), 
+	list ('times, list ('rdr, mycar weyl!*('nil), '(a!# b!# c!# d!#)),
+	       list ('rdr, getcon (2,1), '((!*at!- 1) (!*at!+ a!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 3) (!*at!+ b!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 1) (!*at!+ c!#))),
+	       list ('rdr, getcon (2,1), '((!*at!- 3) (!*at!+ d!#)))), 'nil);
+
+   multiplier!* list (nptnsr, -1);
+%   put (nptnsr, 'altmetric, currentmetric);  % save metric environment
+   protect!* (nptnsr, 'w);
+   put (getmetric (1), 'spweyl, nptnsr);	% store name on metric
+   cleaner ('spweyl);
+   return (nptnsr . 1);
+end;

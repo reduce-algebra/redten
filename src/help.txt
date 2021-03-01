@@ -1,0 +1,263 @@
+%***************************************************************************
+%  FILE = help.txt
+%
+%  REDTEN source code
+%  Copyright (c) 1986, 1987, 1991-1994 University of Toronto.
+%  All Rights Reserved.
+%
+%  Written by John Harper and Charles Dyer
+%  harper@manitou.astro.utoronto.ca  dyer@manitou.astro.utoronto.ca
+%**********************************************************************
+
+symbolic$
+!*eolinstringok := 't$   % suppress eol-in-string messages.
+
+helplist!* := '(
+(addtoenv 
+"addtoenv (name1, {name2, ...}) - add names to be saved in environments.")
+(altmetric
+"altmetric (name, metric) - set an alternate metric of <name> to <metric>.")
+(christoffel1 
+"christoffel1 ({name}) - compute the Christoffel symbols of the first kind.")
+(christoffel2 
+"christoffel2 ({name}) - compute the Christoffel symbols of the second kind.")
+(cleartmp 
+"cleartmp() - clear left over temp names and reset the parser.")
+(cmod 
+"cmod (exp) - complex modulus of <exp>.")
+(cofactor 
+"cofactor (name1, name2, {tflag}) - compute cofactor matrix of <name1>
+	place result in <name2>, transpose if <tflag> non-nil. ")
+(coords
+"coords (coords, {lb}) - set coordinates and indextype starting from <lb>.")
+(complex 
+"complex (z1, {z2, ..}) - flag the given vars as complex for use by cnj.")
+(copyfam
+"copyfam (met, {newmet}) - copy the metric family of <met> to <newmet>.")
+(cnj 
+"cnj (exp) - compute the complex conjugate of <exp>.")
+(cov 
+"cov (name) - compute the covariant derivative of <name>, result in <name>_CD.")
+(d 
+"d (exp) - compute the total derivative of <exp> against the current coords.")
+(dalembert 
+"dalembert (exp) - compute D'Alembertian of the scalar <exp>")
+(defindextype
+"defindextype (range, n, {name}, {format}, {flg}) - define indextype type n.")
+(delenv 
+"delenv (name) - delete the named environment.")
+(delta
+"delta (name, type) - create the delta function <name> of type <type>.")
+(describe 
+"describe (name, {string}) - set (<string> non-nil) or return 
+	the description of <name>")
+(determ 
+"determ (name, cofname, {tflag}) - compute the determinant of <name> from the
+	matrix <cofname> computed by cofactor. <tflag> is passed to cofactor.")
+(dir 
+"dir ({name1, name2}) - Show a listing of indexed objects in the system. If no
+	args, show all names not flagged by nodir().")
+(div 
+"div (name, {output}) - compute the divergence of  <name>, output into 
+<output>, default <name>_D.") 
+(dot
+"dot (n1,n2) - compute the dot product of n1 with n2")
+(einstein 
+"einstein ({name}) - compute the Einstein tensor.")
+(fn 
+"fn (func, index) - apply the index <index> to the function <func>.")
+(freinstein 
+"freinstein ({name}) - compute the Einstein tensor in a frame.")
+(frmetric 
+"frmetric ({name}) - create an eta frame metric.")
+(frricci 
+"frricci ({name}) - compute the Ricci tensor in a frame.")
+(frriccisc 
+"frriccisc ({name}) - compute the Ricci scalar in a frame.")
+(frriemann 
+"frriemann ({name}) - compute the Riemann tensor in a frame.")
+(frweyl 
+"frweyl ({name}) - compute the Weyl tensor in a frame.")
+(gamma 
+"gamma ({name}) - compute the Ricci rotation coefficients in a tetrad.")
+(generics
+"generics({name1, ...}) - list generic names and their links.")
+(geodesic 
+"geodesic (name, {parm}) - compute the geodesic equations.")
+(getcon 
+"getcon (n, m) - get the connection that connects type <n> to type <m>.")
+(getmetric
+"getmetric (met) - get the current metric of type <met>.")
+(help 
+"help ({name}) - get help on <name>, <name> may be a pattern.")
+(ias 
+"ias (name, {overwrite flag}) - interactively assign elements to <name>.")
+(iclear
+"iclear (names, {name1}, {name2}..) - clear values and multiplier of objects")
+(icopy 
+"icopy (inname, outname) - copy indexed object <inname> to <outname>.")
+(idet 
+"det (name, {exp}) - compute the determinant of <name>, or replace it with 
+	<exp> when <exp> is non-nil")
+(im 
+"im (exp) - compute the imaginary part of <exp>. See re().")
+(indexed 
+"indexed (name) - get the 'indexed property of <name>.")
+(info
+"info (name ..) - display information about the object <name>")
+(invert 
+"invert (name) - compute the matrix inverse of name, result in <name>_inv.")
+(killing 
+"killing (name, {conf}) - compute the (conformal if <conf> non-nil) 
+	killing equations, result in <name>.")
+(lie 
+"lie (name, vec) - compute the Lie derivative of <name> along vector <vec>.")
+(mapfi 
+"mapfi (name OR fnc(name)) - apply a function or simplification to <name>")
+(mclear 
+"mclear () - clear the parser.")
+(metric 
+"metric ({line}, {name}) - compute the metric from <line>, or from <name>
+	or from the frame metric and connection.")
+(mkcoords 
+"mkcoords ('name, {'coords}) - make <name> into a coordinate vector using the
+	current lisp:coords!* or <coords>.")
+(mktnsr 
+"mktnsr ('name, {'indextype}, {'sym}, {'implicit}, {'type}) - same as mkobj.")
+(mkobj
+"mkobj ('name, {'indextype}, {'sym}, {'implicit}, {'type}) - make an object.")
+(multiplier 
+"multiplier (name, {exp}) - get or set (<exp> non-nil) the multiplier of <name>.")
+(newenv 
+"newenv ({name}) - save env. under <name>, or 'current'; reset to initial")
+(nocomplex 
+"nocomplex (z1, {z2, ...}) - remove the complex flag on vars set with complex().")
+(nodir 
+"nodir (name1, {name2 ...}) - flag names to not show in dir() listings.")
+(npmetric
+"npmetric (con) or npmetric(l,m,n) - create Newman-Penrose metric and
+ connection from the tetrad.")
+(npnames
+"npnames (flag) - Turn on (flag non-nil) special meaning for the 12 names of
+ spin coefficients, or turn these off (flag nil).")
+(npspin
+"npspin({name}) - compute the Newman-Penrose spin coefficients.")
+(npD
+"npD(exp) - Newman-Penrose D(exp)")
+(npDEL
+"npDEL(exp) - Newman-Penrose DEL(exp)")
+(npdel
+"npdel(exp) - Newman-Penrose del(exp)")
+(npdelc
+"npdelc(exp) - Newman-Penrose complex del(exp)")
+(npweyl
+"npweyl({name}) - Compute Weyl tensor in Newman-Penrose")
+(npricci
+"npricci ({name}) - Compute Ricci tensor in Newman-Penrose")
+(nulltetrad 
+"nulltetrad ({name}) - create a null-tetrad connection (for diagonal metric).")
+(odf
+"odf (name, {order})  - compute ordinary derivative of <name> to order <order>")
+(petrov
+"petroc ({subs}) - determine the Petrov type of the current metric using <subs>")
+(pdf 
+"pdf (exp, index) - partial derivative of expression <exp> with respect to 
+	the current coords. <index> is the derivative index.")
+(protect  
+"protect (name, {key}) - set (key = k, w, kw) or remove protection from <name>.")
+(rat 
+"rat (quotient) - rationalize <quotient>.")
+(re 
+"re (exp) - compute the real part of <exp>. See im().")
+(rem 
+"rem (name1, {name2 ...} OR all OR !*) - remove some or all indexed objects.")
+(remi
+"remi (name1, {name2 ...} OR all OR !*) - interactively remove some or all indexed objects.")
+(restorenv
+"restorenv (name) - restore the saved environment named <name>. See savenv().")
+(restoreobj
+"restoreobj() - restore last object saved by the system.")
+(restrict
+"restrict ('name, 'lb, 'ub) - restrict the index run of <name>.")
+(ricci 
+"ricci ({name}) - compute the Ricci tensor.")
+(riccisc 
+"riccisc ({name}) - compute the Ricci scalar.")
+(riemann 
+"riemann ({name}) - compute the Riemann tensor.")
+(savec 
+"savec (file, name1, {name2 ...} OR file, all, {name1 ...}) - save objects to
+	disk in component form.")
+(savei 
+"savei (file, name1, {name2 ...} OR file, all, {name1 ...}) - save objects to
+	disk in indexed form.")
+(savenv
+"savenv (name) - save the current Reduce environment under <name>.")
+(setcon 
+"setcon (name, con) - set <name> to be the connection of type <con>.")
+(setmetric 
+"setmetric (name) - set the current metric.")
+(seval 
+"seval (exp) - evaluate scalar expression <exp>.")
+(shift 
+"shift (name[index]) - perform shift operations on <name>.")
+(spchristoffel 
+"spchristoffel ({name}) - compute spinor Christoffel symbols.")
+(spinmat 
+"spinmat ({name}) - compute spin matrices for diagonal metric.")
+(spmetric 
+"spmetric ({name}) - create standard spinor metrics.")
+(symz
+"symz (exp) - apply symmetrization to <exp>.")
+(swapenv
+"swapenv ({name}) - swap the current Reduce environment with <name>.")
+(tenmetric
+"tenmetric ()  - construct tensor metric from connection and frame metric.")
+(trace 
+"trace (name) - compute trace of <name>, a rank two object.")
+(weyl 
+"weyl ({name}) - compute Weyl tensor.")
+
+(allerr
+"allerr[off] - When on causes all Redten warning errors to be treated as fatal.")
+(beep
+"beep[off] - When on causes the terminal bell to ring at the end of a
+ calculation.")
+(evalindex
+"evalindex[off] - When on causes index elements to be evaluted.")
+(extendedsum
+"extendedsum[off] - Enables the extended Einstein summation (both indices 
+either covariant or contravariant.")
+(fancydf
+"fancydf[off] - when on causes df forms to print as fractions.")
+(hide
+"hide[off] - when on causes indexed object displays to indicate 0 or non-0
+ values only.")
+(mkobjsafe
+"mkobjsafe[on] - when on prevents the creation of an indexed object whose name
+is already in use.")
+(paging
+"paging[on] - Enables the output pager.")
+(peek
+"peek[off] - when on causes a report about each calculated element: either 0
+or non-0.")
+(promptenv
+"promptenv[off] - When on shows the current working environment in the prompt.")
+(reversedir
+"reversedir[on] - Causes dir() to print entries in order of creation.")
+(rewrite
+"rewrite[on] - Causes a display of the expression involved in an == operation.")
+(showindices
+"showindices[off] - Enables display of indices during calculation of an object.")
+(symzexp
+"symzexp[on] - Enables immediate expansion of symmetrization operations.")
+(xeval
+"xeval[off] - When on causes an extra evaluation of object components during
+read-out.")
+(newriccistyle
+"newriccistyle[off] - When on computes the Ricci tensor via the form
+R[^c,a,c,b] instead of the older-style R[^c,a,b,c]")
+
+)$
+
+$end$

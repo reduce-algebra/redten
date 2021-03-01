@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Miscellaneous</TITLE>
+<meta name="description" value=" Miscellaneous">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html980 HREF="node58.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html978 HREF="node53.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html972 HREF="node56.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html982 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html983 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html981 HREF="node58.html"> Case Mapping</A>
+<B>Up:</B> <A NAME=tex2html979 HREF="node53.html"> Enhancements</A>
+<B> Previous:</B> <A NAME=tex2html973 HREF="node56.html"> The Pager</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00830000000000000000> Miscellaneous</A></H1>
+<P>
+<A NAME=secmisc>&#160;</A>	<A NAME=dfprint>&#160;</A>		In pre-3.4 versions of REDUCE the display of derivatives of
+functional forms (i.e. things declared with the depend()
+command) was somewhat dull. A quick fix was made in REDTEN to
+allow these forms to display as, for example,
+<PRE> 
+<tt>#: <i>depend f,r$</i>
+
+#: <i>df(f,r);</i>
+
+   f
+    r
+</tt></PRE>rather than
+<PRE> 
+<tt>#: <i>df(f,r);</i>
+
+   df(f,r)
+</tt></PRE>In REDUCE 3.4 a very similar package exists, controlled by the
+switch dfprint, which has been turned on in REDTEN.
+<P>
+In addition, to handle the display of certain constructs that can
+appear in REDTEN (derivatives with respect to coordinate
+vectors), another display package has been introduced for this case.
+If the switch <tt>fancydf[off]</tt> is on, then this package is used for
+all derivatives of functional forms. The format is of a fraction
+involving differentials, with the appropriate degrees located in the
+conventional places.
+<PRE> 
+<tt>#: <i>df (f,x[a]); % note f must depend on at least one coordinate.</i>
+
+    d f
+  -------
+      a
+   d x
+
+#: <i>on fancydf$</i>
+
+#: <i>df(f,r,r);</i>
+
+    2
+   d  f
+  ------
+      2
+   d r
+</tt></PRE>A minor enhancement is obtained when the switch bell
+is turned on, in this case the terminal bell is sounded after every
+prompt. The only use for this is to notify the user at the end of a
+long calculation, at other times the bell is annoying.
+<P>
+
+<P>
+To enable easier timing of the entire process of evaluating a metric
+family, two new timing functions have been added to REDTEN. To
+start the timer the function stime() can be called; the elapsed
+CPU time since the last call to this function is returned by the
+function etime(). The timer is not reset by etime(), so it
+can be called many times in succession, and will show progressively
+larger elapsed times until a new call to stime() is made.
+<P>
+<BR> <HR><A NAME=tex2html980 HREF="node58.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html978 HREF="node53.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html972 HREF="node56.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html982 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html983 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html981 HREF="node58.html"> Case Mapping</A>
+<B>Up:</B> <A NAME=tex2html979 HREF="node53.html"> Enhancements</A>
+<B> Previous:</B> <A NAME=tex2html973 HREF="node56.html"> The Pager</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> indextype</TITLE>
+<meta name="description" value=" indextype">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html441 HREF="node14.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html439 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html433 HREF="node12.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html443 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html444 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html442 HREF="node14.html"> Symmetries</A>
+<B>Up:</B> <A NAME=tex2html440 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html434 HREF="node12.html"> name</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00322000000000000000> indextype</A></H2>
+<P>
+<A NAME=mkobjindextype>&#160;</A>  The structure of the objects' index is determined from the 
+indextype list, a list of integers whose length is the number of
+indices that may be applied to the name (the rank of the object). Each
+integer element indicates the type of the corresponding index element,
+and the sign indicates whether it is covariant (negative) or
+contravariant (positive).
+<P>
+<P><A NAME=338>&#160;</A><A NAME=tabindextype>&#160;</A><IMG ALIGN=BOTTOM SRC="_10787_table324.gif">
+<BR><STRONG>Table 2.1:</STRONG> Index types and display formats<BR>
+<P>
+Table <A HREF="node13.html#tabindextype">2.1</A> shows the allowed types of indices and the
+format in which the example index element <tt>a</tt> will be displayed.
+For example, the indextype list <tt>'(-1 -1)</tt> indicates a
+rank-2 tensor with covariant indices.  Whenever it is necessary to
+display an index with the object, the indices are printed according to
+both their type and location.  Frame indices are enclosed in
+parentheses, while primed spinor and dyad indices are followed by a
+prime mark '. User defined index-types can be declared with the
+function defindextype() (qv).  Covariant indices (with negative
+indextype elements) are displayed on the line below the object
+name, while contravariant indices are displayed on the line above. If
+the REDUCE switch
+nat is off, then the index is displayed 
+following the object name and enclosed in square brackets, and no
+formatting is done.
+<P>
+When an object containing a spinor or dyad index is made, a conjugate
+object is automatically created, having each spinor indextype 
+element exchanged with the other spinor type (i.e. primed indices
+become unprimed, and unprimed indices become primed) as defined by the
+control variable conjugateindextypes!*.
+This conjugate object is given the name <tt>&lt;name&gt;_cnj</tt> and forms a
+coupled pair with the parent object. The printname (qv) is the
+same as the parent object, but a bar is printed over the name to
+indicate conjugation.  See &#167;<A HREF="node50.html#secspinor">6.2</A> for more about conjugation
+operations applied to spinor and dyad objects.
+<P>
+The first line of table <A HREF="node13.html#tabindextype">2.1</A> shows no indextype
+for a scalar object (a rank-0 object), the indextype in this
+case is the empty list <tt>'()</tt> or <tt>nil</tt>.  An indexed scalar must
+have an empty index attached (i.e. <tt>[]</tt>), it can only be non-empty
+if the first operator indicates differentiation. The index is printed
+as <tt>[]</tt> so as to indicate the indexed nature of the name.  If <tt>&lt;name&gt;</tt> previously had an algebraic value this now becomes the indexed
+value of the scalar object. In general, an indexed scalar can be
+treated exactly as any other indexed object.
+<P>
+To create an object that is closely related to another is simplified
+by an extension to the above syntax. If an indexed object name is
+supplied instead of a list, the indextype parameter of that
+object is used to create the new object. If an indexed object name
+appears as an element in the index-type list, the indextype
+parameter of that object is inserted into the index-type list allowing
+the user to build objects of higher rank.
+<P>
+The indextype list is stored on the property list of <tt>&lt;name&gt;</tt>
+under the key indextype.
+<P>
+<BR> <HR><A NAME=tex2html441 HREF="node14.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html439 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html433 HREF="node12.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html443 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html444 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html442 HREF="node14.html"> Symmetries</A>
+<B>Up:</B> <A NAME=tex2html440 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html434 HREF="node12.html"> name</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

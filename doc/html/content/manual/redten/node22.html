@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Differentiation</TITLE>
+<meta name="description" value=" Differentiation">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html550 HREF="node23.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html548 HREF="node21.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html542 HREF="node21.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html552 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html553 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html551 HREF="node23.html"> Shift Operations</A>
+<B>Up:</B> <A NAME=tex2html549 HREF="node21.html"> The Index</A>
+<B> Previous:</B> <A NAME=tex2html543 HREF="node21.html"> The Index</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00331000000000000000> Differentiation</A></H2>
+<P>
+<A NAME=542>&#160;</A>
+In one conventional notation, a vertical bar
+placed after the index indicates differentiation, while a double bar
+indicates covariant differentiation (in another notation,
+the comma and semi-colon are used, but as these are special symbols to
+lisp and REDUCE they cannot be used here). In REDTEN the
+differentiation symbols
+ are naturally <tt>|</tt> 
+<A NAME=4104>&#160;</A> 
+<A NAME=4105>&#160;</A>
+<A NAME=550>&#160;</A>
+and <tt>||</tt>. The operation is indicated by placing these symbols after
+the normal object indices (i.e. after the number of normal index
+elements equal to the rank of the object) and adjacent to the
+following index element, for example: <tt>g[a,b,|c]</tt>.
+The comma preceeding the <tt>|</tt> must not be left out, or the parser
+will become confused (a comma <em>after</em> the <tt>|</tt> is harmless).
+<P>
+Any index with more elements than the rank of the object must indicate
+a differentiation with the first extra element. The remaining elements
+are taken to also be derivative indices, and do not require a
+differentiation symbol (unless the type of differentiation changes).
+Covariant differentiation is always done one index-element at a time
+(i.e. intermediate objects are created); it also requires the
+existence of the Christoffel symbols (which will be created from the
+tensor metric if need be), see &#167;<A HREF="node36.html#seccov">4.2</A>.  An ordinary derivative of an
+indexed object is computed by taking the derivative of each component
+with respect to each of the coordinate names stored on the
+coords!* variable, see &#167;<A HREF="node26.html#fncoords">2.4.1</A>.  In either case a new object is
+created to store the derivatives, see
+&#167;<A HREF="node34.html#secodf">4.1</A> and &#167;<A HREF="node36.html#seccov">4.2</A>.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

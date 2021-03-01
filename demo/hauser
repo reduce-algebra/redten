@@ -1,0 +1,92 @@
+comment
+This Reduce script evaluates the  Ricci  tensor  for  the  Hauser
+metric  to show that the metric is indeed a vacuum solution. This
+example is from d'Inverno, R.A.,  Frick,  I.  (1982).  Gen.  Rel.
+Grav., 10, 835. 
+The total cpu running-time on a SUN 3/160 is about 1 min. 34 sec.
+
+Below is the line-element for the metric. The explicit  form  for
+the functions b(x,u), cc(x,u) and p(x,u) will be substituted after 
+the  metric  is  computed.  The  function  f(x,u)  is  not  given
+explicitly, only side relations for its partial  derivatives  are
+provided. 
+;
+stime();
+coords '(u r x y);
+ds:=-2*p^2*(b^2+cc^2)*d(u)^2+2*p*d(u)*d(r)-4*p*(r*b+2*cc*p)*d(u)*d(x)
+ +(16*x*p^2*(b^2+cc^2)+4*p*(2*b*p-r*cc))*d(u)*d(y)-8*x*p*d(r)*d(y)
+ -2*(r^2+p^2)*d(x)^2+16*x*p*(r*b+2*cc*p)*d(x)*d(y)
+ -2*(r^2+p^2+8*x*p*(2*b*p-r*cc)+16*x^2*p^2*(b^2+cc^2))*d(y)^2;
+comment
+Define the side relations for the partial derivatives of f(x,u). 
+;
+depend f,x,u;
+let df(f,x) = -2*u/x*df(f,u);
+let df(f,u,2) = -3*f/(16*k);
+let df(f,u,x) = df(f,x,u);
+comment
+Define the partial derivativs for k(u,x).
+;
+depend k,u,x;
+let df(k,u) = 2*u;
+let df(k,x) = 16*x^3;
+comment
+When  r^2  is  replaced  below,  Reduce  assumes   a   functional
+dependence of r on x,u. 
+;
+let df(r,x) = 0;
+let df(r,u) = 0;
+let df(u,x) = 0;
+comment
+Replace all  occurrences  of  r^2  with  s-p^2,  where  s  is  an
+undefined  function of u,x,r. The actual form of s is not needed.
+This substitution causes the determinant of the metric  to  be  a
+simple product, simplifying the form of the inverse metric. 
+;
+let r^2 = s - p^2;
+depend s,u,x,r;
+comment
+Define the partial derivatives of s(u,x,r).
+;
+let df(s,u) = 4*a^2*x^3*f*df(f,u);
+let df(s,r) = 2*r;
+let df(s,x) = 4*a^2*x^3*f*df(f,x)+3*2*a^2*x^2*f^2;
+comment
+Compute the metric tensor from the line-element.
+;
+metric (ds);
+comment
+Define the functions b(u,x), cc(u,x), p(u,x). (These are defined in
+terms of f(u,x)).
+;
+let b = u * df(f,u)/(x*f) - 3/(4*x);
+let cc = -2*x*df(f,u)/f;
+let p = a^3*x^(3/2)*f;
+comment
+Replace all occurances of u^2 with k - 4 x^4, where k is  defined
+above. (k is actually defined as u^2 + 4 x^4). 
+Also replace a^4 with 2. This is an artifice to  avoid  a  Reduce
+bug.
+;
+let u^2=k-4*x^4;
+let a^4 = 2;           % a = 2^(1/4)
+comment
+Apply the above definitions and substitutions to the metric and
+its inverse.
+;
+mapfi(g!_inv);
+mapfi(g);
+comment
+Compute the Christoffel symbols and the Riemann curvature tensor.
+;
+christoffel1();
+christoffel2();
+riemann();
+ri[];
+comment
+Compute the Ricci tensor.
+;
+ricci();
+dir();
+etime();
+;end;

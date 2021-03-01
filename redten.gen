@@ -1,0 +1,34 @@
+%in "src/rename.red";
+faslout "redten";
+in "src/decl.red";
+in "src/sysfn.red";
+in "src/algebra.red";
+in "src/cmplx.red";
+in "src/dif.red";
+in "src/frme.red";
+in "src/gr.red";
+in "src/np.red";
+in "src/indexed.red";
+in "src/io.red";
+in "src/matrix.red";
+in "src/shift.red";
+in "src/subobj.red";
+in "src/spnr.red";
+in "src/sym.red";
+in "src/symindex.red";
+in "src/utility1.red";
+in "src/utility2.red";
+in "src/save.red";
+in "src/local.red";
+in "src/math.red";   % replace this with a better taylor package
+in "src/lets";
+in "src/sys.env";
+!*paging := 'nil$	% change to default = off - CCD.
+in "src/help.txt";
+in "src/basecase.red";
+in "src/fix38";  % other modules put interfering props on [ and ] which must be removed
+begin!-redten();
+algebraic$				% also done in begin!-redten();
+faslend;
+bye;
+$end;

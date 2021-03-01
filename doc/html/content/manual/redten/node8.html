@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Property Lists</TITLE>
+<meta name="description" value=" Property Lists">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html353 HREF="node9.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html351 HREF="node4.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html347 HREF="node7.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html355 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html356 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html354 HREF="node9.html"> Indexed Objects</A>
+<B>Up:</B> <A NAME=tex2html352 HREF="node4.html"> Concepts in REDUCE</A>
+<B> Previous:</B> <A NAME=tex2html348 HREF="node7.html"> Lisp Variables</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00224000000000000000> Property Lists</A></H2>
+<P>
+<A NAME=ssecproplists>&#160;</A>  <A NAME=246>&#160;</A>
+<A NAME=247>&#160;</A>
+Lisp variables can have, in addition to a value, a list of associated
+pairs and flags called a property list (often abbreviated to <i>plist</i>). Most of the information kept both by REDUCE and REDTEN
+is in the form of property lists attached to various lisp
+identifiers. While the REDTEN user generally does not need to
+access a property list, there may be times when it is useful to make
+corrections or alterations directly. It is also useful to know how to
+examine the property list either for the sake of curiosity, to fix a
+problem, or to ``cheat''.
+<P>
+Although referred to as a list, the property list is more conveniently
+thought of as a series of keyword-value pairs, which can be accessed
+with the lisp functions put() and get(), and a
+set of flags (which are either present or not) that are accessed with
+the functions flag() and flagp(). Properties
+and flags can be deleted with the functions remprop() and
+remflag(). The entire property list can be accessed or
+replaced in REDTEN with the functions prop() and
+setprop(), these are defined in terms of standard lisp functions 
+that vary from system to system (see appendix <A HREF="node66.html#starting">F</A>). The
+formats of the calls 
+to these functions is shown in <A HREF="node62.html#func">C.1</A>.
+<P>
+ <BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

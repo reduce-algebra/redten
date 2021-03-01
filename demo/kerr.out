@@ -1,0 +1,340 @@
+ ~/mutensor/redsrc/demo >reduce
+REDUCE 3.4, 15-Jul-91 ...
+
+1: load!-module 'redten;
+Reduce-tensor, Version v3.55, July 20, 1993
+
+2: on demo;
+
+3: in kerr;
+
+
+comment
+This Reduce script evaluates the Ricci tensor for the Kerr metric 
+in Boyer-Lindquist coordinates to show that the metric is  indeed
+a  vacuum  solution.  The  total cpu running-time on a SUN 3/160 
+is about 22 sec. 
+
+Below is the line-element for the metric. The functions  delta(r)
+and  rho2(r,th) will remain unevaluated until the Ricci tensor is
+computed, however, the derivatives of  these  functions  will  be
+evaluated. 
+;
+
+coords '(t r th ph);
+
+
+3: 
+
+
+ds2 := - delta/rho2*(d(t)-a*sin(th)^2*d(ph))^2
+   + sin(th)^2/rho2*((r^2+a^2)*d(ph)-a * d(t))^2
+   + rho2/delta * d(r)^2+rho2*d(th)^2;
+
+
+                 2        4  2      2        2        2  4
+ ds2 := ( - d(ph)  sin(th)  a  delta  + d(ph)  sin(th)  a  delta
+
+                   2        2  2        2        2        2        4
+          + 2 d(ph)  sin(th)  a  delta r  + d(ph)  sin(th)  delta r
+
+                                2  3
+          - 2 d(ph) d(t) sin(th)  a  delta
+
+                                2        2
+          + 2 d(ph) d(t) sin(th)  a delta
+
+                                2          2       2     2
+          - 2 d(ph) d(t) sin(th)  a delta r  + d(r)  rho2
+
+                2        2  2             2      2
+          + d(t)  sin(th)  a  delta - d(t)  delta
+
+                 2           2
+          + d(th)  delta rho2 )/(delta rho2)
+
+3: 
+
+
+comment
+Define the  general  functions  delta(r),  rho2(r,th)  and  their
+derivatives.
+;
+
+depend delta,r;
+
+
+3: 
+
+
+depend rho2,r,th;
+
+
+3: 
+
+
+let df(rho2,r) = 2*r;
+
+
+3: 
+
+
+let df(delta,r) = 2*r-2*m;
+
+
+3: 
+
+
+let df(rho2,th) = -2*a^2*sin(th)*cos(th);
+
+
+3: 
+
+
+comment
+The let rule below is vitally important.  It allows considerable
+simplification of expressions and prevents intermediate expression
+swell.  Without this rule, this demo take more than twice as long to
+run.
+;
+
+let r^2=sin(th)^2*a^2-a^2+rho2;
+
+
+3: 
+
+
+%let df(r,th)=0;
+on time, showindices;
+
+
+Time: 483 ms
+
+3: 
+
+
+comment
+Compute the metric tensor from the line-element, and simplify the 
+inverse metric. 
+;
+
+metric (ds2);
+
+computing g1
+
+cofactor finished.
+determ finished.
+invert finished.
+
+ g1
+
+Time: 1183 ms
+
+3: 
+
+mapfi(g!_inv);
+
+ g1_inv
+
+Time: 150 ms
+
+3: 
+
+
+comment
+Compute the first  and  second  Christoffel  symbols.  The  first
+Christoffel  symbols  are  symmetric  in  their  first and second
+indices, the second Christoffel symbols are  symmetric  in  their
+second and third indices, and have a contravariant first index. 
+;
+
+christoffel2();
+
+computing g1_c2
+  computing g1_c1
+  christoffel1 finished.
+
+ g1_c2
+
+Time: 2683 ms
+
+3: 
+
+
+comment
+Compute the fully covariant Riemann curvature tensor. This object 
+has the full Riemann symmetry. 
+;
+
+riemann();
+
+computing g1_R
+
+ g1_R
+
+Time: 4384 ms
+
+3: 
+
+
+comment
+Compute  the  fully  covariant  Ricci  tensor.  This  object   is
+symmetric in its two indices. 
+;
+
+ricci();
+
+computing g1_ric
+
+ g1_ric
+
+Time: 1617 ms  plus GC time: 883 ms
+3: 
+
+
+comment
+Display the (unsimplified) components of the  Ricci tensor. 
+;
+
+ric[];
+
+
+                 4  4            2  2              2  2             2
+ R     = (sin(th)  a  - 2 sin(th)  a  m r + sin(th)  a  rho2 - delta
+  0 0 
+
+                                           3
+           - 2 delta m r + delta rho2)/rho2
+
+                 2              4  4            2  2
+ R     = (sin(th)  a ( - sin(th)  a  + 2 sin(th)  a  m r
+  0 3 
+
+                         2  2             2
+              - 2 sin(th)  a  rho2 + delta  + 2 delta m r
+
+                                 2       3
+              + 2 m r rho2 - rho2 ))/rho2
+
+                    2  2
+           - sin(th)  a  + delta + 2 m r - rho2
+ R     = ---------------------------------------
+  1 1                  delta rho2
+
+                      6  6            4  4                  4  4
+ R     = (r   (sin(th)  a  - 2 sin(th)  a  delta + 2 sin(th)  a  rho2
+  1 2      th
+
+                         2  2      2            2  2
+                + sin(th)  a  delta  - 2 sin(th)  a  delta rho2
+
+                         2  2     2       3              3
+                + sin(th)  a  rho2  + rho2 ))/(delta rho2 )
+
+                 2  2
+          sin(th)  a  - delta - 2 m r + rho2
+ R     = ------------------------------------
+  2 2                    rho2
+
+                 2         6  6            4  4
+ R     = (sin(th)  (sin(th)  a  - 2 sin(th)  a  m r
+  3 3 
+
+                         4  4               2  2      2
+              + 3 sin(th)  a  rho2 - sin(th)  a  delta
+
+                         2  2                    2  2
+              - 2 sin(th)  a  delta m r - sin(th)  a  delta rho2
+
+                         2  2                     2  2     2
+              - 4 sin(th)  a  m r rho2 + 3 sin(th)  a  rho2
+
+                          2             2       3       3
+              - delta rho2  - 2 m r rho2  + rho2 ))/rho2
+
+
+ g1_ric
+
+Time: 300 ms
+
+3: 
+
+
+comment
+Now define the functions delta(r) and rho2(r,th).
+;
+
+clear r^2;
+
+
+Time: 16 ms
+
+3: 
+
+
+let delta = r^2 - 2*m*r + a^2;
+
+
+Time: 17 ms
+
+3: 
+
+
+let rho2 = r^2 + a^2 * cos (th)^2;
+
+
+Time: 17 ms
+
+3: 
+
+
+comment
+Simplify the Ricci tensor with the above definitions.
+;
+
+mapfi(ric);
+
+ g1_ric
+
+Time: 483 ms
+
+3: 
+
+
+comment
+Display the entire Ricci tensor. No values imply that it is zero.
+;
+
+ric[];
+
+
+
+ g1_ric
+
+Time: 33 ms
+
+3: 
+
+
+comment
+Display a directory of all objects defined in the system.
+;
+
+dir();
+
+  name          type          comp    prot  coordinates     indextype
+  x             coordinates    4       w    (t r th ph)      (1)
+* g1            metric         5       w    (t r th ph)      (-1 -1)
+* g1_inv        metric         5       w    (t r th ph)      (1 1)
+  g1_c2         christoffel2   20      w    (t r th ph)      (1 -1 -1)
+  g1_c1         christoffel1   20      w    (t r th ph)      (-1 -1 -1)
+  g1_R          riemann        13      w    (t r th ph)      (-1 -1 -1 -1)
+  g1_ric        ricci          0       w    (t r th ph)      (-1 -1)
+
+ 9 object(s),    Total components: 210
+
+
+ t
+
+Time: 84 ms
+

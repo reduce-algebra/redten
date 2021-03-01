@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Metric Contractions</TITLE>
+<meta name="description" value=" Metric Contractions">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html644 HREF="node31.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html642 HREF="node29.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html638 HREF="node29.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html646 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html647 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html645 HREF="node31.html"> metrics</A>
+<B>Up:</B> <A NAME=tex2html643 HREF="node29.html"> Algebra with Indexed </A>
+<B> Previous:</B> <A NAME=tex2html639 HREF="node29.html"> Algebra with Indexed </A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00410000000000000000> Metric Contractions</A></H1>
+<P>
+<A NAME=secshift>&#160;</A> A common operation in tensor analysis and General Relativity is the
+raising and lowering of indices via metric contractions. The objects
+so created are not new entities in their own right, just
+re-expressions of the same fundamental entity. It is common to express
+these objects with the same name and let the index structure indicate
+which specific object is being referred to. Thus,<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6260.gif"><P>
+are all representations of the Riemann tensor. In REDTEN every
+indexed object must have a unique name in the system but the
+printname's (the name used by the system to display the object)
+can be the same, indicating the existence of a fundamental relation.
+<P>
+The function shift() is used in concert with the <tt>@</tt>
+operator to ``shift'' indices, i.e. to raise or lower them by metric
+contractions. This function builds and maintains the data structure
+that relates the ``parent'' object to each of its ``offspring''. The
+entire set of offspring and the parent constitutes a ``family'', which
+is treated as a unit by some REDTEN functions.
+<P>
+The <tt>@</tt> operator causes an offspring object to be created in which
+<A NAME=4130>&#160;</A>
+<A NAME=4131>&#160;</A>
+<A NAME=4132>&#160;</A>
+each index-element operated on by <tt>@</tt> has been move to a position
+opposite its original location (i.e. covariant indices become
+contravariant and vice-versa). Two related operators are <tt>@+</tt> and
+<tt>@-</tt> which make ``absolute shifts'': <tt>@+</tt> shifts the
+index-element to a contravariant position (and is a no-op if it
+already was); <tt>@-</tt> shifts the index-element to a covariant
+position.
+<P>
+<BR> <HR>
+<UL> 
+<LI> <A NAME=tex2html648 HREF="node31.html#SECTION00411000000000000000"> metrics</A>
+<LI> <A NAME=tex2html649 HREF="node32.html#SECTION00412000000000000000"> <tt>shift()</tt></A>
+</UL>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

@@ -1,0 +1,137 @@
+ ~/tensor/redsrc/demo >reduce
+REDUCE 3.4, 15-Jul-91 ...
+
+1: load!-module 'redten;
+Reduce-tensor, Version v3.55, July 20, 1993
+
+2: on demo;
+
+3: in gamma;
+
+
+% gamma metric GRG jan 1982, 97
+on time;
+
+
+Time: 17 ms
+
+3: 
+
+
+ds:=f^gam*d(t)^2-f^(-gam)*((r^2*f/del)^(gam^2-1) *d(r)^2
+	+ (r^2*f)^(gam^2)/del^(gam^2-1)*d(th)^2+r^2*f*sin(th)^2*d(ph)^2);
+
+
+                 2                               2     2
+              gam       2        2  2  4    2 gam   gam      2
+ ds := ( - del     d(ph)  sin(th)  f  r  - r       f     d(r)  del
+
+                        2                    2     2
+            2 gam    gam      2    2    2 gam   gam       2        2
+         + f      del     d(t)  f r  - r       f     d(th)  del f r )
+
+                    2
+          gam    gam     2
+       /(f    del     f r )
+
+Time: 333 ms
+
+3: 
+
+
+let df(f,r) = 2*m/r^2;
+
+
+Time: 33 ms
+
+3: 
+
+
+let df(del,r) = 2*r-2*m;
+
+
+Time: 33 ms
+
+3: 
+
+
+let df(del,th) = 2*m^2*sin(th)*cos(th);
+
+
+Time: 17 ms
+
+3: 
+
+
+metric (ds);
+
+computing g1
+invert finished.
+
+
+ g1
+
+Time: 684 ms
+
+3: 
+
+ricci();
+
+computing g1_ric
+  computing g1_R
+    computing g1_c1
+    christoffel1 finished.
+    computing g1_c2
+    christoffel2 finished.
+  riemann finished.
+
+ g1_ric
+
+Time: 7250 ms
+
+3: 
+
+
+let f = 1-2*m/r;
+
+
+Time: 16 ms
+
+3: 
+
+
+let del = r^2-2*m*r+m^2*sin(th)^2;
+
+
+Time: 17 ms
+
+3: 
+
+
+mapfi(ric);
+
+
+
+ g1_ric
+
+Time: 367 ms
+
+3: 
+
+
+dir();
+
+  name          type          comp    prot  coordinates     indextype
+* g1            metric         4       w    (t r th ph)      (-1 -1)
+* g1_inv        metric         4       w    (t r th ph)      (1 1)
+  g1_ric        ricci          0       w    (t r th ph)      (-1 -1)
+  g1_R          riemann        8       w    (t r th ph)      (-1 -1 -1 -1)
+  g1_c1         christoffel1   12      w    (t r th ph)      (-1 -1 -1)
+  g1_c2         christoffel2   12      w    (t r th ph)      (1 -1 -1)
+
+ 8 object(s),    Total components: 174
+
+
+ t
+
+Time: 83 ms

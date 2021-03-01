@@ -1,0 +1,82 @@
+symbolic;
+
+fluid '(orthotet orth1 orth2 orth3 orth4);
+orthotet := '!o!z;		% tetrad connection
+orth1 := '!v1;			% tetrad vectors
+orth2 := '!v2;
+orth3 := '!v3;
+orth4 := '!v4;
+
+makegeneric (orthotet, '(2 . orthotet), '(-2 -1),'(), 'orthotet);
+makegeneric (orth1, '(2 . orth1), '(-1), '(), 'orthotet);
+makegeneric (orth2, '(2 . orth2), '(-1), '(), 'orthotet);
+makegeneric (orth3, '(2 . orth3), '(-1), '(), 'orthotet);
+makegeneric (orth4, '(2 . orth4), '(-1), '(), 'orthotet);
+
+put ('orthotet, 'simpfn, 'orthotet!*);
+
+symbolic procedure orthotet!* (u);
+(lambda x;<<
+  prin2 mkmsg list ("Fill in values for % (or %, %, %, and %)", orthotet, 
+		orth1, orth2, orth3, orth4);
+  terpri();
+  prin2 mkmsg list ("and do setcon(%); then call tenmetric().", orthotet);
+  terpri(); x>>)(orthotet!*!* (u));
+
+% set up the tetrad relations, but the user must enter the components
+symbolic procedure orthotet!*!* (u);
+begin scalar orthcon, t1, t2, t3, t4, verbose!*;
+  frmetric!* ('(nil t));  % get the metric made before the generics are checked
+
+  orthcon := mycar getnme (mycar u, '(nil . nil), 'orthotet);
+  orthcon := newnme (orthcon, orthotet);
+  t1 := mycar getnme (mycar u, '(nil . nil), 'orthotet);
+  t1 := newnme (t1, orth1);
+  t2 := mycar getnme (mycar u, '(nil . nil), 'orthotet);
+  t2 := newnme (t2, orth2);
+  t3 := mycar getnme (mycar u, '(nil . nil), 'orthotet);
+  t3 := newnme (t3, orth3);
+  t4 := mycar getnme (mycar u, '(nil . nil), 'orthotet);
+  t4 := newnme (t4, orth4);
+  tabprint list mkmsg list ("Creating % (with %, %, %, %)",
+	orthcon, t1, t2, t3, t4);
+  mktnsr!* (orthcon, '(-2 -1),'nil, 'nil, 'connection, "Orthonormal connection");
+  subobj!*!* (t1, '(a!#), orthcon, '(0 a!#), 1 ./ 1, 'nil);
+  subobj!*!* (t2, '(a!#), orthcon, '(1 a!#), 1 ./ 1, 'nil);
+  subobj!*!* (t3, '(a!#), orthcon, '(2 a!#), 1 ./ 1, 'nil);
+  subobj!*!* (t4, '(a!#), orthcon, '(3 a!#), 1 ./ 1, 'nil);
+  put (orthcon, 'printname, orthotet);
+  put (t1, 'printname, orth1);
+  put (t2, 'printname, orth2);
+  put (t3, 'printname, orth3);
+  put (t4, 'printname, orth4);
+  foreach x in list (t1, t2, t3, t4) do describe!* (x, "Orthonormal tetrad vector", 'nil);
+  put (getmetric (2), 'orthotet, orthcon);
+  put (getmetric (2), 'orth1, t1);
+  put (getmetric (2), 'orth2, t2);
+  put (getmetric (2), 'orth3, t3);
+  put (getmetric (2), 'orth4, t4);
+  return orthcon ./ 1;
+end;
+
+put ('orthotetrad, 'simpfn, 'orthotetrad!*);
+
+symbolic procedure orthotetrad!* (u);
+begin scalar lex, lex1, orthcon, met;
+  orthcon := mycar orthotet!*!* (u);
+  met := getmetric (1);
+%here is where we need to know about the signature and which is the time coord
+  if get (met, 'symmetry) = ifmtsym '((0 1 2)) then << % done by hand essentially
+    evaltnsr1 (orthcon, '(0 0), list ('sqrt, list ('rdr, met, '(0 0))), 'nil);
+    evaltnsr1 (orthcon, '(1 1), list ('sqrt, list ('minus, list ('rdr, met, '(1 1)))), 'nil);
+    evaltnsr1 (orthcon, '(2 2), list ('sqrt, list ('minus, list ('rdr, met, '(2 2)))), 'nil);
+    evaltnsr1 (orthcon, '(3 3), list ('sqrt, list ('minus, list ('rdr, met, '(3 3)))), 'nil);
+  >>
+  else merror ("Sorry I can't handle non-diagonal metrics", 't);
+  protect!* (orthcon, 'w);
+  setcon (orthcon);
+  put (met, 'cometric, list (getmetric (2)));
+  put (getmetric (2), 'cometric, list met);
+  cleaner ('orthotetrad);
+  return (orthcon . 1);
+end;

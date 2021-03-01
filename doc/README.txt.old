@@ -1,0 +1,98 @@
+This file contains instructions on how to build a redten from the
+sources in this directory.
+
+You should first set up the redten environment variable:
+On a DOS machine type
+set redten=<path to this directory>
+and in Unix type
+setenv redten `pwd`
+
+If you don't have environments, then you must edit all the source code
+and replace all occurances of $redten with the path name.
+
+Four files must be set-up depending on your version of reduce and the
+kind of lisp it runs in. The shell script ../setup can be run in ..
+and will set-up the first three files. These are:
+
+decl.red   - link this to decl33.red if yours is Reduce 3.2 or 3.3
+	   - link to decl34.red if yours is Reduce 3.4 or 3.4.1
+
+local.red  - link this to local32.red if you have Reduce 3.2
+	   - link to local33.red if you have Reduce 3.3
+	   - link to local34.red if you have Reduce 3.4 or 3.4.1
+	   - link to local35.red if you have Reduce 3.5
+	   - link to local38.red if you have Reduce 3.8
+
+basecase.red - link this to bcaseup.red if your Reduce is upper case
+	     - link to bcasedn.red if your Reduce is lower case
+    -Note that Redten is case sensitive, and all commands are lower case.   
+
+(Note: Redten support for Reduce 3.2 is failing, so some parts of the
+system may not work properly if you have 3.2)
+
+The above files will be linked by ../setup, or it can be done by hand.
+
+The last file to consider is sysfn.red, which is used to define some
+functions that differ between lisps (these are the two functions
+unboundp() and prop(), which are not part of Standard lisp and so may
+have different names in various implementations.)
+
+If your lisp is psl, or if unboundp() and prop() are defined in your
+lisp, then link sysfn.red to sysfn/psl.red.
+
+If you are using culisp (Cambridge Lisp), link sysfn.red to
+sysfn/culisp.red 
+
+If you are using csl, then link sysfn.red to sysfn/csl.red. 
+
+For any other lisp, look at csl.red for a template of the function
+definitions.  
+
+
+One all the files are correctly set-up, and the redten environment is
+defined, you are ready to compile redten. For psl and similar lisps,
+anyone can build a redten successfully. For lisps like csl, that want
+to access an image file, you may need to be the Reduce installer in
+order to compile Redten. In the former case the result of the
+compilation process will be a file called redten.b.
+
+To compile Redten, cd into the fasl directory and run Reduce. Type:
+in "$redten/src/redten.gen"$
+This process should take several minutes before the Reduce ends
+automatically. 
+
+Some Reduces (and probably most on a PC) will not be able to compile
+the entire Redten source code at once. The file redten1.gen can be
+used to compile Redten one source file at a time, and it then creates
+a redten.b file which loads all the others and starts Redten. If you
+take this route, you must set the redten environment variable each
+time you want to run Redten.
+
+Test the system by running Reduce again, and type
+load "redten";
+You should see the Redten banner displayed, the system is now ready
+for input. Try running one of the demos and see if the system appears
+to perform correctly (type 
+in "$redten/demo/rw";
+for example).
+
+In csl the above command is
+load!-module "redten";
+
+If there are any problems with the build, or with the resulting system,
+first check that the four files are correctly linked and that the
+redten environment points to the right directory. If you still can't
+get it to work, let me know and I will try to suggest a fix.
+
+Redten makes use of a control sequence in order to cause a scroll-up
+of the terminal screen. Since each terminal is different, it may not
+work on yours. Having it wrong will cause no error in the system, just
+in certain circumstances the output will look odd. The default
+definition is found at the top of sys.env (stored in the lisp variable
+upcursor!*, in a running system it's in r10!-upcursor!*). You can
+change that to suit, or define the environment variable UPCURSOR,
+which is read by the Redten system at startup.
+
+John Harper
+Dept. of Astronomy, U. Toronto, Scarborough Campus
+harper@utsc.utoronto.ca

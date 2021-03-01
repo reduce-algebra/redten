@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> The Indexed Object</TITLE>
+<meta name="description" value=" The Indexed Object">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html396 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html394 HREF="node9.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html388 HREF="node9.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html398 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html399 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html397 HREF="node11.html"> Using mkobj()</A>
+<B>Up:</B> <A NAME=tex2html395 HREF="node9.html"> Indexed Objects</A>
+<B> Previous:</B> <A NAME=tex2html389 HREF="node9.html"> Indexed Objects</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00310000000000000000> The Indexed Object</A></H1>
+<P>
+<A NAME=seciob>&#160;</A>  The fundamental entity in REDTEN is the ``indexed object'',
+<A NAME=269>&#160;</A>
+which consists of an identifier (a name) and an index enclosed in square
+brackets<A NAME=tex2html30 HREF="footnode.html#270"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>, for example:
+<PRE> 
+<tt>R[a,b,c,d], g[a,1], G[1,2].
+</tt></PRE><A NAME=273>&#160;</A>
+An index can either be composed of strictly non-negative integers
+(each of which must lie within the inclusive range for that
+index-element, see below) and which indicates a specific component of
+the indexed object, or it can contain identifiers that represent the
+full range of possible indices, or a combination of both. The contents
+of the index are described more fully in &#167;<A HREF="node21.html#index">2.3</A> below.
+<P>
+An indexed object is a REDUCE kernel: it is an irreducible
+algebraic entity. As such it can be part of any algebraic expression,
+although, depending on circumstances, it may or may not be evaluated
+to a ``simpler'' form<A NAME=tex2html32 HREF="footnode.html#276"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>.  Before using an index with a name that
+name must be made into an indexed object with the mkobj()
+command<A NAME=tex2html33 HREF="footnode.html#4099"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>. If an index is
+applied to a name that has not been declared as indexed, the system will
+prompt for the basic data required to define the object (the
+index-type and symmetries, defined below). It is advisable to fully
+declare indexed objects before they are used.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

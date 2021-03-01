@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Using <tt>mkobj()</tt></TITLE>
+<meta name="description" value=" Using mkobj()">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html408 HREF="node12.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html406 HREF="node9.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html400 HREF="node10.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html410 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html411 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html409 HREF="node12.html"> name</A>
+<B>Up:</B> <A NAME=tex2html407 HREF="node9.html"> Indexed Objects</A>
+<B> Previous:</B> <A NAME=tex2html401 HREF="node10.html"> The Indexed Object</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00320000000000000000> Using <tt>mkobj()</tt></A></H1>
+<P>
+<A NAME=secmkobj>&#160;</A>   The user call to mkobj()
+has the form:
+<PRE> 
+<tt>mkobj ('name:<i>id</i> or :<i>id-list</i>, 'indextype:<i>int-list</i>,{'symmetries:<i>list-list</i>}, 
+{'implicit:<i>bool</i>}, {'itype:<i>id</i>}):<i>iobj</i>;
+</tt></PRE>The first two arguments are required, the others are optional. If any
+intervening argument is undesired, use the value 
+<A NAME=4101>&#160;</A>
+<tt>'()</tt>.  Because some of these parameters are lists the input line
+must be parsed in symbolic mode.  The usual way to ensure this is to
+apply a quote-mark to the object name.  This will be made clearer in
+the examples below.
+mkobj() prints the indexed object with an attached alphabetic index 
+(i.e.  <tt>a, b, c, ...</tt>) to show the index-structure of the
+object created.
+Each of the arguments to mkobj() is described  below.
+<P>
+<BR> <HR>
+<UL> 
+<LI> <A NAME=tex2html412 HREF="node12.html#SECTION00321000000000000000"> name</A>
+<LI> <A NAME=tex2html413 HREF="node13.html#SECTION00322000000000000000"> indextype</A>
+<LI> <A NAME=tex2html414 HREF="node14.html#SECTION00323000000000000000"> Symmetries</A>
+<UL> 
+<LI> <A NAME=tex2html415 HREF="node15.html#SECTION00323100000000000000"> Combining Symmetries</A>
+<LI> <A NAME=tex2html416 HREF="node16.html#SECTION00323200000000000000"> Constraints</A>
+</UL> 
+<LI> <A NAME=tex2html417 HREF="node17.html#SECTION00324000000000000000"> implicit value</A>
+<LI> <A NAME=tex2html418 HREF="node18.html#SECTION00325000000000000000"> itype</A>
+<LI> <A NAME=tex2html419 HREF="node19.html#SECTION00326000000000000000"> Other properties</A>
+<LI> <A NAME=tex2html420 HREF="node20.html#SECTION00327000000000000000"> <tt>mkobj()</tt> Examples</A>
+</UL>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

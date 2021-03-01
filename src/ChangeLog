@@ -1,0 +1,2471 @@
+2009-11-19  John Harper  <harper@utsc.utoronto.ca>
+
+	* fixed, I hope, a bug with combined operations, eg p[@a,b,|c]
+	which did not work all this time! Fixes p[a,b,|@c] too
+
+2009-11-17  John Harper  <harper@utsc.utoronto.ca>
+
+	* fixed some problems with lisp functions being used in algebraic
+	mode, like help() and rem(), which need to explicitly return 't or
+	you get a "tell Hearn" message.. Have to look around and see if
+	there are more of these.
+
+2009-11-09  John Harper  <harper@utsc.utoronto.ca>
+
+	* added newriccistyle flag to control how ricci tensor is constructed
+
+2009-07-15  John Harper  <harper@utsc.utoronto.ca>
+
+	* fixed build mechanism to work properly in reduce 3.8, update README
+
+Tue Sep  6 16:29:07 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* replaced fixedindex() with a better version, and added a
+	sloppy!-fixedindex() which allows ops in the index too.
+
+	* replaced mapindex() with a better version that uses
+	replacindex(). 
+
+Thu Sep  1 18:25:34 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* added code for Petrov classification.
+
+Fri Aug 26 21:32:01 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* replaced Newman-Penrose code, now using subobjects, internal and
+	external mappings etc, plus corrections to the equations.
+
+Mon Aug 22 14:31:29 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* fix to invert(), which forgot to set a flag used to determine
+	the delta fn name to attach in the shift prop.
+
+	* added corem prop checked by kill!*() to  find a list of other
+	objects that should be killed with the current one. Useful for
+	externally mapped sets, which should not be partially removed,
+	leaving one hanging.
+
+	* altered unused fourth flag to evaltnsr1() to be a noshowindices
+	flag, ie. if set then dont print indices whatever the value of the
+	switch showindices is.
+
+	* changed generics() to use prin2!* so its output will page.
+
+Sat Aug 20 21:11:48 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* fixed setmetric() to not err out if the object given is the
+	metric inverse, just find the parent and continue. Also added
+	cometric prop on metrics, so that a related group of metrics can
+	be brought on line together.
+
+Fri Aug 19 21:34:33 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* rewrote parts of mapfi and mapfi!-args to allow recursive calls
+	to mapfi(), and no longer use fluid vars to trransport the object
+	name and index between the two.
+
+	* removed tabprint call to create "computing ..." message from
+	newnme(), now all routines must do their own advertising.
+
+Wed Aug 17 14:51:38 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* added fluid to mkrdr(), which, if set, causes mkrdr to err out
+	(unless its a scalar object) with an "index wrong length" error.
+	Set by getnme() to catch this.
+
+Mon Aug 15 15:01:49 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* changed name of remapped!-indices to internal!-mapping, to go
+	with external!-mapping (changed from extmapped!-indices).
+
+	* added code to readtnsr, writetnsr, and fast!-writnsr akin to
+	remapped!-indices, (but using extmapped!-indices) which allows
+	linking of elements of one object to another object.
+
+Sat Aug 13 23:12:22 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* reimplemented conjugate objects using subobjects.
+
+	* removed lteneval var from evaltnsr1() and changed teneval!* to a
+	fluid, now set in evaltnsr1() so other routines can tell if they
+	are called in the scope of evaltnsr1(). No longer need to know if
+	we are at the top level call. Moved calls to
+	fast!-writetnsr!-cleanup to evaltnsr() and cleaner().
+
+Fri Aug 12 20:53:13 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* changed gnames to generic!-names.
+
+	* modified match!-names() so that if the name starts with a !, it
+	is not resolved as a generic name.
+
+	* added info() function which prints complete information about
+	indexed objects, including a visual presentation of the
+	symmetries. Deleted iprop() and all related items.
+
+	* rewrote dir() using prin2!* etc. lots easier, and it will
+	paginate now.
+
+	* added extras to subobj code so that references to self create
+	remapped indices (there was no user interface before). Eg. 
+	subobj (q[a,1]=q[a,2]) causes one of the columns of q to refer to
+	the other (only the canonical elements are actually stored,
+	despite what the subobj command is given.
+
+Thu Aug 11 12:32:18 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* added new code to support "sub-objects": indexed objects whose
+	values are obtained from some other object. These objects are
+	fully indexed, they just lack a tvalue. The target object must
+	exist, and cannot be generic (but a generic object can refer to a
+	subobject). The sub objects are usually of a smaller rank than the
+	target object, and inherit whatever symmetries survive. Lots of
+	minor changes to various bits of code, and some extra stuff to
+	handle generating and maintaining a parallel sub-family of
+	objects. Eg. subobj(w[a]=q[a,1]) makes w[] refer to a row of q.
+
+Mon Aug  8 21:13:00 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* bug in resolvegeneric() made it return the prop on the metric as
+	the target, even if it was no longer indexed (i.e. had been
+	removed). 
+
+	* fix to simprdr(): there is no reason not to return an
+	unevaluated shift (especially of an object with a fixed index).
+	But we need a call to shift() in  simprdr() or pending shifts will
+	never get cleaned up (eg: a:=q[@1,1] now does not err out, but if
+	the shift of q is created, reval a; will cause simprdr to shift
+	anew, and the value will be returned).
+
+Thu Aug  4 12:01:49 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* Installed major upgrade to code: complete replacement of the
+	sym and igen code, and all related code. Change of internal format
+	of symmetry lists. New method of generating indices in igen() (by
+	generating all, then using sym() to eliminate repeats) solves a
+	number of problems: complicated igen() code that noone understands
+	any more, only one piece of code required to deal with symmetries,
+	can now fix in evaltnsr1() regarding assignments to anti-symmetric
+	objects with partial indices, eg q[1,a]==99, which in the past
+	would could cause the 1,0 element to get the value -99 (not what
+	the user expects, due to the fact that the canonical index is
+	0,1). 
+	Other improvements include the removal of tracesym() (since the
+	get!-con!-sym() code can do the job better), removal of mergecmp()
+	from evaltnsr1() and ias(), using fast!-writetnsr() instead.
+
+	* fixed mkmsg to account for the new way csl's explode handles
+	lists: must delete !$eol!$'s from the exploded list.
+
+Wed Jul 27 15:14:31 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* perparing to make  major internal changes to symmetry code:
+	starting by  changing all calls to mktnsr!* and igen to use the
+	user format of the symmetry lists, and wrapping these with calls
+	to ifmtsym() (which will now write the new sym list format).
+
+Fri Jun 24 15:44:03 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* added switch longshift which if one causes shift to name
+	offspring in the form _udud, indicating placement of each index.
+
+Thu Jun 16 20:23:30 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* check to catch shifted objects passed to evaltnsr1(): if the
+	shift does not exist it cannot have values assigned; if it does,
+	it's resolved in the parsing routines and a real name and
+	non-shifted index are passed.
+
+	* Removed beep switch, changed to lisp var beep whose value, when
+	> 0, indicates that the bell is to be rung for commands that take
+	more than this amount of time to complete. The bell is now rung
+	between the completion of the command evaluation, and the
+	beginning of output, so the user can wake up and deal with the
+	pager. 
+
+Fri Jun 10 14:21:47 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	*  Porting to Reduce 3.5: only problem seems to be the odf!* calls
+	that were not evaluated by pre!-eval() before the algebraic
+	simplifier got to them (this was deliberate). But in R3.5 these
+	get put on the alglist!*, and then future occurances are
+	substituted for from there, giving the same values over and over.
+	Adjusted pre!-eval to map the indices in the odf!* call (so each
+	exp is different), now simpodf!*!* does not have to. We still need
+	to keep the indexed objects from turning into values right away,
+	because the form is used to set up the odf object.
+
+Thu Jun  9 15:20:12 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* added cnjrdr() function to handle cnj() applied to
+	indexed object that have not evaluated (either implicit, or
+	pattern index).
+
+Fri May 27 16:30:00 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* gr.red (metricseq): changed metric() so with no args it will
+	create a new object with proper symmetries and the usual sequence
+	name, but empty so the user can fill it with ias(), and then make
+	it into a proper metric by calling metric() again.
+
+Mon Apr 18 14:30:04 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* changed SCREENLINES env var checked by
+	set!-defaults!-from!-env() to just LINES in keeping with standard
+	usage. 
+
+Fri Apr 15 14:38:46 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* added two small routines stime() and etime() which set and print
+	the elapsed time for a block of commands respectively. That is,
+	calls to etime() report the time since the last call to stime(),
+
+Wed Mar 30 13:28:07 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* merror messages have had the (from ...) removed (it is useless
+	to the average user anyway). merror() now takes note of the
+	backtrace switch: if it's on merrer() does an error() to cause the
+	backtrace to appear (which tells you where the error occured). New
+	redten switch allerr causes merror() to do an error throw even for
+	redten warnings.
+
+Tue Mar 29 13:36:21 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* After a long struggle it seems that the CSL compiler currently
+	in use is broken (no kidding.). It won't compile the pop() macro as
+	the second  arg of a function (the first arg is wrecked). It also
+	won't compile a lambda of no args.
+
+Tue Mar 22 13:21:11 1994  John Harper  (harper@manitou.astro.utoronto.ca)
+
+	* shift.red: minor fix to allow shift to check a generic object
+	for offspring (only case is d1 attached to the metric).
+
+	* Hi again, its me. Many changes have been recently made to the
+	code, to repare the broken symetrization code (the previous entry
+	did not fix it). These changes ended up causing lots of other
+	collateral changes, so now we are at version 4.00 test. 
+
+	- symetrization code has been completely replaced. It can handle
+	symz's distributed over multiple objects (when wrapped in a call
+	to symz() by the user), and is no longer limited to at most 4
+	indices. The symz operators have been changed to :[, :{, :], :},
+	and :& (for bach brackets). Doing this allows these ops to
+	be defined as new-tokens, and the parser replaces them with
+	!*lsqb, ... Since this works so well, the other ops (@, |, ||) are
+	done the same way, and parsebar(), parseat() have dissappeared.
+	- various utility functions have been fixed/improved
+	- the indexed-object print functions have been replaced with
+	print!-index() and index!-string().
+	- many other minor changes (with associated bugs waiting to be
+	found) 
+	- all reference to the symlst fourth optional param to the rdr
+	structure is now removed. Any pending symz's are saved as ops in
+	the index.
+
+Tue Jul 20 14:06:55 1993  John Harper  (harper at manitou.astro)
+
+	* rebuilt symmetrization code to handle ops distributed across
+	multiple objects. Because of parsing difficulties this must be
+	done by calling a new routine called symz (simpfn points to
+	symz!*). Real work is done by symz!*!*. Since old sym's in single
+	object are a special case, the old route via symindex() still
+	exists, but symindex() is replaced by code that calls to
+	symz!*!*(). Removed symgen(). So now user can do wonderful things
+	like symz(g[a,b]*g[c,d],[[b,d]])!    v3.55
+
+	* small mod to collecterms() to allow it to handle more general
+	input than expected in the usual call from preprocess(), namely
+	indices containing derivatives.
+
+	* small mod to contract() so it will properly handle index
+	elements involved in a shift (for future use).
+
+Sat Jul 17 17:07:35 1993  John Harper  (harper at manitou.astro)
+
+	* shift() was erring out if it could not resolve a generic object.
+	Made it return unevaled.
+
+Fri Jul 16 10:10:23 1993  John Harper  (harper at manitou.astro)
+
+	* fix to preprocess to allow shifted derivative indices (eg
+	k[a,||@b]) etc. Added flag to call to idiff() to command the
+	creation of a full object, rather than the odf form.
+
+	* fix to parselsqb() to correct for bad parsing of @ forms inside
+	a {} pair by the list-making code of reduce 3.3+.
+
+Wed Jul 14 11:34:56 1993  John Harper  (harper at manitou.astro)
+
+	* rewrote symmap() and symgen() to allow symmetrization code to
+	work through shift operators. There is no reason a shifted index
+	can't be sym'ed before the shift is done. This also means that
+	there are no pending sym ops, and no further need for the symlst
+	part of the rdr form or much other related stuff that can be
+	dumped. I expect that will take a while. v3.51
+
+Thu Apr 22 12:13:40 1993  John Harper  (harper at manitou.astro)
+
+	* replaced re(), im(), cmod() with algebraic procedures, since
+	they are much easier to code.
+
+	* more bugs to fix in mapfi!-args().
+
+	* replaced simprat with a simple algebraic procedure that is not
+	affected by the setting of the factor switch.
+
+Mon Apr  5 17:52:06 1993  John Harper  (harper at manitou.astro)
+
+	* changed currentmetric to have initial value '(), rather than a
+	bunch of nils for each metric position. insert() will pad out as
+	required when setmetric() is called.
+
+Fri Apr  2 13:36:08 1993  John Harper  (harper at manitou.astro)
+
+	* fixed chksym() and chksym1() again. They were using the block
+	size and pointers as if they were integers before even testing
+	that they were. Put those tests at top of chksym().
+
+Wed Mar 31 09:01:31 1993  John Harper  (harper at manitou.astro)
+
+	* fixed simppdf() to eval immediately if the given index is fixed. 
+
+	* minor bug in makedifsym(), was not regarding trace symmetries as
+	having effective block size 1, so the new symmetry was out of
+	order. 
+
+	* several major problems with mapfi() and the argument parsing
+	handled by mapfi!-args(). Latter was not correctly finding indexed
+	objects with indices in the input. Former was not combining the
+	tvalue elements with the subset actually selected correctly.
+
+Fri Mar 19 11:43:17 1993  John Harper  (harper at manitou.astro)
+
+	* routines in np.red now check !*showindices before printing
+	computing xxx messages.
+
+Thu Mar  4 13:41:52 1993  John Harper  (harper at manitou.astro)
+
+	* fixed generics() to produce neater output.
+
+Wed Mar  3 13:28:33 1993  John Harper  (harper at manitou.astro)
+
+	* fixed help() to properly wrap the output line of function names
+	for which help is available.
+
+Thu Feb 18 08:27:39 1993  John Harper  (harper at manitou.astro)
+
+	* fixed dir() so that objects with no coordinates print "none",
+	rather than nil, and the spacing is right.
+
+Wed Feb 17 11:50:38 1993  John Harper  (harper at manitou.astro)
+
+	* modified setcon() and getcon() to be more flexible.
+	currentconnection is now a list of lists which contains the links
+	between each type of index. Requires modifications to frame, spinor
+	and np code. getcon() now takes two args, the indextypes that are
+	being connected.
+
+	* modified mapindextype() to not cause a math error if an
+	indextype is out of range.
+
+Tue Feb 16 19:38:00 1993  John Harper  (harper at manitou.astro)
+
+	* added "absolute" shifts, where user can specify that an index
+	element is to be made covariant or contravariant. Input forms are
+	@- and @+, respectively, internal forms are !*at!- and !*at!+.
+	This is not too useful for the user directly, unless he is too
+	lazy to find out what the index structure of the object is; but it
+	is expected to be useful in the tetrad packages where the
+	connection may be most conveniently defined in a number of ways
+	(with both indices up, or down, or mixed) but the formulae require
+	one specific form. Internally the abs shifts are converted quickly
+	into normal shifts (or nothing) by fixat() called from syma() and
+	preprocess().
+	Numerous other small changes needed to be made, especially to the
+	input routines parseat(), parselsqb() and parselcub(). At 3.5.
+
+Mon Feb  1 12:52:53 1993  John Harper  (harper at manitou.astro)
+
+	* rebuilt generator file redten.gen to do a full build of a fasl
+	file for redten. Needed to add include of lower.red in
+	bcaseup.red. 
+
+	* New code in rename.red to allow automatic renaming of redten
+	functions and vars during compilation, so each has a name
+	prepended with r10!-, thus avoiding most conflicts with other
+	packages. rename.red redefs token() (for the compiling reduce
+	only) and is loaded before the faslout. All redten names are
+	re-defed except those that the user will use directly. This method
+	is easier to do that actually modifying the code. At 3.45.
+
+Sat Jan 30 08:55:16 1993  John Harper  (harper at manitou.astro)
+
+	* removed reserved prop on indexed objects. Purpose was to keep
+	the user from assigning a value to the name, but we can catch that
+	now in the already redefined setk1().
+
+Fri Jan 29 10:49:42 1993  John Harper  (harper at manitou.astro)
+
+	* Some difficulty with redten grabbing certain names for use as
+	generic objects, eg R, C, etc. These are marked reserved, and thus
+	cannot be used in let rules (ie as free variables). If a user
+	loads redten, then loads another package that happens to use one
+	of these names as a free var, it will fail (eg solve is like
+	this). Answer is to load the other package first, then everyone is
+	happy. Perhaps we can live without the reserved flag on the
+	genereics? 
+
+Mon Jan 25 13:36:14 1993  John Harper  (harper at manitou.astro)
+
+	* added seting of !*mode to algebraic in begin!-redten() to ensure
+	that mode is correct. 
+
+Fri Jan 22 11:03:13 1993  John Harper  (harper at manitou.astro)
+
+	* changed begin!-redten() to print version, no longer modifying
+	date!* in initreduce().
+
+	* mkcoords cannot be both fluid and have a function def (although
+	csl does not mind). Changed function mkcoords() to mkcoords!*!*().
+
+	* xread1 in local33.red was based on the 3.4 verion, which does
+	not work in 3.3.
+
+Wed Jan 20 08:35:53 1993  John Harper  (harper at manitou.astro)
+
+	* At least one Reduce version does not seem to know about
+	UNGLOBAL, so the two lines that use it must be removed in this
+	case. No real problem.
+
+Tue Sep 22 19:04:32 1992  John Harper  (harper at manitou.astro)
+
+	* repeat fix to readtnsr() about reading odf values with undef
+	flag on. If a nil is to be returned, do it immediately since no
+	other processing can be done, this avoids bugs like simping nil or
+	trying to conjugate it.
+
+	* some code in setcon() was rather screwed up, we need to look
+	carefully at what can be a connection and what order its indices
+	must be in.
+
+Tue Sep 15 11:41:31 1992  John Harper  (harper at manitou.astro)
+
+	* if xeval is on and we are reading odf values with undef flag on,
+	then simp is applied to 'nil -> no good. check flag before simping.
+
+Tue Sep  1 13:16:16 1992  John Harper  (harper at manitou.astro)
+
+	* changed kill() to not exit when a generic object is found, up to
+	the user to not blow these up.
+
+Fri Aug 14 11:56:56 1992  John Harper  (harper at manitou.astro)
+
+	* fremetric() now uses a sequence number to create the metric
+	name, and the frame metric is now generic under the name eta.
+
+Wed Jul 29 10:33:50 1992  John Harper  (harper at manitou.astro)
+
+	* changed savei() and savec() to use pattern matching code. Can no
+	longer save other things too since match code discards
+	non-matches. Fix this?
+
+	* fixed bug in match!-con!-sym(): incoming syms will include trace
+	syms that have already been handled by tracesym(). Must avoid
+	doing anything with these or an internal error results.
+
+Mon Jul 27 10:55:30 1992  John Harper  (harper at manitou.astro)
+
+	* added new routines delete!-environment() and
+	rename!-environment() to do the obvious. Also changed
+	save!_environment()  to not save a value for a name flagged 'keep,
+	since it could be a big storage penalty, and will not be used
+	anyway. 
+
+Thu Jul 23 11:54:42 1992  John Harper  (harper at manitou.astro)
+
+	* modifed help() to use the match!-names() routine.
+
+Tue Jul 14 11:34:13 1992  John Harper  (harper at manitou.astro)
+
+	* fixed symmetry determination in div(), new routine roll!-sym()
+	to move sym pointers to the left or right n places.
+
+	* makedifsym() was not placing new syms in the proper location:
+	after all size 1 indep syms, but before any size 2 syms.
+
+Fri Jul 10 09:58:50 1992  John Harper  (harper at manitou.astro)
+
+	* new code to replace get!-con!-sym(), more extensive and can
+	handle contractions over more than to objects. Still needs some
+	work. 
+
+	* removed !*use!-get!-con!-sym as a switch, left as a global that can be
+	changed if need be. Added var conprod!-warning!-limit!* to
+	indicate at what level conprod will be verbose about contractions. 
+
+	* upgraded eval1() to exit as soon as a 0 is found in the product,
+	instead of just letting eval2() go all the way down it first.
+
+Mon Jul  6 09:54:24 1992  John Harper  (harper at manitou.astro)
+
+	* modified internals of how expressions are evaluated. Removed all
+	refs to evalc (simpevalc) and introduced new function pre!-eval()
+	that passes over an exp and substitutes object values directly.
+	Routine will detect 0's in products and reduce these, also avoids
+	need for unsave to clear the alglist!*.
+
+Thu Jul  2 13:04:23 1992  John Harper  (harper at manitou.astro)
+
+	* added code to mkobj so that a repeated input will override the
+	mkobjsafe switch.
+
+	* mod to conprod() to be verbose when a very large contraction is
+	encountered.
+
+Tue Jun 30 10:27:13 1992  John Harper  (harper at manitou.astro)
+
+	* added routine simpfindex as the simpfn prop of 'findex to catch
+	users who end up with indexs lacking a name.
+
+	* last change to eval1() lost the code that checks for zero
+	values inside a contraction product.  Hence contractions where
+	being constructed consisting of the entire set of possible values.
+	Eliminating zeroes makes a great difference in run times.
+
+	* fixed pager to not page when output is going to a file.
+
+	* redten no longer changes the case of index elements. If the user
+	wants spinor indices in upper case, then use upper case elements.
+	Too confusing otherwise.
+
+Mon Jun 29 11:56:27 1992  John Harper  (harper at manitou.astro)
+
+	* reworked rem() to use patterns, new user routine remi (formfn
+	which calls to rem()) is for interactive removing, default is
+	non-interactive regardless of args. Also reworked dir().
+
+	* moved det to idet to allow usual reduce fn to stay in place. 
+
+	* new code for simple pattern matching using !* for any # of chars
+	and ? for a single char. For use in dir() and rem(). Needed small
+	adjustment to resolvegeneric() to handle the !*.
+
+Thu Jun 25 19:53:17 1992  John Harper  (harper at manitou.astro)
+
+	* changed newsym() to new!-symmetry() to avoid name conflict with
+	code in scope, similarly changed inames to indexed!-names.
+
+Wed Jun 24 10:55:26 1992  John Harper  (harper at manitou.astro) 
+
+	* geodesic() now checks to see if the affine param has an avalue
+	and errs out if it does.
+
+	* shift() now checks if its input is generic and errs out if it
+	is. 
+
+	* added code in savei2() to write out remflag() line to save files
+	to removed 'reserved prop if object already exists. reorganized to
+	write prop list after value, so flag can be reset if required.
+
+	* ndiff() and simpodf!*() write-protect the parent of an odf op
+	and puts a message on it, that both evaltnsr1() and writetnsr()
+	will print to warn the user to update the odf's if the parent is 
+	changed. protect() removes the message.
+
+Tue Jun 23 11:25:35 1992  John Harper  (harper at manitou.astro)
+
+	* modifed dfrdr() and dfrdrmerge() to handle indets that are
+	indexed objects. Thus df(s,x[a]) is now possible. This makes pdf()
+	somewhat useless, except that pdf() will not expand its args,
+	while df will expand over its arg immediately.
+
+Fri Jun 19 09:54:01 1992  John Harper  (harper at manitou.astro)
+
+	* some functions that require an already indexed object to work on
+	would happily go and try to work on a generic object, even to the
+	point of changing coords etc (to nil as it happens). These
+	functions now return unevaled.
+
+	* discovered that reduce 3.4 has a pretty printer for df forms,
+	but that it is off by default. Redten turns it on now. printdif()
+	modified to call that routine (dfprintfn()) if reduce!-version is
+	34, and printdif() is still installed as the prifn for df. New
+	routine prindf!-fancy() prints df's as quotient looking things
+	with d ops etc, switch fancydf controls. For df's having an
+	indexed object on the bottom, this route is always taken. Have
+	also found that the prifn props are adequate to print 'rdr forms,
+	so the redef of inprint() is no longer needed.
+
+Thu Jun 18 11:45:49 1992  John Harper  (harper at manitou.astro)
+
+	* added code to support the notion that an indexed object as an
+	indet in a df should have its indextypes inverted. New op 'mrdr is
+	used as a flag to indicate this, put there by the odf!* code and
+	dfrdr(). Numerous small changes to code to catch mrdr along with
+	rdr. 
+
+	* coords() now calls mkcoords() to define a coordiate vector (name
+	is the value of mkcoords, default x).
+
+	* modifed free1() to accept a list of things to check for, using
+	memq since we always look for atomic objects.
+
+Tue Jun 16 13:23:43 1992  John Harper  (harper at manitou.astro)
+
+	* added peek switch and code in mapfi() and evaltnsr1(). If on,
+	causes the object index to be displayed (in a non-overwrite mode)
+	and a statement as to whether the comp. is zero or non-zero.
+
+	* added beep switch to code in begin1() to cause a terminal bell
+	when a new prompt is written. Useful if a long calculation is
+	being waited on.
+
+Mon Jun 15 14:16:20 1992  John Harper  (harper at manitou.astro)
+
+	* wrote function coords() to accept user input coords list and set
+	fluid var coords!* which replaces the old coords. coords() also
+	calls defindextype to reset the indices so they match, using the
+	optional second arg to coords() as the lower bound, or 0.
+
+	* Impossible to redefine setpchar() and terpri() in csl since they
+	are C-coded functions. So we have to redef begin1() and terpri!*()
+	to get the same effects. Seems to work.
+
+Fri Jun 12 14:19:52 1992  John Harper  (harper at manitou.astro)
+
+	* modified tabthenprint() to take a single string, in some cases
+	composed by using mkmsg().
+
+Thu Jun 11 10:46:05 1992  John Harper  (harper at manitou.astro)
+
+	* fixed code in igen.red to use errorset() and error() instead of
+	catch and throw, since csl does not want to compile the latter.
+	Should be less system dependent now too.
+
+Wed Jun 10 11:35:56 1992  John Harper  (harper at manitou.astro)
+
+	* modified eval1() and eval2() to better do the job of decending
+	into a value. eval2() is now recursive and passes the op of the
+	current value to its next level call, so it can avoid evaling
+	objects in odf!*'s. eval1() is now just a starting point.
+
+	* made killed!* a fluid var.
+
+	* changed all 4 fexpr's to use macros instead, as csl does not
+	really support fexprs and Fitch indicates that Reduce is moving
+	away from these. Hardly any effort to fix anyway.
+
+Tue Jun  9 10:28:25 1992  John Harper  (harper at manitou.astro)
+
+	* Had to change 'type prop to 'itype to avoid conflict with reduce
+	flag used in parsing. In most lisps there is no problem, but in
+	csl flags are implemented as regular props with value 't. Caused
+	failure of parsing.
+
+	* changed special names that used !# to used _ since this is a
+	normal char in reduce 3.4. 
+
+	* rewrote merror() yet again to use input from mkmsg(). merror no
+	longer takes the from argument (write in input string) and is now
+	just 3 lines long.
+
+Sat Jun  6 22:00:22 1992  John Harper  (harper at manitou.astro)
+
+	* looking at csl base system. It does not have bldmsg() so we have
+	to write our own called mkmsg. Takes a list of args, first is a
+	string with % to indicate places to insert remaining args, no type
+	qualifiers like bldmsg had, eg %W is just %.
+
+Mon Jun  1 12:13:32 1992  John Harper  (harper at manitou.astro)
+
+	* modifed printrdr() to print deriv objects with deriv ops
+	indicated in the index, modified cov() and find!-odf!-name() to
+	place parent object as printname on deriv object. 
+
+	* added second arg to eval2() to pass op name, so eval2() can
+	avoid evaling objects that are in an odf*. simpodf**() wants the
+	evalc form, not a read out value if the index is fixed.
+
+Sun May 31 19:37:38 1992  John Harper  (harper at manitou.astro)
+
+	* moved mktnsr() to mktnsr**() and interposed new routine that can
+	accept a list in place of an object name, then loop over these to
+	make a number of objects with the same structure. Prob is that an
+	error will cause an abort of the whole process.
+
+Fri May 29 11:23:03 1992  John Harper  (harper at manitou.astro)
+
+	* fixed dir() to not clear nodir flag when arg is all. Also made
+	dir print ? after number of components if the object has undefined
+	components, and changed dir heading from "elemets" to "comp".
+
+	* bug in mkconj(), it would exit if any index was not a spinor or
+	a dyad, instead of exiting if none were.
+
+	* Completely rewrote ordinary diff code in dif.red, stripped out
+	most of idiff, ndiff, ndiff1, and splitdiff. Code now creates
+	derivative objects that are filled on the fly during a
+	computation, objects are created with undefined components. Much
+	simpler to implement, and now no longer any need for dpct!* and
+	all that crap. Many routines modifed slightly, new routine odf()
+	to fully compute derivative object. At v 3.3.
+
+	* altered cov!*() to: return df for cov of scalar objects; and
+	changed the data structure to that of the ODF code soon to be in
+	place. Changed metric functions to place cov prop correctly.
+
+	* fixed cleaner() so it examines program!* a little more
+	carefully, also returns status about whether this call was top
+	level. 
+
+Thu May 28 10:01:17 1992  John Harper  (harper at manitou.astro)
+
+	* remprop() in psl 3.2a is broken, it will fail to remove a prop
+	whose value is nil, ie put ('p,'type,'nil); remprop('p,'type);
+	will leave 'type on the prop list.
+
+	* improved checktype() to accept a list of types to check. Helps
+	avoid large if tests consisting of checktype() or checktype() or
+	... .
+
+	* unified return val from getnme so that the name is always in a
+	list. 
+
+Wed May 27 10:16:38 1992  John Harper  (harper at manitou.astro)
+
+	* modified shift**() to examine the altmetric prop of the parent
+	and compare it to the currentmetric. The combination of the two is
+	placed on the parent and its family as the new altmetric prop to
+	be used when change-tnsr-environment() changes things to the
+	parents metric. Before, if the object had been made before a
+	metric was setup, then there was nothing to contract with and
+	shift would err out. Also fixed mkshft() to look just at the
+	currentmetric since that is the altmetric of the parent.
+
+	* changed icopy() to use uniqkern (like it probably did before)
+	since the tvalue must be kernalized or using the copied object is
+	likely to result in catastrophic errors. Other uses of copystruct
+	are similarly changed, for the same reason.
+
+	* moved code to construct tensor metric from frame metric and
+	connection to new function tenmetric!*() in frme.red. Function
+	also properly updates the altmetric prop of the connection, which
+	was made before there was a tensor metric. Also minr fix to
+	gamma() which was putting the printname on the object before
+	mktnsr made, so things got lost.
+
+	* bug in change!-tnsr!-environment() caused failure if there was
+	no tensor metric. The code looked screwed up anyway.
+
+	* copyfam**() did not handle conjugates quite correctly because they
+	are stored on the prop list in a slightly different format.
+
+	* rewrote kill() to use getfam(). Kill() now just loops over the
+	family calling kill!*(), a routine that is no longer recursive.
+	The recursiveness of kill() caused a lot of problems before. Some
+	places in the code must be changed to call kill!*() so as to not
+	go wild deleting things. eg cleartmp().
+
+	* rewrote getfam() to look into the inames list for family
+	members. A family member is defined has another object with the
+	same root name followed by a #. Thus g1!#R is in the family of g1,
+	but g11 is not.
+
+Tue May 26 12:30:17 1992  John Harper  (harper at manitou.astro)
+
+	* deleted all use of makestring() and replaced with bldmsg().
+
+Mon May 25 10:58:33 1992  John Harper  (harper at manitou.astro)
+
+	* added routines iclear() and iclear!*() which allow the user to
+	clear an objects tvalue and multiplier without messing up anything
+	else. 
+
+	* added routines for fast writes to indexed objects:
+	fast!-writetnsr(), fast!-writetnsr!-cleanup() and fast!-writetnsr!-cleanup!*().
+	fast!-writetnsr() does not use fndcmp() or insert(), it just
+	cons's the value onto the front of the tvalue. This will leave the
+	object with a messy tvalue, so fast!-writetnsr!-cleanup!*() can be
+	used to fix it. fast!-writentsr() also flags the object 'fast and
+	writes its name into fast!-writetnsr!-cleanup!-names which is a
+	list used by fast!-writetnsr!-cleanup() to find those objects in
+	need of cleaning.   
+
+	* added support for undefined data stored in an indexed object,
+	format is an index with no assoc value, which is different from 0
+	if it is stored. User cannot store this. Minor mods to readtnsr
+	and dispf1 to return <undefined> if access is made.
+
+Fri May 22 11:26:55 1992  John Harper  (harper at manitou.astro)
+
+	* bug in writetnsr(). A 0 value input looks like 'nil . 1 and if
+	the component already exists it is to be removed unless the object
+	is implicit. But the test was looking for just nil, so the 'nil .
+	1 was being installed as a value. Could have been around for a
+	while. 
+
+Wed May 20 12:20:16 1992  John Harper  (harper at manitou.astro)
+
+	* modifed getnme() to check used!* flag on atomic inputs. The
+	reval used in getnme() will put the flag on, but we need to know
+	if it was there originally for the mkobjsafe code in mkobj(). 
+
+Tue May 19 10:58:45 1992  John Harper  (harper at manitou.astro)
+
+	* added routine getfam() to return list of family members of its
+	arg. 
+
+Fri May 15 20:10:53 1992  John Harper  (harper at manitou.astro)
+
+	* added switch mkobjsafe that, when on (as it is by default) will
+	cause mkobj to fail if the name has either an avalue or
+	dependencies. No easy way to tell if the name is being used for
+	just a constant etc in an expression, since the used!* flag seems
+	too restrictive.
+
+Wed May 13 21:17:09 1992  John Harper  (harper at manitou.astro)
+
+	* rebuilt mapfi*() and the parsing of its arguments. New function
+	mapfi!-args() handles this, and will locate an indexed object at
+	any level buried in function calls. Also changed application of
+	simp to cover all requested indices, not just those for which
+	explicit values exist, so silly things like mapfi(cos(g)) will
+	leave 1 where g is 0.
+
+Tue May 12 10:24:18 1992  John Harper  (harper at manitou.astro)
+
+	* fixed killing() to put the proper description on the killing
+	tensor (equations) and the killing vector. Called mktnsr() to make
+	the output object and give it proper type and desrciption.
+
+Wed May  6 12:25:56 1992  John Harper  (harper at manitou.astro)
+
+	* more fixes to simprdr to allow things like R[@1,2,1,2,||0] to
+	evaluate properly.
+
+Mon May  4 13:46:53 1992  John Harper  (harper at manitou.astro)
+
+	* unified argument passing to functions via upgraded getnme()
+	routine. It now has two flags to tell if a name is required or if
+	it must be indexed. It calls reval() on the args etc and returns
+	the name, index and symlst if they are there. Eval!-indexed!-fns()
+	is removed, since its need described Sept 12 is incorrect, someone
+	forgot to car the args to a simpfn function before reval'ing
+	them... All functions expecting user input in the form of a name
+	or an indexed object now use getnme(). Some functions like shift()
+	and mapfi() are in need of a major rewrite. At v3.20.
+
+Fri May  1 11:10:41 1992  John Harper  (harper at manitou.astro)
+
+	* fixed shift(). If the user typed a shift applied to an offspring
+	object the symmetries applied to the shifted index were not
+	properly done, i.e. not all the symmetries are available. So we
+	regen the shift relative to the parent and reapply the sym to the
+	index to make sure things come out right. 
+
+	* fixed delta(). The relation among the deltas was not such that
+	each could refer to the other, nor were symmetries correctly set
+	up. Have made the upper delta the parent (even though the name is
+	wrong for that, eg d1!#c, can this cause probs??) because it has
+	the symmetries. Other objects now have the parent property and can
+	refer back to it.
+
+	* made mktnsr() put altmetric and altconnection props on objects
+	it makes. Some things are hand-made and will not have these props
+	that are now set by the gr functions.
+
+Wed Apr 29 09:54:01 1992  John Harper  (harper at manitou.astro)
+
+	* added call to eval!-indexed!-fns() to iprp!*() and slight
+	reoganization of its code.
+
+Fri Apr 24 12:31:08 1992  John Harper  (harper at manitou.astro)
+
+	* added possible arg 'all' to dir() to show those names that are
+	flagged 'nodir. all is reserved anyway.
+
+Wed Apr 22 10:04:50 1992  John Harper  (harper at manitou.astro)
+
+	* fixed chksym() to catch overlapping indep symmetries. Things
+	like '((1 1 2)(1 2 3)) were being let through.
+
+	* moved call to dispf2 in mkrdr() lower down and called shift on
+	its args so user can type h[@a,@b,?] and get the correct display.
+	dispf2 now takes 'rdr form as arg.
+
+	* metric applied to an implicit object would consider it to be
+	diagonal, fixed the test. Must also check if implicit object is
+	declared diagonal.
+
+	* metric put the wrong printname on metric inverses made from
+	submitted indexed objects, made it use the printname on the
+	metric. 
+
+Tue Apr 21 13:52:04 1992  John Harper  (harper at manitou.astro)
+
+	* added new routine inject!-obj() called from mktnsr() which
+	allows the user to name other indexed objects as part of the
+	symmetries or indextype. For example, mkobj('q,'R,'R) makes an
+	object with the same structure as R, while mkobj('w,'(R -1)) adds
+	an extra index to w. Required adjustment to ifmtsym() to pass
+	through symmetries that are already in internal format.
+
+	* must clear killed!* in mktnsr*() after attempt to kill object,
+	otherwise remaking the same object a few times eventually fails
+	since kill() will see the name left on killed!* and avoid it.
+
+	* evaltnsr() must clear paginate!* flag otherwise the pager code
+	thinks it can paginate the rolling indices after the display of
+	the input expression. Showing that expression sets paginate!*, and
+	it is not cleared by a setpchar().
+
+Tue Apr 14 09:23:34 1992  John Harper  (harper at manitou.astro)
+
+	* makegeneric() now write protects its creations, so the user
+	cannot write elements to the generic name. It does no real harm to
+	allow that, but could be surprising when things seem to disappear
+	when a generic ref can be made.
+
+Mon Apr  6 13:45:29 1992  John Harper  (harper at manitou.astro)
+
+	* fixed workings of pager routine. In 3.4 pline!* can be nil
+	during algebraic output. Instead we now check if pline!* is
+	non-nil, then set paginate!* to be 't. It is cleared in setpchar()
+	when the next prompt is created. Also redid reading code, so that
+	used must type something beside a newline to continue. This is the
+	safest way to ensure that stray newlines don't get in.
+
+Tue Mar 24 12:17:28 1992  John Harper  (harper at manitou.astro)
+
+	* reorganized code in local.red so that redten can also be loaded
+	into a running reduce, as well as dumped. New routine
+	begin!-reduce() does most of what was in initreduce() before. New
+	file redten.red to be compiled and loaded, loads all the rest of
+	the system. Need now to set up autoloads.
+
+Wed Mar 18 12:09:50 1992  John Harper  (harper at manitou.astro)
+
+	* added call to mktnsr!*() in shift*(). Seems we were letting it
+	happen automatically in evaltnsr1().
+
+	* rewrote change!-tnsr!-environment() and restore..() to handle
+	nested calls, using flag change!-tnsr!-flag!*. Added calls to
+	shift(). 
+
+Tue Mar 17 10:36:31 1992  John Harper  (harper at manitou.astro)
+
+	* modified makestring to use delete() to remove "'s. Had to fix
+	set!-defaults...() along similar lines to convert string env var
+	to an integer.
+
+Sun Mar 15 18:51:11 1992  John Harper  (harper at manitou.astro)
+
+	* fixed kill() to also remove the divergence object.
+					 
+	* Redefined terpri() primitive to implement a rudimentary pager
+	for Reduce output. After screenlines!* lines a pause is made in
+	the output stream. Typing a newline continues, a 'q' aborts and a
+	'c' continues without further pause. The pauses are made only on
+	output of expressions (pline!* non-nil). screenlines!* can be set
+	from the user's shell environment var SCREENLINES. New switch
+	paging controls action, default on. v3.19 
+
+Fri Mar 13 09:58:37 1992  John Harper  (harper at manitou.astro)
+
+	* small fixes to killing() to account for changes to div().
+
+	* if div() finds that the divergence is zero, it puts 0 rather
+	than a name on the object. Einstein() functions put 0 div prop on
+	the objects they create.
+
+Fri Mar  6 10:04:07 1992  John Harper  (harper at manitou.astro)
+
+	* Replaced div() with a routine that works for any input object,
+	not just a vector. Inputs are the object name, and an optional
+	output name. Default new name is <input>!#D.
+
+	* Changed cov() to be opfn. This call cov() which now returns an
+	atom, not a pair (required mods in a couple of other routines).
+	cov() now looks at an index attached to the object to see if a
+	shift is indicated. If so, the CD is computed and then the shift
+	is made. It already did this if the name of a shifted object was
+	given. Previous behaviour would have been to shift the object (via
+	call to shift in getnme()) then compute the CD and shift. The
+	first shift is unneeded. Made mods to preprocess() to detect a shift
+	and cov deriv (1 only) in an index and then call cov() directly,
+	rather than again shifting, then calling cov().
+
+	* rewrote copyfam() to use a fluid var containing the name to
+	change and its replacement. Wrote recursive routine copyfam**()
+	and new routine build-new-name(). Deleted
+	build-new-name-and-copy(). 
+
+Thu Mar  5 09:07:12 1992  John Harper  (harper at manitou.astro)
+
+	* added switch reversedir so that dir() will print out names
+	backward, most recently created at end, and thus not scrolled off
+	the top of the screen. Default is on.
+
+Sat Feb 29 16:50:17 1992  John Harper  (harper at manitou.astro)
+
+	* fix to simprdr(). If the index is fixed and has deriv ops and
+	these are !#dbr then return unevaled, was returning 0. If a single
+	index follows the || and the cov exists, then read the value.
+
+	* changed symi to attempt syms on objects with derivs (?). Modified
+	cnvrtindex() to pass !#br and !#dbr as is (since they are never
+	looked at arithmetically in sym()). Fixed makedifsym() to not
+	screw-up on !#dbr derivs. All this so syms are properly done on
+	objects with an index having ||, eg G[a,@b,||c] was not syming the
+	index at all.
+
+	* in mkrdr() where an offer to create the object is made, delete
+	all props placed by parselsqb() right away, since some bad user
+	input can leave the object with partial props but no way to delete
+	(short of going to lisp level).
+
+	* made mktnsr*() check the indextype for non atoms or whether it
+	is itself an atom and not nil. If the user botches the input to
+	the mkrdr() offer to create the object (by missing a quote, eg)
+	then mktnsr*() can be handed garbage. Also made mktnsr*() put an
+	indexed prop on the object early, so if it aborts, kill() will be
+	happy to delete the indexed object.
+
+Fri Feb 28 12:00:23 1992  John Harper  (harper at manitou.astro)
+
+	* added routine npnames(). If arg is t, it sets the newnames for
+	alpha, beta, ... the 12 spin coeffs. If arg is nil, these are
+	removed. Unless the user is using the np package, these names are
+	better left alone.
+
+	* fix to mapfi: must call resolvegeneric before testing if the
+	thing is indexed because g!#inv is generic but not indexed.
+
+	* longstanding massive bug: offset!* used in cnvrtindex was set to
+	1000000000 (1 billion), which when used in some ways causes an
+	immediate illegal instruction and core dump. Even LISP
+	34-1000000000; will crash. Changed offset!* to 100000000 (100
+	Million) and it seems ok. This bug infects the old psl version
+	3.2a, it does not seem to be in the newer versions of psl. How the
+	hell this ever escaped notice I don't know.
+
+Thu Feb 27 12:20:00 1992  John Harper  (harper at manitou.astro)
+
+	* in mkrdr(), ias*(), rem1() set fluid !*promptenv (the switch) to
+	nil locally so the prompt does not include the env name.
+
+	* in save.red added current!-env to hold the name of the last
+	restored env, and env!-grown!-flag!* to indicate if the current
+	env is a superset of a named env because of the user using := etc.
+	Redefined setpchar and added switch promptenv which when on causes
+	the prompt to include the env name, flagged with a '+' if the
+	environment has been expanded (env!-grown!-flag!* non-nil).
+
+	* some fixes to copyfam().
+
+Tue Feb 25 12:18:37 1992  John Harper  (harper at manitou.astro)
+
+	* Also had to fix dfrdr() to handle the df(R[1,2,1,2],t) case.
+
+	* In makegeneric() hid the fluid coords in the local vars so it is
+	nil. Then all generics are created without coords (see fix for feb
+	17 below) and also have no depends. But this means that
+	R[1,2,1,2,|1] input before any objects have been made will eval to
+	0. So cnvrtdif() is modifed to return an unevaled form if the
+	generic is not resolved.
+
+Mon Feb 24 09:38:30 1992  John Harper  (harper at manitou.astro)
+
+	* rewrote pbol() a bit. First ^M printed is removed. This makes
+	the output look better and puts all the control-chars together in
+	the source. 
+
+Fri Feb 21 09:02:34 1992  John Harper  (harper at manitou.astro)
+
+	* added routine base!-case!-name() that maps a name into the base
+	lisp case. Used in mktnsr to map the type param so it will match
+	the hard-coded type in eg setcon(). This may be needed in other
+	places too.
+
+	* rewrote appendn() and moved it to igen.red, the only file where
+	it is used.
+
+Thu Feb 20 09:04:58 1992  John Harper  (harper at manitou.astro)
+
+	* added call to set!-defaults!-from!-environment() in initreduce()
+	to set various default values from environment variables.
+	Currently UPCURSOR and COORDS are checked.
+
+	* Port to Reduce 3.4 complete. Everything seems to work. At
+	version 3.15.
+
+Mon Feb 17 07:39:08 1992  John Harper  (harper at manitou.astro)
+
+	* The code for prin2!*() (a reduce function) was altered in 3.4 to
+	make the output re-readable, which also has the effect of making
+	all lower-case names print like !r!i!c etc. I was under the
+	impression that prin1!*() was for this sort of thing, so the code
+	has been changed back.
+
+	* The format of the alglist!* simplification storage list has
+	changed; it has another level of lists. This breaks unsave() as it
+	stands. Have added global var reduce!-version to each local file
+	where it is set to 32, 33, or 34 depending on version, then code
+	in unsave() can tell what to do. 
+
+	* metric() now does not err all the way out on bad line-elements.
+
+	* for complicated input, mapfi() was forgetting to call
+	resolvegeneric() so things like mapfi(sub(f=1-2*m/r,ric)) were
+	failing. (ric is a generic name).
+
+	* makegeneric() removes the default coords from the object. The
+	generics should not need coords. (Could have problems).
+
+	* Had to redo the code in metric() where the line-element is
+	disected. Complicated by the fact that simpsub() is now subeval()
+	and does not return quite the same form of result (sq instead of
+	!*sq). Rewrote using prefix form and reval(), easier to do
+	arithmetic anyway, but may be slower.
+
+Fri Feb 14 10:15:12 1992  John Harper  (harper at manitou.astro)
+
+	* in 3.4 the xread1() function has been changed to get snarky
+	about delimiters. Requires a minor mod and addition to the
+	local34.red file. The same change was made in 3.3, except some
+	parens were missing, so the code was wrong. Added mod version to
+	local33.red too.
+
+Wed Feb 12 11:27:26 1992  John Harper  (harper at manitou.astro)
+
+	* Reduce 3.4 changed some of its global vars to fluids (eg !*nat,
+	etc). In order to accomodate all decls of fluids and globals have
+	been placed in a separate file decl33.red or decl34.red and linked
+	to decl.red. This is 'in'ed at the start of each source file. Only
+	very locally used fluids are declared in the sources now.
+
+Mon Feb 10 11:16:03 1992  John Harper  (harper at manitou.astro)
+
+	* Attempting to load into Reduce 3.4. This has a better parser
+	that catches some errors previous versions passed, especially
+	extra semicolons in if statements. There are a number of these in
+	the code:
+	algebra.red at lines 237, 240
+	dif.red at lines 479, 501, 504
+	io.red at line 142
+	matrix.red at line 178
+        local??.red in the added code in inprint
+        also, remprop was called with 1 arg instead of 2 in indexed.red,
+	changed this to use mysetprop(); both riccisc() and frriccisc()
+	were being called with 2 args instead of 1.
+
+Fri Jan 24 10:25:04 1992  John Harper  (harper at manitou.astro)
+
+	* cleartmp() clears the killed!* variable since now kill() checks
+	this var before killing things. It was being left with tmpnames in
+	it, which were then not being deleted.
+
+Thu Dec 12 13:15:27 1991  John Harper  (harper at manitou.astro)
+
+	* Now shift() put its outputs under the shift property rather than
+	under !*at!*.
+
+	* cov() puts its results under the cov property now rather than
+	under !#dbr. Should change !*at!* too.
+
+Wed Dec 11 17:28:25 1991  John Harper  (harper at manitou.astro)
+
+	* fixed mkconj() to avoid making conjugate objects for scalars.
+
+	* modifed kill() to kill metric families by looking at the values
+	for keys on the metric prop list flagged as 'indexedfn. All
+	functions store their outputs under their own name on the metric.
+	(cov() should be made to do that too).
+
+	* adjusted copyfam to copy metric families and also the families
+	created by shift(). Required new function build-new-name-and-copy(). 
+
+Tue Dec 10 09:34:09 1991  John Harper  (harper at manitou.astro)
+
+	* bug fixes to getnme(). Some routines use reval on the args, so
+	that nil -> 0. Also need to check that arg is not an atom before
+	car'ing it.
+
+Mon Dec  9 12:34:31 1991  John Harper  (harper at manitou.astro)
+
+	* new function copyfam!*() that copies an entire metric family
+	(the metric and all its derived objects).
+
+	* changed icopy!*() to use copystruct() and to not change the
+	printname of the output object.
+
+Thu Oct 10 09:54:28 1991  John Harper  (harper at manitou.astro)
+
+	* redefined merror() to use lpriw().
+
+Tue Oct  8 08:16:01 1991  John Harper  (harper at manitou.astro)
+
+	* save code was bitten by the SETPROP() prob in 3.3 psl noted Jul
+	3/91. Have written a mysetprop() routine which seems to work ok.
+
+Thu Oct  3 17:11:39 1991  John Harper  (harper at manitou.astro)
+
+	* added code to save.red to handle writing save files in the base
+	case of the system. New source file basecase.red is linked by the
+	setup script and defines the symbol base!-case.
+
+	* added swapenv() to easily swap between a pair of environments.
+	added 'keep flag for vars and ops that are not to be reset by
+	restore!-environment(). 
+
+Tue Oct  1 12:34:49 1991  John Harper  (harper at manitou.astro)
+
+	* have added (a while ago actually) some Newmann-Penrose code to
+	compute the usual NP components of the Ricci and Weyl tensors. Now
+	if I could just get the Petrov class working...
+
+	* changed saveobj() to use copystruct().
+
+	* added new code to save the reduce environment on a name. This
+	includes all lets, new operators and assignments. One can then set
+	up an environment, use it, then change to another. This code and
+	the savei() code from utility2.red has been moved into a new file
+	save.red. These concepts (saveing environments and saving to disk)
+	have been merged, and use the same list of things to save,
+	!*reduce!-environment. The operator command and setk have been
+	modified to add things to this list.
+
+Mon Sep 30 11:15:42 1991  John Harper  (harper at manitou.astro)
+
+	* moved array indices to indextype 0. Made changes to difcon1(),
+	in np.red to match, dyad indices move down to 5 and 6 now.
+
+Fri Sep 27 12:12:58 1991  John Harper  (harper at manitou.astro)
+
+	* added a 5'th field to defindextype!*, which is a function to use
+	to compute the affine connections (christoffel symbols) for use in
+	cov!*(). 
+
+Thu Sep 26 14:04:35 1991  John Harper  (harper at manitou.astro)
+
+	* added dyad indices, types 6, 7, which act the same as spinor
+	indices (hence the conjugateindextype!* var just defined). The
+	only difference is in covariant diffs, but we have not yet set up
+	a proper way of indicating how that is applied.
+
+	* added var conjugateindextypes!* that is an assoc list of the
+	mapping of indices when conjugation is applied. Used by mkconj()
+	to determine the new index structure.
+
+	* added function getindextype() for easier access to the
+	defindextype list. added var initlendefindextype!* to record the
+	length of this list initially, for use in defindextype() for
+	decided which types can and cannot be modified.
+
+Tue Sep 17 08:02:47 1991  John Harper  (harper at manitou.astro)
+
+	* fixed dir() to not get messed up with tempnames that start with
+	!#. 
+
+	* made mclear() use cleartmp(). 
+
+Thu Sep 12 10:23:08 1991  John Harper  (harper at manitou.astro)
+
+	* made new function eval!-indexed!-fns() to be applied to args so
+	that function calls in the args are evaluated. This allows nesting
+	of functions, eg mapfi(ricci()) now works. REVAL() does not work,
+	as it looks at the simpfn prop on a simple named object and tries
+	to eval, resulting in a dispf1 display...
+	THIS IS BS!!! SEE MAY 4/92..
+
+	* added tabprint(), tabthenprint(), and untabprint() routines to tab
+	the computing... and ...finished messages.
+
+Tue Sep 10 13:04:05 1991  John Harper  (harper at manitou.astro)
+
+	* changed some calls to simp!*() in algebra.red to simp aeval
+	calls, maybe these will work better.
+
+Mon Sep  9 19:48:10 1991  John Harper  (harper at manitou.astro)
+
+	* one source of bugs is in cnjd, where it was assumed that the
+	mnvar was an atom or a function call, but if the factor flag was
+	on it can also be another form. One can see that error by doing
+	on factor; z:=(a+I*b)^3; cnj(z); and boom!
+
+Sun Sep  8 18:13:12 1991  John Harper  (harper at manitou.astro)
+
+	* This note acknowledges the existence of a bug (possibly related
+	to or the same as that below) which manifests itself as an
+	extrememly long run time, followed by results that involve things
+	like #<Unknown .........> etc. This indicates a corruption of the
+	system. In at least one example, the global coords were being
+	munched. It is probably the result of failing to use all the
+	correct Reduce algebra primatives, so all algebra done by redten
+	should be checked. (it can also be caused by bad args to functions).
+
+Sat Sep  7 18:21:02 1991  John Harper  (harper at manitou.astro)
+
+	* fixed mapfi. For a long time I have been aware that it does not
+	always write a factored result if the factor switch is on. Thats
+	because simp!* doesn't use that switch (or maybe turns it off),
+	anyway, aeval() does, and things seem to work. This may be needed
+	elsewhere. 
+
+	* I have also become aware of a bug somewhere in the code that shows
+	up when the factor switch is on and when cnj() is used. Some
+	expressions seem to be not properly constructed which leads to
+	cnj() getting a standard quotient where it thought to get a
+	standard form, but the reduce algebra engine can handle it. Don't
+	where the problem lies. (In actual fact, this bug has shown up
+	intermitently for years, and not just with cnj()).
+
+Thu Sep  5 13:35:28 1991  John Harper  (harper at manitou.astro)
+
+	* shady bug in mapindex. The assoc lists often specify a
+	replacement for a fixed index element, and mapindex would happily
+	change them, thus messing up the index. It did not seem to always
+	happen and I cannot understand why it took so long to become
+	apparent. Added a check in evalc() for a failure to produce a
+	fixed index (since thats what the mapindex bug resulted in) so
+	that an error can be flagged.
+
+	* shady bug in cnjsq that would often lead to catastrophic errors.
+	Need a reorder() wrapped around the numr and denr parts. Also
+	added testwidth() to printcnj to make sure things fit on the line. 
+
+Wed Sep  4 21:37:22 1991  John Harper  (harper at manitou.astro)
+
+	* made simprat turn off the factor flag while it works, since it
+	fails if the switch is on.
+
+	* added functions saveobj() and restoreobj(). saveobj() is called
+	from evaltnsr1(), mapfi() and copy() to save the object that will
+	be altered, storing the data on the variable saveobj!*. The user
+	can restore the last saved object with restoreobj(). This takes
+	the place of backtnsr and mapback. We might also note that some
+	routines are destructively modifying the 'tvalue list, so that it
+	must be wrapped in uniqkern to make a copy with all new nodes.
+
+	* added switch !*hide that, if on, causes dispf1() and dispf2() to
+	display only the string "<value>" for the elements that are
+	non-zero. Useful to see which elements are there, when one does
+	not want to look at long output.
+
+Tue Sep  3 11:26:47 1991  John Harper  (harper at manitou.astro)
+
+	* Discovered the define command in reduce. So it took 5 years...
+	It uses a put on the 'newnam property to define replacement text,
+	and is therefore identical to the implementation of the 'othername
+	prop used in lower.red. Have redone lower.red using this, thus the
+	redef of token() is no longer needed
+
+	* the change to evaltnsr1() made aug 30 requires div and dalembert
+	to apply simp before returning values.
+
+	* fixed cov!*() so it will call the correct christoffel2() function
+	based on the individual indextypes. Was looking at the object type
+	before, which failed for mixed things like connections.
+
+	* fixed evaltnsr1() so that the "indices do not match" error is
+	presented only when warranted, not on simple things like q[a,0] ==
+	z[a]. Also noticed that the save to backtnsr was part of the if,
+	and thus only done if no other error occured. Changed it so the
+	save is always done.
+
+Fri Aug 30 10:26:16 1991  John Harper  (harper at manitou.astro)
+
+	* fixed restrict() so that array indices can have any ranges, with
+	no regard for the default values. Had to fix mkrdr() for chkindex()
+	checks. 
+
+	* changed matrix indextype to array, since matrix implies two
+	indices. added error message to christoffel1() to warn if the
+	metrics have non-unit multipliers, the user did not simplify them
+	and may be asking for trouble. 
+
+	* evaltnsr1() did not assign a scalar value to the scalar name, but
+	evaltnsr() did. These roles are now reversed.
+
+Tue Aug 27 12:03:41 1991  John Harper  (harper at manitou.astro)
+
+	* if a system is saved with savei and then reloaded into a fresh
+	redten, not all operators will have a 'klist prop, specifically
+	sqrt() (They do if they have been used). Then the uniqkern routine
+	fails to kernalize these and algebra fails catastrophically. For
+	now we also check the 'kvalue property, but a better surer way to
+	determine if something should be kernalized is needed.
+
+Thu Jul 11 13:54:47 1991  John Harper  (harper at manitou.astro)
+
+	* fixed testwidth() to check the print format in defindextype!*
+	for the extra print width.
+
+Wed Jul 10 20:52:50 1991  John Harper  (harper at manitou.astro)
+
+	* re-did cov() and lie() to use new routines
+	change!-environment() and restore!-environment() to change
+	metrics and coords.
+
+Tue Jul  9 12:37:56 1991  John Harper  (harper at manitou.astro)
+
+	* changed mkobj to use apply to call mktnsr. Calling the fexpr
+	proc directly does not seem to work in CUlisp.
+
+Mon Jul  8 12:51:47 1991  John Harper  (harper at manitou.astro)
+
+	* made sure that inverse metrics were created with a lower case
+	'inv' as the extension. Made this a global var 'invertextension!*
+	defined in sys.env. Also defined offspringextcase as an int (97)
+	which maps ints to chars for use in mkshftnme. Changing to 65 will
+	give uppercase offspring extensions. (and break most demos).
+
+	* changed makename to clear the case switches !*raise and !*lower,
+	so that unprotected chars are not mapped. Was trying in some
+	places to put a "!!" in the exploded list, but in CUlisp this came
+	out as a !.
+
+	* cov changes the currentmetric to the almetric prop of the
+	object, so that christoffel symbols can be made correctly. If
+	aborted, currentmetric's value can be recovered from
+	oldcurrentmetric. The coords list must also be changed, old value
+	on oldcoords. cov now also correctly sets the printname of the
+	output. 
+
+Sun Jul  7 18:03:48 1991  John Harper  (harper at manitou.astro)
+
+	* if altmetric second arg is nil, then print the altmetric prop of
+	the first arg.
+
+	* getmetric!* now takes a metric list as arg. then one can do
+	getmetric!* (1, altmetric or currentmetric, 't) to get things
+	right. (shift was in fact broken when trying to look at alternate
+	metrics). 
+
+	* shift and the gr, frame and spinor functions all set the
+	'altmetric property with the value of currentmetric. Then, even if
+	the metric is changed, the correct one can be used to do new
+	shifts. The frame and spinor functions also set altconnection from
+	currentconnection, but nobody uses it (yet).
+
+	* certain objects if flagged 'nodir cause dir to hide the entire
+	family of associated objects to hide. This includes metrics and
+	the parents of shifted objects. To remove the 'nodir flag, do an
+	explicit dir on the object. setmetric sets/unsets the 'nodir flag
+	on metrics it is unmaking/making current.
+
+	* changed all 'rlis functions (dir, nodir, complex, nocomplex,
+	generics) to simpfn's that return 't. These functions parse in
+	such a way that the user can't get help on them, even a quote
+	doesn't help.
+
+Sat Jul  6 19:04:04 1991  John Harper  (harper at manitou.astro)
+
+	* defindextype now always makes new delta functions, since the
+	range of indices might have changed. delta checks if the names it
+	is making are protected, and clears it if they are so mktnsr can
+	create the new objects. delta is also more careful about pulling
+	the names it just made off the inames list, it checks that they
+	are actually there.
+
+	* makegeneric changes the 'indices key to be just the listed
+	length of the index (eg (2)), rather than having the limiting
+	indices too. Although these are not checked, they imply limits
+	that might be changed with defindextype.
+
+	* mapfi (and some others) where checking for an indexed object
+	before calling resolvegeneric. It is possible for the input to not
+	be indexed if it is a generic ref to a shifted object.
+
+Fri Jul  5 11:39:19 1991  John Harper  (harper at manitou.astro)
+
+	* Both weyl and frweyl failed to check the dimen of the
+	space-time, if it was 2 they got a division by zero error. fixed.
+
+Thu Jul  4 21:01:13 1991  John Harper  (harper at manitou.astro)
+
+	* added code to support remapped indices, those which relate
+	elements for reasons other than the intrinsic symmetries, and
+	involve sign changes, identical zeros and/or conjugations. Added
+	property REMAPPED!-INDICES, an assoc list of mappings, to objects;
+	new functions FULL!-SYM and FULL!-IGEN that handle the mapping.
+	The usefulness of this is somewhat doubtful since the mappings
+	refer to explicit fixed indices, that are different even for the
+	same object if the index runs are changed.
+
+Wed Jul  3 12:38:26 1991  John Harper  (harper at manitou.astro)
+
+	* DEFINDEXTYPE now checks the range of indices for proper content,
+	and also checks for ranges greater than 32, which are not allowed
+	because of the internal use of large integers in the sym code.
+
+	* changed GETMET to GETMETRIC to agree with other user callable
+	functions.
+
+	* bizarre bug in 3.3 PSL version. If an object has an algebraic
+	value before the call to mkobj (mktnsr) the value hangs on,
+	despite the SETPROP that cleared the property list, and despite
+	the fact that a GET(object, 'AVALUE) returns nil. It needs an
+	explicit REMPROP(object, 'AVALUE) to clear it. wow.
+
+Tue Jul  2 23:32:40 1991  John Harper  (harper at manitou.astro)
+
+	* converted code to lower case to match current convention.
+
+Sun Jun 30 21:20:58 1991  John Harper  (harper at manitou.astro)
+
+	* changed INTINDEX to FIXEDINDEX and ARBINDEX to PATTERNINDEX.
+
+	* BACKTNSR used in EVALTNSR1 made consistent with the use of
+	MAPBACK and IASBACK (new in IAS below).
+
+	* when redefining functions, use PUTD to make olddef, then define
+	the new function with the orig name, otherwise CUlisp forgets to
+	load the new def. Suggested by John Fitch. Applies to INITREDUCE,
+	SCAN and TOKEN.
+
+	* modified IAS to act like MAPFI, can take a name or a name with
+	index indicated the part of the object to set. New optional second
+	arg to indicate overwrite (i.e. ignore prev contents).
+
+Fri Jun 28 09:41:03 1991  John Harper  (harper at manitou.astro)
+
+	* moved calls to DISPF1 and DISPF2 from SIMPRDR to MKRDR where
+	they belong. Also added check for index length to MKRDR (a copy of
+	that in SIMPRDR): if an object with a symmetry was given too few
+	indices, SYM would break because the check came much too late. 
+
+	* changed SIMPRDR to call DISPF2 if a '?' appears anywhere in the
+	index. Anything after the ? is replaced by pattern indices, so the
+	short hand way of getting this display is just p[?]. Also changed
+	flag DISPF2 since this is the name of the function, and will break
+	in CUlisp.
+
+Wed Jun 26 12:28:41 1991  John Harper  (harper at manitou.astro)
+
+	* ISITTYPE was failing on scalars (they could be a problem in
+	several places). Added MKOBJ routine, same as MKTNSR and the
+	preferred way to make an object.
+
+	* shift was putting the wrong printname on objects.
+
+Tue Jun 25 11:14:18 1991  John Harper  (harper at manitou.astro)
+
+	* The horrible word "CONCOV" has been expunged from everywhere,
+	replaced with "INDEXTYPE". DEFINDEXTYPE makes lazily declared
+	types USER<N>, so they do not compare the same in MAPINDEXTYPE.
+
+	* DEFCONCOV with no args prints all current definitions.
+
+	* DELTA also protects its creations, so sys.env can be cleaned up
+	a bit.
+
+Mon Jun 24 11:34:26 1991  John Harper  (harper at manitou.astro)
+
+	* DEFCONCOV now creates the delta functions if they do not exist.
+	DELTA modifies the INAMES list to hide them. METRIC will make a
+	metric out of any rank-2 covariant object.
+
+	* changed SETMET to SETMETRIC to conform with ALTMETRIC.
+
+Sun Jun 23 14:20:01 1991  John Harper  (harper at manitou.astro)
+
+	* remove INDICETEN etc, and combined all concov info into a single
+	list of lists, DEFCONCOV!*. Contains concov types, print formats,
+	index runs etc. Modifed GEIDICES, removed ISITTEN etc, replaced
+	with ISITTYPE which has second arg. User function DEFCONCOV allows
+	user to define concov types, that contract together and with
+	different metrics. Fixed RDRP to use format string in DEFCONCOV*.
+
+	* modified INSERT to make a list long enough to take a new element
+	in a position beyond the end of the current list.
+
+Fri Jun 21 23:54:09 1991  John Harper  (harper at manitou.astro)
+
+	* MKSHFTNME must add "!!" to the string it builds to be
+	independent of the case switches. Also needed to ! quote names in
+	DELTA. 
+
+Thu Jun 20 11:27:44 1991  John Harper  (harper at manitou.astro)
+
+	* up to 3.0
+
+	* SETCON now determines the type of the connection being set. 
+
+	* SETMET now changes the global COORDS list if the metric being
+	set is the tensor metric.
+
+	* added user function ALTMETRIC that allows to user to specify an
+	alternate set of metrics on an object for use by SHIFT, it will
+	use these rather than the CURRENMETRIC. Useful for special sorts
+	of objects. The list on key ALTMETRIC is the same form as
+	CURRENTMETRIC. 
+
+	* changed IGEN to use an indices list, rather than a concov list,
+	and fixed IGENN accordingly. Added user function RESTRICT that
+	adds a restricted indices list under the key RESTRICTED to hold
+	index runs to a sub-interval, eg to just the space part. All
+	function calling IGEN either get the restricted indices or the
+	regular indices of the object, or wrap INDEXLIM around the concov
+	list. 
+
+	* made GETNME check that the atom it had was in fact indexed (why
+	was this not done before?). Added third arg to GETNME, if set then
+	if name is not indexed an error results. Many routines expected
+	GETNME to save them from a non-indexed object, some took care of
+	themselves. Fixed all calling code. Made MULTIPLIER use GETNME. 
+
+Tue Jun 18 13:45:09 1991  John Harper  (harper at manitou.astro)
+
+	* made MKTNSR pass the object name to MKTNSR!* for the implicit
+	parameter. The user regards that arg as a flag, it is either T or
+	NIL.
+
+Mon Jun 17 10:54:43 1991  John Harper  (harper at manitou.astro)
+
+	* changed SHOWINDICES flag to EVALTNSR1 in call from EVALTNSR.
+	added check of SHOWINDICES switch in MAPFI. Now the switch
+	controls all index output, there is none if it is off.
+
+	* modified MKTNSR. If a single arg is given, a bare declaration is
+	made (just the basic parse props). This is how it used to be. To
+	get a scalar object the user must enter the concov list as '()
+	explicitly. 
+
+	* added GENERICS routine that prints the generic names and what
+	they link to. Even if the new list GNAMES that keeps the generic
+	names does not change, the output can, since the links can change
+	with new metrics.
+
+Sun Jun 16 17:43:06 1991  John Harper  (harper at manitou.astro)
+
+	* moved COPY to ICOPY. The REDUCE parser seems to turn COPY into
+	~COPY, so we may be flirting with a problem here.
+
+	* changed HELP to use an assoc list of names and help strings. Too
+	hard to make SYSTEM portable. Used the same HELPLIST!* var as
+	before, in fact the code is hardly changed. Some of the help
+	strings are more than one line long, so not much is lost. If arg
+	is NIL, then print all help strings, if arg is not found (or t)
+	the print just the names, as help() used to.
+
+	* deleted MYSPRINT. Use a FOREACH .. WRITE.	
+
+Sat Jun 15 23:18:15 1991  John Harper  (harper at manitou.astro)
+
+	* mistake in EVALTNSR: for indexed scalars a write from == was
+	being done twice. If object protected, then return from WRITETNSR
+	(NIL) would cause an error. Made WRITETNSR return the current
+	value of the element. Also fixed PROTECT to check its args. If
+	user forgets and uses a quote mark, it didn;t work. Must make
+	all these function have compatible argument passing. MAPFI now
+	temporarily undoes an indexed scalars protection to use WRITETNSR.
+
+Fri Jun 14 09:32:42 1991  John Harper  (harper at manitou.astro)
+
+	* moved local3.3.red to local33.red to keep dos-like systems
+	happy. removed .demo extension from examples.
+
+	* added evalindex switch. if on then new function evalindex called
+	from mkrdr will eval index elements. required some mods to
+	parselsqb and parselcub. Found a bug in parselcub, it was not paying
+	as much attention to the indices as was parselsqb. copied some
+	code to make it work the same. Changed the return value from these
+	routines to include either the '[ or '{ at the front, so the
+	top-level call to parselsqb can tell why this element is a list.
+
+Sun Jun  9 00:11:34 1991  John Harper  (harper at manitou.astro)
+
+	* changed switch name flgdot to showindices. about time.
+
+Sat Jun  8 17:57:23 1991  John Harper  (harper at manitou.astro)
+
+	* at v2.90. The system now runs in CUlisp and has essentially all
+	system dependencies removed. Those that are left are in sysfn.red.
+
+	* re-examined the concept of scalar objects. They are now much
+	more uniformly treated in the system: MKSCALAR no longer exists
+	Instead, a NIL CONCOV to MKTNSR* will go through the code
+	nromally and produced the scalar, with a hook to catch any AVALUE
+	it might have had. Both READTNSR and WRITETSR are able to handle
+	the references without problem, now that the TVALUE is in the
+	standard format: (NIL . value).
+	Some changes needed in RDRP, MAPFI, and KILL.
+	Changed the Ricci scalar to be a scalar object (again), and now
+	store its name on the metric instead of the Ricci tensor. This
+	means that deleting the Ricci tensor does not wipe the scalar, so
+	the user must beware. The generic name looks for the real name on
+	the metric, and then the empty index causes a read out. The
+	RICCISC function also returns the value, not the name. The generic
+	name is implicit, and now prints with an empty index, ricsc[] (if
+	there is no object to ref to).
+
+
+Fri Jun  7 10:20:25 1991  John Harper  (harper at manitou.astro)
+
+	* in MAPFI!*: must set READFLG!* to prevent SIMPRDR from evaling
+	int-index or scalar objects too early.
+
+	* 3.3 uses a pair for the AVALUE, i.e. key . value, where key is
+	usually SCALAR. This means MKSCALAR has to be careful, and
+	FINDKERN1 might have a problem too. Other kinds of values end up
+	on the key RVALUE.
+
+	* Officially from T Hearn: 'NIL is not a pair, so CAR NIL is bad
+	form. Therefore, the MYC{AD}*R fixes are now included in
+	utility1.red, and we will stop blaming someone else's compiler.
+	There are too many places to fix for a change to regular CAR to be
+	made. 
+
+Thu Jun  6 12:35:57 1991  John Harper  (harper at manitou.astro)
+
+	* changed default names of some object to upper case (eg R, RIC,
+	G, C). This assumes a two case system.
+
+Wed Jun  5 10:38:03 1991  John Harper  (harper at manitou.astro)
+
+	* minor fix to auto-parse props introduced last day. There is one
+	kind of object made by the user that is not indexed, but also has
+	the barest of parse props. To avoid having the system make the
+	user declare it, we add another flag to those put on the object in
+	PARSELSQB, and MKRDR looks for that to distinguish.
+
+Tue Jun  4 20:07:24 1991  John Harper  (harper at manitou.astro)
+
+	* MAKEGENERIC now puts the metric type and the prop keyword under
+	which to find the ref, eg. '(1 . RIEMANN) means
+	look at the tensor metric and do GET(<>, 'RIEMANN). Note these
+	keys are the same as those used by the gr functions to do the same
+	thing. This also allows us to have more than one generic name for the
+	same thing, i.e. ei or G are both the einstein tensor.
+
+	* inserted a new scan routine (NEWSCAN) that saves the last two
+	items scanned by the usual SCAN (now on OLDSCAN). When an indexed
+	reference is seen, the '[' parse properties invoke the PARSELSQB
+	function. It looks at the second last scanned item, which is the
+	name before the [ (the last scanned item is the '[' itself). If
+	this name is not indexed, then the barest parse props (SIMPFN and
+	flag FULL) are put on the name, so that MKRDR will be invoked. It
+	will offer to let the user create the object on the fly. However,
+	first chance is given to RESOLVEGENERIC, which might find this is
+	a shifted generic ref, eg. ri!#p, where the shifted object does
+	not exist. RESOLVEGENERIC will determine the parent name, if that's
+	generic the look-up is made, and the shift-name tail is replaced
+	on the real object, i.e. ri!#p, parent is ri, ref to g1!#ri make
+	name g1!#ri!#p and return. If this does not exist, user will be
+	offered chance to make it, best not to. 
+
+Mon Jun  3 11:37:04 1991  John Harper  (harper at manitou.astro)
+
+	* To ensure that systems with either default case can read things
+	correctly, all lower case names have each char quoted (eg. !r!i).
+	This keeps them lower case, after the case flags are cleared
+	things will be accessible. This applies to default names, coords
+	and some other things in sys.env, and a few locations in the code
+	('!d is one in gr.red).
+
+	* scrapped redefining INITREDUCE in local.red, it is too system
+	dependent. Instead, we define MYINITREDUCE, and move definitions.
+	MYINITREDUCE reformats the DATE!* with VERSION, and clears the case
+	flags !*RAISE and !*LOWER.
+
+Sun Jun  2 18:03:23 1991  John Harper  (harper at manitou.astro)
+
+	* if DIR is given the name of a non-indexed object, there is an
+	arithmetic error because there was no test to avoid these names.
+	Now there is.
+
+Fri May 31 14:34:42 1991  John Harper  (harper at manitou.astro)
+
+	* slight problem with some generic objects and dependencies. Since
+	the generics are now implicit they depend on the coords. If the
+	user makes use of g, c, or z as normal vars they have unexpected
+	dependencies, and chains are really fun. eg. depend n, z. df(n,t)
+	is not 0 because z is really the null-tetrad and depends on t.
+	Most users can avoid g, and c (requires a change to
+	hauserfr.demo), we will change the name of the	default
+	null-tetrad to nt, and leave things for now. This is really a
+	problem with implicit objects in general, and the user must
+	be responsible for not using the same name for different things. 
+
+Thu May 30 19:09:26 1991  John Harper  (harper at manitou.astro)
+
+	* added flag to GETMET and GETCON to indicate method of erring
+	out, and moved these to new function names ending in * (i.e.
+	GETMET!*). If the flag is 'T, err out, otherwise just return 'NIL.
+	New functions replace the old ones and set the flag. Most code is
+	unchanged, but some was getting messy because it did not want the
+	error. 
+
+Tue May 28 15:18:15 1991  John Harper  (harper at manitou.astro)
+
+	* rewrote the SAVEXX routines to use IN instead of lapin. Not a
+	hard change at all. There is now no system dependent parts in this
+	area. (well, except for boundp, prop etc).
+
+Mon May 27 11:27:32 1991  John Harper  (harper at manitou.astro)
+
+	* added SEVAL to allow user to evaluate scalar expressions without
+	the bother of assigning with ==. The name SEVAL is used for the
+	assignment, and the SIMPFN function is SIMPSEVAL!*.
+
+	* added construction functions to generic objects, and made
+	MAKEGENERIC use MKTNSR!*, since it was doing almost the same work
+	anyway. The construction function is used if there is a metric and
+	the system is inside EVALTNSR1 (indicated by the new global flag
+	TENEVAL!*). Hence the user can make a generic expression, use ==
+	and have all objects created, but will not get held up if he types
+	c[a,b,c,d] at top level and didn;t really want to make the weyl
+	tensor.
+
+	* jca bug (may 25) revisited. Changing the sym really breaks
+	things because the object is implicit and depends on the trace
+	symmetry to ensure d[a,b]==0, a neq b. It must have real values
+	written to it, so DELTA does this now. The other two deltas (with
+	indices all up or down) are ok as is.
+
+Sun May 26 16:23:25 1991  John Harper  (harper at manitou.astro)
+
+	* removed all objections made by RESOLVEGENERIC if either the
+	metric or the generic ref does not exist. Thus, the user can write
+	generic expressions before any real objects have been defined.
+
+	* modified METRIC to make the metric generic too. The generic name
+	is the value of METRIC ('g), and the default names for the new
+	objects are g1, g2, g3... .
+
+	* added some new props to those put on the object by MAKEGENERIC.
+	The generic names are now implicit and have enough props that, if
+	the real object does not exist, the generic ref can survive. If
+	the user assigns to an algebraic variable an expression involving
+	generic names, the expression can be used with each of several
+	metrics. Required adding calls to RESOLVEGENERIC in PROPROCESS and
+	SIMPRDR to handle late resolution.
+
+Sat May 25 20:56:51 1991  John Harper  (harper at manitou.astro)
+
+	* added calls to RESOLVEGENERIC to MAPFI (which handles its own
+	input specially) and GETNME (which is supposed to handle everyone
+	elses). Allows generic resolution for functions that can take just
+	the name without an index, eg mapfi(ric). Several other functions
+	required explicit calls too.
+
+	* mixed delta-fn was swapping indices because it had a symmetry.
+	Should not do that. Reported by Jose Castejon-Amenedo.
+
+	* changed code in SAVEC2 to avoid use of IMPLODE. Uses MASCII and
+	MAKESTRING now. Added defn's in sysfn.red for factorial and
+	substring (not needed). 
+
+Fri May 24 11:28:01 1991  John Harper  (harper at manitou.astro)
+
+	* fixed all args to MAKENAME to be EXPLODES, so eg. we use EXPLODE
+	('!#INV) instead of '(!# I N V). This is because EXPLODE etc act
+	differently on some systems, as also noted by mahm.
+
+	* wrong number of args to GETNME in DESCRIBE and TERPRI!* in
+	DESCRIBE!*. mahm.
+
+Thu May 23 13:23:37 1991  John Harper  (harper at manitou.astro)
+
+	* removed calls to FLUSHSTDOUTPUTBUFFER, replaced with new routine
+	PBOL. It prints a ^M, the arg, does a TERPRI(), and then sends an
+	up-cursor sequence. This can be altered for non-ansi terminals, or
+	just left out (so indices dribble down the screen). Since TERPRI
+	is used, we don't need to fudge the linelength, so these calls are
+	gone too (will make Slisp happy, it didn't like the really big arg
+	given to LINELENGTH). This, along with defn;s for SYSTEM and
+	UNBOUNP (more soon) are going in a new sysfn.red file (combine
+	with local.red?).
+
+	* removed use of DATE in sys.env. When changing version number,
+	change the date too.
+
+	* replaced FLATSIZE2 with FLATSIZEC. replaced WRITECHAR in SAVEIC
+	with PRINC. 
+
+Tue May 21 17:29:20 1991  John Harper  (harper at manitou.astro)
+
+	* PSL has a 'pnth function. Reduce defines its own but flags it
+	'LOSE so it will not redefine an existing one. So in psl-based
+	systems, we use the base lisp pnth, which does this: pnth ('(a s),
+	3) returns nil; the reduce one errs out. In SL lisp systems (eg.
+	Cambridge lisp) there is no system 'pnth, so the reduce one is
+	used. Too bad we depend on getting 'nil if the index is larger
+	than the length of the list. Defined our own pnth and nth (MYPNTH
+	and MYNTH). This was an MAHM prob.
+
+	* Begin to fix SL incompatabilities noted by Malcolm MacCallum
+  	 (MAHM). INDEX had been so much trouble we will change it to
+	 INDEXX. In SL a name can have either a function binding or a
+	 value, but not both (!). Cambridge lisp is like this, which makes
+	 life somewhat miserable. Try to find obvious local vars that
+	 might be function names and change, eg. MAINVAR, POW, SIGN,
+	 MULTIPLIER, FLAG, SYM
+
+Mon Mar 18 10:32:13 1991  John Harper  (harper at manitou.astro)
+
+	* Bug in shift. For some objects the symmetries can make a sign
+	change that remains in the call to shift*. E.g.
+	shift(ri[a,@b,@c,@d]) will fail because the arg is negative. Moved
+	shift* to shift** and made a new routine shift* that checks for
+	'MINUS, saves this and restores after the call to shift**.
+
+	* metric now makes its creation the current metric
+
+	* added generic names. The default object names (c1, c2, ri, ric,
+	ei, ...) are now 'generic': they have a basic set of props that
+	allow parsing indices, but are never actually assigned. In MKRDR a
+	call to RESOLVEGENERIC (new fn) is made that checks the current
+	metric for the name of the real object. The real object name
+	(created by a modified NEWNME) is of the form <metric>#<generic
+	name>, eg. g!#ri. In this way, when the current metric is
+	changed, the (eg.) einstein tensor is still accessible by the name
+	ei. This translation only occurs when an index is involved, so the
+	real name appears in DIR listings, and must be used with REM.
+	Added function MAKEGENERIC that puts the basic props on the
+	generic name. Modified SHIFT to build the parallel generic tree of
+	offspring. at 2.85
+
+	* added to DIR: if the object being printed is the current metric,
+	a '*' is added in the first column of the output.
+
+	* Some confusion over the meaning of the PNAME prop. It was really
+	intended to be the parent name, but was being used for the
+	printname. Usually they are the same, but new mods (see above)
+	make clarification neccessary. Made new props PARENT and PRINTNAME
+	to replace PNAME. Modified many places.
+
+Fri Feb  1 14:08:37 1991  John Harper  (harper at manitou.astro)
+
+	* added code to place descriptions on the prop list of an object
+	(key DESCRIPTION) with user hook DESCRIBE and fn DESCRIBE!*. This
+	fn either sets or examines the string value, it cannot be unset
+	except by doing a PUT directly. Also modified MKTNSR to have yet
+	another arg which is the description string, and made all routines
+	that call MKTNSR (eg. Riemann etc) place a description of what
+	they are creating on the object. At 2.80
+
+Thu Jan 24 12:27:26 1991  John Harper  (harper at manitou.astro)
+
+	* added code so REM will accept lower case input.
+
+Tue Jan 22 15:23:08 1991  John Harper  (harper at cs.dal.ca)
+
+	* modified the makefile, compile'er and mkredten to create the .b
+	files and the redten executable in a new bin directory. keeps the
+	binary stuff separate. ought to make a source dir too.
+
+Mon Jan 21 14:30:56 1991  John Harper  (harper at cs.dal.ca)
+
+	* added a read-init-file to load a .redtenrc file after the
+	.reducerc in mkredten.
+
+Fri Jan 18 14:06:33 1991  John Harper  (harper at cs.dal.ca)
+
+	* made adjustments to mkredten and a similar shell script remake
+	that allows a redump of redten so the user can set the reduce
+	paths if he only has a binary from us. Should find out how this
+	$reduce thing in loaddirectories works.
+
+Mon Jan 14 15:02:03 1991  John Harper  (harper at cs.dal.ca)
+
+	* related problem: have changed final save to use SAVESYSTEM
+	because we can reset the init-file read-on-startup that is lost
+	when a simple dumplisp is done.
+
+	* Problems with the auto-loading of reduce modules from redten.
+	The LOADDIRECTORIES!* var holds path names like "$reduce/fasl"
+	from which reduce seems able to find its home. redten cannot for
+	some reason, even though the var has not changed value. Something
+	about the way the system is saved I guess, but I cannot discover
+	what it is. So added a REDUCE var to the Makefile to be passed
+	into mkredten and used to reset LOADD... so it has absolute paths.
+	At least it works now, but it has to be reset for every
+	installation, which is very poor.
+
+Sun Jan 13 19:57:56 1991  John Harper  (harper at cs.dal.ca)
+
+	* Final bug in symmetrizations: reduce 3.3  has a list structure
+	made by placing things in {}, and this is parsed by the system
+	before it sees the usual STAT property we put on the {. Therefore,
+	we split PARSELCUB into two parts, one that parses {} for use in
+	3.2 versions, and the second that cleans up the symlist and is
+	called directly from PARSELSQB in 3.3. The former also calls the
+	latter in 3.2.
+
+Fri Jan 11 15:31:22 1991  John Harper  (harper at cs.dal.ca)
+
+	* BIG BUG!! A single extra ';' in FORMRDR made the output of the
+	IF wrong, the SYMLST was being lost and the symmetrization
+	operations would not work on any object with an intrinsic
+	symmetry. This bug has existed probably for 2 years since FORMRDR
+	was added on Jul 25 '88. Thanks to Dalhousie for finding that one.
+
+	* test for shared indices in PARSELSQB changed from a GET to FLAGP.
+	This may not work in 3.2 but is not serious enough to warrant
+	further attention.
+
+Tue Jan  8 17:48:34 1991  John Harper  (harper at cs.dal.ca)
+
+	* CNJEXPT was not re-FKERNing its args, so the system was getting
+	very unhappy. Would break the kerrfr.demo, but not in 3.2 (wonder
+	why??). At 2.70
+
+Mon Jan  7 18:25:22 1991  John Harper  (harper at cs.dal.ca)
+
+	* functions (DF, P{DF, CNJ) that were given SPECPRN print
+	functions, now require PRIFN functions (i.e. the name was
+	changed). But in addition, the print function is always given the
+	name of the op it is printing. Here (and undoing yesterdays work
+	with FORMFN's) we just check if the first arg is its own name, and
+	cdr the list if so. This gives both 3.3 and 3.2 compatibility.
+
+	* namespace conflict with CONJ, in 3.3 it is defined. Moved it to
+	CNJ and changed all code and help file.
+
+Sun Jan  6 16:30:41 1991  John Harper  (harper at cs.dal.ca)
+
+	* EXPLODE is really odd now. EXPLODE('!#TMP) gives '(!! !# !T !M
+	!P)! this messed up CLEARTMP which tried to compare the first 4
+	chars with a hardwired exploded list. fixed but it is really only
+	comparing on #TM now.
+
+	* the PSL on this system (SUN4 Sparc) seems to also have the
+	car(nil) bug in compiled code.
+
+	* the only sure way to set lisp vars is to say LISP SETQ (VAR,
+	VALUE), it used to be that LISP VAR := VALUE worked. Changed
+	PAGERPROG!* to be a lisp value, since it was not being seen in
+	HELP!*. Conflict with 3.2 ?? (see also jul 22 1988 below)
+
+	* Reduce 3.3 gives the function name as the first element of the
+	arg list to FORMFN functions (PROTECT, HELP, REM). This is not the
+	case in 3.2. Had to move stubs to local.red and modify per version
+	to get the right args. don't know why we are using FORMFN anyway. 
+
+	* Moved user configurable helpfile path and pager name to top of
+	sys.env so it is easier to find. was really buried.
+
+	* Discovered that reduce 3.3 makes use of the '#' for a hash
+	function, which interferes with redten usage. Will abandon
+	attempts to make this a normal char, user must quote '#' now: eg.
+	g!#INV. Can now remove much lisp system dependent stuff from
+	local.red, and it is more likely that the system will run
+	everywhere. Make backward compat to 3.2??
+
+Tue Dec 18 14:20:59 1990  John Harper  (harper at manitou.astro)
+
+	* continue port to 3.3. All switches must be declared by SWITCH as
+	well as made global (is this true?). Added this to local3.3.red.
+	Make local.red a link to proper version, instead of copying.
+
+Thu Oct  5 21:12:48 1989  John Harper  (harper at manitou.astro)
+
+	* modified INITREDUCE in 3.2 and 3.3 source to include VERSION as
+	defined in sys.env.
+
+Wed Oct  4 21:53:19 1989  John Harper  (harper at manitou.astro)
+
+	* put definition of d on D for upper case systems. Copied and
+	altered to suit 3.3 code in local3.3.red.
+
+Tue Oct  3 12:23:28 1989  John Harper  (harper at manitou.astro)
+
+	* deleted SYMBOLIC and LISP from assignments to variables in
+	algebra and sys.env. Was breaking on 3.3 load. Steve C bug.
+
+	* added !*USEGETCONSYM to globals in algebra.red. Steve
+	Christensen bug.
+
+Mon Dec 12 15:38:56 1988  John Harper  (harper at manitou.astro)
+
+	* problem with det and multiplier not being able to (as
+	advertised) SIMP the value in place by using a second arg of T.
+	(if you use t, that gets put in, T causes a seg violation). So this
+	is removed (from RESIMPSCALAR). If you want to do it in place, do
+	something like det(g,sub(det(g))); makes more sense.
+
+        Also need a way to allow det to reexamine the object in case it
+	has changed. Only way now is to remove the det with 
+	PUT('g,'DET,'NIL); 
+
+Tue Dec  6 19:36:26 1988  John Harper  (harper at manitou.astro)
+
+	* COPY was forgetting to set the lisp value of the output object
+	to itself to autoquote the name.
+
+Wed Nov  9 15:44:55 1988  John Harper  (harper at manitou.astro)
+
+	* small bug in EQUALPARSE where we (did) check IDP (CADR EX1) to
+	see if a valid left-hand-side was there. This can be true
+	with statements like sin(x)[] which are wrong but not
+	caught. Why not just use CHECKTYPE here?? This should be fixed in
+	mutensor too.
+
+Tue Nov  8 12:41:10 1988  John Harper  (harper at manitou.astro)
+
+	* brought redten up to level of mutensor, with fixes to various
+	functions to give scalar objects a more uniform treatment in the
+	system. at v2.65 (eesh what a pain!). riccisc and frriccisc are no
+	longer scalar objects.
+
+Mon Oct 31 14:21:10 1988  John Harper  (harper at manitou.astro)
+
+	* added !*USEGETCONSYM switch to conprod so user can turn off this
+	code if we find another bug in it.
+
+Sun Oct 30 21:57:52 1988  John Harper  (harper at manitou.astro)
+
+	* fixed MAKEDIFSYM which was producing a symlist even when there
+	was only 1 derivative index to work with. Made things like q[|a]
+	come out wrong since it flipped the a and | (q is scalar).
+
+	* COV checks that its arg is indexed.
+
+Mon Aug  1 16:09:53 1988  John Harper  (harper at manitou)
+
+	* bad conditional in NDIFF1 when checking if a temp is needed. had
+	not (multip.... > multip...) which meant that things like
+	p[a]==df(k[a],t,r) made a temp (really rude). 2.64
+ 
+Sat Jul 30 15:49:56 1988  John Harper  (harper at manitou)
+
+	* reworked how derivatives are handled at the input level based on
+	what kind of object they are applied to, and what form the index
+	is. Originally, we had the following scenario (k implicit, k[0]
+	has an explicit value):
+	df(k[0],t) --> real derivative of k[0] wrt t
+	df(k[1],t) --> (RDR k (1 #BR 0))
+	k[1,|0]  -->  (RDR k (1 #BR 0))
+	df(k[a],t)  --> (RDR k (a #BR 0))
+	However, this causes problems for implicit objects because k[1,|0]
+	is really a scalar, even though k[1] has no value. So now we convert
+	all derivative ops involving integer indices to the df form, and
+	do not convert to df form to the (RDR k (0 #BR 0)) form when the
+	object is implicit and the index is integer.
+	df(k[0],t) --> real derivative of k[0] wrt t
+	df(k[1],t) --> df (RDR k (1)) t)   ie same form as input
+	k[1,|0]  -->  df (RDR k (1)) t)
+	df(k[a],t)  --> (RDR k (a #BR 0))
+
+	This way, if p:=k[1,|0] and k[1] is later given a value, sub(p)
+	will show the correct derivative, the only way to do this before
+	was to assign using ==. Another effect of the conversion if that
+	k[0,|0] immediately evaluates, rather than just sitting there.
+
+	Changes were made to DFRDRMERGE, SIMPRDR where a new routine
+	(CNVRTDIF) is now called, DFRDR to add code to
+	get the system to order  the kernals in the
+	deriv op, and finally to EQUALPARSE1 to prevent things like
+	k[0,|1] = 34;
+	These changes also make it possible to use let rules to clear
+	derivatives of implicit objects, one can now say let df(k[1],t)=0;
+	and it works.
+
+Thu Jul 28 20:11:12 1988  John Harper  (harper at manitou)
+
+	* in NDIFF1 was code to immediately eval a derivative if the
+	output index was integer. This messed up if the object was implicit
+	because the eval had #BR in the index, which made MAPINDEX
+	unhappy. Added check so that this kind of thing is deferred. So we
+	can now do l==k[1,|0] properly. This bug is in mutensor too.
+
+	* bug in SIMPRDR, code was hooked for implicit objects, hence  was
+	not evaluating any explicit components. So k[0] came out as k[0]
+	rather than whatever value it really had if k was implicit. That
+	hook was not in the mutensor code.
+
+Mon Jul 25 19:57:44 1988  John Harper  (harper at manitou)
+
+	* also replaced a piece of code with a call to FORMRDR in SYMI.
+	should have been done long ago. at v2.63
+
+	* Fixed bug in sorting of derivative indices (which was not
+	happening at all), found by brett. Added function
+	MAKEDIFSYM and modified SYMI and DIFRDRMERGE to allow the system
+	to sort derivative indices following a | into a canonical order.
+	Allows things like df(k[a],t,r) - df(k[a],r,t) to go to 0 when k
+	is implicit. Same bug exists in muTENSOR.
+
+Fri Jul 22 13:55:53 1988  John Harper  (harper at manitou)
+
+	* moved diffp from dif.red to local.red in case 3.3 sources are
+	different here.
+
+	* missed a couple of declarations of the global'ness of INAMES in
+	gr and frme. (noted while building a pc version)
+
+	* brett found a bug in doing lie derivatives of objects with more
+	than 2 indices. Traced it to a problem in SUBLIST, where if N >
+	length (LIS) then PNTH is very unhappy.
+
+Wed Jun 22 19:51:55 1988  John Harper  (harper at manitou)
+
+	* altered code which assigned some global lisp values to use setq
+	directly, so that pc-reduce (3.3) would load properly. eg.
+	SYMBOLIC A:='T becomes SYMBOLIC SETQ (A, 'T).
+
+Tue Mar 29 21:05:46 1988  John Harper  (harper at manitou)
+
+	* moved location of number of elements as printed in a directory
+	back 2 spaces.
+
+Sat Mar  5 16:17:32 1988  John Harper  (harper at manitou)
+
+	* added checks in frame code to ensure metrics and connections
+	required are there before the objects are created.
+
+Wed Mar  2 15:08:03 1988  John Harper  (harper at manitou)
+
+	* also declared riccisc and frriccisc as scalar objects.
+
+	* moved the code which checked for an empty object from preprocess
+	to process. that way one gets the concov structure correct.
+
+	* added calls to mktnsr in all gr, frme, and spinor code to
+	ensure the object is made correctly.
+
+Thu Feb 18 20:47:01 1988  John Harper  (harper at manitou)
+
+	* forgot to change an INDEX to FINDEX in pdf
+
+Sat Feb 13 16:09:38 1988  John Harper  (harper at manitou)
+
+	* at version 2.62
+
+	* deleted reference to IDF from PREPROCESS. (IDF has been removed)
+
+	* added new deriv. code to dif.red paralleling that added to
+	mutensor this day.
+
+Sat Jan 23 19:33:37 1988  John Harper  (harper at manitou)
+
+	* added function CANONINDEX to utility1.red to produce
+	canonicalized indices.
+
+Fri Jan 22 18:57:43 1988  John Harper  (harper at manitou)
+
+	* added function FORMRDR called from SIMPRDR (and maybe elsewhere
+	if needed) which makes the RDR form of an indexed object,
+	including the SYMLST if it is not nil, and in that case, calling
+	FKERN on the result too. Replaces the mod below.
+
+Wed Jan 13 20:15:25 1988  John Harper  (harper at manitou)
+
+	* in SIMPRDR added an FKERN around the return value for an
+	implicit object (ie. it came in as (QRDR ...)). Sometimes the
+	implicit elements were not combining properly.
+
+Tue Jan 12 18:57:35 1988  John Harper  (harper at manitou)
+
+	* wrapped a REVAL around the value passed to EVALTNSR1 from
+	EQUALPARSE. This is needed so that things like g[0]==g[a]+1 will
+	err out properly. Is related to a similar bug in mutensor, fixed
+	this day.
+
+Mon Oct 19 13:55:30 1987  John Harper  (harper at manitou)
+
+	* fixed message in saveic so it actually prints ". must use
+	writechar to do this.
+
+Fri Oct 16 14:42:02 1987  John Harper  (harper at manitou)
+
+	* added double quotes (actually '') to reload message from saveic.
+	If you dont use the quotes, it wont read in properly.
+
+Sat Jul 11 16:35:03 1987  John Harper  (harper at utmanitou)
+
+	* changed atom 'INDEX to 'FINDEX in parselsqb because the hephys
+	package wants INDEX to be a function and the return from parselsqb
+	looks just like that. (ie it trys to execute)
+
+Sat May 30 21:59:28 1987  John Harper  (harper at utmanitou)
+
+	* added global var pagerprog!* holding the name of the program used
+	to view the helpfile. should be "more" for general distributions,
+	but can be "less" if thats available.
+
+Wed May 27 21:22:36 1987  John Harper  (harper at utmanitou)
+
+	* fixed mascii to use int2id and id2int for conversions.
+
+Sun May 24 15:32:47 1987  John Harper  (harper at utmanitou)
+
+	* fixed div to use pdf.
+
+	* made printpdf and printdf check !*nat.
+
+	* changed method in ndiff1 of decideing when to make temp objects
+	by using multip.
+
+Sat May 23 15:46:50 1987  John Harper  (harper at utmanitou)
+
+	* fixed dir's output in a number of ways (need to use flatsize2
+	not flatsize in computing print-widths).
+
+Fri May 22 21:18:56 1987  John Harper  (harper at utmanitou)
+
+	* added functions isitten and isitfr analagous to isitsp.
+
+	* modified dir so that one always gets info on an object whose
+	name is given as an arg, regardless of the status of the nodir
+	flag or emptiness of inames.
+
+Tue May 19 15:24:50 1987  John Harper  (harper at utmanitou)
+
+	* killing puts CKILLING as the type of the matrix out if the
+	conformal flag is on.
+
+	* changed way printrdr is called for printing indexed objects by
+	the system. put infix property on RDR (value = 31 < EXPT) and
+	removed SPECPRN prop. now get parens around object when under a
+	power. required a hook in INPRINT which is redefined.
+
+
+	* added code for smart contraction indices using symmetries of
+	objects involved. still somewhat rudimentary but the hooks are
+	there.
+
+	* fixed newsym1 so it properly handles hermitian symmetries. was
+	crashing out before.
+
+Mon May 18 20:43:24 1987  John Harper  (harper at utmanitou)
+
+	* altered method of calling newsym in shift. now newsym is a
+	function that does the mapping over the symmetry list (using
+	newsym1). is much neater.
+
+Sun May 17 14:44:58 1987  John Harper  (harper at utmanitou)
+
+	* made savei2 write code to test if indexed object name is on
+	inames list rather than push it twice.
+
+	* fixed readtnsr to multiply implicit elements by sign of symmetry
+	only.
+
+
+Fri May 15 15:30:55 1987  John Harper  (harper at utmanitou)
+
+	* fixed dispf2 to correctly check if value is 0. 0 is (nil . 1) not
+	just nil.
+
+Thu May  7 20:49:36 1987  John Harper  (harper at utmanitou)
+
+	* added IF in tracesym to avoid redoing work on top of previously
+	done. was ending up with indices like (((((a))))) because of
+	repeated applications of tracesym.
+
+Sun May  3 18:36:46 1987  John Harper  (harper at utmanitou)
+
+	* added d'Alambertian function.
+
+	* major bug fix to processvalue.
+
+	* fixed tracesym in a number of ways. deleted indextype.
+
+Sat May  2 14:46:44 1987  John Harper  (harper at utmanitou)
+
+	* copy must not copy the *at* property, so it doesn;t now.
+
+	* added pdf function to provide partial derivatives of expressions
+	which may involve indexed objects. added hook in preprocess to
+	catch these things.
+
+Fri May  1 13:56:48 1987  John Harper  (harper at utmanitou)
+
+	* kill now only removes 'tensor' properties from scalar objects,
+	it leaves all others alone (eg. avalue).
+
+Thu Apr 30 13:59:10 1987  John Harper  (harper at utmanitou)
+
+	* below is not proper. fixed idiff to change leading #DBR to #BR
+	and insert another #DBR between 2'nd and 3'rd indice if an op is
+	not already there.
+
+	* fixed cov* to use real name of scalar object and not
+	non-existent pname. can now do cov(p) where p is scalar. of course
+	this reduces to normal differentiation.
+
+Wed Apr 29 21:18:20 1987  John Harper  (harper at utmanitou)
+
+	* removed code from simprdr to make || into | when applied to
+	scalar objects, since p[||a,b]-->p[|a,b] is not valid.
+
+Tue Apr 28 19:23:58 1987  John Harper  (harper at utmanitou)
+
+	* in evaltnsr1 when flgdot is on the * is printed only for scalar
+	outputs.
+
+	* modified metric's method of hunting through line-elements to
+	find terms. now use substitutions for d(t) etc of either 0 or 1 to
+	isolate the required term. this allows unexpanded line-elements to
+	be examined properly.
+
+Mon Apr 27 15:08:22 1987  John Harper  (harper at utmanitou)
+
+	* made frmetric accept a flag which when t, causes it to make a
+	minkowski looking frame metric.
+
+Sun Apr 26 14:48:51 1987  John Harper  (harper at utmanitou)
+
+	* added trace function to matrix package.
+
+	* modified metric to accept a rank-2 object and turn that into a
+	metric tensor, with all the required properties.
+
+Mon Apr 20 20:49:13 1987  John Harper  (harper at utmanitou)
+
+	* added code to SAVEI(?) to hunt down and save variables and user
+	defined operators in all objects being saved. Also added function
+	(UNIQKERN) which FKERNS incoming kernals so they are correctly
+	linked in the system when reloading saved objects.
+
+Sun Apr 19 14:20:16 1987  John Harper  (harper at utmanitou)
+
+	* modified HELP to be FORMFN etc and it now uses more to look into
+	the help file. The help file is set up like a regular cat output
+	for a man page, HELPLIST!* contains an assoc list of functions
+	with what their man entry begins with.
+
+Fri Feb 27 18:43:07 1987  John Harper  (harper at utmanitou)
+
+	* fixed collecterms (again) so it does not attempt to look deeper
+	into an atomic element (caused internal memory errors).
+
+	* made mktnsr place coordinate depends on implicit objects.
+
+Thu Feb 26 21:32:40 1987  John Harper  (harper at utmanitou)
+
+	* fixed spchristoffel to not call getcon(-2), which failed.
+	somehow this code has been changed from the last time it worked.
+
+Mon Feb 23 15:10:06 1987  John Harper  (harper at utmanitou)
+
+	* changed printdf to printdif to avoid conflict with reduce
+	function defined in integration package.
+
+Sat Feb 14 19:58:03 1987  John Harper  (harper at utmanitou)
+
+	* fixed simpd so that it handles numbers, i.e d(0) = 0 (it will
+	not give a warning error for a number)
+
+Fri Feb 13 15:05:22 1987  John Harper  (harper at utmanitou)
+
+	* removed an extra ; from collecterms which caused the else
+          clause of the IF to always be executed.
+
+Thu Dec  4 16:07:03 1986  John Harper  (harper at utmanitou)
+
+	* printdf forgot to check ymax when moving back up to the regular line.
+
+Mon Dec  1 21:05:29 1986  John Harper  (harper at utmanitou)
+
+	* printdf does not leave a space after the df when !*nat is nil
+
+Fri Nov 28 21:51:46 1986  John Harper  (harper at utmanitou)
+
+	* printconj now checks the status of !*nat
+
+ 

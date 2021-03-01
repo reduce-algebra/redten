@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Renaming Internal Functions</TITLE>
+<meta name="description" value=" Renaming Internal Functions">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html1098 HREF="node68.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1096 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html1090 HREF="node66.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1100 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1101 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1099 HREF="node68.html"> Modifications to REDUCE</A>
+<B>Up:</B> <A NAME=tex2html1097 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html1091 HREF="node66.html"> Getting Started</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION001700000000000000000> Renaming Internal Functions</A></H1>
+<P>
+<A NAME=rename>&#160;</A>  To avoid the possibility of collisions with the names of other
+functions in other packages that may be used with REDTEN in
+REDUCE, nearly all of the function and variable names in the
+REDTEN sources are in fact prepended with the string <tt>r10!-</tt>,
+so that, for example, the actual name of the lisp function executed
+when computing the Riemann tensor is <tt>r10!-riemann!*</tt>. Only the
+names actually required by the user are left unchanged. This manual
+uses the source code names, thus to access a variable described in the
+manual the <tt>r10!-</tt> should be prepended.
+<P>
+The sources themselves <em>do not</em> contain these names; it was
+considered too much trouble to rewrite everything. Instead, the
+REDUCE parser is modified while it loads the REDTEN source, and
+converts nearly all the names into the format described above. The
+code for this is in the file <tt>rename.red</tt>, which is loaded before
+any other files by the <tt>redten.gen</tt> build file. It must be
+emphasized that it is the <em>compiling</em> REDUCE whose parser is
+changed, the modifications are not part of the final REDTEN system
+(it also means that this file should not be loaded if the lisp system
+must be dumped, as opposed to creating fasl files).
+<P>
+   <BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

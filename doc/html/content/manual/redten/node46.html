@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> The Frame Package</TITLE>
+<meta name="description" value=" The Frame Package">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html846 HREF="node47.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html844 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html838 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html848 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html849 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html847 HREF="node47.html"> The Complex Arithmetic </A>
+<B>Up:</B> <A NAME=tex2html845 HREF="node45.html"> Other Packages</A>
+<B> Previous:</B> <A NAME=tex2html839 HREF="node45.html"> Other Packages</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00710000000000000000> The Frame Package</A></H1>
+<P>
+<A NAME=secfrme>&#160;</A>  The Frame package implements a standard tetrad formalism in which one
+sets up a basis of four contravariant vectors that form a
+``connection'' between the tensor and frame indices (following
+Chandra, ?? ref): <P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6330.gif"><P>
+The index enclosed in parenthesis distinguishes tetrad indices from
+normal tensor indices. As well, we may define the covariant vectors<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6331.gif"><P>
+and the matrix inverse of <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6344.gif"> such that:<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6332.gif"><P>
+and we may also define a constant symmetric matrix <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6346.gif"> so that<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6333.gif"><P>
+and<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6334.gif"><P>
+This matrix functions as a metric for the tetrad indices, and can be
+used to raise and lower indices. This ``metric'' is  often assumed
+to be diagonal and Minkowskian so that the vectors <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6348.gif"> form an
+orthonormal basis, but other forms can also be assumed, as shown below.
+<P>
+An important relation between the tensor metric and the connections
+exists:<P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6335.gif"><P>
+The tetrad components of any tensor can be found via
+<P><A NAME=toframe>&#160;</A><IMG ALIGN=BOTTOM SRC="_10787_equation1852.gif"><P>
+and the tensor components of a tetrad can be found via the inverse relation:
+<P><A NAME=fromframe>&#160;</A><IMG ALIGN=BOTTOM SRC="_10787_equation1859.gif"><P>
+<P>
+In REDTEN the tetrad metric is created via the function
+frmetric(), which by default creates a metric of the form <P><IMG ALIGN=BOTTOM SRC="_10787_displaymath6336.gif"><P>
+and with a non-<tt>nil</tt> second argument creates a Minkowskian metric. 
+For example,
+<PRE> 
+<tt>#: <i>frmetric()</i>
+
+computing eta1
+cofactor finished.
+determ finished.
+invert finished.
+
+  eta1
+</tt></PRE>creates a frame metric of the first type, while
+<PRE> 
+<tt>#: <i>frmetric(nil, t)</i>
+computing eta2
+invert finished.
+
+  eta2
+</tt></PRE>creates a Mikowskian frame metric. Note that the second argument to
+frmetric() should <em>not</em> be quoted. frmetric() makes
+default metric names in the same way as metric() does for tensor
+metrics: a base name followed by a sequence number. The default base
+name is <tt>eta</tt> which is the value of frmetric. The
+optional first argument to frmetric() can be used to create a
+metric with another name. In all cases the target of the generic name
+eta is set to be the newly created metric.
+<P>
+To use the frame package the user must determine in advance the
+structure of the particular tetrad <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6350.gif"> for the chosen metric.
+These are entered into the system and, along with the frame metric,
+the tensor metric can be constructed from them with the function
+tenmetric() (see below).  
+In the current implementation the user must enter components for the 
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6352.gif"> and declare this as a connection via the setcon()
+command. Again using the Kerr metric as an example, we have
+<PRE> 
+<tt>#: <i>coords '(t r th ph);</i>
+
+#: <i>frmetric();</i>
+
+computing eta1
+cofactor finished.
+determ finished.
+invert finished.
+
+  eta1
+
+#: <i>mkobj ('(l n m), '(-1));</i>
+
+  l
+   a
+<P>
+  n
+   a
+
+  m
+   a
+
+#: <i>ias (l);</i>
+ l[0] = <i>1;</i>
+ l[1] = <i>-rho2/delta;</i>
+ l[2] = <i>0;</i>
+ l[3] = <i>-a*sin(th)^2;</i>
+
+ l
+
+#: <i>ias (n);</i>
+ n[0] = <i>delta;</i>
+ n[1] = <i>rho2;</i>
+ n[2] = <i>0;</i>
+ n[3] = <i>-a*delta*sin(th)^2;</i>
+
+ n
+
+#: <i>ias(m);</i>
+ m[0] = <i>i*a*sin(th);</i>
+ m[1] = <i>0;</i>
+ m[2] = <i>-rho2;</i>
+ m[3] = <i>-i*(r^2+a^2)*sin(th);</i>
+
+ m
+
+#: <i>complex (rhob)$</i>
+#: <i>let r^2=sin(th)^2*a^2-a^2+rho2$</i>
+#: <i>let rhob*cnj(rhob)=rho2$</i>
+
+#: <i>mkobj('z,'(2 -1),'(),'(),'connection);</i>
+
+  a
+ z
+    b
+#: <i>z[0,i]==l[i];</i>
+
+  0
+ z     = l
+    i     i
+#: <i>z[1,i]==n[i];</i>
+
+  1
+ z     = n
+    i     i
+
+#: <i>z[2,i]==m[i];</i>
+
+  3
+ z     = m
+    i     i
+
+#: <i>z[3,i]==cnj(m[i]);</i>
+
+  3
+ z     = cnj (m )
+    i          i
+
+#: <i>setcon (z);</i>
+
+ z
+</tt></PRE>This is the Kinnersley frame used to set up a null-tetrad as the basis
+of the Newmann-Penrose formalism (see &#167;<A HREF="node51.html#secNP">6.3</A>).  The frame is
+specified by the vectors <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6354.gif">, where the bar over <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6356.gif"> indicates complex
+conjugation. These vectors are copied into the mixed form of <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6358.gif">,
+which then has the first tetrad index lowered via the frame metric to
+form the connection. 
+Note that the tensor index cannot be raised yet, since the tensor
+metric does not exist.
+<P>
+At this point it is convenient to discuss the complex arithmetic
+package in REDTEN. Other complex packages may exist and could be
+used in place of the one supplied with REDTEN, but they must use
+the function cnj() to carry out conjugation, since this name is
+coded into the REDTEN source.
+<P>
+<BR> <HR>
+<UL> 
+<LI> <A NAME=tex2html850 HREF="node47.html#SECTION00711000000000000000"> The Complex Arithmetic Package</A>
+<LI> <A NAME=tex2html851 HREF="node48.html#SECTION00712000000000000000"> Converting basis</A>
+<LI> <A NAME=tex2html852 HREF="node49.html#SECTION00713000000000000000"> Covariant differentiation</A>
+</UL>
+<BR> <HR><A NAME=tex2html846 HREF="node47.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html844 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html838 HREF="node45.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html848 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html849 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html847 HREF="node47.html"> The Complex Arithmetic </A>
+<B>Up:</B> <A NAME=tex2html845 HREF="node45.html"> Other Packages</A>
+<B> Previous:</B> <A NAME=tex2html839 HREF="node45.html"> Other Packages</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

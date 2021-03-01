@@ -1,0 +1,8 @@
+coords '(t r th ph);
+ds2:=((3/2*sqrt(1-r0^2/RR^2)-sqrt(1-r^2/RR^2)/2))^2*d(t)^2-d(r)^2/(1-r^2/RR^2)-
+    r^2*(d(th)^2+sin(th)^2*d(ph)^2);
+stime();
+metric(ds2);
+weyl();
+etime();
+end;

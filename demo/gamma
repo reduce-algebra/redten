@@ -1,0 +1,15 @@
+% gamma metric GRG jan 1982, 97
+stime();
+ds:=f^gam*d(t)^2-f^(-gam)*((r^2*f/del)^(gam^2-1) *d(r)^2
+	+ (r^2*f)^(gam^2)/del^(gam^2-1)*d(th)^2+r^2*f*sin(th)^2*d(ph)^2);
+let df(f,r) = 2*m/r^2;
+let df(del,r) = 2*r-2*m;
+let df(del,th) = 2*m^2*sin(th)*cos(th);
+metric (ds);
+ricci();
+let f = 1-2*m/r;
+let del = r^2-2*m*r+m^2*sin(th)^2;
+mapfi(ric);
+dir();
+etime();
+;end;

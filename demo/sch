@@ -1,0 +1,39 @@
+comment
+This  Reduce  script  computes   the   Ricci   tensor   for   the
+Schwarzschild  metric  to show that it is a vacuum solution. Also
+computed is the Kretschmann scalar. 
+;
+coords '(t r th ph); % these are default but it is wise to set them anyway
+
+comment
+Below is the line-element in the usual form.
+;
+ds2:=(1-2*m/r)*d(t)^2-d(r)^2/(1-2*m/r)-r^2*d(th)^2-r^2*sin(th)^2*d(ph)^2;
+stime();
+comment
+Compute the metric from the line-element, and then compute  the  Ricci
+tensor.
+;
+metric(ds2);
+ricci();
+comment
+Display the  Riemann  curvature  tensor  and  the  (empty)  Ricci
+tensor.
+;
+R[];
+ric[];
+comment
+Compute the Kretschmann scalar by fully contracting  the  Riemann
+tensor.  An  @  symbol indicates that the attached index is to be
+raised or lowered via a metric contraction. The resulting  object
+is  stored  as  a  new  entity in the system, and attached to the
+parent (g1_R_p seen in the directory below). 
+The  gcd  flag  allows  Reduce  to  cancel  common  factors  from
+numerator and denominator which are not internally identical. 
+;
+on gcd, factor;
+kr == R[a,b,c,d] * R[@a,@b,@c,@d];
+off gcd, factor;
+dir();
+etime();
+;end;

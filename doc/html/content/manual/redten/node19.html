@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Other properties</TITLE>
+<meta name="description" value=" Other properties">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html513 HREF="node20.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html511 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html505 HREF="node18.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html515 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html516 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html514 HREF="node20.html"> mkobj() Examples</A>
+<B>Up:</B> <A NAME=tex2html512 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html506 HREF="node18.html"> itype</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00326000000000000000> Other properties</A></H2>
+<P>
+<A NAME=sseciobprops>&#160;</A>  There are a number of other properties attached to an indexed object
+either by mkobj() or by other functions in the system.
+A partial list of these property keys and the type of their values
+follows. Those flagged with an asterisk are shown by the
+iprop() function. 
+<DL >
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">altmetric:<i>id-list</i>
+<DD> --- A list of metrics to be used
+instead of those in currentmetric, settable by the user with the
+altmetric() function.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">conjugate:<i>list</i>
+<DD> --- The name (in a list) of the
+conjugate object associated with a spinor. The conjugate object has
+the primary object's name and a flag under this key.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">coords:<i>id-list</i>
+<DD> --- A copy of the coords!*
+environment variable at the time the object was created (see
+&#167;<A HREF="node26.html#fncoords">2.4.1</A>). 
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">cov:<i>list</i>
+<DD> --- The first element of the list
+is the order of the derivative, the second element is the name of the
+anti-derivative of this object (<tt>nil</tt> if this is the parent), the
+third element is the name of the derivative of this object (<tt>nil</tt>
+if it does not exist).
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">description:<i>string</i>
+<DD> --- a description string that may
+be set or examined via the function describe().
+<DT><tt>det:<i>aexp</i>
+<DD> --- The value of the determinant of the
+object (which must be rank-2), as computed by the det() or
+determ() functions.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">div:<i>id</i>
+<DD> --- The name of the divergence
+object, created from this object by the function div().
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">indexed:<i>id</i>
+<DD> --- the property by which the system identifies
+indexed object names. The value under this property will be one of:
+  <tt>array</tt> -- if all indices in indextype are array indices
+  <tt>tensor</tt> -- if all indices are tensor indices
+  <tt>frame</tt> -- if all indices are frame indices
+  <tt>spinor</tt> -- if all indices are either primed or unprimed
+  spinor indices
+  <tt>dyad</tt> -- if all indices are either primed or unprimed
+  dyad indices
+  <tt>scalar</tt> -- if <tt>indextype</tt> is the empty list, indicating a
+  scalar object
+  <tt>mixed</tt> -- if <tt>indextype</tt> contains more than one kind of index.
+  other values may appear as defined by the user (see
+defindextype()).  
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">indextype:<i>int-list</i>
+<DD> --- The user-input indextype list.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">implicit:<i>id</i>
+<DD> --- The implicit parameter, usually the
+same as the object's name.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">indices:<i>list</i>
+<DD> --- An internal representation derived
+from the <tt>lisp:defindextype!*</tt> lists.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">multiplier:<i>aexp</i>
+<DD> --- A common factor, most often
+non-unity for metric (or array) inverses.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">parent:<i>id</i>
+<DD> --- For a shifted object, this is the object from
+which it was derived.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">printname:<i>id</i>
+<DD> --- The name used to display the
+object in indexed form. This may be different from the actual object
+name if the object is generic (see &#167;<A HREF="node38.html#secgenerics">4.3</A>) or has shifted indices
+(see &#167;<A HREF="node30.html#secshift">3.1</A>). 
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">protection:<i>int</i>
+<DD> --- The internal format of the
+protection flags, the numbers 2, 3, or 6, which correspond to
+write-prtotection, kill-protection, or both; or <tt>nil</tt> for no protection.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">odf:<i>list</i>
+<DD> --- The list is in the same format
+as for the cov property; it holds the names of ordinary derivatives.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">restricted:<i>list</i>
+<DD> --- A restricted indices
+property, set by the user with the restrict() function.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">shift:<i>list</i>
+<DD> --- A list of names of shifted objects
+derived from this one. Each of these objects will not have this
+property, but will have the parent property instead. See
+<A HREF="node30.html#secshift">3.1</A> for more 
+details.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">symmetry:<i>list-list</i>
+<DD> --- The internal format of the
+user input symmetry list.
+<DT><tt><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6220.gif">itype:<i>any</i>
+<DD> --- The user input itype parameter.
+<DT><tt>tvalue:<i>alist</i>
+<DD> --- the association list of indices and
+component values.
+<P>
+ </DL>
+<P>
+</tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt></tt><BR> <HR><A NAME=tex2html513 HREF="node20.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html511 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html505 HREF="node18.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html515 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html516 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html514 HREF="node20.html"> mkobj() Examples</A>
+<B>Up:</B> <A NAME=tex2html512 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html506 HREF="node18.html"> itype</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

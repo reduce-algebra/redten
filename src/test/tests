@@ -1,0 +1,18 @@
+symbolic$
+start ("CONTRACT")$
+  test(contract ('(a b a c),'(1 1 1 1)),'nil,'t)$
+  test(contract ('(a b a c),'(1 1 -1 1)),'((b c) (a) (1 1)(1)))$
+  test(contract ('(a b (!*at!* a) c),'(1 1 1 1)),'((b c) (a) (1 1)(1)))$
+  test(contract ('(a b a a),'(1 1 -1 -1)), 'nil, 't)$
+  on extendedsum$
+  test(contract ('(a b a c),'(1 1 1 1)),'((b c) (a) (1 1)(1)))$
+  off extendedsum$
+stats()$
+
+start ("FILL!-INDEXTYPE")$
+  test (fill!-indextype ('(a !*lsqb !*br b),'(1)),'(1 nil nil -1))$
+stats()$
+
+
+algebraic;
+$end$

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Accessing and Displaying Components</TITLE>
+<meta name="description" value=" Accessing and Displaying Components">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html619 HREF="node29.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html617 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html613 HREF="node27.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html621 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html622 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html620 HREF="node29.html"> Algebra with Indexed </A>
+<B>Up:</B> <A NAME=tex2html618 HREF="node25.html"> The Robertson-Walker Metric</A>
+<B> Previous:</B> <A NAME=tex2html614 HREF="node27.html"> Entering Components</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00343000000000000000> Accessing and Displaying Components</A></H2>
+<P>
+<A NAME=ssecaccess>&#160;</A>  There are a number of ways to examine the components of an indexed
+object. The simplest is to specify the fixed index that refers to the
+component of interest: the current value of the component will
+immediately be read-out, and is available for use in algebraic
+expressions. For example,
+<PRE> 
+<tt>#: <i>h[1,1];</i>
+<P>
+      2
+  - rt
+
+#: <i>df(h[2,2],t);</i>
+<P>
+                              2
+   - 2 rt  sin(sqrt(k) om)  rt
+         t
+ ------------------------------
+               k
+
+</tt></PRE>To examine the object as a whole, two display formats are provided.
+The first is obtained by attaching an empty index to the object, as in
+<tt>h[]</tt>. For an indexed scalar, this is the only kind of index
+allowed 
+and results in the scalar value being
+returned. For any other kind of object the existing explicit
+components are displayed. Only those components that are actually
+stored in the data structure are shown, and no evaluation takes place,
+which also implies that a non-unit multiplier (qv) will not be
+combined with the component.  Hence, an implicit object with no
+explicit elements will appear to be empty. Components shown by this
+display format may not match what would be shown by reading components
+with fixed indices.  
+Because the index is empty some objects, notably those derived from
+the raising or lowering of indices of other objects, must be
+referenced with their actual name (or the generic equivalent).
+If the switch iprop is on, some of the properties listed in
+&#167;<A HREF="node19.html#sseciobprops">2.2.6</A> are also shown.
+<P>
+The second display format is obtained when the literal character <tt>?</tt> is found
+<A NAME=4122>&#160;</A>
+(written as a normal index element) in a pattern or fixed index.
+Those indices preceding this special character are used as part (or
+all) of a pattern index, and any indices needed to fill out the index
+are automatically generated.  Indices following the <tt>?</tt> are
+ignored. The simplest way to examine the entire object is with <tt>h[?]</tt> which (for a rank-2 object) is equivalent to <tt>h[a,b,?]</tt>,
+whereas to examine the first row one might use the command <tt>h[1,?]</tt>.
+This format will also display some of the object properties, depending
+on the setting of the iprop
+ switch. The properties shown when the switch iprop is on can
+also be seen, regardless of the switch setting, with the function
+iprop() (qv).
+<P>
+The components are displayed by expanding the pattern index and
+reading each component from the object. Thus, the user can select
+segments of the object to display and will be shown the actual
+read-out value. If the switch xeval
+xeval
+is on, an extra evaluation is made to reflect the
+current state of algebraic variables.  This format
+shows exactly what is in the object, as would be shown by accessing
+each component directly with a specific fixed index, but only the
+canonical elements are shown. This format will also show those
+components that are zero (and usually are not stored and therefore not
+displayed in the first format) unless the REDUCE switch nero
+is on.
+The index can also be used to indicate a shifted object, so that only
+the parent name need be used, for example <tt>h[@a,@b,?]</tt>.
+<P>
+
+<P>
+To see a directory of the objects created in the system, the function
+dir() is provided. In its simplest form, with no arguments,
+dir() displays all the objects in the system that have not been 
+flagged with the nodir() (qv) function. The display shows the
+object name, its type, the number of non-zero explicit components, the
+state of the protection flags (qv), the coordinates and the index
+structure. With arguments dir() shows information about the named
+objects.
+<PRE> 
+<tt>#: <i>dir(); </i>
+
+  name          type          comp    prot  coordinates     indextype
+  x             coordinates    4       w    (t om th ph)     (1)
+<code>*</code> h             metric         4       w    (t om th ph)     (-1 -1)
+<code>*</code> h_inv         metric         4       w    (t om th ph)     (1 1)
+
+  3 objects,    Total components: 12
+</tt></PRE>The current-metrics are indicated by the <tt>*</tt> at the beginning of
+the display line.
+<BR> <HR><A NAME=tex2html619 HREF="node29.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html617 HREF="node25.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html613 HREF="node27.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html621 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html622 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html620 HREF="node29.html"> Algebra with Indexed </A>
+<B>Up:</B> <A NAME=tex2html618 HREF="node25.html"> The Robertson-Walker Metric</A>
+<B> Previous:</B> <A NAME=tex2html614 HREF="node27.html"> Entering Components</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

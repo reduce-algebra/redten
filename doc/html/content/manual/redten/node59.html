@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Extending REDTEN</TITLE>
+<meta name="description" value=" Extending REDTEN">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html1002 HREF="node60.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1000 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html994 HREF="node58.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1004 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1005 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1003 HREF="node60.html"> The Sato Metric</A>
+<B>Up:</B> <A NAME=tex2html1001 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html995 HREF="node58.html"> Case Mapping</A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00900000000000000000> Extending REDTEN</A></H1>
+<P>
+<A NAME=entend>&#160;</A>  
+From the user perspective REDTEN consists of two levels: a lower level
+of indexed algebra in which the user can enter indexed expressions
+and have them evaluated; and a higher level in which the user applies
+functions that compute objects of interest and which maintain the
+book-keeping in the system. The  higher level functions are
+``layered'' onto the lower level in the same way that REDTEN itself
+is layered onto REDUCE.  The packages described in Chapters
+<A HREF="node33.html#gr">4</A> and <A HREF="node45.html#packages">6</A> are high level functions, but it is
+important to realize that the basic REDTEN indexed algebra engine
+could be used to compute interesting quantites even without these
+packages, as was done in Chapter <A HREF="node9.html#indexedobj">2</A>.
+<P>
+Although the development of the GR package is essentially complete,
+the spinor, frame (tetrad), and Newman-Penrose packages require more
+work. As well, there are many other computations that would be useful
+to have automated in high level functions, such as Petrov
+classification of metrics, etc
+<A NAME=tex2html102 HREF="footnode.html#2389"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>.
+ In this sense REDTEN is incomplete:
+there are always other interesting objects to compute, in other
+formalisms etc., which would be convenient (but not absolutely
+necessary) to have high level functions to deal with.
+<P>
+This appendix describes how the user can extend REDTEN by writing
+functions to automate the computation of specific indexed objects.  It
+is assumed that the user has a basic understanding of RLISP and lisp
+in general. NOTE: Although the user is free to modify or extend
+REDTEN as required, no such modified copy may be redistributed
+without the modifications being plainly marked, and the copy must not
+be misrepresented as the original. If you have a brilliant addition,
+send it to the authors to be included in the distribution.
+<P>
+From the programmers perspective, there are actually three levels in
+REDTEN: a ``basement'' level of basic functions lies under the low
+level (the division is somewhat blurry). Some of these functions are
+required when writing high level code, as they deal with the mundane
+details of maintaining indexed objects in the system.
+<P>
+As an example of writing  high level function, we shall use the
+riemann() function of the GR package as a starting point. All of
+the high level functions work in the same basic fashion: they write
+an indexed expression the equivalent of what the user would type and
+cause it to be evaluated. The complications come with all of the other
+book-keeping functionality required.  
+Before actually detailing the structure of a typical high level
+function, consideration must first be given to the internal
+representation of an indexed object.
+<P>
+The user interface to an indexed object consists of a
+name followed by an index enclosed in square brackets.  The indexed
+object name has another property not mentioned in
+&#167;<A HREF="node19.html#sseciobprops">2.2.6</A>: the simpfn propert gives the name of an
+RLISP function to execute when the algebraic simplifier encounters the
+name. All indexed objects are handled by the same function
+(mkrdr()) which receives both the object name and the separately
+parsed index as arguments. This function then constructs the internal
+``<tt>rdr</tt>-form'' of an indexed object; it also handles some error
+checking and display requests (see &#167;<A HREF="node28.html#ssecaccess">2.4.3</A>).
+<P>
+Internally, an indexed object (after parsing) is a lisp list whose
+first element (the car()) is the ``function'' <tt>rdr</tt><A NAME=tex2html103 HREF="footnode.html#4175"><IMG ALIGN=BOTTOM ALT="gif" SRC="../../../images/latex/foot_motif.gif"></A>  which itself has a simpfn property
+pointing to the RLISP function simprdr().  The simprdr()
+function supervises the read-out of object componenets if the index is
+fixed, and returns an unevaluated <tt>rdr</tt>-form otherwise.  The
+second element (cadr()) of the <tt>rdr</tt>-form is the indexed
+object name, and the third (caddr()) is the index, containing
+the internal forms of any index operators.  A fourth element is no
+longer used, but some REDTEN code may still make a harmless
+reference to it.
+<P>
+The various index operators are all translated into an internal form
+when they are parsed as shown in table <A HREF="node59.html#tabintop">A.1</A>. The index
+itself becomes an ordinary lisp list, most operators exist as elements
+at the top level of this list, except for the shift operations which
+become sublists with the operator first, and the index element second.
+Knowing these internal forms the programmer can write any indexed
+expression.
+<P>
+<P><A NAME=2439>&#160;</A><A NAME=tabintop>&#160;</A><IMG ALIGN=BOTTOM SRC="_10787_table2413.gif">
+<BR><STRONG>Table A.1:</STRONG> Internal forms of index operators<BR>
+<P>
+<P>
+To write a high level function first requires an equation defining the
+output indexed object; the definition of the Riemann tensor (equation
+<A HREF="node29.html#eqriemann">3.3</A>) is repeated here for reference with different indices,
+<P>
+<P><A NAME=Riem>&#160;</A><IMG ALIGN=BOTTOM SRC="_10787_equation2443.gif"><P>
+<P>
+Below is the source code for the riemann() function. The function
+performs several basic tasks: determining the name of its output
+object, checking to see if the object already exists, creating it if
+not, setting up and evaluating the indexed expression which computes
+the output, and some book-keeping and cleanup.  Each line of the
+function is described separately after.
+<P>
+
+<P>
+<tt> 
+riemann := '!R; 1<BR>*
+put ('riemann, 'simpfn, 'riemann!*); 2<BR>*
+<BR>*
+symbolic procedure riemann!* (u); 3<BR>*
+begin scalar tnsr, lex;  4<BR>*
+tnsr := mycar getnme (mycar (u), '(nil . nil), 'riemann); 5<BR>*
+lex := get (getmetric (1), 'riemann);  dotfill 6<BR>*
+if not tnsr and indexed (lex) then return (lex . 1); 7<BR>*
+tnsr := newnme (tnsr, riemann); 8<BR>*
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6454.gif"><IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6444.gif">9<BR>*
+put (tnsr, 'printname, riemann); 10<BR>*
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6456.gif">
+		<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6446.gif">11<BR>*
+evaltnsr1 (tnsr, '(a!# b!# c!# d!#), lex, 'nil); 12<BR>*
+protect!* (tnsr, 'w); 13<BR>*
+put (getmetric (1), 'riemann, tnsr);	14<BR>*
+if not get (tnsr, 'tvalue) then &lt;&lt; 15a<BR>*
+ ~tabthenprint (&quot;** this space is flat&quot;); 15b<BR>*
+ ~terpri ()15c<BR>*
+ ~&gt;&gt;;<BR>*
+cleaner ('riemann); 16<BR>*
+return (tnsr . 1); 17<BR>*
+end; 18<BR>*
+<BR>*
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6458.gif"> <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6448.gif">19<BR>*
+</tt>
+<P>
+<OL><LI> We first define the default name of the object that this
+function will create. It is conventional in REDTEN to assign this
+name to the lisp varibale with the same name as the user-name of the
+function, in this example <tt>riemann</tt>.
+<LI> When the user executes the <tt>riemann()</tt> function,
+the REDUCE parser examines the simpfn property of <tt>riemann</tt> for the name of the actual RLISP function to execute. It is
+conventional in REDTEN to name this function by appending a <tt>!*</tt> to the user-name (there are plenty of violations of this
+convention, however).  Thus, the actual work of computing the Riemann
+tensor is done by the RLISP function <tt>riemann!*()</tt> (but see
+&#167;<A HREF="node67.html#rename">F.1</A> for a caveat).
+<LI> A function called in this way receives a single argument which
+is a list of all actual arguments given in the function call (note the
+arguments should not be quoted). This statement begins the actual
+definition of the function (or ``procedure'' in REDUCE
+terminology).
+<LI> Various local variables will be required, which should be
+declared here, otherwise they will become ``fluid'' when this function
+is compiled.
+<LI> 
+<UL><LI> The mycar() function is similar to the standard lisp
+car() function, except that it works with <tt>nil</tt> as well,
+i.e.  <tt>mycar(nil)</tt> <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6450.gif"> <tt>nil</tt> (in many lisps <tt>car
+('nil)</tt> is an error because <tt>nil</tt> is an atom). The mycar()
+function (and its siblings) are used throughout the REDTEN code,
+even where their enhanced functionality is not required. Thus, <tt>mycar(u)</tt> is the argument to <tt>riemann()</tt>, or <tt>nil</tt> if none was
+given. 
+<LI> The getnme() function is used to determine the name (and
+index) of a given object from a number of possible formats. The input
+can be just a name, as will be the case here, and either indexed or
+not; or the input can be an <tt>rdr</tt>-form, where the index may
+indicate shift operations and the offspring object will be created if
+it does not yet exist. The second argument is a dotted-pair the first
+element of which
+indicates  whether the indexed object must
+already be indexed (i.e. the object is being used for a calculation),
+or can be non-indexed (i.e. it is the name to use when creating the
+output object). The second element of the pair indicates if a name is
+even required (i.e. there is a default available). In this example a
+name is not required, but if one is given it need not be indexed. The
+last argument to getnme() is simply the name of the calling
+function, for use in error messages.
+<LI> The return from getnme() is a list of two elements: the first is
+the object name, the second is its index. Thus, <tt>tnsr</tt> is assigned
+the name the user typed (if any), and will get the value <tt>nil</tt> if
+no name was given. Any index is ignored. If an index was attached to
+the input name, that name is already indexed, and, if not protected,
+will be destroyed and remade.
+</UL>
+<LI> For the current metric the Riemann function stores the name of
+the object it creates on the metric under the key riemann (see
+line 14). Any future calls to riemann() will find and return this
+name without making new calculations <em>if</em> the user did not supply
+a name (see line 7).  The current tensor metric (returned by
+getmetric() with an argument of 1) is checked for a riemann
+property, any value found is assigned to <tt>lex</tt>; <tt>nil</tt> is
+assigned if no property exists.
+<P>
+<LI> If the user does not supply a name to use for the output object,
+and the value found at line 6 is that of an indexed object, that
+object is returned immediately (see line 17 for an explanation of the
+format of the return value). If the user did supply a name for the
+output object, then a new object will be created and the calculations
+performed, even if the same calculation has already been done.
+<LI> The actual name of the output object is determined from the
+following rules: If a name was supplied by the user, then that is the
+name of the new object (the generic Riemann name will also point to
+it, see generics()). If no name was supplied, then the default
+name (stored on riemann) is made into the object name by
+prepending the name of the current tensor metric and an <tt>_</tt>
+character. Thus, if the metric has the name <tt>g1</tt>, the default name
+of the Riemann tensor created for this metric is <tt>g1_R</tt>.
+<P>
+newnme() requires two arguments: the user-input name (which may
+be <tt>nil</tt>), and the default name (stored in this case on
+riemann, note there is no quote before <tt>riemann</tt>: its value
+is passed to the function). newnme() also prints the <tt>Computing ...</tt> message to indicate to the user what the real name of
+the object will be. The generic name for the Riemann tensor will point
+to this object.
+<LI> With the name of the output object stored in <tt>tnsr</tt> the
+internal function to create indexed object is called (still named
+mktnsr!*() although it can create any kind of indexed object).
+Its arguments are nearly as described in &#167;<A HREF="node11.html#secmkobj">2.2</A>, but the
+symmetry lists are entered in internal format where the block size is
+placed in a sublist in each independent symmetry. The object has four
+covariant tensor indices, a Riemann symmetry, is not implicit, the
+itype is <tt>riemann</tt>, and the description string is set to
+something informative.
+<P>
+mkmsg() takes one list, the first is a string containing <tt>%</tt>
+symbols. These are replaced in sequence by the remaining elements of
+the list. To print an indexed object wrap its <tt>rdr</tt>-form with the
+rdr!-string() function; to print a list as an index wrap it with
+index!-string(); <tt><code>\</code>%</tt> produces a literal <tt>%</tt>.
+<P>
+<LI> The printname of the object is changed so that no matter
+what its real name is it is <em>displayed</em> in the same fashion (by
+default using the name <tt>R</tt> in this example).
+<P>
+<LI> Equation <A HREF="node59.html#Riem">A.1</A> is now used to generate an indexed expression
+that will compute the Riemann tensor. This is written in an internal
+REDUCE format called ``prefix-form''. The result is assigned to
+<tt>lex</tt> for use in line 12 (this assignment could have been
+by-passed, writing the expression directly into line 12, but the code
+would be harder to read).
+<P>
+The prefix form involves lisp lists whose first element is an
+algebraic function, which will be applied to the remaining arguments.
+The following functions may be useful in constructing an indexed
+expression:
+<P>
+<P><IMG ALIGN=BOTTOM SRC="_10787_tabular2574.gif"><P>
+<P>
+There are two ways to construct a list in lisp: using the quote
+function (the input shorthand is <tt>'</tt>) which <em>does not</em>
+evaluate its arguments, and using the function list() which
+<em>does</em> evaluate its arguments. If a list is to be written whose
+contents may vary between one evaluation and the next, the
+list() function must be used. Generally, only numbers will be
+constant as such (for example, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6452.gif"> can be constructed as <tt>'(quotient 1 2)</tt>); even if the name of an indexed object is assumed to
+be known it is better to make use of a variable which holds the name,
+so that the name can easily be changed later without affecting the
+code. Hence, writing indexed expressions requires many calls to
+list(). Notice that the arguments to list() must
+themselves be quoted if they are to be used literally.  If any sublist
+is constructed using the list() function, all enclosing lists
+must be constructed the same way (not using the quote function), or
+the sublists will not be evaluated.
+<P>
+Consider the code fragment
+<P>
+<tt>list ('rdr, mycar (christoffel1!* ('nil)), '(b!# d!# a!# !*br c!#))</tt>
+<P>
+which creates an <tt>rdr</tt>-form representing the first term of
+equation <A HREF="node59.html#Riem">A.1</A>. The name to be used for the indexed object is
+found by calling the christoffel1!*() function, which works in
+the same way as the riemann!*() function considered here. That
+is, christoffel1!*() either returns the name of the previously
+computed object, or does the computation now. In either case the
+return value is of the form described under line 17, so that
+mycar() is used to isolate the name. 
+This method of having one function call others that it depends on
+allows the user to create all the objects of interest from the metric
+with one command (but see &#167;<A HREF="node42.html#secexpmanage">5.1</A> for reasons why this
+is not usually a good idea).
+<P>
+The index can of course be written with specific indices and is thus
+constructed using the quote function. The actual indices are selected
+from those stored in the variable alphalist!* (which is simply a
+list of indices that the user will not use, since algebraic values
+assigned to these symbols could potentially have side-effects). 
+The index is written with the internal forms of the index operators as
+shown in table <A HREF="node59.html#tabintop">A.1</A>; in the example above an ordinary
+differentiation operator has been placed in the index.
+<P>
+Shift operations are indicated by making the index-element into a
+sublist with the operator as the first element. For example, an index
+might be written <tt>'(a!# (!*at!* b!#))</tt> to indicate shifting the
+second index-element. If the exact <tt>indextype</tt> of an available
+object is unknown, the absolute shift operators can be used to ensure
+a canonical form is used in the expression. This technique is used in
+the frame package where it is not certain in advance whether the user
+has defined a covariant or contravariant connection.
+<P>
+Examination of the rest of line 11 will show the correspondence with
+the terms of equation <A HREF="node59.html#Riem">A.1</A>. The repeated index <tt>e!#</tt>
+represents a contraction in the two products; and note the use of the
+unary minus to negate the last term.
+<P>
+<LI> The indexed expression in prefix-form is now passwd to the
+evaluator evaltnsr1(). This function is called almost directly
+when the user makes an indexed assignment with <tt>==</tt>, and receives
+the name and index of the object on the left-hand side, and the
+indexed expression on the right-hand side. A fourth argument is no
+longer used. It is in this function that the two levels of REDTEN
+alluded to above meet: the riemann!*() function as examined so
+far exists simply to automate the construction of an expression the
+user could have typed in by hand.
+<P>
+When evaltnsr1() finsishes, the output object (whose name is the
+value of <tt>tnsr</tt>) will have the appropriate values. If
+showindices is on, then the indices will be displayed as the
+calculation proceeds.
+<P>
+<LI> It is usual to apply a write-protection to the output object to
+prevent the user from accidentally changing components. If
+modification is desired, then the user can clear the protection with
+protect(). 
+<LI> The name of the output object is then placed on the property
+list of the current tensor metric under the key <tt>riemann</tt>. This is
+checked in line 6 to see if the object has previously been computed
+for this metric. This property is also used by the generic object
+system.
+<P>
+<LI> Lines 15 do a special check; other functions may have similar
+checks or none at all.
+<OL><LI> The components of the object are stored on the tvalue
+property. If there is no value here, then the object has no explicit
+components, i.e. it is 0. The body of the if statement is
+enclosed by the <tt>&lt;&lt;</tt> and <tt>&gt;&gt;</tt> symbols.
+<LI> In this case an informative message is printed. The
+tabthenprint() function keeps track of the indenting of messages
+delivered during calculations.
+<LI> terpri() simply terminates a line, moving the cursor to the
+beginning of the next.
+</OL>
+<P>
+<LI>  A call to cleaner() prints the <tt>... finished</tt> messages
+for functions that have been called upon to perform work (but not
+directly by the user), and it cleans up temporary objects if this
+function was called directly by the user. Its single argument is the
+user-name of the function in which it is used.
+<P>
+<LI> Finally, the name of the object is returned. To return a single
+name to the algebraic simplifier it should be in the form of a
+dotted-pair whose first element is the name, and whose second element
+is 1. Any function which calls this one must use <tt>car()</tt> to
+isolate the actual object name in the return value.
+<P>
+<LI> The function definition ends here.
+<P>
+<LI> To interface with the generic name system, a psuedo-object is
+created by makegeneric() which has many of the properties of the
+actual object. The first argument to makegeneric() is the name of
+the generic object, in this case the value of riemann (<tt>R</tt>).
+Recall that the name of the actual object is of the form <tt>g1_R</tt>.
+The second argument specifies on which metric the relation between the
+generic and actual object will be stored (type 1 in this example, i.e.
+the tensor metric), and under what property to look for the relation.
+In this case, when the generic object <tt>R</tt> is used, the system will
+examine the tensor metric for the riemann property, and use the
+object so specified (this is the same property used by the
+riemann!* function itself). 
+The third and fourth arguments gives the <tt>indextype</tt> and
+symmetries of the generic object; the last argument gives the name of
+the lisp function that can be used to compute the actual object.
+</OL>
+<P>
+  <BR> <HR><A NAME=tex2html1002 HREF="node60.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html1000 HREF="root.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html994 HREF="node58.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html1004 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html1005 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html1003 HREF="node60.html"> The Sato Metric</A>
+<B>Up:</B> <A NAME=tex2html1001 HREF="root.html">No Title</A>
+<B> Previous:</B> <A NAME=tex2html995 HREF="node58.html"> Case Mapping</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

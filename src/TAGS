@@ -1,0 +1,500 @@
+
+algebra.red,781
+symbolic procedure chkindextype 655,28515
+symbolic procedure collecterms 597,26041
+symbolic procedure collecterms1 634,27738
+symbolic procedure conprod 424,19242
+symbolic procedure contract 353,15825
+symbolic procedure eval1 555,24554
+symbolic procedure eval2 571,25009
+symbolic procedure evaltnsr 39,1249
+symbolic procedure evaltnsr1 67,2475
+symbolic procedure find!-con!-sym 479,21697
+symbolic procedure find!-con!-sym1 486,21933
+symbolic procedure get!-con!-sym 472,21492
+symbolic procedure make!-con!-sym 519,23315
+symbolic procedure mapindex 401,18325
+symbolic procedure match!-con!-sym 537,24034
+symbolic procedure pre!-eval 152,6918
+symbolic procedure preprocess 259,11660
+symbolic procedure processvalue 188,8353
+symbolic procedure simpseval!* 675,29319
+
+basecase.red,14
+symbolic;1,0
+
+bcasedn.red,14
+symbolic;1,0
+
+bcaseup.red,14
+SYMBOLIC;1,0
+
+cmplx.red,495
+algebraic procedure cmod 143,5198
+symbolic procedure cnjd 113,4123
+symbolic procedure cnjexpt 221,7212
+symbolic procedure cnjf 89,3107
+symbolic procedure cnjrdr 230,7575
+symbolic procedure cnjsq 81,2854
+symbolic procedure cnjt 99,3405
+symbolic procedure complex!* 196,6784
+algebraic procedure im 140,5146
+symbolic procedure nocomplex!* 209,7001
+symbolic procedure printcnj 48,1569
+algebraic procedure rat(190,6604
+algebraic procedure re 137,5098
+symbolic procedure simpcnj 74,2574
+
+decl.red,200
+symbolic macro procedure 9,490
+symbolic macro procedure 16,762
+symbolic macro procedure 21,978
+symbolic macro procedure 27,1277
+symbolic macro procedure 32,1502
+symbolic macro procedure 38,1791
+
+decl33.red,194
+symbolic macro procedure 1,0
+symbolic macro procedure 7,199
+symbolic macro procedure 10,280
+symbolic macro procedure 13,372
+symbolic macro procedure 18,597
+symbolic macro procedure 24,886
+
+decl34.red,200
+symbolic macro procedure 9,490
+symbolic macro procedure 16,762
+symbolic macro procedure 21,978
+symbolic macro procedure 27,1277
+symbolic macro procedure 32,1502
+symbolic macro procedure 38,1791
+
+dif.red,966
+symbolic procedure cnvrtdif 680,25912
+symbolic procedure cov 263,9945
+symbolic procedure cov!* 277,10570
+symbolic procedure dfrdr 581,21999
+symbolic procedure dfrdrmerge 614,23370
+symbolic procedure difcon 368,14325
+symbolic procedure difcon1 387,15088
+symbolic procedure find!-odf!-name 211,8004
+symbolic procedure get!-odf!-val 195,7237
+symbolic procedure getdfindex!* 75,2713
+symbolic procedure idiff 42,1344
+symbolic procedure iprtdf 551,21025
+symbolic procedure ldifcon 443,17426
+symbolic procedure ldifcon1 462,17987
+symbolic procedure lie!* 409,15957
+symbolic procedure makedifsym 242,9198
+symbolic procedure makeextname 254,9700
+symbolic procedure ndiff 102,3613
+symbolic procedure nooppr 536,20597
+symbolic procedure prindf!-fancy 510,19855
+symbolic procedure printdif 483,18799
+symbolic procedure printpdf 658,25150
+symbolic procedure simpodf!* 135,4952
+symbolic procedure simpodf!*!* 183,6883
+symbolic procedure simppdf 635,24310
+
+entry.red,31
+symbolic macro procedure 2,21
+
+frme.red,337
+symbolic procedure freinstein!* 268,10307
+symbolic procedure frmetric!* 44,1386
+symbolic procedure frricci!* 210,8028
+symbolic procedure frriccisc!* 243,9347
+symbolic procedure frriemann!* 160,6046
+symbolic procedure frweyl!* 299,11515
+symbolic procedure gamma!* 117,4191
+symbolic;31,1076
+symbolic procedure tenmetric!* 86,3005
+
+gr.red,1008
+symbolic procedure change!-tnsr!-environment 727,29451
+symbolic procedure christoffel1!* 201,8453
+symbolic procedure christoffel2!* 239,10166
+symbolic procedure div!* 536,22234
+symbolic procedure dot!*(440,18264
+symbolic procedure einstein!* 360,14930
+symbolic procedure elmmet 178,7633
+symbolic procedure geodesic!* 507,21100
+symbolic procedure getcon 621,25364
+symbolic procedure getcon!* 624,25486
+symbolic procedure getmetric 602,24732
+symbolic procedure getmetric!* 604,24803
+symbolic procedure iselm 191,8145
+symbolic procedure killing!* 464,19315
+symbolic procedure metric!* 52,1951
+symbolic procedure newnme 706,28549
+symbolic procedure restore!-tnsr!-environment 749,30353
+symbolic procedure ricci!* 307,12923
+symbolic procedure riccisc!* 337,14055
+symbolic procedure riemann!* 267,11328
+symbolic procedure setcon 679,27534
+symbolic procedure setmetric 643,26216
+symbolic procedure simpd!* 149,6405
+symbolic procedure simpdalem 585,24126
+symbolic procedure weyl!* 389,16066
+
+indexed.red,1486
+symbolic procedure chkindex 232,9775
+symbolic procedure cmv!* 445,17923
+symbolic procedure conjrdr 289,11667
+symbolic procedure cqv!* 449,18028
+symbolic procedure cv!* 441,17842
+symbolic procedure fast!-writetnsr 662,26513
+symbolic procedure fast!-writetnsr!-cleanup 711,28870
+symbolic procedure fast!-writetnsr!-cleanup!* 717,29049
+symbolic procedure fndcmp 425,17321
+symbolic procedure generics!* 550,22070
+symbolic procedure getindextype 657,26367
+symbolic procedure indexed 268,11016
+symbolic procedure indexlim 254,10577
+symbolic procedure inject!-obj 211,9025
+symbolic procedure isittype 271,11126
+symbolic procedure isprotect 488,19309
+symbolic procedure makegeneric 503,19940
+symbolic procedure mkconj 186,7918
+symbolic procedure mktnsr!* 98,3822
+symbolic procedure mktnsr!*!* 58,1979
+symbolic macro procedure 37,1208
+symbolic macro procedure 38,1277
+symbolic macro procedure 568,22633
+symbolic macro procedure 601,24088
+symbolic macro procedure 737,29820
+symbolic procedure protect 457,18248
+symbolic procedure protect!* 463,18417
+symbolic procedure readtnsr 309,12396
+symbolic procedure real!-coords 740,29898
+symbolic procedure real!-defindextype 604,24178
+symbolic procedure real!-mktnsr 42,1399
+symbolic procedure real!-restrict 570,22708
+symbolic procedure resolvegeneric 520,20884
+symbolic procedure restrict!* 577,23011
+symbolic procedure stripops 755,30410
+symbolic procedure tvalue 776,30962
+symbolic procedure writetnsr 362,14620
+
+io.red,930
+symz!-iops!* := '(88,2802
+symbolic procedure check!-index!-ops 327,12648
+symbolic procedure dispf1 427,16312
+symbolic procedure dispf2 452,17206
+symbolic procedure dncase 597,22707
+symbolic procedure dnname 615,23122
+symbolic procedure equalparse1 392,14593
+symbolic procedure evalindex 264,10290
+symbolic procedure fill!-indextype 474,17926
+symbolic procedure formrdr 281,10909
+symbolic procedure index!-len 370,13869
+symbolic procedure mclear 632,23576
+symbolic procedure mkrdr 116,3713
+symbolic procedure parselsqb 299,11546
+symbolic procedure print!-index 535,20292
+symbolic procedure printrdr 489,18468
+symbolic procedure rdrp 520,19697
+symbolic procedure rdrprintwidth 573,21734
+symbolic procedure scan 289,11201
+symbolic procedure simpfindex 324,12527
+symbolic procedure simprdr 203,7493
+symbolic procedure testwidth 591,22491
+symbolic procedure upcase 606,22918
+symbolic procedure upname 621,23278
+
+local.red,162
+symbolic procedure begin1;352,14388
+symbolic procedure diffp(29,874
+symbolic procedure terpri!* 297,12103
+symbolic;12,359
+symbolic procedure xread1 126,5010
+
+local32.red,230
+symbolic procedure begin1;209,6845
+symbolic procedure diffp(87,2375
+symbolic procedure inprint(41,1116
+symbolic procedure oprin 66,1792
+symbolic;12,343
+symbolic procedure subeval 23,596
+symbolic procedure terpri!* 165,5006
+
+local33.red,234
+symbolic procedure begin1;350,13462
+symbolic procedure diffp(77,2476
+symbolic procedure inprint(46,1327
+symbolic;12,365
+symbolic procedure subeval 19,531
+symbolic procedure terpri!* 307,11637
+symbolic procedure xread1 173,6473
+
+local34.red,237
+symbolic procedure begin1;445,18365
+symbolic procedure diffp(89,3239
+symbolic procedure inprint(41,1144
+symbolic procedure prin2!* 355,14567
+symbolic;12,371
+symbolic procedure terpri!* 398,16373
+symbolic procedure xread1 188,7555
+
+local35.red,162
+symbolic procedure begin1;352,14388
+symbolic procedure diffp(29,874
+symbolic;12,359
+symbolic procedure terpri!* 297,12103
+symbolic procedure xread1 126,5010
+
+lower.red,17
+symbolic;14,389
+
+math.red,57
+symbolic;30,1097
+symbolic procedure simptaylor 37,1233
+
+matrix.red,261
+symbolic procedure cofactor!* 99,3678
+symbolic procedure cofactor1 194,8438
+symbolic procedure det!* 41,1383
+symbolic procedure determ!* 64,2227
+symbolic procedure determ1 208,8974
+symbolic procedure invert!* 145,5933
+symbolic procedure trace!* 235,9906
+
+np.red,466
+symbolic procedure npd!* 235,10288
+symbolic procedure npdel!* 243,10484
+symbolic procedure npdelc!* 247,10584
+symbolic procedure npdelta!* 239,10385
+symbolic procedure npnames!* 609,24837
+symbolic procedure npop!* 250,10644
+symbolic procedure npricci!* 437,17468
+symbolic procedure npspin!* 117,4665
+symbolic procedure npweyl!* 263,10978
+symbolic procedure nulltet!* 46,1609
+symbolic procedure nulltet!*!* 55,1940
+symbolic procedure nulltetrad!* 94,3548
+
+rename.red,47
+symbolic$2,79
+symbolic procedure token(7,174
+
+save.red,916
+symbolic putd ('oldsetk1, 368,11987
+symbolic procedure add!-to!-environment 325,10937
+symbolic procedure base!-case!-string 48,1615
+symbolic procedure copystruct 352,11543
+symbolic procedure delete!-environment 391,12638
+symbolic procedure findkern 256,8663
+symbolic procedure findkern1 262,8780
+symbolic procedure findkern2 269,8935
+symbolic procedure keep!* 346,11476
+symbolic procedure new!-environment 338,11276
+symbolic procedure operator 361,11814
+symbolic procedure rename!-environment 406,13087
+symbolic procedure restore!-environment 304,10129
+symbolic procedure save!-environment 284,9403
+symbolic procedure savec!* 105,3497
+symbolic procedure savec2 213,7270
+symbolic procedure savei!* 99,3262
+symbolic procedure savei2 168,5698
+symbolic procedure saveic 114,3819
+symbolic procedure setk1 371,12080
+symbolic procedure swap!-environment 381,12377
+symbolic procedure uniqkern 240,8100
+
+shift.red,501
+symbolic procedure altmetric!* 301,12132
+symbolic procedure cmpindextype 200,8387
+symbolic procedure fixat 323,13055
+symbolic procedure genshft 219,8917
+symbolic procedure mkshft 117,5115
+symbolic procedure mkshftnme 241,9744
+symbolic procedure new!-symmetry 265,10664
+symbolic procedure new!-symmetry1 271,10888
+symbolic procedure shftc 146,6344
+symbolic procedure shftfnd 173,7341
+symbolic procedure shift 36,1166
+symbolic procedure shift!* 40,1383
+symbolic procedure shift!*!* 51,1834
+
+spnr.red,122
+symbolic procedure spchristoffel!* 159,6137
+symbolic procedure spinmat!* 97,3639
+symbolic procedure spmetric!* 41,1312
+
+subobj.red,507
+symbolic procedure all!-shifts 215,8636
+symbolic procedure ext!-map 155,6330
+symbolic procedure int!-map 117,4644
+symbolic procedure resolve!-subobj 195,7862
+symbolic procedure subobj!* 37,1231
+symbolic procedure subobj!*!* 72,2611
+symbolic procedure subobj!-odf(273,11108
+symbolic procedure subobj!-odf!* 281,11358
+symbolic procedure subobj!-offspring 225,9015
+symbolic procedure subobj!-shift(277,11231
+symbolic procedure subobj!-shift!* 259,10522
+symbolic procedure subobj!-symmetry 165,6682
+
+sym.red,1195
+symsgnone!* := 'nil;33,1076
+symbolic procedure bubsrt 155,6658
+symbolic procedure chksym 493,19626
+symbolic procedure cnjflg 341,14088
+symbolic procedure cnvrtindex 285,11864
+symbolic procedure cnvrtn 249,10338
+symbolic procedure exchange 230,9587
+symbolic procedure full!-sym 77,3163
+symbolic procedure hermitian 194,8200
+symbolic procedure ifmtsym 406,16457
+symbolic procedure igen 568,22661
+symbolic procedure igen!* 587,23561
+symbolic procedure igen!-full 571,22797
+symbolic procedure igen1 619,24654
+symbolic procedure igenn 597,23906
+symbolic procedure indxn 324,13540
+symbolic procedure makedifsym!* 379,15373
+symbolic procedure multip 345,14139
+symbolic procedure multip1 351,14405
+symbolic procedure orderindex1 218,9202
+symbolic procedure roll!-sym 327,13598
+symbolic procedure rqsort 649,25508
+symbolic procedure sgnsym 333,13834
+symbolic procedure sort!-indices 628,24812
+symbolic procedure sort!-sym 457,18234
+symbolic procedure sort!-sym1 440,17680
+symbolic procedure swap 665,25993
+symbolic procedure sym 104,4541
+symbolic procedure sym1 122,5164
+symbolic procedure syma 63,2462
+symbolic procedure symi 38,1213
+symbolic procedure ufmtsym 478,19060
+
+symindex.red,452
+symzflg!* := 'nil;35,1190
+symbolic procedure find!-index 192,6639
+symbolic procedure gensymz 143,4972
+symbolic procedure gensymz1 154,5457
+symbolic procedure map!-index 161,5645
+symbolic procedure map!-index1 168,5949
+symbolic procedure printsymz 44,1332
+symbolic procedure revalindex 100,3322
+symbolic procedure revalindex1 108,3670
+symbolic procedure symz!* 39,1242
+symbolic procedure symz!*!* 46,1388
+symbolic procedure symzop1 116,3935
+
+sysfn.red,81
+symbolic;3,56
+symbolic procedure prop 12,289
+symbolic procedure unboundp 6,94
+
+utility1.red,3093
+symbolic procedure base!-case!-name 673,23218
+symbolic procedure begin!-redten 584,20990
+symbolic procedure canonindex 63,2216
+symbolic procedure checktype 85,2906
+symbolic procedure cleaner 93,3182
+symbolic procedure cleartmp 118,3827
+symbolic procedure cnstn 134,4266
+symbolic procedure deriv 147,4612
+symbolic procedure etime 894,29359
+symbolic procedure fderiv 154,4846
+symbolic procedure fixedindex 319,10689
+symbolic procedure free1 187,5923
+symbolic procedure getfam 167,5168
+symbolic procedure getindices 200,6269
+symbolic procedure getnme 215,6839
+symbolic procedure head 260,8738
+symbolic procedure ind 273,9053
+symbolic procedure index!-string 355,11787
+symbolic procedure indh 282,9332
+symbolic procedure insert 294,9782
+symbolic procedure look 334,11179
+symbolic procedure makename 346,11556
+symbolic procedure mapindextype 414,13680
+symbolic procedure mascii 440,14650
+symbolic procedure match!-name 726,24801
+symbolic procedure match!-names 678,23365
+symbolic procedure match!-string 713,24392
+symbolic procedure merror 491,17575
+symbolic procedure mkmsg 387,12885
+symbolic procedure mycaaaar 836,28164
+symbolic procedure mycaaadr 839,28221
+symbolic procedure mycaaar 810,27640
+symbolic procedure mycaadar 845,28335
+symbolic procedure mycaaddr 842,28278
+symbolic procedure mycaadr 813,27702
+symbolic procedure mycaar 796,27402
+symbolic procedure mycadaar 848,28392
+symbolic procedure mycadadr 851,28449
+symbolic procedure mycadar 819,27826
+symbolic procedure mycaddar 854,28506
+symbolic procedure mycadddr 857,28563
+symbolic procedure mycaddr 816,27764
+symbolic procedure mycadr 799,27455
+symbolic procedure mycar 788,27281
+symbolic procedure mycdaaar 860,28620
+symbolic procedure mycdaadr 863,28677
+symbolic procedure mycdaar 822,27888
+symbolic procedure mycdadar 869,28791
+symbolic procedure mycdaddr 866,28734
+symbolic procedure mycdadr 825,27950
+symbolic procedure mycdar 802,27508
+symbolic procedure mycddaar 872,28848
+symbolic procedure mycddadr 875,28905
+symbolic procedure mycddar 828,28012
+symbolic procedure mycdddar 878,28962
+symbolic procedure mycddddr 881,29019
+symbolic procedure mycdddr 831,28074
+symbolic procedure mycddr 805,27563
+symbolic procedure mycdr 792,27341
+symbolic procedure mynth 499,17895
+symbolic procedure mypnth 505,18074
+symbolic procedure mysetprop 509,18165
+symbolic procedure orderindex 522,18674
+symbolic procedure patternindex 46,1626
+symbolic procedure pbol 541,19230
+symbolic procedure prep!-pat 694,23828
+symbolic procedure rdr!-string 381,12624
+symbolic procedure replacindex 548,19488
+symbolic procedure resimpscalar 561,20169
+symbolic procedure set!-defaults!-from!-environment 569,20448
+symbolic procedure setlis 599,21399
+symbolic procedure sign 566,20360
+symbolic procedure stime 891,29265
+symbolic procedure sublist 612,21784
+symbolic procedure tabprint 654,22830
+symbolic procedure tabthenprint 648,22697
+symbolic procedure tmpnames 621,22101
+symbolic procedure top 626,22273
+symbolic procedure untabprint 662,22972
+symbolic procedure zpn 635,22474
+
+utility2.red,1041
+symbolic procedure build!-new!-name 456,16521
+symbolic procedure copyfam!* 412,14780
+symbolic procedure copyfam!*!* 427,15410
+symbolic procedure delta!* 626,23647
+symbolic procedure describe 680,25594
+symbolic procedure describe!* 686,25806
+symbolic procedure dir!* 42,1400
+symbolic procedure help 183,6375
+symbolic procedure ias!* 301,10698
+symbolic procedure iclear 394,14356
+symbolic procedure iclear!* 400,14448
+symbolic procedure icopy!* 372,13524
+symbolic procedure icopy!*!* 367,13365
+symbolic procedure info!* 718,26725
+symbolic procedure info!*!* 725,26864
+symbolic procedure kill 270,9355
+symbolic procedure kill!* 279,9642
+symbolic procedure mapfi!* 474,17248
+symbolic procedure mapfi!-args 540,20091
+symbolic procedure mkcoords!* 594,22508
+symbolic procedure mkcoords!*!* 602,22859
+symbolic procedure multiplier!* 673,25423
+symbolic procedure nodir!* 162,5792
+symbolic procedure rem 212,7403
+symbolic procedure rem1 231,8016
+symbolic procedure restoreobj 708,26444
+symbolic procedure saveobj 700,26239

@@ -1,0 +1,6 @@
+test(contract ('(a b a c),'(1 1 -1 1)),'((b c) (a) (1 1)(1)), 'contract)$
+test(contract ('(a b (!*at!* a) c),'(1 1 1 1)),'((b c) (a) (1 1)(1)), 'contract)$
+on extendedsum;
+test(contract ('(a b a c),'(1 1 1 1)),'((b c) (a) (1 1)(1)), 'contract)$
+off extendedsum;
+$end$

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Symmetries</TITLE>
+<meta name="description" value=" Symmetries">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html453 HREF="node15.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html451 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html445 HREF="node13.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html455 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html456 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html454 HREF="node15.html"> Combining Symmetries</A>
+<B>Up:</B> <A NAME=tex2html452 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html446 HREF="node13.html"> indextype</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00323000000000000000> Symmetries</A></H2>
+<P>
+<A NAME=mkobjsym>&#160;</A>  <A NAME=369>&#160;</A>
+After the structure of the index the most important property of an
+indexed object is the description of the intrinsic symmetries among
+its indices. The symmetries relate permutations of the index to a
+canonical form, and the values of the components so related are either
+identical or differ by a sign (and may be complex conjugates as well).  A
+complicated symmetry can reduce the number of independent components
+of an indexed object from hundreds to just a few, and since all the
+related components are so easily obtainable, only the canonical
+components need be stored. This greatly reduces the amount of storage
+required for an object, and also ensures that the symmetrically
+related components are in fact consistent with one another. The
+symmetries are also used to find a canonical form for any index
+applied to an indexed object, which allows some simplification and
+cancellation of expressions even before the components are examined.
+<P>
+The canonical form of an index is that which has the lowest ordered
+<A NAME=370>&#160;</A>
+indices moved to the left as controlled by the symmetry. The ordering
+of indices is ``numeric-alpha'', i.e. numerical indices are ordered
+lower than alphabetic indices. This rule is altered when an
+index-element is being shifted (qv), in which case indices shifting up
+are moved left, and indices shifting down are moved right. See the
+examples below.
+<P>
+The symmetry description in REDTEN is in the form of a list of
+lists, each element of which describes a specific relation between
+blocks of the object indices (an ``independent'' symmetry). A
+``block'' is defined as a group of adjacent index elements that move
+together under the influence of the symmetry.  The location of the
+<IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6170.gif"> index element is often called a ``slot'', because the
+index elements are ``dropped'' into it when using the symmetries.
+<P>
+Four kinds of symmetry relations are supported:
+<UL><LI> Positive symmetry --- no sign change on odd permutations
+<LI> Negative symmetry (also called an anti-symmetry or a
+skew-symmetry) --- sign change on odd permutations
+<LI> Trace symmetry (a diagonal symmetry) --- a pseudo-symmetry similar
+to the positive symmetry, but the index elements must be identical, or
+the value is zero, and the block size must be unity.
+<LI> Hermitian symmetry --- for spinor indices a Hermitian symmetry is
+implied. 
+</UL>
+Each of these may relate any number of adjacent blocks of index
+elements in an index.
+<P>
+The list describing a single independent symmetry relation is of the
+form:
+   ({c} <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6190.gif"> <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6178.gif"> <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6180.gif"> ...) or (h <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6178.gif"> <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6180.gif"> ...)
+<P>
+The first form is used to describe the first three kinds of symmetry
+relations, while the second describes the Hermitian symmetry.
+<P>
+In the first form, <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6190.gif"> is the size of the block of indices that will
+be related by the symmetry. The sign of <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6190.gif"> indicates whether the
+symmetry is positive or negative. If <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6186.gif">, then a trace symmetry is
+implied, but the block size is unity. The <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6188.gif"> are pointers, starting
+from 1, to the beginning of each block of size <IMG ALIGN=BOTTOM SRC="_10787_tex2html_wrap6190.gif"> in the index. The
+optional flag 'c' (the literal character, in either upper- or
+lower-case) indicates that a conjugate is to be performed on odd
+permutations. Some examples follow.
+<DL >
+<DT><tt>'(1 1 2)</tt>
+<DD> --- a simple symmetry, typical of metrics 
+<DT><tt>'(-2 1 3)</tt>
+<DD> --- an anti-symmetry in the first and second  block of
+two indices, the outer Riemann symmetry
+<DT><tt>'(0 1 2)</tt>
+<DD> --- a trace symmetry, used for diagonal metrics.
+<P>
+ </DL>
+<P>
+The Hermitian symmetry is indicated by the second form (where 'h' is a
+literal character, in either upper- or lower-case), and can be applied
+only to spinor indices, which must come in adjacent unprimed and
+primed pairs (i.e. the index-types are 3 and 4). If no pointers are
+given, the system will construct a Hermitian symmetry for the entire
+index.
+<P>
+<BR> <HR>
+<UL> 
+<LI> <A NAME=tex2html457 HREF="node15.html#SECTION00323100000000000000"> Combining Symmetries</A>
+<LI> <A NAME=tex2html458 HREF="node16.html#SECTION00323200000000000000"> Constraints</A>
+</UL>
+<BR> <HR><A NAME=tex2html453 HREF="node15.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html451 HREF="node11.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html445 HREF="node13.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html455 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html456 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html454 HREF="node15.html"> Combining Symmetries</A>
+<B>Up:</B> <A NAME=tex2html452 HREF="node11.html"> Using mkobj()</A>
+<B> Previous:</B> <A NAME=tex2html446 HREF="node13.html"> indextype</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

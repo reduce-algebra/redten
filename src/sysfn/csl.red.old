@@ -1,0 +1,16 @@
+% usual copyright notice applies
+% System deps for csl.
+symbolic;
+flag ('(setpchar), 'lose);
+
+symbolic procedure unboundp (ex);
+% determine if if the atom EX is unbound
+% csl boundp does not seem to work
+%  not boundp (ex);
+  if eval (ex) = eval ('indefinite!-value!*) then 't else 'nil;
+
+symbolic procedure prop (u);
+% return the entire property list of U
+  plist (u);
+
+;end;

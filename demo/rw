@@ -1,0 +1,28 @@
+comment
+This Reduce script computes the Weyl tensor for  the  Robertson-Walker
+metric  to  show that the solution is conformally flat. 
+Below is the line-element in the usual form. We let the  function
+s(om) remain general (k = 0, +_1).
+;
+stime();
+coords '(t om th ph);
+ds2 := d(t)^2-rt^2*(d(om)^2+s^2*(d(th)^2+sin(th)^2*d(ph)^2));
+depend rt, t;
+let s = sin(sqrt(k)*om)/sqrt(k);
+comment
+Compute the metric tensor from the line-element and  compute  the
+Weyl tensor. 
+;
+metric(ds2);
+weyl();
+comment
+Compute the Einstein tensor and raise its first index to form the 
+object called 'ei!_b'. Note the two independent field equations of 
+an isotropic fluid.
+;
+einstein();
+shift(G[@a,b]);
+G!_b[];
+dir();
+etime();
+;end;

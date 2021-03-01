@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> metrics</TITLE>
+<meta name="description" value=" metrics">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html658 HREF="node32.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html656 HREF="node30.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html650 HREF="node30.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html660 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html661 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html659 HREF="node32.html"> shift()</A>
+<B>Up:</B> <A NAME=tex2html657 HREF="node30.html"> Metric Contractions</A>
+<B> Previous:</B> <A NAME=tex2html651 HREF="node30.html"> Metric Contractions</A>
+<BR> <HR> <P>
+<H2><A NAME=SECTION00411000000000000000> metrics</A></H2>
+<P>
+<A NAME=ssecmetrics>&#160;</A> A prerequisite of using shift() is the existence of a metric for
+the appropriate index-type. We have seen in &#167;<A HREF="node25.html#secRW">2.4</A> how to
+construct a tensor metric from either an indexed object or a
+line-element. The function metric(), when it creates a metric,
+declares it to be the ``current-metric'' by updating the variable
+currentmetric.  This variable is a list of names of metrics for
+each type of index defined by the defindextype!* variable,
+starting with the tensor metric (see table <A HREF="node13.html#tabindextype">2.1</A> for a
+list of the initial index-types defined in the system). After creating
+the metric <tt>h</tt> for the RW metric we can examine the value of this
+variable:
+<PRE> 
+<tt>#: <i>lisp currentmetric;</i>
+
+(h)
+</tt></PRE>The current-metric for any index-type can be set with the function
+setmetric() and the name of the current-metric can be obtained with
+the function getmetric(). The argument to setmetric() is the
+name of a rank-2 covariant object that must be of itype <tt>metric</tt>, it should also have a metric inverse defined by applying the
+function invert() to it, if the object was not created by one of
+the system metric functions. If the tensor metric is being changed,
+the system coordinates (in coords!*) are changed to reflect
+those on the new metric. In addition, setmetric() also flags the
+old metric to be <tt>nodir</tt>, so that it and its family
+(see &#167;<A HREF="node33.html#gr">4</A>) are not displayed by dir(). With
+setmetric() it is possible for the user to maintain
+several metrics in the system simultaneously, switching between them
+as required. The GR package in REDTEN makes this even easier.
+<P>
+The argument to getmetric() is an integer index-type value whose
+sign is the <em>opposite</em> of the actual entries in the indextype
+property of the metric. Thus, the value 1 will return the tensor
+metric, while -1 will return the metric inverse:
+<PRE> 
+<tt>#: <i>getmetric(1);</i>
+
+  h
+
+#: <i>getmetric(-1);</i>
+
+  h_inv
+</tt></PRE>It is an error to ask for a metric that has not yet been defined.
+<P>
+<BR> <HR><A NAME=tex2html658 HREF="node32.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html656 HREF="node30.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html650 HREF="node30.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html660 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html661 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html659 HREF="node32.html"> shift()</A>
+<B>Up:</B> <A NAME=tex2html657 HREF="node30.html"> Metric Contractions</A>
+<B> Previous:</B> <A NAME=tex2html651 HREF="node30.html"> Metric Contractions</A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

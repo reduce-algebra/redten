@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3O//DTD W3 HTML 2.0//EN">
+<!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<P>
+<HEAD>
+<TITLE> Ordinary Differentiation</TITLE>
+<meta name="description" value=" Ordinary Differentiation">
+<meta name="keywords" value="root">
+<meta name="resource-type" value="document">
+<meta name="distribution" value="global">
+</HEAD>
+<BODY><P>
+ <BR> <HR><A NAME=tex2html699 HREF="node35.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html697 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html691 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html701 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html702 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html700 HREF="node35.html"> Partial Differentiation</A>
+<B>Up:</B> <A NAME=tex2html698 HREF="node33.html"> The General Relativity </A>
+<B> Previous:</B> <A NAME=tex2html692 HREF="node33.html"> The General Relativity </A>
+<BR> <HR> <P>
+<H1><A NAME=SECTION00510000000000000000> Ordinary Differentiation</A></H1>
+<P>
+<A NAME=secodf>&#160;</A>   <A NAME=1187>&#160;</A>
+<A NAME=1188>&#160;</A>
+ As of REDTEN version v3.3 the ordinary differentiation code was
+entirely rewritten to make use of automatically created objects to
+store the derivatives of other objects. This change was intended to
+improve the performance of the system by avoiding the unnecessary
+re-computation of derivatives, and to simplify the code. When an
+objects' index indicates an ordinary differentiation and the object is
+involved in an indexed assignment, the system will either store a
+newly computed derivative or retrieve an existing value from the
+derivative object. Higher order derivatives cause multiple objects to
+be created, each containing the derivative of the previous object and
+having a rank one greater.
+<P>
+The automatically created derivative objects have names of the form
+<tt>&lt;name&gt;_DF&lt;#&gt;</tt> where <tt>&lt;name&gt;</tt> is the name of the object
+whose derivative is being computed, and <tt>&lt;#&gt;</tt> is an integer,
+starting from 2, that distinguishes higher order objects. The
+indextype is formed by adding enough covariant tensor indices to
+those already on the parent object to match the order of the
+derivative. This is strictly incorrect, since ordinary derivative
+indices do not transform as tensor indices, but it is much more
+convenient to regard them as such. The user is responsible for
+ensuring that combinations of objects having ordinary derivative
+indices are in fact tensors.  For derivatives of order 2 or higher,
+the derivative indices are symmetric because of the commutative
+property of differentiation; the derivative objects also inherit the
+intrinsic symmetries of the parent object.
+<P>
+When created on the fly the derivative objects are filled with the
+hitherto unmentioned value <tt>&lt;undefined&gt;</tt> (which cannot be entered
+by the user) so as to distinguish between components that have been
+evaluated and those which have not. Thus, a derivative object may be
+``incomplete'' after being created automatically, since the indexed
+algebra may not have touched on all the possible components. The user
+can fully evaluate any order derivative of an object via the function
+odf(), which takes the object name as the first argument, and
+odf()
+the order of the derivative as the optional second argument. Objects
+so created are visible in a directory listing, but the automatic
+objects are flagged nodir and are hidden unless the <tt>all</tt>
+keyword (or the <tt><code>*</code></tt> pattern)
+ is used. Since the number of real components is uncertain for
+the automatic objects, a directory listing will usually display a
+large number of components (representing the full number of possible
+components each with the value <tt>&lt;undefined&gt;</tt>), followed by a <tt>?</tt> to indicate the uncertainty.  Using odf() also causes the
+derivatives and the parent to become write protected.
+<P>
+The derivative objects are given the <tt>itype</tt> odf and form a
+chain starting from the parent; each object stores its order and the
+objects that are its anti-derivative and derivative under the
+odf property. See the function <tt>getfam()</tt> for information on
+how to simplify both the parent object and its derivatives at the same
+time.
+<P>
+The derivative objects are set up with a printname that is the
+parent objects' printname, and their indices are printed with
+the appropriate differentiation symbols in place. For example, if <tt>q</tt> is a rank-1 indexed object, the user can create its 3rd-order
+derivative via
+<PRE> 
+<tt>#: <i>odf(q,3);</i>
+computing q_DF3 
+
+  q_DF3
+</tt></PRE>and a display of the components of this object would appear as follows:
+<PRE> 
+<tt>#: <i>q_DF3[];</i>
+
+  0
+ q         = &lt;value&gt;
+    |0 0 0
+
+  0
+ q         = &lt;value&gt;
+    |0 0 1
+
+etc.
+</tt></PRE>The user may also cause the automatic creation of the derivative
+objects by entering a fixed index containing a derivative operator.
+The required derivatives are computed and immediately returned, and
+also stored in the derivative objects. For example,
+<PRE> 
+<tt>#: R[1,2,1,2,|0];
+                           2                   2
+   - (2 rt  sin(sqrt(k) om)  rt) (rt   rt + rt   + k)
+          t                         2t        t
+ -----------------------------------------------------
+                           k 
+</tt></PRE><BR> <HR>
+<UL> 
+<LI> <A NAME=tex2html703 HREF="node35.html#SECTION00511000000000000000"> Partial Differentiation</A>
+</UL>
+<BR> <HR><A NAME=tex2html699 HREF="node35.html"><IMG ALIGN=BOTTOM ALT="next" SRC="../../../images/latex/next_motif.gif"></A> <A NAME=tex2html697 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="up" SRC="../../../images/latex/up_motif.gif"></A> <A NAME=tex2html691 HREF="node33.html"><IMG ALIGN=BOTTOM ALT="previous" SRC="../../../images/latex/previous_motif.gif"></A> <A NAME=tex2html701 HREF="node1.html"><IMG ALIGN=BOTTOM ALT="contents" SRC="../../../images/latex/contents_motif.gif"></A> <A NAME=tex2html702 HREF="node70.html"><IMG ALIGN=BOTTOM ALT="index" SRC="../../../images/latex/index_motif.gif"></A> <BR>
+<B> Next:</B> <A NAME=tex2html700 HREF="node35.html"> Partial Differentiation</A>
+<B>Up:</B> <A NAME=tex2html698 HREF="node33.html"> The General Relativity </A>
+<B> Previous:</B> <A NAME=tex2html692 HREF="node33.html"> The General Relativity </A>
+<BR> <HR> <P>
+<BR> <HR>
+<P><ADDRESS>
+<I> John Harper <BR>
+Wed Nov 16 13:34:23 EST 1994</I>
+</ADDRESS>
+</BODY>

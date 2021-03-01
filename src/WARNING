@@ -1,0 +1,2 @@
+WARNING: in sys.env there are literal control characters.
+If transferring this code over a network be sure to use binary mode.
