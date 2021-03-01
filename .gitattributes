@@ -1,5 +1,9 @@
 # Effectively disable Linguist
+*.gen linguist-vendored
 doc/* linguist-vendored
 examples/* linguist-vendored
 src/* linguist-vendored
+demo/* linguist-vendored
 ./* linguist-vendored
+* linguist-vendored
+eg linguist-vendored
