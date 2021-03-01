@@ -20,8 +20,8 @@ Relativity.
 
 ## Authors
 
-- John F. Harper [<harper@utsc.utoronto.ca>](mailto:harper@utsc.utoronto.ca)
-- Charles C. Dyer [<dyer@astro.utoronto.ca>](mailto:dyer@astro.utoronto.ca)
+- John F. Harper [\<harper@utsc.utoronto.ca\>](mailto:harper@utsc.utoronto.ca)
+- Charles C. Dyer [\<dyer@astro.utoronto.ca\>](mailto:dyer@astro.utoronto.ca)
 
 ## Upstream
 
