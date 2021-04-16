@@ -1,450 +1,726 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Redten User Manual</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value="Redten User Manual">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html111" href="node1.html" id="tex2html111"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <IMG align="bottom" alt="up" src="../../../images/latex/up_motif_gr.png">
-  <IMG align="bottom" alt="previous" src=
-  "../../../images/latex/previous_motif_gr.png"> <A name="tex2html113" href=
-  "node1.html" id="tex2html113"><IMG align="bottom" alt="contents" src=
-  "../../../images/latex/contents_motif.png"></A> <A name="tex2html114" href=
-  "node70.html" id="tex2html114"><IMG align="bottom" alt="index" src=
-  "../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html112" href="node1.html" id=
-  "tex2html112">Contents</A><BR>
-  <HR>
-  <H1>Tensor Algebra with REDTEN</H1>
-  <P>A User Manual<BR>
-  Edition 1.0</P>
-  <H4>John F. Harper and Charles C. Dyer</H4><BR>
-  <H5>Department of Astronomy<BR>
-  Scarborough College<BR>
-  University of Toronto</H5><BR>
-  <P>Email: <A href="mailto:harper@scar.utoronto.ca"><SPAN class=
-  "c1">harper@scar.utoronto.ca</SPAN></A><BR>
-  <A href="mailto:dyer@astro.utoronto.ca"><SPAN class=
-  "c1">dyer@astro.utoronto.ca</SPAN></A><BR>
-  WWW: <SPAN class=
-  "c1">http://www.scar.utoronto.ca/%7Eharper/redten/</SPAN><BR></P>
-  <P>Wed Nov 16 13:47:41 EST 1994</P>
-  <P>Copyright © 1994 by J. F. Harper and C. C. Dyer</P>
-  <HR>
-  <H1>Comments on REDTEN</H1>Let us know what you think!
-  <P><EM>Note:</EM>This is an HTML form. You must have a browser that
-  supports forms in order to use it. If you do not see text editing areas
-  below, your browser does not support forms. Send mail directly to
-  harper@utsc.utoronto.ca instead.</P>
-  <P>Enter your message in the areas provided below. Be sure to fill out all
-  of the fields.</P>
-  <HR>
-  <FORM method="post" action="http:/cgi-bin/email">
-    <INPUT name="name">Your Name
-    <P><INPUT name="email">Your Email Address</P>
-    <P><INPUT name="subject" value="redten comment" type="hidden">
-    <INPUT name="recipient" value="harper@scar.utoronto.ca" type=
-    "hidden"></P>
-    <P>Text:</P>
-    <P>
-    <TEXTAREA name="content" rows="10" cols="60"></TEXTAREA></P>
-    <P>Click <INPUT type="submit" value="submit"> to submit your message.
-    Click <INPUT type="reset" value="reset"> to clear your message and start
-    over.</P>
-  </FORM>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html115" href="node1.html#SECTION00100000000000000000" id=
-      "tex2html115">Contents</A>
-    </LI>
-    <LI>
-      <A name="tex2html116" href="node2.html#SECTION00200000000000000000" id=
-      "tex2html116">Introduction</A>
-      <UL>
-        <LI>
-          <A name="tex2html117" href="node3.html#SECTION00210000000000000000"
-          id="tex2html117">History</A>
-        </LI>
-        <LI>
-          <A name="tex2html118" href="node4.html#SECTION00220000000000000000"
-          id="tex2html118">Concepts in REDUCE</A>
-          <UL>
-            <LI>
-              <A name="tex2html119" href=
-              "node5.html#SECTION00221000000000000000" id="tex2html119">Case
-              Sensitivity</A>
-            </LI>
-            <LI>
-              <A name="tex2html120" href=
-              "node6.html#SECTION00222000000000000000" id=
-              "tex2html120">Notation</A>
-            </LI>
-            <LI>
-              <A name="tex2html121" href=
-              "node7.html#SECTION00223000000000000000" id="tex2html121">Lisp
-              Variables</A>
-            </LI>
-            <LI>
-              <A name="tex2html122" href=
-              "node8.html#SECTION00224000000000000000" id=
-              "tex2html122">Property Lists</A>
-            </LI>
-          </UL>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html123" href="node9.html#SECTION00300000000000000000" id=
-      "tex2html123">Indexed Objects</A>
-      <UL>
-        <LI>
-          <A name="tex2html124" href=
-          "node10.html#SECTION00310000000000000000" id="tex2html124">The
-          Indexed Object</A>
-        </LI>
-        <LI>
-          <A name="tex2html125" href=
-          "node11.html#SECTION00320000000000000000" id="tex2html125">Using
-          <SPAN class="c1">mkobj()</SPAN></A>
-          <UL>
-            <LI>
-              <A name="tex2html126" href=
-              "node12.html#SECTION00321000000000000000" id=
-              "tex2html126">name</A>
-            </LI>
-            <LI>
-              <A name="tex2html127" href=
-              "node13.html#SECTION00322000000000000000" id=
-              "tex2html127">indextype</A>
-            </LI>
-            <LI>
-              <A name="tex2html128" href=
-              "node14.html#SECTION00323000000000000000" id=
-              "tex2html128">Symmetries</A>
-              <UL>
-                <LI>
-                  <A name="tex2html129" href=
-                  "node15.html#SECTION00323100000000000000" id=
-                  "tex2html129">Combining Symmetries</A>
-                </LI>
-                <LI>
-                  <A name="tex2html130" href=
-                  "node16.html#SECTION00323200000000000000" id=
-                  "tex2html130">Constraints</A>
-                </LI>
-              </UL>
-            </LI>
-            <LI>
-              <A name="tex2html131" href=
-              "node17.html#SECTION00324000000000000000" id=
-              "tex2html131">implicit value</A>
-            </LI>
-            <LI>
-              <A name="tex2html132" href=
-              "node18.html#SECTION00325000000000000000" id=
-              "tex2html132">itype</A>
-            </LI>
-            <LI>
-              <A name="tex2html133" href=
-              "node19.html#SECTION00326000000000000000" id=
-              "tex2html133">Other properties</A>
-            </LI>
-            <LI>
-              <A name="tex2html134" href=
-              "node20.html#SECTION00327000000000000000" id=
-              "tex2html134"><SPAN class="c1">mkobj()</SPAN> Examples</A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html135" href=
-          "node21.html#SECTION00330000000000000000" id="tex2html135">The
-          Index</A>
-          <UL>
-            <LI>
-              <A name="tex2html136" href=
-              "node22.html#SECTION00331000000000000000" id=
-              "tex2html136">Differentiation</A>
-            </LI>
-            <LI>
-              <A name="tex2html137" href=
-              "node23.html#SECTION00332000000000000000" id=
-              "tex2html137">Shift Operations</A>
-            </LI>
-            <LI>
-              <A name="tex2html138" href=
-              "node24.html#SECTION00333000000000000000" id=
-              "tex2html138">Symmetrization</A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html139" href=
-          "node25.html#SECTION00340000000000000000" id="tex2html139">The
-          Robertson-Walker Metric</A>
-          <UL>
-            <LI>
-              <A name="tex2html140" href=
-              "node26.html#SECTION00341000000000000000" id=
-              "tex2html140"><SPAN class="c1">coords()</SPAN></A>
-            </LI>
-            <LI>
-              <A name="tex2html141" href=
-              "node27.html#SECTION00342000000000000000" id=
-              "tex2html141">Entering Components</A>
-            </LI>
-            <LI>
-              <A name="tex2html142" href=
-              "node28.html#SECTION00343000000000000000" id=
-              "tex2html142">Accessing and Displaying Components</A>
-            </LI>
-          </UL>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html143" href="node29.html#SECTION00400000000000000000"
-      id="tex2html143">Algebra with Indexed Objects</A>
-      <UL>
-        <LI>
-          <A name="tex2html144" href=
-          "node30.html#SECTION00410000000000000000" id="tex2html144">Metric
-          Contractions</A>
-          <UL>
-            <LI>
-              <A name="tex2html145" href=
-              "node31.html#SECTION00411000000000000000" id=
-              "tex2html145">metrics</A>
-            </LI>
-            <LI>
-              <A name="tex2html146" href=
-              "node32.html#SECTION00412000000000000000" id=
-              "tex2html146"><SPAN class="c1">shift()</SPAN></A>
-            </LI>
-          </UL>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html147" href="node33.html#SECTION00500000000000000000"
-      id="tex2html147">The General Relativity Package</A>
-      <UL>
-        <LI>
-          <A name="tex2html148" href=
-          "node34.html#SECTION00510000000000000000" id="tex2html148">Ordinary
-          Differentiation</A>
-          <UL>
-            <LI>
-              <A name="tex2html149" href=
-              "node35.html#SECTION00511000000000000000" id=
-              "tex2html149">Partial Differentiation</A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html150" href=
-          "node36.html#SECTION00520000000000000000" id=
-          "tex2html150">Covariant Differentiation</A>
-          <UL>
-            <LI>
-              <A name="tex2html151" href=
-              "node37.html#SECTION00521000000000000000" id=
-              "tex2html151">Covariant derivatives of shifted objects</A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html152" href=
-          "node38.html#SECTION00530000000000000000" id="tex2html152">Generic
-          Names</A>
-        </LI>
-        <LI>
-          <A name="tex2html153" href=
-          "node39.html#SECTION00540000000000000000" id="tex2html153">Other
-          Functions</A>
-        </LI>
-        <LI>
-          <A name="tex2html154" href=
-          "node40.html#SECTION00550000000000000000" id="tex2html154">The
-          Matrix Functions</A>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html155" href="node41.html#SECTION00600000000000000000"
-      id="tex2html155">Utilities</A>
-      <UL>
-        <LI>
-          <A name="tex2html156" href=
-          "node42.html#SECTION00610000000000000000" id=
-          "tex2html156">Expression Management</A>
-          <UL>
-            <LI>
-              <A name="tex2html157" href=
-              "node43.html#SECTION00611000000000000000" id=
-              "tex2html157"><SPAN class="c1">mapfi()</SPAN></A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html158" href=
-          "node44.html#SECTION00620000000000000000" id="tex2html158">Other
-          Utilities</A>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html159" href="node45.html#SECTION00700000000000000000"
-      id="tex2html159">Other Packages</A>
-      <UL>
-        <LI>
-          <A name="tex2html160" href=
-          "node46.html#SECTION00710000000000000000" id="tex2html160">The
-          Frame Package</A>
-          <UL>
-            <LI>
-              <A name="tex2html161" href=
-              "node47.html#SECTION00711000000000000000" id="tex2html161">The
-              Complex Arithmetic Package</A>
-            </LI>
-            <LI>
-              <A name="tex2html162" href=
-              "node48.html#SECTION00712000000000000000" id=
-              "tex2html162">Converting basis</A>
-            </LI>
-            <LI>
-              <A name="tex2html163" href=
-              "node49.html#SECTION00713000000000000000" id=
-              "tex2html163">Covariant differentiation</A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html164" href=
-          "node50.html#SECTION00720000000000000000" id="tex2html164">The
-          Spinor Package</A>
-        </LI>
-        <LI>
-          <A name="tex2html165" href=
-          "node51.html#SECTION00730000000000000000" id="tex2html165">The
-          Newman-Penrose Package</A>
-          <UL>
-            <LI>
-              <A name="tex2html166" href=
-              "node52.html#SECTION00731000000000000000" id=
-              "tex2html166">Newman-Penrose Operators</A>
-            </LI>
-          </UL>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html167" href="node53.html#SECTION00800000000000000000"
-      id="tex2html167">Enhancements</A>
-      <UL>
-        <LI>
-          <A name="tex2html168" href=
-          "node54.html#SECTION00810000000000000000" id="tex2html168">The
-          REDUCE Environment</A>
-          <UL>
-            <LI>
-              <A name="tex2html169" href=
-              "node55.html#SECTION00811000000000000000" id=
-              "tex2html169">Saving to Disk</A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html170" href=
-          "node56.html#SECTION00820000000000000000" id="tex2html170">The
-          Pager</A>
-        </LI>
-        <LI>
-          <A name="tex2html171" href=
-          "node57.html#SECTION00830000000000000000" id=
-          "tex2html171">Miscellaneous</A>
-        </LI>
-        <LI>
-          <A name="tex2html172" href=
-          "node58.html#SECTION00840000000000000000" id="tex2html172">Case
-          Mapping</A>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html173" href="node59.html#SECTION00900000000000000000"
-      id="tex2html173">Extending REDTEN</A>
-    </LI>
-    <LI>
-      <A name="tex2html174" href="node60.html#SECTION001000000000000000000"
-      id="tex2html174">The Sato Metric</A>
-    </LI>
-    <LI>
-      <A name="tex2html175" href="node61.html#SECTION001100000000000000000"
-      id="tex2html175">REDTEN Functions, Variables, and Switches</A>
-    </LI>
-    <LI>
-      <A name="tex2html176" href="node62.html#SECTION001200000000000000000"
-      id="tex2html176">Functions</A>
-    </LI>
-    <LI>
-      <A name="tex2html177" href="node63.html#SECTION001300000000000000000"
-      id="tex2html177">Switches</A>
-    </LI>
-    <LI>
-      <A name="tex2html178" href="node64.html#SECTION001400000000000000000"
-      id="tex2html178">Error Messages</A>
-    </LI>
-    <LI>
-      <A name="tex2html179" href="node65.html#SECTION001500000000000000000"
-      id="tex2html179">Internal Details</A>
-    </LI>
-    <LI>
-      <A name="tex2html180" href="node66.html#SECTION001600000000000000000"
-      id="tex2html180">Getting Started</A>
-    </LI>
-    <LI>
-      <A name="tex2html181" href="node67.html#SECTION001700000000000000000"
-      id="tex2html181">Renaming Internal Functions</A>
-    </LI>
-    <LI>
-      <A name="tex2html182" href="node68.html#SECTION001800000000000000000"
-      id="tex2html182">Modifications to REDUCE</A>
-    </LI>
-    <LI>
-      <A name="tex2html183" href="node69.html#SECTION001900000000000000000"
-      id="tex2html183">New Features</A>
-    </LI>
-    <LI>
-      <A name="tex2html184" href="node70.html#SECTION002000000000000000000"
-      id="tex2html184">Index</A>
-    </LI>
-    <LI>
-      <A name="tex2html185" href="node71.html#SECTION002100000000000000000"
-      id="tex2html185"><EM>About this document ...</EM></A>
-    </LI>
-  </UL><BR>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Redten User Manual</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value="Redten User Manual" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html111" href="node1.html" id="tex2html111"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <img align="bottom" alt="up" src="../../../images/latex/up_motif_gr.png" />
+    <img
+      align="bottom"
+      alt="previous"
+      src="../../../images/latex/previous_motif_gr.png"
+    />
+    <a name="tex2html113" href="node1.html" id="tex2html113"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html114" href="node70.html" id="tex2html114"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html112" href="node1.html" id="tex2html112">Contents</a><br />
+    <hr />
+    <h1>Tensor Algebra with REDTEN</h1>
+    <p>
+      A User Manual<br />
+      Edition 1.0
+    </p>
+    <h4>John F. Harper and Charles C. Dyer</h4>
+    <br />
+    <h5>
+      Department of Astronomy<br />
+      Scarborough College<br />
+      University of Toronto
+    </h5>
+    <br />
+    <p>
+      Email:
+      <a href="mailto:harper@scar.utoronto.ca"
+        ><span class="c1">harper@scar.utoronto.ca</span></a
+      ><br />
+      <a href="mailto:dyer@astro.utoronto.ca"
+        ><span class="c1">dyer@astro.utoronto.ca</span></a
+      ><br />
+      WWW: <span class="c1">http://www.scar.utoronto.ca/%7Eharper/redten/</span
+      ><br />
+    </p>
+    <p>Wed Nov 16 13:47:41 EST 1994</p>
+    <p>Copyright © 1994 by J. F. Harper and C. C. Dyer</p>
+    <hr />
+    <h1>Comments on REDTEN</h1>
+    Let us know what you think!
+    <p>
+      <em>Note:</em>This is an HTML form. You must have a browser that supports
+      forms in order to use it. If you do not see text editing areas below, your
+      browser does not support forms. Send mail directly to
+      harper@utsc.utoronto.ca instead.
+    </p>
+    <p>
+      Enter your message in the areas provided below. Be sure to fill out all of
+      the fields.
+    </p>
+    <hr />
+    <form method="post" action="http:/cgi-bin/email">
+      <input name="name" />Your Name
+      <p><input name="email" />Your Email Address</p>
+      <p>
+        <input name="subject" value="redten comment" type="hidden" />
+        <input name="recipient" value="harper@scar.utoronto.ca" type="hidden" />
+      </p>
+      <p>Text:</p>
+      <p>
+        <textarea name="content" rows="10" cols="60"></textarea>
+      </p>
+      <p>
+        Click <input type="submit" value="submit" /> to submit your message.
+        Click <input type="reset" value="reset" /> to clear your message and
+        start over.
+      </p>
+    </form>
+    <hr />
+    <p><br /></p>
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html115"
+          href="node1.html#SECTION00100000000000000000"
+          id="tex2html115"
+          >Contents</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html116"
+          href="node2.html#SECTION00200000000000000000"
+          id="tex2html116"
+          >Introduction</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html117"
+              href="node3.html#SECTION00210000000000000000"
+              id="tex2html117"
+              >History</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html118"
+              href="node4.html#SECTION00220000000000000000"
+              id="tex2html118"
+              >Concepts in REDUCE</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html119"
+                  href="node5.html#SECTION00221000000000000000"
+                  id="tex2html119"
+                  >Case Sensitivity</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html120"
+                  href="node6.html#SECTION00222000000000000000"
+                  id="tex2html120"
+                  >Notation</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html121"
+                  href="node7.html#SECTION00223000000000000000"
+                  id="tex2html121"
+                  >Lisp Variables</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html122"
+                  href="node8.html#SECTION00224000000000000000"
+                  id="tex2html122"
+                  >Property Lists</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html123"
+          href="node9.html#SECTION00300000000000000000"
+          id="tex2html123"
+          >Indexed Objects</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html124"
+              href="node10.html#SECTION00310000000000000000"
+              id="tex2html124"
+              >The Indexed Object</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html125"
+              href="node11.html#SECTION00320000000000000000"
+              id="tex2html125"
+              >Using <span class="c1">mkobj()</span></a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html126"
+                  href="node12.html#SECTION00321000000000000000"
+                  id="tex2html126"
+                  >name</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html127"
+                  href="node13.html#SECTION00322000000000000000"
+                  id="tex2html127"
+                  >indextype</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html128"
+                  href="node14.html#SECTION00323000000000000000"
+                  id="tex2html128"
+                  >Symmetries</a
+                >
+                <ul>
+                  <li>
+                    <a
+                      name="tex2html129"
+                      href="node15.html#SECTION00323100000000000000"
+                      id="tex2html129"
+                      >Combining Symmetries</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      name="tex2html130"
+                      href="node16.html#SECTION00323200000000000000"
+                      id="tex2html130"
+                      >Constraints</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a
+                  name="tex2html131"
+                  href="node17.html#SECTION00324000000000000000"
+                  id="tex2html131"
+                  >implicit value</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html132"
+                  href="node18.html#SECTION00325000000000000000"
+                  id="tex2html132"
+                  >itype</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html133"
+                  href="node19.html#SECTION00326000000000000000"
+                  id="tex2html133"
+                  >Other properties</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html134"
+                  href="node20.html#SECTION00327000000000000000"
+                  id="tex2html134"
+                  ><span class="c1">mkobj()</span> Examples</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html135"
+              href="node21.html#SECTION00330000000000000000"
+              id="tex2html135"
+              >The Index</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html136"
+                  href="node22.html#SECTION00331000000000000000"
+                  id="tex2html136"
+                  >Differentiation</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html137"
+                  href="node23.html#SECTION00332000000000000000"
+                  id="tex2html137"
+                  >Shift Operations</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html138"
+                  href="node24.html#SECTION00333000000000000000"
+                  id="tex2html138"
+                  >Symmetrization</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html139"
+              href="node25.html#SECTION00340000000000000000"
+              id="tex2html139"
+              >The Robertson-Walker Metric</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html140"
+                  href="node26.html#SECTION00341000000000000000"
+                  id="tex2html140"
+                  ><span class="c1">coords()</span></a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html141"
+                  href="node27.html#SECTION00342000000000000000"
+                  id="tex2html141"
+                  >Entering Components</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html142"
+                  href="node28.html#SECTION00343000000000000000"
+                  id="tex2html142"
+                  >Accessing and Displaying Components</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html143"
+          href="node29.html#SECTION00400000000000000000"
+          id="tex2html143"
+          >Algebra with Indexed Objects</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html144"
+              href="node30.html#SECTION00410000000000000000"
+              id="tex2html144"
+              >Metric Contractions</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html145"
+                  href="node31.html#SECTION00411000000000000000"
+                  id="tex2html145"
+                  >metrics</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html146"
+                  href="node32.html#SECTION00412000000000000000"
+                  id="tex2html146"
+                  ><span class="c1">shift()</span></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html147"
+          href="node33.html#SECTION00500000000000000000"
+          id="tex2html147"
+          >The General Relativity Package</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html148"
+              href="node34.html#SECTION00510000000000000000"
+              id="tex2html148"
+              >Ordinary Differentiation</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html149"
+                  href="node35.html#SECTION00511000000000000000"
+                  id="tex2html149"
+                  >Partial Differentiation</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html150"
+              href="node36.html#SECTION00520000000000000000"
+              id="tex2html150"
+              >Covariant Differentiation</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html151"
+                  href="node37.html#SECTION00521000000000000000"
+                  id="tex2html151"
+                  >Covariant derivatives of shifted objects</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html152"
+              href="node38.html#SECTION00530000000000000000"
+              id="tex2html152"
+              >Generic Names</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html153"
+              href="node39.html#SECTION00540000000000000000"
+              id="tex2html153"
+              >Other Functions</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html154"
+              href="node40.html#SECTION00550000000000000000"
+              id="tex2html154"
+              >The Matrix Functions</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html155"
+          href="node41.html#SECTION00600000000000000000"
+          id="tex2html155"
+          >Utilities</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html156"
+              href="node42.html#SECTION00610000000000000000"
+              id="tex2html156"
+              >Expression Management</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html157"
+                  href="node43.html#SECTION00611000000000000000"
+                  id="tex2html157"
+                  ><span class="c1">mapfi()</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html158"
+              href="node44.html#SECTION00620000000000000000"
+              id="tex2html158"
+              >Other Utilities</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html159"
+          href="node45.html#SECTION00700000000000000000"
+          id="tex2html159"
+          >Other Packages</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html160"
+              href="node46.html#SECTION00710000000000000000"
+              id="tex2html160"
+              >The Frame Package</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html161"
+                  href="node47.html#SECTION00711000000000000000"
+                  id="tex2html161"
+                  >The Complex Arithmetic Package</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html162"
+                  href="node48.html#SECTION00712000000000000000"
+                  id="tex2html162"
+                  >Converting basis</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html163"
+                  href="node49.html#SECTION00713000000000000000"
+                  id="tex2html163"
+                  >Covariant differentiation</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html164"
+              href="node50.html#SECTION00720000000000000000"
+              id="tex2html164"
+              >The Spinor Package</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html165"
+              href="node51.html#SECTION00730000000000000000"
+              id="tex2html165"
+              >The Newman-Penrose Package</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html166"
+                  href="node52.html#SECTION00731000000000000000"
+                  id="tex2html166"
+                  >Newman-Penrose Operators</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html167"
+          href="node53.html#SECTION00800000000000000000"
+          id="tex2html167"
+          >Enhancements</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html168"
+              href="node54.html#SECTION00810000000000000000"
+              id="tex2html168"
+              >The REDUCE Environment</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html169"
+                  href="node55.html#SECTION00811000000000000000"
+                  id="tex2html169"
+                  >Saving to Disk</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html170"
+              href="node56.html#SECTION00820000000000000000"
+              id="tex2html170"
+              >The Pager</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html171"
+              href="node57.html#SECTION00830000000000000000"
+              id="tex2html171"
+              >Miscellaneous</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html172"
+              href="node58.html#SECTION00840000000000000000"
+              id="tex2html172"
+              >Case Mapping</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html173"
+          href="node59.html#SECTION00900000000000000000"
+          id="tex2html173"
+          >Extending REDTEN</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html174"
+          href="node60.html#SECTION001000000000000000000"
+          id="tex2html174"
+          >The Sato Metric</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html175"
+          href="node61.html#SECTION001100000000000000000"
+          id="tex2html175"
+          >REDTEN Functions, Variables, and Switches</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html176"
+          href="node62.html#SECTION001200000000000000000"
+          id="tex2html176"
+          >Functions</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html177"
+          href="node63.html#SECTION001300000000000000000"
+          id="tex2html177"
+          >Switches</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html178"
+          href="node64.html#SECTION001400000000000000000"
+          id="tex2html178"
+          >Error Messages</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html179"
+          href="node65.html#SECTION001500000000000000000"
+          id="tex2html179"
+          >Internal Details</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html180"
+          href="node66.html#SECTION001600000000000000000"
+          id="tex2html180"
+          >Getting Started</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html181"
+          href="node67.html#SECTION001700000000000000000"
+          id="tex2html181"
+          >Renaming Internal Functions</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html182"
+          href="node68.html#SECTION001800000000000000000"
+          id="tex2html182"
+          >Modifications to REDUCE</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html183"
+          href="node69.html#SECTION001900000000000000000"
+          id="tex2html183"
+          >New Features</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html184"
+          href="node70.html#SECTION002000000000000000000"
+          id="tex2html184"
+          >Index</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html185"
+          href="node71.html#SECTION002100000000000000000"
+          id="tex2html185"
+          ><em>About this document ...</em></a
+        >
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

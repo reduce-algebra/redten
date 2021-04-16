@@ -1,62 +1,92 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Property Lists</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Property Lists">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html353" href="node9.html" id="tex2html353"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html351" href="node4.html" id="tex2html351"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html347" href="node7.html" id="tex2html347"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html355" href="node1.html" id="tex2html355"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html356" href="node70.html" id="tex2html356"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html354" href="node9.html" id=
-  "tex2html354">Indexed Objects</A> <B>Up:</B> <A name="tex2html352" href=
-  "node4.html" id="tex2html352">Concepts in REDUCE</A> <B>Previous:</B>
-  <A name="tex2html348" href="node7.html" id="tex2html348">Lisp
-  Variables</A><BR>
-  <HR>
-  <H2><A name="SECTION00224000000000000000" id=
-  "SECTION00224000000000000000">Property Lists</A></H2>
-  <P><A name="ssecproplists" id="ssecproplists"></A> <A name="246" id=
-  "246"></A> <A name="247" id="247"></A> Lisp variables can have, in addition
-  to a value, a list of associated pairs and flags called a property list
-  (often abbreviated to <I>plist</I>). Most of the information kept both by
-  REDUCE and REDTEN is in the form of property lists attached to various lisp
-  identifiers. While the REDTEN user generally does not need to access a
-  property list, there may be times when it is useful to make corrections or
-  alterations directly. It is also useful to know how to examine the property
-  list either for the sake of curiosity, to fix a problem, or to
-  ``cheat''.</P>
-  <P>Although referred to as a list, the property list is more conveniently
-  thought of as a series of keyword-value pairs, which can be accessed with
-  the lisp functions put() and get(), and a set of flags (which are either
-  present or not) that are accessed with the functions flag() and flagp().
-  Properties and flags can be deleted with the functions remprop() and
-  remflag(). The entire property list can be accessed or replaced in REDTEN
-  with the functions prop() and setprop(), these are defined in terms of
-  standard lisp functions that vary from system to system (see appendix
-  <A href="node66.html#starting">F</A>). The formats of the calls to these
-  functions is shown in <A href="node62.html#func">C.1</A>.</P>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Property Lists</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Property Lists" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html353" href="node9.html" id="tex2html353"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html351" href="node4.html" id="tex2html351"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html347" href="node7.html" id="tex2html347"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html355" href="node1.html" id="tex2html355"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html356" href="node70.html" id="tex2html356"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html354" href="node9.html" id="tex2html354">Indexed Objects</a>
+    <b>Up:</b>
+    <a name="tex2html352" href="node4.html" id="tex2html352"
+      >Concepts in REDUCE</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html348" href="node7.html" id="tex2html348">Lisp Variables</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00224000000000000000" id="SECTION00224000000000000000"
+        >Property Lists</a
+      >
+    </h2>
+    <p>
+      <a name="ssecproplists" id="ssecproplists"></a>
+      <a name="246" id="246"></a> <a name="247" id="247"></a> Lisp variables can
+      have, in addition to a value, a list of associated pairs and flags called
+      a property list (often abbreviated to <i>plist</i>). Most of the
+      information kept both by REDUCE and REDTEN is in the form of property
+      lists attached to various lisp identifiers. While the REDTEN user
+      generally does not need to access a property list, there may be times when
+      it is useful to make corrections or alterations directly. It is also
+      useful to know how to examine the property list either for the sake of
+      curiosity, to fix a problem, or to ``cheat''.
+    </p>
+    <p>
+      Although referred to as a list, the property list is more conveniently
+      thought of as a series of keyword-value pairs, which can be accessed with
+      the lisp functions put() and get(), and a set of flags (which are either
+      present or not) that are accessed with the functions flag() and flagp().
+      Properties and flags can be deleted with the functions remprop() and
+      remflag(). The entire property list can be accessed or replaced in REDTEN
+      with the functions prop() and setprop(), these are defined in terms of
+      standard lisp functions that vary from system to system (see appendix
+      <a href="node66.html#starting">F</a>). The formats of the calls to these
+      functions is shown in <a href="node62.html#func">C.1</a>.
+    </p>
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

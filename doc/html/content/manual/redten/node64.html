@@ -1,208 +1,320 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Error Messages</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Error Messages">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html1062" href="node65.html" id="tex2html1062"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html1060" href="root.html" id="tex2html1060"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html1054" href="node63.html" id="tex2html1054"><IMG align="bottom"
-  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html1064" href="node1.html" id="tex2html1064"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html1065" href="node70.html" id="tex2html1065"><IMG align="bottom"
-  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html1063" href="node65.html" id=
-  "tex2html1063">Internal Details</A> <B>Up:</B> <A name="tex2html1061" href=
-  "root.html" id="tex2html1061">No Title</A> <B>Previous:</B> <A name=
-  "tex2html1055" href="node63.html" id="tex2html1055">Switches</A><BR>
-  <HR>
-  <H1><A name="SECTION001400000000000000000" id=
-  "SECTION001400000000000000000">Error Messages</A></H1>
-  <UL>
-    <LI>"bad block size: % in %."<BR>
-    The indicated block size in the indicated symmetry list (shown in
-    internal format) is not an integer.</LI>
-    <LI>"bad connection %."<BR>
-    The object given to setcon() does not have an itype of <SPAN class=
-    "c1">connection</SPAN>.</LI>
-    <LI>"bad index % for %"<BR>
-    This error may indicate an internal error in the system.</LI>
-    <LI>"bad indextype element: %"<BR>
-    The indicated element from an indextype list is either not an integer, or
-    does not correspond to a defined type.</LI>
-    <LI>"bad input: % (from %)."<BR>
-    The input to the indicated routine is not a valid indexed object or
-    name.</LI>
-    <LI>"bad metric: %."<BR>
-    The metric used as input to either setmetric() or altmetric() is either
-    does not have an itype of <SPAN class="c1">metric</SPAN>, or is not the
-    covariant metric.</LI>
-    <LI>"bad pointer: % in %"<BR>
-    The indicated pointer of the independent symmetry list is either not an
-    integer, or is not positive.</LI>
-    <LI>"can't make spin matrices -- sorry."<BR>
-    The spinmat() function only works at present for diagonal metrics.</LI>
-    <LI>"cannot assign to %."<BR>
-    The left-hand side of an indexed assignment is either not a single
-    indexed object, or the index of that object indicates a differentiation
-    operation.</LI>
-    <LI>"cannot compute cov deriv of generic object: %."<BR>
-    If this message appears the user has applied cov() to a generic name for
-    which no target has as yet been created. Create the target object, then
-    retry the operation.</LI>
-    <LI>"% cannot be assigned."<BR>
-    The indicated name is an indexed object and cannot have an algebraic
-    value assigned to it.</LI>
-    <LI>"cannot create conjugate %."<BR>
-    The conjugate object for a spinor cannot be created because it already
-    exists and cannot be removed (presumably it is kill-protected).</LI>
-    <LI>"cannot create object: %"<BR>
-    mkobj() cannot create the object because it either already exists and is
-    kill-protected, or the name is a reserved symbol.</LI>
-    <LI>"connection type % % does not exist."<BR>
-    The connection object relating the two types of indices does not
-    exist.</LI>
-    <LI>"coord-indextype mis-match %, %."<BR>
-    The length of the coordinate list (as given to coords()) is not the same
-    length as indicated by the run of tensor indices.</LI>
-    <LI>"description is not a string or atom: %"<BR>
-    The describe() function will only accept strings or single atoms for use
-    as a description of an indexed object.</LI>
-    <LI>"dif op without an index: %."<BR>
-    The user has terminated an index with a derivative operation, but no
-    following index-element.</LI>
-    <LI>"% does not have metric structure."<BR>
-    The named indexed object given to metric() is either not of rank-2, or is
-    not covariant.</LI>
-    <LI>"empty index!"<BR>
-    May indicate an internal error in the system.</LI>
-    <LI>"environments do not match: %"<BR></LI>
-    <LI>"format not a string."<BR></LI>
-    <LI>"free index element % in %."<BR></LI>
-    <LI>"improper blocks for hermitian symmetry: %."<BR></LI>
-    <LI>"improper contraction: %, %"<BR></LI>
-    <LI>"improper line-element: %."<BR></LI>
-    <LI>"improper structure for hermitian symmetry: %."<BR></LI>
-    <LI>"inconsistent indices: %, %"<BR></LI>
-    <LI>"index % cannot be shared.(???)"<BR></LI>
-    <LI>"index % wrong length for %."<BR></LI>
-    <LI>"index without a name."<BR></LI>
-    <LI>"indices do not match ."<BR>
-    Mixed cov and contra indices in expression</LI>
-    <LI>"input name required (from %)"<BR></LI>
-    <LI>"Internal error: name not passed to mkrdr."<BR>
-    This message indicates a failure in the system and should be reported to
-    the authors along with a sample input and output. It may also reflect a
-    flaw in REDTEN as compiled on the users' system.</LI>
-    <LI>"internal error (continuing with no contraction symmetry)"<BR></LI>
-    <LI>"internal error."<BR></LI>
-    <LI>"internal error, blocks mis-matched (continuing)"<BR></LI>
-    <LI>"% invalid as affine connection."<BR>
-    The optional second parameter to geodesic(), which is the name of the
-    affine parameter to be used in building the geodesic equations, is not an
-    id.</LI>
-    <LI>"% invalid as index."<BR>
-    The second argument to pdf() must be a valid object index, including the
-    square brackets.</LI>
-    <LI>"invalid index ops"<BR></LI>
-    <LI>"Invalid index ops: %<BR></LI>
-    <LI>"invalid indextype % for %."<BR></LI>
-    <LI>"invalid input: % % % '%' %."<BR></LI>
-    <LI>"invalid input: %."<BR></LI>
-    <LI>"invalid line element: %."<BR></LI>
-    <LI>"invalid pointers for hermitian symmetry: %."<BR></LI>
-    <LI>"invalid symmetry: %"<BR></LI>
-    <LI>"% is a singular matrix."<BR>
-    This message indicates that the named rank-2 object is singular.</LI>
-    <LI>"% is already in use."<BR>
-    The name which the user is trying to make into an indexed object is
-    already being used in some fashion. It either has dependencies, an
-    algebraic value, has been entered in another expression, or is already
-    indexed. This error only occurs is the switch mkobjsafe is on. The user
-    can overide the error by immediately repeating the failed call to
-    mkobj().</LI>
-    <LI>"% is no longer a generic object."<BR>
-    The named input to mkobj() was a generic object. In making the new object
-    the generic properties have been lost. The user should not steal the
-    generic object names.</LI>
-    <LI>"% is not a vector."<BR>
-    The second argument to lie() must be a rank-1 indexed object.</LI>
-    <LI>"% is write-protected"<BR>
-    This message means that the indicated object cannot have new components
-    written to it, since it is protected. The user can remove the protection
-    with protect() and try again.</LI>
-    <LI>"LINES env not valid."<BR>
-    The LINES environment variable is not an integer, or is negative.</LI>
-    <LI>"metric % not simplified"<BR></LI>
-    <LI>"metric inverse % not simplified"<BR></LI>
-    <LI>"metric type % does not exist."<BR></LI>
-    <LI>"mis-matched index ops"<BR></LI>
-    <LI>"missing conjugate for % being created."<BR></LI>
-    <LI>"missing differential: %."<BR></LI>
-    <LI>"missing inverse: %."<BR></LI>
-    <LI>"missing tetrad member"<BR></LI>
-    <LI>"no such offspring for %"<BR></LI>
-    <LI>"non-atomic index element in % for %"<BR></LI>
-    <LI>"% not indexed (from %)."<BR>
-    The indicated input to the indicated routine is not an indexed
-    object.</LI>
-    <LI>"% not of type coordinates."<BR>
-    The indexed object used as the indeterminate in a df() command is not of
-    itype <SPAN class="c1">coordinates</SPAN>. This object must either be the
-    default coordinates (whose name is stored in mkcoords), or an object
-    created by the user with a call to mkcoords().</LI>
-    <LI>"object % must have two indices"<BR></LI>
-    <LI>"output % is protected"<BR></LI>
-    <LI>"overlapping blocks in %."<BR></LI>
-    <LI>"pointer out of order in %."<BR></LI>
-    <LI>"restricted indices invalid: % %"<BR></LI>
-    <LI>"subscript out of range: %"<BR></LI>
-    <LI>"symmetry out of order: %"<BR></LI>
-    <LI>"symmetry too long: %"<BR></LI>
-    <LI>"this shifted object does not exist: %"<BR></LI>
-    <LI>"too few pointers in %"<BR></LI>
-    <LI>"too many contraction indices: %, %"<BR></LI>
-    <LI>"too many indexed objects in arg: % %"<BR></LI>
-    <LI>"Update or remove derivatives after changing %."<BR></LI>
-    <LI>"unmatched coordinates: %, %."<BR></LI>
-  </UL><BR>
-  <HR>
-  <A name="tex2html1062" href="node65.html" id="tex2html1062"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html1060" href="root.html" id="tex2html1060"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html1054" href="node63.html" id="tex2html1054"><IMG align="bottom"
-  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html1064" href="node1.html" id="tex2html1064"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html1065" href="node70.html" id="tex2html1065"><IMG align="bottom"
-  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html1063" href="node65.html" id=
-  "tex2html1063">Internal Details</A> <B>Up:</B> <A name="tex2html1061" href=
-  "root.html" id="tex2html1061">No Title</A> <B>Previous:</B> <A name=
-  "tex2html1055" href="node63.html" id="tex2html1055">Switches</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Error Messages</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Error Messages" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html1062" href="node65.html" id="tex2html1062"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html1060" href="root.html" id="tex2html1060"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html1054" href="node63.html" id="tex2html1054"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html1064" href="node1.html" id="tex2html1064"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html1065" href="node70.html" id="tex2html1065"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html1063" href="node65.html" id="tex2html1063"
+      >Internal Details</a
+    >
+    <b>Up:</b>
+    <a name="tex2html1061" href="root.html" id="tex2html1061">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html1055" href="node63.html" id="tex2html1055">Switches</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION001400000000000000000" id="SECTION001400000000000000000"
+        >Error Messages</a
+      >
+    </h1>
+    <ul>
+      <li>
+        "bad block size: % in %."<br />
+        The indicated block size in the indicated symmetry list (shown in
+        internal format) is not an integer.
+      </li>
+      <li>
+        "bad connection %."<br />
+        The object given to setcon() does not have an itype of
+        <span class="c1">connection</span>.
+      </li>
+      <li>
+        "bad index % for %"<br />
+        This error may indicate an internal error in the system.
+      </li>
+      <li>
+        "bad indextype element: %"<br />
+        The indicated element from an indextype list is either not an integer,
+        or does not correspond to a defined type.
+      </li>
+      <li>
+        "bad input: % (from %)."<br />
+        The input to the indicated routine is not a valid indexed object or
+        name.
+      </li>
+      <li>
+        "bad metric: %."<br />
+        The metric used as input to either setmetric() or altmetric() is either
+        does not have an itype of <span class="c1">metric</span>, or is not the
+        covariant metric.
+      </li>
+      <li>
+        "bad pointer: % in %"<br />
+        The indicated pointer of the independent symmetry list is either not an
+        integer, or is not positive.
+      </li>
+      <li>
+        "can't make spin matrices -- sorry."<br />
+        The spinmat() function only works at present for diagonal metrics.
+      </li>
+      <li>
+        "cannot assign to %."<br />
+        The left-hand side of an indexed assignment is either not a single
+        indexed object, or the index of that object indicates a differentiation
+        operation.
+      </li>
+      <li>
+        "cannot compute cov deriv of generic object: %."<br />
+        If this message appears the user has applied cov() to a generic name for
+        which no target has as yet been created. Create the target object, then
+        retry the operation.
+      </li>
+      <li>
+        "% cannot be assigned."<br />
+        The indicated name is an indexed object and cannot have an algebraic
+        value assigned to it.
+      </li>
+      <li>
+        "cannot create conjugate %."<br />
+        The conjugate object for a spinor cannot be created because it already
+        exists and cannot be removed (presumably it is kill-protected).
+      </li>
+      <li>
+        "cannot create object: %"<br />
+        mkobj() cannot create the object because it either already exists and is
+        kill-protected, or the name is a reserved symbol.
+      </li>
+      <li>
+        "connection type % % does not exist."<br />
+        The connection object relating the two types of indices does not exist.
+      </li>
+      <li>
+        "coord-indextype mis-match %, %."<br />
+        The length of the coordinate list (as given to coords()) is not the same
+        length as indicated by the run of tensor indices.
+      </li>
+      <li>
+        "description is not a string or atom: %"<br />
+        The describe() function will only accept strings or single atoms for use
+        as a description of an indexed object.
+      </li>
+      <li>
+        "dif op without an index: %."<br />
+        The user has terminated an index with a derivative operation, but no
+        following index-element.
+      </li>
+      <li>
+        "% does not have metric structure."<br />
+        The named indexed object given to metric() is either not of rank-2, or
+        is not covariant.
+      </li>
+      <li>
+        "empty index!"<br />
+        May indicate an internal error in the system.
+      </li>
+      <li>"environments do not match: %"<br /></li>
+      <li>"format not a string."<br /></li>
+      <li>"free index element % in %."<br /></li>
+      <li>"improper blocks for hermitian symmetry: %."<br /></li>
+      <li>"improper contraction: %, %"<br /></li>
+      <li>"improper line-element: %."<br /></li>
+      <li>"improper structure for hermitian symmetry: %."<br /></li>
+      <li>"inconsistent indices: %, %"<br /></li>
+      <li>"index % cannot be shared.(???)"<br /></li>
+      <li>"index % wrong length for %."<br /></li>
+      <li>"index without a name."<br /></li>
+      <li>
+        "indices do not match ."<br />
+        Mixed cov and contra indices in expression
+      </li>
+      <li>"input name required (from %)"<br /></li>
+      <li>
+        "Internal error: name not passed to mkrdr."<br />
+        This message indicates a failure in the system and should be reported to
+        the authors along with a sample input and output. It may also reflect a
+        flaw in REDTEN as compiled on the users' system.
+      </li>
+      <li>"internal error (continuing with no contraction symmetry)"<br /></li>
+      <li>"internal error."<br /></li>
+      <li>"internal error, blocks mis-matched (continuing)"<br /></li>
+      <li>
+        "% invalid as affine connection."<br />
+        The optional second parameter to geodesic(), which is the name of the
+        affine parameter to be used in building the geodesic equations, is not
+        an id.
+      </li>
+      <li>
+        "% invalid as index."<br />
+        The second argument to pdf() must be a valid object index, including the
+        square brackets.
+      </li>
+      <li>"invalid index ops"<br /></li>
+      <li>"Invalid index ops: %<br /></li>
+      <li>"invalid indextype % for %."<br /></li>
+      <li>"invalid input: % % % '%' %."<br /></li>
+      <li>"invalid input: %."<br /></li>
+      <li>"invalid line element: %."<br /></li>
+      <li>"invalid pointers for hermitian symmetry: %."<br /></li>
+      <li>"invalid symmetry: %"<br /></li>
+      <li>
+        "% is a singular matrix."<br />
+        This message indicates that the named rank-2 object is singular.
+      </li>
+      <li>
+        "% is already in use."<br />
+        The name which the user is trying to make into an indexed object is
+        already being used in some fashion. It either has dependencies, an
+        algebraic value, has been entered in another expression, or is already
+        indexed. This error only occurs is the switch mkobjsafe is on. The user
+        can overide the error by immediately repeating the failed call to
+        mkobj().
+      </li>
+      <li>
+        "% is no longer a generic object."<br />
+        The named input to mkobj() was a generic object. In making the new
+        object the generic properties have been lost. The user should not steal
+        the generic object names.
+      </li>
+      <li>
+        "% is not a vector."<br />
+        The second argument to lie() must be a rank-1 indexed object.
+      </li>
+      <li>
+        "% is write-protected"<br />
+        This message means that the indicated object cannot have new components
+        written to it, since it is protected. The user can remove the protection
+        with protect() and try again.
+      </li>
+      <li>
+        "LINES env not valid."<br />
+        The LINES environment variable is not an integer, or is negative.
+      </li>
+      <li>"metric % not simplified"<br /></li>
+      <li>"metric inverse % not simplified"<br /></li>
+      <li>"metric type % does not exist."<br /></li>
+      <li>"mis-matched index ops"<br /></li>
+      <li>"missing conjugate for % being created."<br /></li>
+      <li>"missing differential: %."<br /></li>
+      <li>"missing inverse: %."<br /></li>
+      <li>"missing tetrad member"<br /></li>
+      <li>"no such offspring for %"<br /></li>
+      <li>"non-atomic index element in % for %"<br /></li>
+      <li>
+        "% not indexed (from %)."<br />
+        The indicated input to the indicated routine is not an indexed object.
+      </li>
+      <li>
+        "% not of type coordinates."<br />
+        The indexed object used as the indeterminate in a df() command is not of
+        itype <span class="c1">coordinates</span>. This object must either be
+        the default coordinates (whose name is stored in mkcoords), or an object
+        created by the user with a call to mkcoords().
+      </li>
+      <li>"object % must have two indices"<br /></li>
+      <li>"output % is protected"<br /></li>
+      <li>"overlapping blocks in %."<br /></li>
+      <li>"pointer out of order in %."<br /></li>
+      <li>"restricted indices invalid: % %"<br /></li>
+      <li>"subscript out of range: %"<br /></li>
+      <li>"symmetry out of order: %"<br /></li>
+      <li>"symmetry too long: %"<br /></li>
+      <li>"this shifted object does not exist: %"<br /></li>
+      <li>"too few pointers in %"<br /></li>
+      <li>"too many contraction indices: %, %"<br /></li>
+      <li>"too many indexed objects in arg: % %"<br /></li>
+      <li>"Update or remove derivatives after changing %."<br /></li>
+      <li>"unmatched coordinates: %, %."<br /></li>
+    </ul>
+    <br />
+    <hr />
+    <a name="tex2html1062" href="node65.html" id="tex2html1062"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html1060" href="root.html" id="tex2html1060"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html1054" href="node63.html" id="tex2html1054"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html1064" href="node1.html" id="tex2html1064"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html1065" href="node70.html" id="tex2html1065"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html1063" href="node65.html" id="tex2html1063"
+      >Internal Details</a
+    >
+    <b>Up:</b>
+    <a name="tex2html1061" href="root.html" id="tex2html1061">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html1055" href="node63.html" id="tex2html1055">Switches</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

@@ -1,65 +1,98 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Case Mapping</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Case Mapping">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html990" href="node59.html" id="tex2html990"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html988" href="node53.html" id="tex2html988"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html984" href="node57.html" id="tex2html984"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html992" href="node1.html" id="tex2html992"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html993" href="node70.html" id="tex2html993"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html991" href="node59.html" id=
-  "tex2html991">Extending REDTEN</A> <B>Up:</B> <A name="tex2html989" href=
-  "node53.html" id="tex2html989">Enhancements</A> <B>Previous:</B> <A name=
-  "tex2html985" href="node57.html" id="tex2html985">Miscellaneous</A><BR>
-  <HR>
-  <H1><A name="SECTION00840000000000000000" id=
-  "SECTION00840000000000000000">Case Mapping</A></H1>
-  <P><A name="seccase" id="seccase"></A> REDTEN is a two-case system, with
-  the primary input being in lower-case. However, the underlying lisp system
-  in which REDUCE is implemented may be either upper- or lower-case. If it is
-  upper-case, all REDUCE and REDTEN functions will be defined in that case,
-  despite the fact that the sources are in lower case, except in special
-  protected situations. For these systems a small package is provided to map
-  the names of commonly used functions from the lower-case input to the
-  upper-case definitions. The user may thus type either sin() or <SPAN class=
-  "c1">SIN()</SPAN> to use the sine function; and similarly for a large
-  number of other functions, switches and variables. Any identifier that is
-  not case mapped may be made so in the following fashion:</P>
-  <PRE> 
+<html>
+  <head>
+    <title>Case Mapping</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Case Mapping" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html990" href="node59.html" id="tex2html990"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html988" href="node53.html" id="tex2html988"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html984" href="node57.html" id="tex2html984"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html992" href="node1.html" id="tex2html992"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html993" href="node70.html" id="tex2html993"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html991" href="node59.html" id="tex2html991"
+      >Extending REDTEN</a
+    >
+    <b>Up:</b>
+    <a name="tex2html989" href="node53.html" id="tex2html989">Enhancements</a>
+    <b>Previous:</b>
+    <a name="tex2html985" href="node57.html" id="tex2html985">Miscellaneous</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00840000000000000000" id="SECTION00840000000000000000"
+        >Case Mapping</a
+      >
+    </h1>
+    <p>
+      <a name="seccase" id="seccase"></a> REDTEN is a two-case system, with the
+      primary input being in lower-case. However, the underlying lisp system in
+      which REDUCE is implemented may be either upper- or lower-case. If it is
+      upper-case, all REDUCE and REDTEN functions will be defined in that case,
+      despite the fact that the sources are in lower case, except in special
+      protected situations. For these systems a small package is provided to map
+      the names of commonly used functions from the lower-case input to the
+      upper-case definitions. The user may thus type either sin() or
+      <span class="c1">SIN()</span> to use the sine function; and similarly for
+      a large number of other functions, switches and variables. Any identifier
+      that is not case mapped may be made so in the following fashion:
+    </p>
+    <pre> 
 <SPAN class="c1">#: PUT ('mapthisname, 'NEWNAM, 'MAPTHISNAME);
-</SPAN></PRE>which will cause the parser to replace any occurance of the
-first name with the second. This will only work correctly if the default
-REDTEN behaviour of not mapping any characters to an alternate case remains
-enabled (i.e. the REDUCE switches raise and lower are both off).
-  <P>The mapping method shown above cannot be used for the special symbol
-  <SPAN class="c1">nil</SPAN>, since <SPAN class="c1">NIL</SPAN> as an input
-  to put() removes the property on the key <SPAN class="c1">NEWNAM</SPAN>.
-  For this identifier only, and the, the user must use the correct
-  case.<BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    which will cause the parser to replace any occurance of the first name with
+    the second. This will only work correctly if the default REDTEN behaviour of
+    not mapping any characters to an alternate case remains enabled (i.e. the
+    REDUCE switches raise and lower are both off).
+    <p>
+      The mapping method shown above cannot be used for the special symbol
+      <span class="c1">nil</span>, since <span class="c1">NIL</span> as an input
+      to put() removes the property on the key <span class="c1">NEWNAM</span>.
+      For this identifier only, and the, the user must use the correct case.<br />
+    </p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

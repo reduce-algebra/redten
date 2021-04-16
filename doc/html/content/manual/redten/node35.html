@@ -1,59 +1,95 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Partial Differentiation</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Partial Differentiation">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html710" href="node36.html" id="tex2html710"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html708" href="node34.html" id="tex2html708"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html704" href="node34.html" id="tex2html704"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html712" href="node1.html" id="tex2html712"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html713" href="node70.html" id="tex2html713"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html711" href="node36.html" id=
-  "tex2html711">Covariant Differentiation</A> <B>Up:</B> <A name=
-  "tex2html709" href="node34.html" id="tex2html709">Ordinary
-  Differentiation</A> <B>Previous:</B> <A name="tex2html705" href=
-  "node34.html" id="tex2html705">Ordinary Differentiation</A><BR>
-  <HR>
-  <H2><A name="SECTION00511000000000000000" id=
-  "SECTION00511000000000000000">Partial Differentiation</A></H2>
-  <P><A name="ssecpdf" id="ssecpdf"></A> <A name="1220" id="1220"></A>
-  <A name="1221" id="1221"></A> Partial differentiation of algebraic
-  expressions with respect to the current coordinates can be computed with
-  the pdf() function. This function allows the user to attach an index
-  (representing derivative indices) to an expression. Nothing is evaluated
-  until the function call is involved in an indexed assignment, where the
-  indices must obey the usual rules of indexed algebra, and are regarded as
-  covariant tensor indices. For example,</P>
-  <PRE> 
+<html>
+  <head>
+    <title>Partial Differentiation</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Partial Differentiation" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html710" href="node36.html" id="tex2html710"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html708" href="node34.html" id="tex2html708"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html704" href="node34.html" id="tex2html704"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html712" href="node1.html" id="tex2html712"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html713" href="node70.html" id="tex2html713"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html711" href="node36.html" id="tex2html711"
+      >Covariant Differentiation</a
+    >
+    <b>Up:</b>
+    <a name="tex2html709" href="node34.html" id="tex2html709"
+      >Ordinary Differentiation</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html705" href="node34.html" id="tex2html705"
+      >Ordinary Differentiation</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00511000000000000000" id="SECTION00511000000000000000"
+        >Partial Differentiation</a
+      >
+    </h2>
+    <p>
+      <a name="ssecpdf" id="ssecpdf"></a> <a name="1220" id="1220"></a>
+      <a name="1221" id="1221"></a> Partial differentiation of algebraic
+      expressions with respect to the current coordinates can be computed with
+      the pdf() function. This function allows the user to attach an index
+      (representing derivative indices) to an expression. Nothing is evaluated
+      until the function call is involved in an indexed assignment, where the
+      indices must obey the usual rules of indexed algebra, and are regarded as
+      covariant tensor indices. For example,
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>pdf(sin(t)*r, [a,b]);</I>
 
  (sin(t) r)
            |a b
-</SPAN></PRE>The pdf() function has been superseded by the REDUCE df()
-operator as described below.
-  <P>The partial derivative of an expression can be obtained with the df()
-  operator directly and using the coordinate vector created by coords() (the
-  default name for this vector is <SPAN class="c1">x</SPAN>):</P>
-  <PRE> 
+</SPAN></PRE>
+    The pdf() function has been superseded by the REDUCE df() operator as
+    described below.
+    <p>
+      The partial derivative of an expression can be obtained with the df()
+      operator directly and using the coordinate vector created by coords() (the
+      default name for this vector is <span class="c1">x</span>):
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>df (sin(t)*r, x[a],x[b]);</I>
 
     2                                                    
@@ -68,43 +104,72 @@ operator as described below.
         a     b
      d x   d x
 
-</SPAN></PRE>In this situation the contravariant index of <SPAN class=
-"c1">x</SPAN> will be regarded as covariant, so that the index structure of
-this expression has two covariant indices. The indexed object used as the
-indeterminate to the df() operator must be a coordinate vector, otherwise an
-error message will appear (possibly several times, due to the way in which
-the modifications to the REDUCE source code were accomplished). See
-  §<A href="node57.html#dfprint">7.3</A> for more information about the
-  appearance of the output of this expression.
-  <P>If the index of the coordinate vector is fixed, the partial derivative
-  will be immediately evaluated. If the expression does not depend on any of
-  the coordinates, 0 will be returned. Such is not the case with the pdf()
-  function, which will only imediately evaluate if the entire derivative
-  index if fixed, and which does not check in advance for dependencies. The
-  pdf() function may be removed from REDTEN in future versions.</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html710" href="node36.html" id="tex2html710"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html708" href="node34.html" id="tex2html708"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html704" href="node34.html" id="tex2html704"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html712" href="node1.html" id="tex2html712"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html713" href="node70.html" id="tex2html713"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html711" href="node36.html" id=
-  "tex2html711">Covariant Differentiation</A> <B>Up:</B> <A name=
-  "tex2html709" href="node34.html" id="tex2html709">Ordinary
-  Differentiation</A> <B>Previous:</B> <A name="tex2html705" href=
-  "node34.html" id="tex2html705">Ordinary Differentiation</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    In this situation the contravariant index of <span class="c1">x</span> will
+    be regarded as covariant, so that the index structure of this expression has
+    two covariant indices. The indexed object used as the indeterminate to the
+    df() operator must be a coordinate vector, otherwise an error message will
+    appear (possibly several times, due to the way in which the modifications to
+    the REDUCE source code were accomplished). See §<a
+      href="node57.html#dfprint"
+      >7.3</a
+    >
+    for more information about the appearance of the output of this expression.
+    <p>
+      If the index of the coordinate vector is fixed, the partial derivative
+      will be immediately evaluated. If the expression does not depend on any of
+      the coordinates, 0 will be returned. Such is not the case with the pdf()
+      function, which will only imediately evaluate if the entire derivative
+      index if fixed, and which does not check in advance for dependencies. The
+      pdf() function may be removed from REDTEN in future versions.
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html710" href="node36.html" id="tex2html710"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html708" href="node34.html" id="tex2html708"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html704" href="node34.html" id="tex2html704"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html712" href="node1.html" id="tex2html712"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html713" href="node70.html" id="tex2html713"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html711" href="node36.html" id="tex2html711"
+      >Covariant Differentiation</a
+    >
+    <b>Up:</b>
+    <a name="tex2html709" href="node34.html" id="tex2html709"
+      >Ordinary Differentiation</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html705" href="node34.html" id="tex2html705"
+      >Ordinary Differentiation</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

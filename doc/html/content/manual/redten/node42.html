@@ -1,121 +1,169 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Expression Management</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Expression Management">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html794" href="node43.html" id="tex2html794"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html792" href="node41.html" id="tex2html792"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html786" href="node41.html" id="tex2html786"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html796" href="node1.html" id="tex2html796"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html797" href="node70.html" id="tex2html797"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html795" href="node43.html" id=
-  "tex2html795">mapfi()</A> <B>Up:</B> <A name="tex2html793" href=
-  "node41.html" id="tex2html793">Utilities</A> <B>Previous:</B> <A name=
-  "tex2html787" href="node41.html" id="tex2html787">Utilities</A><BR>
-  <HR>
-  <H1><A name="SECTION00610000000000000000" id=
-  "SECTION00610000000000000000">Expression Management</A></H1>
-  <P><A name="secexpmanage" id="secexpmanage"></A> <A name="1468" id=
-  "1468"></A></P>
-  <P>Although General Relativity and most tensor analysis requires only that
-  algebra be performed and derivatives taken (both of which are easily
-  implemented on a computer), it is still necessary for the user to aid the
-  machine in finding a workable path to the desired goal. The brute force
-  approach (i.e. start it up and let it take a whack at the problem) will
-  usually not succeed except for very simple problems or on very fast
-  machines with lots of memory. Despite its high-sounding name, computer
-  algebra remains as much an art as it is a science. Hence, although it is
-  possible for the user to, with a single command, compute all the objects in
-  a direct line from the metric to the Weyl tensor, unless the metric is very
-  simple the calculation is not likely to succeed. The user must take a hand
-  in simplifying the intermediate results before the more complicated objects
-  are computed, otherwise the calculation will either take an inordinate
-  amount of time, or, in the worst case, run out of memory. The techniques
-  for managing large expressions are general ones and apply to REDUCE as much
-  as to REDTEN; here we shall point out some particular points to observe
-  that relate specifically to the sorts of problems encountered by the REDTEN
-  user.</P>
-  <P>The term ``management'' is chosen to reflect the process whereby the
-  user interacts with the system to maintain expressions in a compact and
-  reasonably simple form, and to avoid what is commonly referred to as
-  ``intermediate expression swell''. Without attention it is quite possible
-  that the components of some objects such as the Riemann or Ricci tensors
-  could become so large as to jeopardize the calculation, even though the
-  final answer is relatively simple (eg. the Weyl tensor is zero).</P>
-  <P>The most common culprit which results in unweildly expressions is
-  unsimplified denominators, specifically those which involve sums, and which
-  must be expanded over the numerators of other terms when the system makes
-  common denominators. One way to avoid this is to turn off the REDUCE switch
-  mcd, but this usually just postpones the difficulties, since no real
-  simplification and cancellations likely have occured and a large expression
-  involving many terms must later be placed in common denominator form if it
-  is to be finally simplified.</P>
-  <P>In this regard, metrics come in two varieties: those which are diagonal
-  and hence are trivial to invert; and those which are not diagonal, and
-  generally yield a complicated denominator upon inversion. It is most
-  important that the user address this issue before proceeding to the
-  computation of the Christoffel symbols, and the christoffel1() function
-  will print a warning message if the metric inverse seems not have not been
-  simplified (This only means that the multiplier property must be combined
-  with the components, as is done by mapfi() (qv)).</P>
-  <P>A method that is sometimes useful in dealing with sums in denominators
-  is substituting another symbol so that the sum is reduced to a simple
-  product. However, this can yield explosive expressions elsewhere and,
-  additionally, the user must remember to declare the dependencies of the new
-  symbols, or to define their derivatives explicitly. Needless to say, if
-  these are forgotten, the calculations may proceed quite smoothly but they
-  no longer represent the intended metric. The decision of whether and when
-  (and what) to substitute for various terms or when to introduce new ones is
-  one of the only controls the user has over how the calculation proceeds.
-  The user may also turn on or off the various REDUCE switches that control
-  the way in which REDUCE combines expressions; of these exp, factor, gcd,
-  and mcd are the most useful. However, as noted above these may often simply
-  postpone the difficulties, since at some point the expression must be
-  expanded for it to be simplified.</P>
-  <P>An example involving the Kerr metric (a metric much-maligned for
-  <A name="1482" id="1482"></A> being complicated, when in fact it is still
-  relatively simple) is used to illustrate some principles of expression
-  management in REDTEN. The Kerr metric is well known in General Relativity
-  and is identified with the vacuum solution of the Einstein Field Equations
-  outside a spinning mass. In Boyer-Lindquist coordinates (<IMG align=
-  "bottom" src="_10787_tex2html_wrap6286.png">, <IMG align="bottom" src=
-  "_10787_tex2html_wrap6288.png">, <IMG align="bottom" src=
-  "_10787_tex2html_wrap6290.png">, <IMG align="bottom" src=
-  "_10787_tex2html_wrap6292.png">) the line-element has the form:</P>
-  <P><IMG align="bottom" src="_10787_displaymath6280.png"></P>
-  <P>where</P>
-  <DL>
-    <DD><IMG align="bottom" src="_10787_tex2html_wrap6294.png">,</DD>
-    <DD><IMG align="bottom" src="_10787_tex2html_wrap6296.png">,</DD>
-    <DD><IMG align="bottom" src="_10787_tex2html_wrap6298.png"> is the
-    angular momentum,</DD>
-    <DD>and <IMG align="bottom" src="_10787_tex2html_wrap6412.png"> is the
-    geometrized mass of the object.</DD>
-  </DL>
-  <P>In terms of a metric tensor, the Kerr metric is written as</P>
-  <P><IMG align="bottom" src="_10787_displaymath6281.png"></P>
-  <P>We shall enter this metric in line-element form and create the
-  metric:</P>
-  <PRE> 
+<html>
+  <head>
+    <title>Expression Management</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Expression Management" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html794" href="node43.html" id="tex2html794"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html792" href="node41.html" id="tex2html792"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html786" href="node41.html" id="tex2html786"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html796" href="node1.html" id="tex2html796"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html797" href="node70.html" id="tex2html797"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html795" href="node43.html" id="tex2html795">mapfi()</a>
+    <b>Up:</b>
+    <a name="tex2html793" href="node41.html" id="tex2html793">Utilities</a>
+    <b>Previous:</b>
+    <a name="tex2html787" href="node41.html" id="tex2html787">Utilities</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00610000000000000000" id="SECTION00610000000000000000"
+        >Expression Management</a
+      >
+    </h1>
+    <p>
+      <a name="secexpmanage" id="secexpmanage"></a>
+      <a name="1468" id="1468"></a>
+    </p>
+    <p>
+      Although General Relativity and most tensor analysis requires only that
+      algebra be performed and derivatives taken (both of which are easily
+      implemented on a computer), it is still necessary for the user to aid the
+      machine in finding a workable path to the desired goal. The brute force
+      approach (i.e. start it up and let it take a whack at the problem) will
+      usually not succeed except for very simple problems or on very fast
+      machines with lots of memory. Despite its high-sounding name, computer
+      algebra remains as much an art as it is a science. Hence, although it is
+      possible for the user to, with a single command, compute all the objects
+      in a direct line from the metric to the Weyl tensor, unless the metric is
+      very simple the calculation is not likely to succeed. The user must take a
+      hand in simplifying the intermediate results before the more complicated
+      objects are computed, otherwise the calculation will either take an
+      inordinate amount of time, or, in the worst case, run out of memory. The
+      techniques for managing large expressions are general ones and apply to
+      REDUCE as much as to REDTEN; here we shall point out some particular
+      points to observe that relate specifically to the sorts of problems
+      encountered by the REDTEN user.
+    </p>
+    <p>
+      The term ``management'' is chosen to reflect the process whereby the user
+      interacts with the system to maintain expressions in a compact and
+      reasonably simple form, and to avoid what is commonly referred to as
+      ``intermediate expression swell''. Without attention it is quite possible
+      that the components of some objects such as the Riemann or Ricci tensors
+      could become so large as to jeopardize the calculation, even though the
+      final answer is relatively simple (eg. the Weyl tensor is zero).
+    </p>
+    <p>
+      The most common culprit which results in unweildly expressions is
+      unsimplified denominators, specifically those which involve sums, and
+      which must be expanded over the numerators of other terms when the system
+      makes common denominators. One way to avoid this is to turn off the REDUCE
+      switch mcd, but this usually just postpones the difficulties, since no
+      real simplification and cancellations likely have occured and a large
+      expression involving many terms must later be placed in common denominator
+      form if it is to be finally simplified.
+    </p>
+    <p>
+      In this regard, metrics come in two varieties: those which are diagonal
+      and hence are trivial to invert; and those which are not diagonal, and
+      generally yield a complicated denominator upon inversion. It is most
+      important that the user address this issue before proceeding to the
+      computation of the Christoffel symbols, and the christoffel1() function
+      will print a warning message if the metric inverse seems not have not been
+      simplified (This only means that the multiplier property must be combined
+      with the components, as is done by mapfi() (qv)).
+    </p>
+    <p>
+      A method that is sometimes useful in dealing with sums in denominators is
+      substituting another symbol so that the sum is reduced to a simple
+      product. However, this can yield explosive expressions elsewhere and,
+      additionally, the user must remember to declare the dependencies of the
+      new symbols, or to define their derivatives explicitly. Needless to say,
+      if these are forgotten, the calculations may proceed quite smoothly but
+      they no longer represent the intended metric. The decision of whether and
+      when (and what) to substitute for various terms or when to introduce new
+      ones is one of the only controls the user has over how the calculation
+      proceeds. The user may also turn on or off the various REDUCE switches
+      that control the way in which REDUCE combines expressions; of these exp,
+      factor, gcd, and mcd are the most useful. However, as noted above these
+      may often simply postpone the difficulties, since at some point the
+      expression must be expanded for it to be simplified.
+    </p>
+    <p>
+      An example involving the Kerr metric (a metric much-maligned for
+      <a name="1482" id="1482"></a> being complicated, when in fact it is still
+      relatively simple) is used to illustrate some principles of expression
+      management in REDTEN. The Kerr metric is well known in General Relativity
+      and is identified with the vacuum solution of the Einstein Field Equations
+      outside a spinning mass. In Boyer-Lindquist coordinates (<img
+        align="bottom"
+        src="_10787_tex2html_wrap6286.png"
+      />, <img align="bottom" src="_10787_tex2html_wrap6288.png" />,
+      <img align="bottom" src="_10787_tex2html_wrap6290.png" />,
+      <img align="bottom" src="_10787_tex2html_wrap6292.png" />) the
+      line-element has the form:
+    </p>
+    <p><img align="bottom" src="_10787_displaymath6280.png" /></p>
+    <p>where</p>
+    <dl>
+      <dd><img align="bottom" src="_10787_tex2html_wrap6294.png" />,</dd>
+      <dd><img align="bottom" src="_10787_tex2html_wrap6296.png" />,</dd>
+      <dd>
+        <img align="bottom" src="_10787_tex2html_wrap6298.png" /> is the angular
+        momentum,
+      </dd>
+      <dd>
+        and <img align="bottom" src="_10787_tex2html_wrap6412.png" /> is the
+        geometrized mass of the object.
+      </dd>
+    </dl>
+    <p>In terms of a metric tensor, the Kerr metric is written as</p>
+    <p><img align="bottom" src="_10787_displaymath6281.png" /></p>
+    <p>
+      We shall enter this metric in line-element form and create the metric:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>coords '(t r th ph)$</I>
 
 #: <I>ds2 := - delta/rho2*(d(t)-a*sin(th)^2*d(ph))^2
@@ -131,16 +179,22 @@ invert finished.
 
  g2
 
-</SPAN></PRE>We first observe that there are more messages during the
-computation of this metric, since it takes more work to invert it. At this
-point the metric inverse can be simplified in several ways. When the system
-inverts a non-diagonal metric, the reciprocal of the determinant of the
-metric is placed as a multiplicative factor on the multiplier property of the
-inverse. This can be examined (and altered) with the function
-multiplier()<A name="tex2html90" href="footnode.html#4142" id=
-"tex2html90"><IMG align="bottom" alt=".png&quot;" src=
-"../../../images/latex/foot_motif.png"></A>:
-  <PRE> 
+</SPAN></PRE>
+    We first observe that there are more messages during the computation of this
+    metric, since it takes more work to invert it. At this point the metric
+    inverse can be simplified in several ways. When the system inverts a
+    non-diagonal metric, the reciprocal of the determinant of the metric is
+    placed as a multiplicative factor on the multiplier property of the inverse.
+    This can be examined (and altered) with the function multiplier()<a
+      name="tex2html90"
+      href="footnode.html#4142"
+      id="tex2html90"
+      ><img
+        align="bottom"
+        alt='.png"'
+        src="../../../images/latex/foot_motif.png" /></a
+    >:
+    <pre> 
 <SPAN class="c1">#: <I>multiplier(g_inv); % note we use the generic name</I>
 
                 2         4  4            2  4            2  2  2
@@ -149,33 +203,48 @@ multiplier()<A name="tex2html90" href="footnode.html#4142" id=
                 4      2  2    4
              + a  + 2 a  r  + r ))
 
-</SPAN></PRE>If there is a second argument to multiplier(), the multiplier of
-the object is replaced by that value. Hence, the user can first save the
-multiplier, and then replace it with some other expression that presumably
-will help the calculation proceed. One could also examine the multiplier for
-a sub-expression that could be replaced by a symbol, as mentioned above.
-  <P>For the Kerr metric, another approach has proven to work well. It will
-  be observed that substitutions for <IMG align="bottom" src=
-  "_10787_tex2html_wrap6306.png"> and <IMG align="bottom" src=
-  "_10787_tex2html_wrap6304.png"> (<SPAN class="c1">rho2</SPAN> and
-  <SPAN class="c1">delta</SPAN>) have not yet been made. One can invert the
-  relation for <IMG align="bottom" src="_10787_tex2html_wrap6306.png"> and
-  solve for <IMG align="bottom" src="_10787_tex2html_wrap6312.png"> to yield
-  the substitution</P>
-  <P><IMG align="bottom" src="_10787_displaymath6282.png"></P>
-  <P>which is best entered as a REDUCE <SPAN class="c1">let</SPAN>
-  rule<A name="tex2html91" href="footnode.html#4502" id=
-  "tex2html91"><IMG align="bottom" alt=".png&quot;" src=
-  "../../../images/latex/foot_motif.png"></A>:</P>
-  <PRE> 
+</SPAN></PRE>
+    If there is a second argument to multiplier(), the multiplier of the object
+    is replaced by that value. Hence, the user can first save the multiplier,
+    and then replace it with some other expression that presumably will help the
+    calculation proceed. One could also examine the multiplier for a
+    sub-expression that could be replaced by a symbol, as mentioned above.
+    <p>
+      For the Kerr metric, another approach has proven to work well. It will be
+      observed that substitutions for
+      <img align="bottom" src="_10787_tex2html_wrap6306.png" /> and
+      <img align="bottom" src="_10787_tex2html_wrap6304.png" /> (<span
+        class="c1"
+        >rho2</span
+      >
+      and <span class="c1">delta</span>) have not yet been made. One can invert
+      the relation for
+      <img align="bottom" src="_10787_tex2html_wrap6306.png" /> and solve for
+      <img align="bottom" src="_10787_tex2html_wrap6312.png" /> to yield the
+      substitution
+    </p>
+    <p><img align="bottom" src="_10787_displaymath6282.png" /></p>
+    <p>
+      which is best entered as a REDUCE <span class="c1">let</span> rule<a
+        name="tex2html91"
+        href="footnode.html#4502"
+        id="tex2html91"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png" /></a
+      >:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>let r^2=a^2*sin(th)^2-a^2+rho2;</I>
-</SPAN></PRE>Whenever <IMG align="bottom" src="_10787_tex2html_wrap6312.png">
-   is formed during the calculations that will follow it will immediately be
-  replaced by this substitution. However, the metric and its inverse still
-  need to have this rule applied. First we shall show that in fact this
-  substitution does provide a useful simplification by re-evaluating the
-  multiplier of the metric inverse:
-  <PRE> 
+</SPAN></PRE>
+    Whenever <img align="bottom" src="_10787_tex2html_wrap6312.png" />
+    is formed during the calculations that will follow it will immediately be
+    replaced by this substitution. However, the metric and its inverse still
+    need to have this rule applied. First we shall show that in fact this
+    substitution does provide a useful simplification by re-evaluating the
+    multiplier of the metric inverse:
+    <pre> 
 <SPAN class="c1">#: <I>multiplier(g_inv);</I>
 <BR>
         - 1
@@ -183,40 +252,67 @@ a sub-expression that could be replaced by a symbol, as mentioned above.
          2     2
   sin(th)  rho2
 
-</SPAN></PRE>Obviously this expression is much more compact than the previous
-one, and is no longer a sum. Note however, that the actual value of the
-multiplier property is as yet unchanged. Also recall that new <SPAN class=
-"c1">let</SPAN> rules and assignments can be evaluated in a given expression
-by applying the REDUCE functions sub() or reval() to the expression.
-  <P><BR></P>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html798" href="node43.html#SECTION00611000000000000000"
-      id="tex2html798"><SPAN class="c1">mapfi()</SPAN></A>
-    </LI>
-  </UL><BR>
-  <HR>
-  <A name="tex2html794" href="node43.html" id="tex2html794"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html792" href="node41.html" id="tex2html792"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html786" href="node41.html" id="tex2html786"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html796" href="node1.html" id="tex2html796"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html797" href="node70.html" id="tex2html797"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html795" href="node43.html" id=
-  "tex2html795">mapfi()</A> <B>Up:</B> <A name="tex2html793" href=
-  "node41.html" id="tex2html793">Utilities</A> <B>Previous:</B> <A name=
-  "tex2html787" href="node41.html" id="tex2html787">Utilities</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    Obviously this expression is much more compact than the previous one, and is
+    no longer a sum. Note however, that the actual value of the multiplier
+    property is as yet unchanged. Also recall that new
+    <span class="c1">let</span> rules and assignments can be evaluated in a
+    given expression by applying the REDUCE functions sub() or reval() to the
+    expression.
+    <p><br /></p>
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html798"
+          href="node43.html#SECTION00611000000000000000"
+          id="tex2html798"
+          ><span class="c1">mapfi()</span></a
+        >
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <a name="tex2html794" href="node43.html" id="tex2html794"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html792" href="node41.html" id="tex2html792"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html786" href="node41.html" id="tex2html786"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html796" href="node1.html" id="tex2html796"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html797" href="node70.html" id="tex2html797"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html795" href="node43.html" id="tex2html795">mapfi()</a>
+    <b>Up:</b>
+    <a name="tex2html793" href="node41.html" id="tex2html793">Utilities</a>
+    <b>Previous:</b>
+    <a name="tex2html787" href="node41.html" id="tex2html787">Utilities</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

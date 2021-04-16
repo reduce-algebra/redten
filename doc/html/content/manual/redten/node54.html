@@ -1,135 +1,203 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>The REDUCE Environment</TITLE>
-  <STYLE type="text/css">
-  address.c2 {font-style: italic}
-  pre.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" The REDUCE Environment">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html945" href="node55.html" id="tex2html945"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html943" href="node53.html" id="tex2html943"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html937" href="node53.html" id="tex2html937"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html947" href="node1.html" id="tex2html947"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html948" href="node70.html" id="tex2html948"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html946" href="node55.html" id=
-  "tex2html946">Saving to Disk</A> <B>Up:</B> <A name="tex2html944" href=
-  "node53.html" id="tex2html944">Enhancements</A> <B>Previous:</B> <A name=
-  "tex2html938" href="node53.html" id="tex2html938">Enhancements</A><BR>
-  <HR>
-  <H1><A name="SECTION00810000000000000000" id=
-  "SECTION00810000000000000000">The REDUCE Environment</A></H1>
-  <P><A name="secredenv" id="secredenv"></A> The REDUCE environment consists
-  of all <SPAN class="c1">let</SPAN> rules, assignments to algebraic
-  variables, operators and switches. In working with a complicated metric it
-  may be the case that a number of different, sometimes contradictory<A name=
-  "tex2html98" href="footnode.html#4503" id="tex2html98"><IMG align="bottom"
-  alt=".png&quot;" src="../../../images/latex/foot_motif.png"></A>
-  <SPAN class="c1">let</SPAN> rules and assignments may be used. Recalling
-  which variables and <SPAN class="c1">let</SPAN> rules have been used, and
-  properly clearing them can require more concentration than the task at
-  hand. Thus, REDTEN has an enhancement to help the user in saving,
-  restoring, and altering the REDUCE environment.</P>
-  <P>Each time the user makes an algebraic assignment, or declares a new
-  operator, the name of the variable or operator is added to a global lisp
-  list (!*reduce!-environment); this is done through a redefinition of
-  certain REDUCE functions. The function addtoenv() also does this, adding
-  each argument to the REDUCE environment list; with no arguments addtoenv()
-  shows what names are included in the environment list. REDUCE stores
-  <SPAN class="c1">let</SPAN> rules on certain lisp variables that are
-  already in the environment list. Indexed objects are <EM>not</EM>
-  considered to be part of the REDUCE environment, since it would be
-  pointless to have their values restored to an original state after
-  switching to an old environment. The user can, however, use addtoenv() to
-  add an indexed object to the environment, presumably after it has reached
-  some checkpoint state in simplification. Similarly, other objects created
-  in REDUCE by means other than an assignment or operator command (eg.
-  arrays) will not automatically be included in the environment, but can be
-  added with addtoenv().</P>
-  <P>As a general rule, the portion of the environment that changes with
-  calls to restorenv() should involve secondary variables: those which are
-  part of some larger expression plus <SPAN class="c1">let</SPAN> rules, and
-  not the primary expression(s) being worked upon. Otherwise, as with indexed
-  objects, it would defeat the purpose of having different environments. For
-  reasons explained below, rather than providing a means to remove a symbol
-  from the environment list, REDTEN allows the user to flag a variable so
-  that its value will remain intact during environment switches. The flag
-  keep prevents the system from saving or altering the value of a variable,
-  it can be set via the command</P>
-  <PRE> 
+<html>
+  <head>
+    <title>The REDUCE Environment</title>
+    <style type="text/css">
+      address.c2 {
+        font-style: italic;
+      }
+      pre.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" The REDUCE Environment" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html945" href="node55.html" id="tex2html945"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html943" href="node53.html" id="tex2html943"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html937" href="node53.html" id="tex2html937"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html947" href="node1.html" id="tex2html947"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html948" href="node70.html" id="tex2html948"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html946" href="node55.html" id="tex2html946">Saving to Disk</a>
+    <b>Up:</b>
+    <a name="tex2html944" href="node53.html" id="tex2html944">Enhancements</a>
+    <b>Previous:</b>
+    <a name="tex2html938" href="node53.html" id="tex2html938">Enhancements</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00810000000000000000" id="SECTION00810000000000000000"
+        >The REDUCE Environment</a
+      >
+    </h1>
+    <p>
+      <a name="secredenv" id="secredenv"></a> The REDUCE environment consists of
+      all <span class="c1">let</span> rules, assignments to algebraic variables,
+      operators and switches. In working with a complicated metric it may be the
+      case that a number of different, sometimes contradictory<a
+        name="tex2html98"
+        href="footnode.html#4503"
+        id="tex2html98"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png"
+      /></a>
+      <span class="c1">let</span> rules and assignments may be used. Recalling
+      which variables and <span class="c1">let</span> rules have been used, and
+      properly clearing them can require more concentration than the task at
+      hand. Thus, REDTEN has an enhancement to help the user in saving,
+      restoring, and altering the REDUCE environment.
+    </p>
+    <p>
+      Each time the user makes an algebraic assignment, or declares a new
+      operator, the name of the variable or operator is added to a global lisp
+      list (!*reduce!-environment); this is done through a redefinition of
+      certain REDUCE functions. The function addtoenv() also does this, adding
+      each argument to the REDUCE environment list; with no arguments addtoenv()
+      shows what names are included in the environment list. REDUCE stores
+      <span class="c1">let</span> rules on certain lisp variables that are
+      already in the environment list. Indexed objects are
+      <em>not</em> considered to be part of the REDUCE environment, since it
+      would be pointless to have their values restored to an original state
+      after switching to an old environment. The user can, however, use
+      addtoenv() to add an indexed object to the environment, presumably after
+      it has reached some checkpoint state in simplification. Similarly, other
+      objects created in REDUCE by means other than an assignment or operator
+      command (eg. arrays) will not automatically be included in the
+      environment, but can be added with addtoenv().
+    </p>
+    <p>
+      As a general rule, the portion of the environment that changes with calls
+      to restorenv() should involve secondary variables: those which are part of
+      some larger expression plus <span class="c1">let</span> rules, and not the
+      primary expression(s) being worked upon. Otherwise, as with indexed
+      objects, it would defeat the purpose of having different environments. For
+      reasons explained below, rather than providing a means to remove a symbol
+      from the environment list, REDTEN allows the user to flag a variable so
+      that its value will remain intact during environment switches. The flag
+      keep prevents the system from saving or altering the value of a variable,
+      it can be set via the command
+    </p>
+    <pre> 
 <SPAN class="c1">  #: <I>lisp flag ('(var1, {var2}, ...), 'keep);
-</I></SPAN></PRE><I>Certain variables are already flagged <SPAN class=
-"c1">keep</SPAN> and retain their values and property lists despite changing
-environments. Among these are currentmetric and reduce!-environment. Aside
-from the problem of losing a value if the environment is switched and the
-work variable is not flagged keep, it may well be that storing the values for
-this variable several times for the saved environments could lead to memory
-problems.</I>
-  <P><I>To save an environment requires that the property lists and lisp
-  values of each symbol in the reduce environment be copied to some location,
-  so that they can later be restored. The location used is based on the
-  user-given name for the environment being saved. The restoration of a named
-  environment copies back this information and overwrites the current
-  property lists and values, thus changing the current set of assignments,
-  operators and <SPAN class="c1">let</SPAN> rules. If the current environment
-  is required for future use it must be saved first. If an environment is
-  being restored in which a new operator etc. was not defined, that operator
-  etc. will dissappear from the restored environment, but of course can
-  returned if the current environment was saved. A named environment cannot
-  be changed in any way, but it can always be restored, changed, and
-  re-saved.</I></P>
-  <P><I>The primary functions that handle the saving and restoring of the
-  REDUCE environment are savenv() and restorenv(). With no arguments,
-  savenv() prints a list of the currently saved environments. When REDTEN is
-  started, it saves the current environment as ``initial''<A name=
-  "tex2html99" href="footnode.html#4173" id="tex2html99"><IMG align="bottom"
-  alt=".png&quot;" src="../../../images/latex/foot_motif.png"></A> (note that
-  the environment name is an id, not a string). With a name as its single
-  argument, savenv() saves the current environment with that name. The same
-  name may be used to have restorenv() restore the environment. restorenv()
-  will also save the current environment with the name ``current'', but note
-  that this will be overwritten with each new restore. With no argument,
-  restorenv() restores the last saved environment. If the argument given to
-  restorenv() is not that of a valid environment, an error results.</I></P>
-  <P><I>Other useful functions are newenv(), swapenv(), delenv(), and
-  renamenv(). newenv() saves the current environment as either ``current'' or
-  named by its single argument, then restores the ``initial'' environment. It
-  is equivalent to <SPAN class="c1">savenv(&lt;name&gt;);
-  restorenv(initial)</SPAN>. swapenv() allows the user to quickly flip back
-  and forth between two environments. Calling swapenv() with a single
-  argument switches to that environment. Calling swapenv() again, with a
-  different argument switches to the new environment. Thereafter, calling
-  swapenv() with no arguments switches between the two environments. At any
-  time, the user can begin switching to a different environment by calling
-  swapenv() with a name. The swapping pair can be set up more quickly by
-  giving two arguments, the first is made the current environment. Note that
-  any changes made to the current environment will be temporarily saved under
-  ``current'' when the environment changes, but will be lost after repeated
-  switches. delenv() deletes the environment associated with the given
-  argument, its main use is to clean up the system. renamenv() can be used to
-  grab the <SPAN class="c1">current</SPAN> environment as saved by
-  restorenv() and move it to a safe name.</I></P>
-  <P><I>When the switch promptenv is turned on, the REDUCE prompt is changed
-  to indicate the currently named environment. If changes have been made then
-  the prompt also includes a '<SPAN class="c1">+</SPAN>' symbol. At system
-  start-up the current environment is ``initial'':</I></P>
-  <PRE class="c1"> 
+</I></SPAN></PRE>
+    <i
+      >Certain variables are already flagged <span class="c1">keep</span> and
+      retain their values and property lists despite changing environments.
+      Among these are currentmetric and reduce!-environment. Aside from the
+      problem of losing a value if the environment is switched and the work
+      variable is not flagged keep, it may well be that storing the values for
+      this variable several times for the saved environments could lead to
+      memory problems.</i
+    >
+    <p>
+      <i
+        >To save an environment requires that the property lists and lisp values
+        of each symbol in the reduce environment be copied to some location, so
+        that they can later be restored. The location used is based on the
+        user-given name for the environment being saved. The restoration of a
+        named environment copies back this information and overwrites the
+        current property lists and values, thus changing the current set of
+        assignments, operators and <span class="c1">let</span> rules. If the
+        current environment is required for future use it must be saved first.
+        If an environment is being restored in which a new operator etc. was not
+        defined, that operator etc. will dissappear from the restored
+        environment, but of course can returned if the current environment was
+        saved. A named environment cannot be changed in any way, but it can
+        always be restored, changed, and re-saved.</i
+      >
+    </p>
+    <p>
+      <i
+        >The primary functions that handle the saving and restoring of the
+        REDUCE environment are savenv() and restorenv(). With no arguments,
+        savenv() prints a list of the currently saved environments. When REDTEN
+        is started, it saves the current environment as ``initial''<a
+          name="tex2html99"
+          href="footnode.html#4173"
+          id="tex2html99"
+          ><img
+            align="bottom"
+            alt='.png"'
+            src="../../../images/latex/foot_motif.png"
+        /></a>
+        (note that the environment name is an id, not a string). With a name as
+        its single argument, savenv() saves the current environment with that
+        name. The same name may be used to have restorenv() restore the
+        environment. restorenv() will also save the current environment with the
+        name ``current'', but note that this will be overwritten with each new
+        restore. With no argument, restorenv() restores the last saved
+        environment. If the argument given to restorenv() is not that of a valid
+        environment, an error results.</i
+      >
+    </p>
+    <p>
+      <i
+        >Other useful functions are newenv(), swapenv(), delenv(), and
+        renamenv(). newenv() saves the current environment as either ``current''
+        or named by its single argument, then restores the ``initial''
+        environment. It is equivalent to
+        <span class="c1">savenv(&lt;name&gt;); restorenv(initial)</span>.
+        swapenv() allows the user to quickly flip back and forth between two
+        environments. Calling swapenv() with a single argument switches to that
+        environment. Calling swapenv() again, with a different argument switches
+        to the new environment. Thereafter, calling swapenv() with no arguments
+        switches between the two environments. At any time, the user can begin
+        switching to a different environment by calling swapenv() with a name.
+        The swapping pair can be set up more quickly by giving two arguments,
+        the first is made the current environment. Note that any changes made to
+        the current environment will be temporarily saved under ``current'' when
+        the environment changes, but will be lost after repeated switches.
+        delenv() deletes the environment associated with the given argument, its
+        main use is to clean up the system. renamenv() can be used to grab the
+        <span class="c1">current</span> environment as saved by restorenv() and
+        move it to a safe name.</i
+      >
+    </p>
+    <p>
+      <i
+        >When the switch promptenv is turned on, the REDUCE prompt is changed to
+        indicate the currently named environment. If changes have been made then
+        the prompt also includes a '<span class="c1">+</span>' symbol. At system
+        start-up the current environment is ``initial'':</i
+      >
+    </p>
+    <pre class="c1"> 
 <SPAN class="c1">#: <I>on promptenv;</I>
 
 (initial) #: <I>a:=34;</I>
@@ -141,35 +209,61 @@ problems.</I>
  adef
 
 (adef) #:
-</SPAN></PRE><BR>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html949" href="node55.html#SECTION00811000000000000000"
-      id="tex2html949">Saving to Disk</A>
-    </LI>
-  </UL><BR>
-  <HR>
-  <A name="tex2html945" href="node55.html" id="tex2html945"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html943" href="node53.html" id="tex2html943"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html937" href="node53.html" id="tex2html937"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html947" href="node1.html" id="tex2html947"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html948" href="node70.html" id="tex2html948"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html946" href="node55.html" id=
-  "tex2html946">Saving to Disk</A> <B>Up:</B> <A name="tex2html944" href=
-  "node53.html" id="tex2html944">Enhancements</A> <B>Previous:</B> <A name=
-  "tex2html938" href="node53.html" id="tex2html938">Enhancements</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c2">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    <br />
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html949"
+          href="node55.html#SECTION00811000000000000000"
+          id="tex2html949"
+          >Saving to Disk</a
+        >
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <a name="tex2html945" href="node55.html" id="tex2html945"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html943" href="node53.html" id="tex2html943"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html937" href="node53.html" id="tex2html937"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html947" href="node1.html" id="tex2html947"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html948" href="node70.html" id="tex2html948"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html946" href="node55.html" id="tex2html946">Saving to Disk</a>
+    <b>Up:</b>
+    <a name="tex2html944" href="node53.html" id="tex2html944">Enhancements</a>
+    <b>Previous:</b>
+    <a name="tex2html938" href="node53.html" id="tex2html938">Enhancements</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c2">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

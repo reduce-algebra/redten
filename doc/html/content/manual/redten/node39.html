@@ -1,140 +1,224 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Other Functions</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Other Functions">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html757" href="node40.html" id="tex2html757"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html755" href="node33.html" id="tex2html755"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html749" href="node38.html" id="tex2html749"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html759" href="node1.html" id="tex2html759"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html760" href="node70.html" id="tex2html760"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html758" href="node40.html" id="tex2html758">The
-  Matrix Functions</A> <B>Up:</B> <A name="tex2html756" href="node33.html"
-  id="tex2html756">The General Relativity</A> <B>Previous:</B> <A name=
-  "tex2html750" href="node38.html" id="tex2html750">Generic Names</A><BR>
-  <HR>
-  <H1><A name="SECTION00540000000000000000" id=
-  "SECTION00540000000000000000">Other Functions</A></H1>
-  <P><A name="secothergr" id="secothergr"></A> In addition to those functions
-  listed above that calculate from a metric commonly used tensors, there are
-  a number of other computations in GR that are conveniently packaged as
-  functions. These compute the divergence of a tensor, the D'Alembertian of a
-  scalar, Lie derivatives, the Killing equations, and the geodesic equations.
-  These functions either operate on another object or produce output which is
-  not usually regarded as a tensor, so they are not grouped with the
-  functions above that compute the family members of a metric.</P>
-  <P>The divergence function div() computes the divergence of its first
-  argument via the formula:</P>
-  <P><IMG align="bottom" src="_10787_displaymath6264.png"></P>
-  <P>and note that the first index will be raised if need be (however, this
-  will be done to the covariant derivative, <EM>not</EM> to the parent
-  object, see §<A href="node37.html#sseccovshift">4.2.1</A>). The output is
-  an object of rank <IMG align="bottom" src="_10787_tex2html_wrap6272.png">,
-  with either the optional second argument as its name, or a default name of
-  the form <SPAN class="c1">&lt;input&gt;_D</SPAN>. The divergence of a
-  vector quantity is an indexed scalar. The name of the divergence object is
-  stored on the property list of the input object under the key div, and
-  div() will immediately return this name if the divergence has already been
-  computed. The symmetries of the output will be those that survive the loss
-  of the first index of the parent object.</P>
-  <P>The function dalembert() computes the D'Alembertian of a scalar
-  <IMG align="bottom" src="_10787_tex2html_wrap6274.png"> from the
-  equation</P>
-  <P><IMG align="bottom" src="_10787_displaymath6265.png"></P>
-  <P>and the output of this function is also a (non-indexed) scalar. The
-  determinant function det() (described below) is used to compute the
-  determinant of the metric tensor.</P>
-  <P>lie() The function lie() computes the Lie derivative of its first
-  argument in the direction of the vector that is the second argument. The
-  output object (whose name is formed by concatenating the name of the tensor
-  and vector and adding <SPAN class="c1">_lie</SPAN> to the end<A name=
-  "tex2html86" href="footnode.html#1389" id="tex2html86"><IMG align="bottom"
-  alt=".png&quot;" src="../../../images/latex/foot_motif.png"></A>) has the
-  same index structure as the input object. If the vector given is covariant
-  it will be shifted to give a contravariant representation. The formula used
-  is</P>
-  <P><IMG align="bottom" src="_10787_eqnarray1390.png"></P>
-  <P>which is expanded as required to cover each of the objects' indices.</P>
-  <P>The function killing() computes the Killing equations for the
-  current-metric; this function cannot, however, solve these equations for
-  the Killing vectors. The Killing equations are given by</P>
-  <P><IMG align="bottom" src="_10787_displaymath6266.png"></P>
-  <P>The output of this object is a rank-2 symmetric tensor whose name will
-  be the first argument to killing() (there is no default name). The optional
-  second argument, if non-<SPAN class="c1">nil</SPAN>, indicates that the
-  conformal Killing equations are to be computed. The Killing vector is, by
-  default, given the name <SPAN class="c1">k</SPAN> (the default name is
-  stored on killing), it is created as an implicit covariant vector that
-  depends on all the coordinates. The components of the output object are
-  then a set of <IMG align="bottom" src="_10787_tex2html_wrap6276.png"> first
-  order differential equations that are to be solved for the components of
-  <SPAN class="c1">k</SPAN>, where <IMG align="bottom" src=
-  "_10787_tex2html_wrap6278.png"> is the dimension of the space.</P>
-  <P>It should be noted that computing the Killing equations for the RW
-  metric as set up in the examples above will cause difficulties, since the
-  Killing vector <SPAN class="c1">k</SPAN> will be made to depend on the
-  coordinates but in the RW metric <SPAN class="c1">k</SPAN> is a constant.
-  Any subsequent computation involving differentiation will be incorrect,
-  since the dependencies for an indexed object are created and stored in the
-  same fashion as those for non-indexed objects. This may be fixed in future,
-  but involves rewritting some REDUCE code. If the switch mkobjsafe is on,
-  then mkobj() called from killing() will err-out when it attempts to create
-  the Killing vector for this metric.</P>
-  <P>In a similar fashion, geodesic() computes the geodesic equations
-  from</P>
-  <P><IMG align="bottom" src="_10787_displaymath6267.png"></P>
-  <P>The first argument is the name of the output object, which will be a
-  covariant vector. The optional second argument is the name of the affine
-  parameter, the default (stored on geodesic) is geodesic <SPAN class=
-  "c1">s</SPAN>. Each of the coordinate names (in coords!*) is made to depend
-  on the affine parameter.</P>
-  <P>Another occasionally useful function is mkcoords(), which makes a
-  contravariant coordinate vector of its single argument, or of the default
-  name which is the value of mkcoords[<SPAN class="c1">x</SPAN>]. The
-  coords() function calls mkcoords() whenever the user changes the
-  coordinates so that the vector <SPAN class="c1">x</SPAN> always contains
-  the current coordinates.</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html757" href="node40.html" id="tex2html757"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html755" href="node33.html" id="tex2html755"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html749" href="node38.html" id="tex2html749"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html759" href="node1.html" id="tex2html759"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html760" href="node70.html" id="tex2html760"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html758" href="node40.html" id="tex2html758">The
-  Matrix Functions</A> <B>Up:</B> <A name="tex2html756" href="node33.html"
-  id="tex2html756">The General Relativity</A> <B>Previous:</B> <A name=
-  "tex2html750" href="node38.html" id="tex2html750">Generic Names</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Other Functions</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Other Functions" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html757" href="node40.html" id="tex2html757"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html755" href="node33.html" id="tex2html755"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html749" href="node38.html" id="tex2html749"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html759" href="node1.html" id="tex2html759"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html760" href="node70.html" id="tex2html760"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html758" href="node40.html" id="tex2html758"
+      >The Matrix Functions</a
+    >
+    <b>Up:</b>
+    <a name="tex2html756" href="node33.html" id="tex2html756"
+      >The General Relativity</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html750" href="node38.html" id="tex2html750">Generic Names</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00540000000000000000" id="SECTION00540000000000000000"
+        >Other Functions</a
+      >
+    </h1>
+    <p>
+      <a name="secothergr" id="secothergr"></a> In addition to those functions
+      listed above that calculate from a metric commonly used tensors, there are
+      a number of other computations in GR that are conveniently packaged as
+      functions. These compute the divergence of a tensor, the D'Alembertian of
+      a scalar, Lie derivatives, the Killing equations, and the geodesic
+      equations. These functions either operate on another object or produce
+      output which is not usually regarded as a tensor, so they are not grouped
+      with the functions above that compute the family members of a metric.
+    </p>
+    <p>
+      The divergence function div() computes the divergence of its first
+      argument via the formula:
+    </p>
+    <p><img align="bottom" src="_10787_displaymath6264.png" /></p>
+    <p>
+      and note that the first index will be raised if need be (however, this
+      will be done to the covariant derivative, <em>not</em> to the parent
+      object, see §<a href="node37.html#sseccovshift">4.2.1</a>). The output is
+      an object of rank
+      <img align="bottom" src="_10787_tex2html_wrap6272.png" />, with either the
+      optional second argument as its name, or a default name of the form
+      <span class="c1">&lt;input&gt;_D</span>. The divergence of a vector
+      quantity is an indexed scalar. The name of the divergence object is stored
+      on the property list of the input object under the key div, and div() will
+      immediately return this name if the divergence has already been computed.
+      The symmetries of the output will be those that survive the loss of the
+      first index of the parent object.
+    </p>
+    <p>
+      The function dalembert() computes the D'Alembertian of a scalar
+      <img align="bottom" src="_10787_tex2html_wrap6274.png" /> from the
+      equation
+    </p>
+    <p><img align="bottom" src="_10787_displaymath6265.png" /></p>
+    <p>
+      and the output of this function is also a (non-indexed) scalar. The
+      determinant function det() (described below) is used to compute the
+      determinant of the metric tensor.
+    </p>
+    <p>
+      lie() The function lie() computes the Lie derivative of its first argument
+      in the direction of the vector that is the second argument. The output
+      object (whose name is formed by concatenating the name of the tensor and
+      vector and adding <span class="c1">_lie</span> to the end<a
+        name="tex2html86"
+        href="footnode.html#1389"
+        id="tex2html86"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png" /></a
+      >) has the same index structure as the input object. If the vector given
+      is covariant it will be shifted to give a contravariant representation.
+      The formula used is
+    </p>
+    <p><img align="bottom" src="_10787_eqnarray1390.png" /></p>
+    <p>which is expanded as required to cover each of the objects' indices.</p>
+    <p>
+      The function killing() computes the Killing equations for the
+      current-metric; this function cannot, however, solve these equations for
+      the Killing vectors. The Killing equations are given by
+    </p>
+    <p><img align="bottom" src="_10787_displaymath6266.png" /></p>
+    <p>
+      The output of this object is a rank-2 symmetric tensor whose name will be
+      the first argument to killing() (there is no default name). The optional
+      second argument, if non-<span class="c1">nil</span>, indicates that the
+      conformal Killing equations are to be computed. The Killing vector is, by
+      default, given the name <span class="c1">k</span> (the default name is
+      stored on killing), it is created as an implicit covariant vector that
+      depends on all the coordinates. The components of the output object are
+      then a set of
+      <img align="bottom" src="_10787_tex2html_wrap6276.png" /> first order
+      differential equations that are to be solved for the components of
+      <span class="c1">k</span>, where
+      <img align="bottom" src="_10787_tex2html_wrap6278.png" /> is the dimension
+      of the space.
+    </p>
+    <p>
+      It should be noted that computing the Killing equations for the RW metric
+      as set up in the examples above will cause difficulties, since the Killing
+      vector <span class="c1">k</span> will be made to depend on the coordinates
+      but in the RW metric <span class="c1">k</span> is a constant. Any
+      subsequent computation involving differentiation will be incorrect, since
+      the dependencies for an indexed object are created and stored in the same
+      fashion as those for non-indexed objects. This may be fixed in future, but
+      involves rewritting some REDUCE code. If the switch mkobjsafe is on, then
+      mkobj() called from killing() will err-out when it attempts to create the
+      Killing vector for this metric.
+    </p>
+    <p>In a similar fashion, geodesic() computes the geodesic equations from</p>
+    <p><img align="bottom" src="_10787_displaymath6267.png" /></p>
+    <p>
+      The first argument is the name of the output object, which will be a
+      covariant vector. The optional second argument is the name of the affine
+      parameter, the default (stored on geodesic) is geodesic
+      <span class="c1">s</span>. Each of the coordinate names (in coords!*) is
+      made to depend on the affine parameter.
+    </p>
+    <p>
+      Another occasionally useful function is mkcoords(), which makes a
+      contravariant coordinate vector of its single argument, or of the default
+      name which is the value of mkcoords[<span class="c1">x</span>]. The
+      coords() function calls mkcoords() whenever the user changes the
+      coordinates so that the vector <span class="c1">x</span> always contains
+      the current coordinates.
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html757" href="node40.html" id="tex2html757"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html755" href="node33.html" id="tex2html755"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html749" href="node38.html" id="tex2html749"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html759" href="node1.html" id="tex2html759"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html760" href="node70.html" id="tex2html760"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html758" href="node40.html" id="tex2html758"
+      >The Matrix Functions</a
+    >
+    <b>Up:</b>
+    <a name="tex2html756" href="node33.html" id="tex2html756"
+      >The General Relativity</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html750" href="node38.html" id="tex2html750">Generic Names</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

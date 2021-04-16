@@ -1,83 +1,130 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Metric Contractions</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Metric Contractions">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html644" href="node31.html" id="tex2html644"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html642" href="node29.html" id="tex2html642"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html638" href="node29.html" id="tex2html638"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html646" href="node1.html" id="tex2html646"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html647" href="node70.html" id="tex2html647"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html645" href="node31.html" id=
-  "tex2html645">metrics</A> <B>Up:</B> <A name="tex2html643" href=
-  "node29.html" id="tex2html643">Algebra with Indexed</A> <B>Previous:</B>
-  <A name="tex2html639" href="node29.html" id="tex2html639">Algebra with
-  Indexed</A><BR>
-  <HR>
-  <H1><A name="SECTION00410000000000000000" id=
-  "SECTION00410000000000000000">Metric Contractions</A></H1>
-  <P><A name="secshift" id="secshift"></A> A common operation in tensor
-  analysis and General Relativity is the raising and lowering of indices via
-  metric contractions. The objects so created are not new entities in their
-  own right, just re-expressions of the same fundamental entity. It is common
-  to express these objects with the same name and let the index structure
-  indicate which specific object is being referred to. Thus,</P>
-  <P><IMG align="bottom" src="_10787_displaymath6260.png"></P>
-  <P>are all representations of the Riemann tensor. In REDTEN every indexed
-  object must have a unique name in the system but the printname's (the name
-  used by the system to display the object) can be the same, indicating the
-  existence of a fundamental relation.</P>
-  <P>The function shift() is used in concert with the <SPAN class=
-  "c1">@</SPAN> operator to ``shift'' indices, i.e. to raise or lower them by
-  metric contractions. This function builds and maintains the data structure
-  that relates the ``parent'' object to each of its ``offspring''. The entire
-  set of offspring and the parent constitutes a ``family'', which is treated
-  as a unit by some REDTEN functions.</P>
-  <P>The <SPAN class="c1">@</SPAN> operator causes an offspring object to be
-  created in which <A name="4130" id="4130"></A> <A name="4131" id=
-  "4131"></A> <A name="4132" id="4132"></A> each index-element operated on by
-  <SPAN class="c1">@</SPAN> has been move to a position opposite its original
-  location (i.e. covariant indices become contravariant and vice-versa). Two
-  related operators are <SPAN class="c1">@+</SPAN> and <SPAN class=
-  "c1">@-</SPAN> which make ``absolute shifts'': <SPAN class="c1">@+</SPAN>
-  shifts the index-element to a contravariant position (and is a no-op if it
-  already was); <SPAN class="c1">@-</SPAN> shifts the index-element to a
-  covariant position.</P>
-  <P><BR></P>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html648" href="node31.html#SECTION00411000000000000000"
-      id="tex2html648">metrics</A>
-    </LI>
-    <LI>
-      <A name="tex2html649" href="node32.html#SECTION00412000000000000000"
-      id="tex2html649"><SPAN class="c1">shift()</SPAN></A>
-    </LI>
-  </UL><BR>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Metric Contractions</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Metric Contractions" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html644" href="node31.html" id="tex2html644"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html642" href="node29.html" id="tex2html642"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html638" href="node29.html" id="tex2html638"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html646" href="node1.html" id="tex2html646"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html647" href="node70.html" id="tex2html647"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html645" href="node31.html" id="tex2html645">metrics</a>
+    <b>Up:</b>
+    <a name="tex2html643" href="node29.html" id="tex2html643"
+      >Algebra with Indexed</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html639" href="node29.html" id="tex2html639"
+      >Algebra with Indexed</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00410000000000000000" id="SECTION00410000000000000000"
+        >Metric Contractions</a
+      >
+    </h1>
+    <p>
+      <a name="secshift" id="secshift"></a> A common operation in tensor
+      analysis and General Relativity is the raising and lowering of indices via
+      metric contractions. The objects so created are not new entities in their
+      own right, just re-expressions of the same fundamental entity. It is
+      common to express these objects with the same name and let the index
+      structure indicate which specific object is being referred to. Thus,
+    </p>
+    <p><img align="bottom" src="_10787_displaymath6260.png" /></p>
+    <p>
+      are all representations of the Riemann tensor. In REDTEN every indexed
+      object must have a unique name in the system but the printname's (the name
+      used by the system to display the object) can be the same, indicating the
+      existence of a fundamental relation.
+    </p>
+    <p>
+      The function shift() is used in concert with the
+      <span class="c1">@</span> operator to ``shift'' indices, i.e. to raise or
+      lower them by metric contractions. This function builds and maintains the
+      data structure that relates the ``parent'' object to each of its
+      ``offspring''. The entire set of offspring and the parent constitutes a
+      ``family'', which is treated as a unit by some REDTEN functions.
+    </p>
+    <p>
+      The <span class="c1">@</span> operator causes an offspring object to be
+      created in which <a name="4130" id="4130"></a>
+      <a name="4131" id="4131"></a> <a name="4132" id="4132"></a> each
+      index-element operated on by <span class="c1">@</span> has been move to a
+      position opposite its original location (i.e. covariant indices become
+      contravariant and vice-versa). Two related operators are
+      <span class="c1">@+</span> and <span class="c1">@-</span> which make
+      ``absolute shifts'': <span class="c1">@+</span> shifts the index-element
+      to a contravariant position (and is a no-op if it already was);
+      <span class="c1">@-</span> shifts the index-element to a covariant
+      position.
+    </p>
+    <p><br /></p>
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html648"
+          href="node31.html#SECTION00411000000000000000"
+          id="tex2html648"
+          >metrics</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html649"
+          href="node32.html#SECTION00412000000000000000"
+          id="tex2html649"
+          ><span class="c1">shift()</span></a
+        >
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

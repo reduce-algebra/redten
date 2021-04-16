@@ -1,111 +1,173 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>indextype</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" indextype">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html441" href="node14.html" id="tex2html441"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html439" href="node11.html" id="tex2html439"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html433" href="node12.html" id="tex2html433"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html443" href="node1.html" id="tex2html443"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html444" href="node70.html" id="tex2html444"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html442" href="node14.html" id=
-  "tex2html442">Symmetries</A> <B>Up:</B> <A name="tex2html440" href=
-  "node11.html" id="tex2html440">Using mkobj()</A> <B>Previous:</B> <A name=
-  "tex2html434" href="node12.html" id="tex2html434">name</A><BR>
-  <HR>
-  <H2><A name="SECTION00322000000000000000" id=
-  "SECTION00322000000000000000">indextype</A></H2>
-  <P><A name="mkobjindextype" id="mkobjindextype"></A> The structure of the
-  objects' index is determined from the indextype list, a list of integers
-  whose length is the number of indices that may be applied to the name (the
-  rank of the object). Each integer element indicates the type of the
-  corresponding index element, and the sign indicates whether it is covariant
-  (negative) or contravariant (positive).</P>
-  <P><A name="338" id="338"></A> <A name="tabindextype" id=
-  "tabindextype"></A><IMG align="bottom" src="_10787_table324.png"><BR>
-  <STRONG>Table 2.1:</STRONG> Index types and display formats<BR></P>
-  <P>Table <A href="node13.html#tabindextype">2.1</A> shows the allowed types
-  of indices and the format in which the example index element <SPAN class=
-  "c1">a</SPAN> will be displayed. For example, the indextype list
-  <SPAN class="c1">'(-1 -1)</SPAN> indicates a rank-2 tensor with covariant
-  indices. Whenever it is necessary to display an index with the object, the
-  indices are printed according to both their type and location. Frame
-  indices are enclosed in parentheses, while primed spinor and dyad indices
-  are followed by a prime mark '. User defined index-types can be declared
-  with the function defindextype() (qv). Covariant indices (with negative
-  indextype elements) are displayed on the line below the object name, while
-  contravariant indices are displayed on the line above. If the REDUCE switch
-  nat is off, then the index is displayed following the object name and
-  enclosed in square brackets, and no formatting is done.</P>
-  <P>When an object containing a spinor or dyad index is made, a conjugate
-  object is automatically created, having each spinor indextype element
-  exchanged with the other spinor type (i.e. primed indices become unprimed,
-  and unprimed indices become primed) as defined by the control variable
-  conjugateindextypes!*. This conjugate object is given the name <SPAN class=
-  "c1">&lt;name&gt;_cnj</SPAN> and forms a coupled pair with the parent
-  object. The printname (qv) is the same as the parent object, but a bar is
-  printed over the name to indicate conjugation. See §<A href=
-  "node50.html#secspinor">6.2</A> for more about conjugation operations
-  applied to spinor and dyad objects.</P>
-  <P>The first line of table <A href="node13.html#tabindextype">2.1</A> shows
-  no indextype for a scalar object (a rank-0 object), the indextype in this
-  case is the empty list <SPAN class="c1">'()</SPAN> or <SPAN class=
-  "c1">nil</SPAN>. An indexed scalar must have an empty index attached (i.e.
-  <SPAN class="c1">[]</SPAN>), it can only be non-empty if the first operator
-  indicates differentiation. The index is printed as <SPAN class=
-  "c1">[]</SPAN> so as to indicate the indexed nature of the name. If
-  <SPAN class="c1">&lt;name&gt;</SPAN> previously had an algebraic value this
-  now becomes the indexed value of the scalar object. In general, an indexed
-  scalar can be treated exactly as any other indexed object.</P>
-  <P>To create an object that is closely related to another is simplified by
-  an extension to the above syntax. If an indexed object name is supplied
-  instead of a list, the indextype parameter of that object is used to create
-  the new object. If an indexed object name appears as an element in the
-  index-type list, the indextype parameter of that object is inserted into
-  the index-type list allowing the user to build objects of higher rank.</P>
-  <P>The indextype list is stored on the property list of <SPAN class=
-  "c1">&lt;name&gt;</SPAN> under the key indextype.</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html441" href="node14.html" id="tex2html441"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html439" href="node11.html" id="tex2html439"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html433" href="node12.html" id="tex2html433"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html443" href="node1.html" id="tex2html443"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html444" href="node70.html" id="tex2html444"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html442" href="node14.html" id=
-  "tex2html442">Symmetries</A> <B>Up:</B> <A name="tex2html440" href=
-  "node11.html" id="tex2html440">Using mkobj()</A> <B>Previous:</B> <A name=
-  "tex2html434" href="node12.html" id="tex2html434">name</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>indextype</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" indextype" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html441" href="node14.html" id="tex2html441"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html439" href="node11.html" id="tex2html439"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html433" href="node12.html" id="tex2html433"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html443" href="node1.html" id="tex2html443"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html444" href="node70.html" id="tex2html444"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html442" href="node14.html" id="tex2html442">Symmetries</a>
+    <b>Up:</b>
+    <a name="tex2html440" href="node11.html" id="tex2html440">Using mkobj()</a>
+    <b>Previous:</b>
+    <a name="tex2html434" href="node12.html" id="tex2html434">name</a><br />
+    <hr />
+    <h2>
+      <a name="SECTION00322000000000000000" id="SECTION00322000000000000000"
+        >indextype</a
+      >
+    </h2>
+    <p>
+      <a name="mkobjindextype" id="mkobjindextype"></a> The structure of the
+      objects' index is determined from the indextype list, a list of integers
+      whose length is the number of indices that may be applied to the name (the
+      rank of the object). Each integer element indicates the type of the
+      corresponding index element, and the sign indicates whether it is
+      covariant (negative) or contravariant (positive).
+    </p>
+    <p>
+      <a name="338" id="338"></a> <a name="tabindextype" id="tabindextype"></a
+      ><img align="bottom" src="_10787_table324.png" /><br />
+      <strong>Table 2.1:</strong> Index types and display formats<br />
+    </p>
+    <p>
+      Table <a href="node13.html#tabindextype">2.1</a> shows the allowed types
+      of indices and the format in which the example index element
+      <span class="c1">a</span> will be displayed. For example, the indextype
+      list <span class="c1">'(-1 -1)</span> indicates a rank-2 tensor with
+      covariant indices. Whenever it is necessary to display an index with the
+      object, the indices are printed according to both their type and location.
+      Frame indices are enclosed in parentheses, while primed spinor and dyad
+      indices are followed by a prime mark '. User defined index-types can be
+      declared with the function defindextype() (qv). Covariant indices (with
+      negative indextype elements) are displayed on the line below the object
+      name, while contravariant indices are displayed on the line above. If the
+      REDUCE switch nat is off, then the index is displayed following the object
+      name and enclosed in square brackets, and no formatting is done.
+    </p>
+    <p>
+      When an object containing a spinor or dyad index is made, a conjugate
+      object is automatically created, having each spinor indextype element
+      exchanged with the other spinor type (i.e. primed indices become unprimed,
+      and unprimed indices become primed) as defined by the control variable
+      conjugateindextypes!*. This conjugate object is given the name
+      <span class="c1">&lt;name&gt;_cnj</span> and forms a coupled pair with the
+      parent object. The printname (qv) is the same as the parent object, but a
+      bar is printed over the name to indicate conjugation. See §<a
+        href="node50.html#secspinor"
+        >6.2</a
+      >
+      for more about conjugation operations applied to spinor and dyad objects.
+    </p>
+    <p>
+      The first line of table <a href="node13.html#tabindextype">2.1</a> shows
+      no indextype for a scalar object (a rank-0 object), the indextype in this
+      case is the empty list <span class="c1">'()</span> or
+      <span class="c1">nil</span>. An indexed scalar must have an empty index
+      attached (i.e. <span class="c1">[]</span>), it can only be non-empty if
+      the first operator indicates differentiation. The index is printed as
+      <span class="c1">[]</span> so as to indicate the indexed nature of the
+      name. If <span class="c1">&lt;name&gt;</span> previously had an algebraic
+      value this now becomes the indexed value of the scalar object. In general,
+      an indexed scalar can be treated exactly as any other indexed object.
+    </p>
+    <p>
+      To create an object that is closely related to another is simplified by an
+      extension to the above syntax. If an indexed object name is supplied
+      instead of a list, the indextype parameter of that object is used to
+      create the new object. If an indexed object name appears as an element in
+      the index-type list, the indextype parameter of that object is inserted
+      into the index-type list allowing the user to build objects of higher
+      rank.
+    </p>
+    <p>
+      The indextype list is stored on the property list of
+      <span class="c1">&lt;name&gt;</span> under the key indextype.
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html441" href="node14.html" id="tex2html441"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html439" href="node11.html" id="tex2html439"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html433" href="node12.html" id="tex2html433"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html443" href="node1.html" id="tex2html443"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html444" href="node70.html" id="tex2html444"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html442" href="node14.html" id="tex2html442">Symmetries</a>
+    <b>Up:</b>
+    <a name="tex2html440" href="node11.html" id="tex2html440">Using mkobj()</a>
+    <b>Previous:</b>
+    <a name="tex2html434" href="node12.html" id="tex2html434">name</a><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

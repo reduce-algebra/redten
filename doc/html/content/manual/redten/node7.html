@@ -1,136 +1,217 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Lisp Variables</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Lisp Variables">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html343" href="node8.html" id="tex2html343"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html341" href="node4.html" id="tex2html341"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html335" href="node6.html" id="tex2html335"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html345" href="node1.html" id="tex2html345"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html346" href="node70.html" id="tex2html346"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html344" href="node8.html" id=
-  "tex2html344">Property Lists</A> <B>Up:</B> <A name="tex2html342" href=
-  "node4.html" id="tex2html342">Concepts in REDUCE</A> <B>Previous:</B>
-  <A name="tex2html336" href="node6.html" id="tex2html336">Notation</A><BR>
-  <HR>
-  <H2><A name="SECTION00223000000000000000" id=
-  "SECTION00223000000000000000">Lisp Variables</A></H2>
-  <P><A name="sseclvar" id="sseclvar"></A> There are two operating modes in
-  reduce: <SPAN class="c1">algebraic</SPAN> and <SPAN class=
-  "c1">symbolic</SPAN>. The first is the normal mode for REDUCE in which
-  ordinary algebraic expressions may be entered. The symbolic mode, <A name=
-  "202" id="202"></A> <A name="203" id="203"></A> <A name="204" id="204"></A>
-  <A name="205" id="205"></A> <A name="206" id="206"></A> which accepts RLISP
-  syntax, is an interface to the lower level lisp system, and allows the
-  entry of more primitive operations. The setting of the control variable
-  !*mode determines which mode is currently active. The commands lisp or
-  symbolic<A name="tex2html20" href="footnode.html#4096" id=
-  "tex2html20"><IMG align="bottom" alt=".png&quot;" src=
-  "../../../images/latex/foot_motif.png"></A> by themselves change the system
-  to symbolic mode; if they precede a command on the same line, they cause
-  only that command to evaluated in symbolic mode. The command algebraic acts
-  similarly to change to algebraic mode.</P>
-  <P>Nearly all of the user interaction with REDTEN involves the usual REDUCE
-  algebraic variables. However, some REDTEN control variables are defined in
-  the underlying lisp system, and require care in setting or modifying. Most
-  of these are default names for objects created by various functions, and a
-  few are lists. Lisp lists are also used as arguments to some REDTEN
-  functions and are used because they are the most convenient way to
-  represent and input certain parameters and properties of tensors, such as
-  the index structure or symmetries. A list has the form of a single quote
-  mark <SPAN class="c1">'</SPAN>, followed by a parenthesized list of
-  elements separated by spaces (<EM>not</EM> commas): <A name="219" id=
-  "219"></A></P>
-  <PRE>'(t h i s i s a l i s t).</PRE>A special case is the empty list, which
-  is represented as <SPAN class="c1">'()</SPAN>. A special lisp symbol,
-  <SPAN class="c1">nil</SPAN>, <A name="4097" id="4097"></A> is used to
-  represent the empty list and it is the usual way the lisp printer displays
-  empty lists.
-  <P>The REDUCE parser, when it encounters a quote mark on the first argument
-  to a function, automatically parses the function call in <SPAN class=
-  "c1">symbolic</SPAN> mode, so that the following are equivalent<A name=
-  "tex2html23" href="footnode.html#4098" id="tex2html23"><IMG align="bottom"
-  alt=".png&quot;" src="../../../images/latex/foot_motif.png"></A>:</P>
-  <PRE>% this is a crummey example!
+<html>
+  <head>
+    <title>Lisp Variables</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Lisp Variables" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html343" href="node8.html" id="tex2html343"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html341" href="node4.html" id="tex2html341"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html335" href="node6.html" id="tex2html335"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html345" href="node1.html" id="tex2html345"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html346" href="node70.html" id="tex2html346"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html344" href="node8.html" id="tex2html344">Property Lists</a>
+    <b>Up:</b>
+    <a name="tex2html342" href="node4.html" id="tex2html342"
+      >Concepts in REDUCE</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html336" href="node6.html" id="tex2html336">Notation</a><br />
+    <hr />
+    <h2>
+      <a name="SECTION00223000000000000000" id="SECTION00223000000000000000"
+        >Lisp Variables</a
+      >
+    </h2>
+    <p>
+      <a name="sseclvar" id="sseclvar"></a> There are two operating modes in
+      reduce: <span class="c1">algebraic</span> and
+      <span class="c1">symbolic</span>. The first is the normal mode for REDUCE
+      in which ordinary algebraic expressions may be entered. The symbolic mode,
+      <a name="202" id="202"></a> <a name="203" id="203"></a>
+      <a name="204" id="204"></a> <a name="205" id="205"></a>
+      <a name="206" id="206"></a> which accepts RLISP syntax, is an interface to
+      the lower level lisp system, and allows the entry of more primitive
+      operations. The setting of the control variable !*mode determines which
+      mode is currently active. The commands lisp or symbolic<a
+        name="tex2html20"
+        href="footnode.html#4096"
+        id="tex2html20"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png"
+      /></a>
+      by themselves change the system to symbolic mode; if they precede a
+      command on the same line, they cause only that command to evaluated in
+      symbolic mode. The command algebraic acts similarly to change to algebraic
+      mode.
+    </p>
+    <p>
+      Nearly all of the user interaction with REDTEN involves the usual REDUCE
+      algebraic variables. However, some REDTEN control variables are defined in
+      the underlying lisp system, and require care in setting or modifying. Most
+      of these are default names for objects created by various functions, and a
+      few are lists. Lisp lists are also used as arguments to some REDTEN
+      functions and are used because they are the most convenient way to
+      represent and input certain parameters and properties of tensors, such as
+      the index structure or symmetries. A list has the form of a single quote
+      mark <span class="c1">'</span>, followed by a parenthesized list of
+      elements separated by spaces (<em>not</em> commas):
+      <a name="219" id="219"></a>
+    </p>
+    <pre>'(t h i s i s a l i s t).</pre>
+    A special case is the empty list, which is represented as
+    <span class="c1">'()</span>. A special lisp symbol,
+    <span class="c1">nil</span>, <a name="4097" id="4097"></a> is used to
+    represent the empty list and it is the usual way the lisp printer displays
+    empty lists.
+    <p>
+      The REDUCE parser, when it encounters a quote mark on the first argument
+      to a function, automatically parses the function call in
+      <span class="c1">symbolic</span> mode, so that the following are
+      equivalent<a name="tex2html23" href="footnode.html#4098" id="tex2html23"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png" /></a
+      >:
+    </p>
+    <pre>
+% this is a crummey example!
 #: val := '(q w e);
 
 (q w e)
 
 #: lisp (val := '(q w e));
 
-(q w e)</PRE>The brackets enclosing the command following the lisp command
-ensure that the whole command line is treated in symbolic mode.
-  <P>The variable <SPAN class="c1">val</SPAN>, in the above example, is a
-  ``lisp variable'', and its lisp value can be examined with <A name="229"
-  id="229"></A></P>
-  <PRE>#: lisp val;
+(q w e)</pre
+    >
+    The brackets enclosing the command following the lisp command ensure that
+    the whole command line is treated in symbolic mode.
+    <p>
+      The variable <span class="c1">val</span>, in the above example, is a
+      ``lisp variable'', and its lisp value can be examined with
+      <a name="229" id="229"></a>
+    </p>
+    <pre>
+#: lisp val;
 
 (q w e)
 
 #: val;
 
-val</PRE>and observe that the algebraic value of <SPAN class="c1">val</SPAN>
-is not affected. In this document, lisp variables used by REDTEN will be
-distinguished from algebraic variables by prepending <SPAN class=
-"c1">lisp:</SPAN> to the variable name, so that, for example, <SPAN class=
-"c1">lisp:coords!*</SPAN> is the lisp variable containing a list of the
-current coordinates. <A name="234" id="234"></A> <A name="235" id="235"></A>
-  <P>In a similar manner, there are a number of functions that can only be
-  accessed while in symbolic mode, these are not required for the ordinary
-  operation of the system, but are occasionally of use. The property
-  functions described below are of this type. These will also be indicated by
-  prepending ``<SPAN class="c1">lisp:</SPAN>'' to the name, and it is
-  understood that to use these functions, the command line should begin with
-  the mode changing commands lisp or symbolic. Throughout this document, the
-  term ``function'' is applied to numerous names in REDTEN; it should be
-  understood that these names are in fact the user handle through which the
-  true lisp function is found and executed. If the user looks for a
-  definition of, say, <SPAN class="c1">riemann</SPAN>, it will not be found,
-  rather a property value under the key simpfn indicates that the real lisp
-  function that is executed is named <SPAN class="c1">riemann!*</SPAN>
-  (however, see §<A href="node67.html#rename">F.1</A> for an important
-  consideration).</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html343" href="node8.html" id="tex2html343"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html341" href="node4.html" id="tex2html341"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html335" href="node6.html" id="tex2html335"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html345" href="node1.html" id="tex2html345"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html346" href="node70.html" id="tex2html346"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html344" href="node8.html" id=
-  "tex2html344">Property Lists</A> <B>Up:</B> <A name="tex2html342" href=
-  "node4.html" id="tex2html342">Concepts in REDUCE</A> <B>Previous:</B>
-  <A name="tex2html336" href="node6.html" id="tex2html336">Notation</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+val</pre
+    >
+    and observe that the algebraic value of <span class="c1">val</span> is not
+    affected. In this document, lisp variables used by REDTEN will be
+    distinguished from algebraic variables by prepending
+    <span class="c1">lisp:</span> to the variable name, so that, for example,
+    <span class="c1">lisp:coords!*</span> is the lisp variable containing a list
+    of the current coordinates. <a name="234" id="234"></a>
+    <a name="235" id="235"></a>
+    <p>
+      In a similar manner, there are a number of functions that can only be
+      accessed while in symbolic mode, these are not required for the ordinary
+      operation of the system, but are occasionally of use. The property
+      functions described below are of this type. These will also be indicated
+      by prepending ``<span class="c1">lisp:</span>'' to the name, and it is
+      understood that to use these functions, the command line should begin with
+      the mode changing commands lisp or symbolic. Throughout this document, the
+      term ``function'' is applied to numerous names in REDTEN; it should be
+      understood that these names are in fact the user handle through which the
+      true lisp function is found and executed. If the user looks for a
+      definition of, say, <span class="c1">riemann</span>, it will not be found,
+      rather a property value under the key simpfn indicates that the real lisp
+      function that is executed is named
+      <span class="c1">riemann!*</span> (however, see §<a
+        href="node67.html#rename"
+        >F.1</a
+      >
+      for an important consideration).
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html343" href="node8.html" id="tex2html343"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html341" href="node4.html" id="tex2html341"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html335" href="node6.html" id="tex2html335"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html345" href="node1.html" id="tex2html345"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html346" href="node70.html" id="tex2html346"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html344" href="node8.html" id="tex2html344">Property Lists</a>
+    <b>Up:</b>
+    <a name="tex2html342" href="node4.html" id="tex2html342"
+      >Concepts in REDUCE</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html336" href="node6.html" id="tex2html336">Notation</a><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

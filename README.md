@@ -7,7 +7,7 @@ Relativity.
 
 ## Release
 
-- This is **REDTEN** _4.4_ (*Nov 10/09*),
+- This is **REDTEN** _4.4_ (_Nov 10/09_),
   tested with **REDUCE** _3.7_ and _3.8_.
 
 ## Notes

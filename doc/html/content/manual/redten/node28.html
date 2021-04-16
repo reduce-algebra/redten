@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Accessing and Displaying Components</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Accessing and Displaying Components">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html619" href="node29.html" id="tex2html619"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html617" href="node25.html" id="tex2html617"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html613" href="node27.html" id="tex2html613"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html621" href="node1.html" id="tex2html621"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html622" href="node70.html" id="tex2html622"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html620" href="node29.html" id=
-  "tex2html620">Algebra with Indexed</A> <B>Up:</B> <A name="tex2html618"
-  href="node25.html" id="tex2html618">The Robertson-Walker Metric</A>
-  <B>Previous:</B> <A name="tex2html614" href="node27.html" id=
-  "tex2html614">Entering Components</A><BR>
-  <HR>
-  <H2><A name="SECTION00343000000000000000" id=
-  "SECTION00343000000000000000">Accessing and Displaying Components</A></H2>
-  <P><A name="ssecaccess" id="ssecaccess"></A> There are a number of ways to
-  examine the components of an indexed object. The simplest is to specify the
-  fixed index that refers to the component of interest: the current value of
-  the component will immediately be read-out, and is available for use in
-  algebraic expressions. For example,</P>
-  <PRE> 
+<html>
+  <head>
+    <title>Accessing and Displaying Components</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Accessing and Displaying Components" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html619" href="node29.html" id="tex2html619"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html617" href="node25.html" id="tex2html617"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html613" href="node27.html" id="tex2html613"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html621" href="node1.html" id="tex2html621"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html622" href="node70.html" id="tex2html622"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html620" href="node29.html" id="tex2html620"
+      >Algebra with Indexed</a
+    >
+    <b>Up:</b>
+    <a name="tex2html618" href="node25.html" id="tex2html618"
+      >The Robertson-Walker Metric</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html614" href="node27.html" id="tex2html614"
+      >Entering Components</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00343000000000000000" id="SECTION00343000000000000000"
+        >Accessing and Displaying Components</a
+      >
+    </h2>
+    <p>
+      <a name="ssecaccess" id="ssecaccess"></a> There are a number of ways to
+      examine the components of an indexed object. The simplest is to specify
+      the fixed index that refers to the component of interest: the current
+      value of the component will immediately be read-out, and is available for
+      use in algebraic expressions. For example,
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>h[1,1];</I>
 <BR>
       2
@@ -54,54 +87,64 @@
  ------------------------------
                k
 
-</SPAN></PRE>To examine the object as a whole, two display formats are
-provided. The first is obtained by attaching an empty index to the object, as
-in <SPAN class="c1">h[]</SPAN>. For an indexed scalar, this is the only kind
-of index allowed and results in the scalar value being returned. For any
-other kind of object the existing explicit components are displayed. Only
-those components that are actually stored in the data structure are shown,
-and no evaluation takes place, which also implies that a non-unit multiplier
-(qv) will not be combined with the component. Hence, an implicit object with
-no explicit elements will appear to be empty. Components shown by this
-display format may not match what would be shown by reading components with
-fixed indices. Because the index is empty some objects, notably those derived
-from the raising or lowering of indices of other objects, must be referenced
-with their actual name (or the generic equivalent). If the switch iprop is
-on, some of the properties listed in §<A href=
-"node19.html#sseciobprops">2.2.6</A> are also shown.
-  <P>The second display format is obtained when the literal character
-  <SPAN class="c1">?</SPAN> is found <A name="4122" id="4122"></A> (written
-  as a normal index element) in a pattern or fixed index. Those indices
-  preceding this special character are used as part (or all) of a pattern
-  index, and any indices needed to fill out the index are automatically
-  generated. Indices following the <SPAN class="c1">?</SPAN> are ignored. The
-  simplest way to examine the entire object is with <SPAN class=
-  "c1">h[?]</SPAN> which (for a rank-2 object) is equivalent to <SPAN class=
-  "c1">h[a,b,?]</SPAN>, whereas to examine the first row one might use the
-  command <SPAN class="c1">h[1,?]</SPAN>. This format will also display some
-  of the object properties, depending on the setting of the iprop switch. The
-  properties shown when the switch iprop is on can also be seen, regardless
-  of the switch setting, with the function iprop() (qv).</P>
-  <P>The components are displayed by expanding the pattern index and reading
-  each component from the object. Thus, the user can select segments of the
-  object to display and will be shown the actual read-out value. If the
-  switch xeval xeval is on, an extra evaluation is made to reflect the
-  current state of algebraic variables. This format shows exactly what is in
-  the object, as would be shown by accessing each component directly with a
-  specific fixed index, but only the canonical elements are shown. This
-  format will also show those components that are zero (and usually are not
-  stored and therefore not displayed in the first format) unless the REDUCE
-  switch nero is on. The index can also be used to indicate a shifted object,
-  so that only the parent name need be used, for example <SPAN class=
-  "c1">h[@a,@b,?]</SPAN>.</P>
-  <P>To see a directory of the objects created in the system, the function
-  dir() is provided. In its simplest form, with no arguments, dir() displays
-  all the objects in the system that have not been flagged with the nodir()
-  (qv) function. The display shows the object name, its type, the number of
-  non-zero explicit components, the state of the protection flags (qv), the
-  coordinates and the index structure. With arguments dir() shows information
-  about the named objects.</P>
-  <PRE> 
+</SPAN></PRE>
+    To examine the object as a whole, two display formats are provided. The
+    first is obtained by attaching an empty index to the object, as in
+    <span class="c1">h[]</span>. For an indexed scalar, this is the only kind of
+    index allowed and results in the scalar value being returned. For any other
+    kind of object the existing explicit components are displayed. Only those
+    components that are actually stored in the data structure are shown, and no
+    evaluation takes place, which also implies that a non-unit multiplier (qv)
+    will not be combined with the component. Hence, an implicit object with no
+    explicit elements will appear to be empty. Components shown by this display
+    format may not match what would be shown by reading components with fixed
+    indices. Because the index is empty some objects, notably those derived from
+    the raising or lowering of indices of other objects, must be referenced with
+    their actual name (or the generic equivalent). If the switch iprop is on,
+    some of the properties listed in §<a href="node19.html#sseciobprops"
+      >2.2.6</a
+    >
+    are also shown.
+    <p>
+      The second display format is obtained when the literal character
+      <span class="c1">?</span> is found <a name="4122" id="4122"></a> (written
+      as a normal index element) in a pattern or fixed index. Those indices
+      preceding this special character are used as part (or all) of a pattern
+      index, and any indices needed to fill out the index are automatically
+      generated. Indices following the <span class="c1">?</span> are ignored.
+      The simplest way to examine the entire object is with
+      <span class="c1">h[?]</span> which (for a rank-2 object) is equivalent to
+      <span class="c1">h[a,b,?]</span>, whereas to examine the first row one
+      might use the command <span class="c1">h[1,?]</span>. This format will
+      also display some of the object properties, depending on the setting of
+      the iprop switch. The properties shown when the switch iprop is on can
+      also be seen, regardless of the switch setting, with the function iprop()
+      (qv).
+    </p>
+    <p>
+      The components are displayed by expanding the pattern index and reading
+      each component from the object. Thus, the user can select segments of the
+      object to display and will be shown the actual read-out value. If the
+      switch xeval xeval is on, an extra evaluation is made to reflect the
+      current state of algebraic variables. This format shows exactly what is in
+      the object, as would be shown by accessing each component directly with a
+      specific fixed index, but only the canonical elements are shown. This
+      format will also show those components that are zero (and usually are not
+      stored and therefore not displayed in the first format) unless the REDUCE
+      switch nero is on. The index can also be used to indicate a shifted
+      object, so that only the parent name need be used, for example
+      <span class="c1">h[@a,@b,?]</span>.
+    </p>
+    <p>
+      To see a directory of the objects created in the system, the function
+      dir() is provided. In its simplest form, with no arguments, dir() displays
+      all the objects in the system that have not been flagged with the nodir()
+      (qv) function. The display shows the object name, its type, the number of
+      non-zero explicit components, the state of the protection flags (qv), the
+      coordinates and the index structure. With arguments dir() shows
+      information about the named objects.
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>dir(); </I>
 
   name          type          comp    prot  coordinates     indextype
@@ -110,30 +153,55 @@ on, some of the properties listed in §<A href=
 <CODE>*</CODE> h_inv         metric         4       w    (t om th ph)     (1 1)
 
   3 objects,    Total components: 12
-</SPAN></PRE>The current-metrics are indicated by the <SPAN class=
-"c1">*</SPAN> at the beginning of the display line.<BR>
-  <HR>
-  <A name="tex2html619" href="node29.html" id="tex2html619"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html617" href="node25.html" id="tex2html617"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html613" href="node27.html" id="tex2html613"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html621" href="node1.html" id="tex2html621"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html622" href="node70.html" id="tex2html622"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html620" href="node29.html" id=
-  "tex2html620">Algebra with Indexed</A> <B>Up:</B> <A name="tex2html618"
-  href="node25.html" id="tex2html618">The Robertson-Walker Metric</A>
-  <B>Previous:</B> <A name="tex2html614" href="node27.html" id=
-  "tex2html614">Entering Components</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    The current-metrics are indicated by the <span class="c1">*</span> at the
+    beginning of the display line.<br />
+    <hr />
+    <a name="tex2html619" href="node29.html" id="tex2html619"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html617" href="node25.html" id="tex2html617"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html613" href="node27.html" id="tex2html613"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html621" href="node1.html" id="tex2html621"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html622" href="node70.html" id="tex2html622"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html620" href="node29.html" id="tex2html620"
+      >Algebra with Indexed</a
+    >
+    <b>Up:</b>
+    <a name="tex2html618" href="node25.html" id="tex2html618"
+      >The Robertson-Walker Metric</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html614" href="node27.html" id="tex2html614"
+      >Entering Components</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

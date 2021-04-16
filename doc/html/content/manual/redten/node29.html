@@ -1,123 +1,178 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Algebra with Indexed Objects</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Algebra with Indexed Objects">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html631" href="node30.html" id="tex2html631"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html629" href="root.html" id="tex2html629"><IMG align="bottom"
-  alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html623" href="node28.html" id="tex2html623"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html633" href="node1.html" id="tex2html633"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html634" href="node70.html" id="tex2html634"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html632" href="node30.html" id=
-  "tex2html632">Metric Contractions</A> <B>Up:</B> <A name="tex2html630"
-  href="root.html" id="tex2html630">No Title</A> <B>Previous:</B> <A name=
-  "tex2html624" href="node28.html" id="tex2html624">Accessing and
-  Displaying</A><BR>
-  <HR>
-  <H1><A name="SECTION00400000000000000000" id=
-  "SECTION00400000000000000000">Algebra with Indexed Objects</A></H1>
-  <P><A name="algebra" id="algebra"></A> In this chapter we will show how to
-  write expressions that both involve indexed objects, and which evaluate to
-  indexed objects. It was intended from the outset in the design of REDTEN
-  that the user be able to write tensor expressions in a convenient form, and
-  have them displayed in as close to publication form as was practical.</P>
-  <P>Whenever the user enters an indexed object with a pattern index (an
-  index in which at least one element is an identifier and not an integer)
-  the indexed object is returned unevaluated (unless the intrinsic symmetries
-  of the object allow an immediate simplification to zero). This has already
-  been seen in the previous chapter, where the concept of an indexed object
-  reference was demonstrated. Now we shall use this to build expressions that
-  can then be used to create new indexed objects.</P>
-  <P>An ``indexed expression'' consists of the algebraic combination of
-  indexed objects such that the indices involved obey the rules set out
-  below. An indexed expression is a normal REDUCE expression and can be
-  assigned to REDUCE variables, however, if this is done there is no checking
-  of the index structure or other evaluation except for the usual
-  canonicaliztion of indices until the expression is used in an ``indexed
-  assignment''.</P>
-  <P><A name="813" id="813"></A> An indexed expression can be as simple
-  as</P>
-  <PRE> 
+<html>
+  <head>
+    <title>Algebra with Indexed Objects</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Algebra with Indexed Objects" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html631" href="node30.html" id="tex2html631"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html629" href="root.html" id="tex2html629"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html623" href="node28.html" id="tex2html623"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html633" href="node1.html" id="tex2html633"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html634" href="node70.html" id="tex2html634"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html632" href="node30.html" id="tex2html632"
+      >Metric Contractions</a
+    >
+    <b>Up:</b>
+    <a name="tex2html630" href="root.html" id="tex2html630">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html624" href="node28.html" id="tex2html624"
+      >Accessing and Displaying</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00400000000000000000" id="SECTION00400000000000000000"
+        >Algebra with Indexed Objects</a
+      >
+    </h1>
+    <p>
+      <a name="algebra" id="algebra"></a> In this chapter we will show how to
+      write expressions that both involve indexed objects, and which evaluate to
+      indexed objects. It was intended from the outset in the design of REDTEN
+      that the user be able to write tensor expressions in a convenient form,
+      and have them displayed in as close to publication form as was practical.
+    </p>
+    <p>
+      Whenever the user enters an indexed object with a pattern index (an index
+      in which at least one element is an identifier and not an integer) the
+      indexed object is returned unevaluated (unless the intrinsic symmetries of
+      the object allow an immediate simplification to zero). This has already
+      been seen in the previous chapter, where the concept of an indexed object
+      reference was demonstrated. Now we shall use this to build expressions
+      that can then be used to create new indexed objects.
+    </p>
+    <p>
+      An ``indexed expression'' consists of the algebraic combination of indexed
+      objects such that the indices involved obey the rules set out below. An
+      indexed expression is a normal REDUCE expression and can be assigned to
+      REDUCE variables, however, if this is done there is no checking of the
+      index structure or other evaluation except for the usual canonicaliztion
+      of indices until the expression is used in an ``indexed assignment''.
+    </p>
+    <p><a name="813" id="813"></a> An indexed expression can be as simple as</p>
+    <pre> 
 <SPAN class="c1">#: <I>r[a,b];</I>
-</SPAN></PRE>or as complicated as need be, given certain rules about indices
-and the combinations that are valid. In any indexed expression there will be
-some index elements that are non-integer (otherwise each indexed object
-reference can be immediately evaluated and a simple algebraic expression
-results). The labels used for each of these index-elements are arbitrary
-except for the following restrictions:
-  <UL>
-    <LI>In a product of indexed objects, a repeated index element represents
-    the Einstein summation convention (a ``contraction''), and the two
-    indices must appear in covariant and contravariant positions. Having more
-    than two repeated indices is an error, although this will not be
-    indicated until the indexed assignment is evaluated. If the switch
-    extendedsum is on, then the two repeated indices may also be both
-    covariant or both contravariant.</LI>
-    <LI>After the contractions are eliminated, the remaining indices must
-    match the index structure of the output object in both location (i.e.
-    either covariant or contravariant) and type.</LI>
-  </UL>These are of course just the usual rules for indices in tensor
-  analysis.
-  <P>The net index structure of the expression, obtained by eliminating the
-  contractions and fixed indices, will be the same as that of the object to
-  which the expression will eventually be assigned. Ideally, this object
-  would be created by the user before the assignment takes place, so that
-  proper checking of the index structure of the expression relative to that
-  expected in the output object can be done. The user can also avoid
-  declaring the object, in which case the system will prompt as soon as an
-  index is placed on it, or the user can make a ``bare'' declaration (see
-  page <A href="node20.html#mkobjbare"><IMG align="bottom" alt=".png&quot;"
-  src="../../../images/latex/cross_ref_motif.png"></A>), and the system will
-  determine the net index structure of the expression and place the indextype
-  parameter on the object. This is not recommended.</P>
-  <P>The net symmetries of the expression are in general very difficult to
-  determine by a simple algorithm, thus it is up to the user to correctly
-  place these on the output object. Failing to do so can result in very long
-  run times for some expressions, since the system uses the output objects'
-  symmetries to generate the indices it uses to perform the evaluation.</P>
-  <P>Continuing with the Robertson-Walker metric example from the last
-  chapter, we can now construct the two kinds of Christoffel symbols <A name=
-  "823" id="823"></A> from the metric tensor. In tensor notation these are
-  defined by:</P>
-  <P><A name="eqc2" id="eqc2"></A> <A name="eqc1" id="eqc1"></A><IMG align=
-  "bottom" src="_10787_eqnarray824.png"></P>
-  <P>where <IMG align="bottom" src="_10787_tex2html_wrap6246.png"> is the
-  metric tensor. Unfortunately, REDTEN does not have quite the flexibility of
-  input for the user to use this exact formalism, so we must resort to making
-  these rank-3 objects with, for example, the names <SPAN class=
-  "c1">hc1</SPAN> and <SPAN class="c1">hc2</SPAN> respectively. In actual
-  fact, neither of the Christoffel symbols is a tensor, but in the GR package
-  of REDTEN they are declared as such (with the generic names c1 and c2),
-  since certain combinations of these objects are tensors.</P>
-  <P>It can be seen that the first Christoffel symbol is symmetric in its
-  first two indices <IMG align="bottom" src="_10787_tex2html_wrap6252.png">
-  and <IMG align="bottom" src="_10787_tex2html_wrap6254.png">, while the
-  second Christoffel symbol is symmetric in its second and third indices,
-  again <IMG align="bottom" src="_10787_tex2html_wrap6252.png"> and
-  <IMG align="bottom" src="_10787_tex2html_wrap6254.png">, taking the upper
-  index <IMG align="bottom" src="_10787_tex2html_wrap6408.png"> to be the
-  first. We can then declare these objects, giving them the proper index
-  structure and symmetries:</P>
-  <PRE> 
+</SPAN></PRE>
+    or as complicated as need be, given certain rules about indices and the
+    combinations that are valid. In any indexed expression there will be some
+    index elements that are non-integer (otherwise each indexed object reference
+    can be immediately evaluated and a simple algebraic expression results). The
+    labels used for each of these index-elements are arbitrary except for the
+    following restrictions:
+    <ul>
+      <li>
+        In a product of indexed objects, a repeated index element represents the
+        Einstein summation convention (a ``contraction''), and the two indices
+        must appear in covariant and contravariant positions. Having more than
+        two repeated indices is an error, although this will not be indicated
+        until the indexed assignment is evaluated. If the switch extendedsum is
+        on, then the two repeated indices may also be both covariant or both
+        contravariant.
+      </li>
+      <li>
+        After the contractions are eliminated, the remaining indices must match
+        the index structure of the output object in both location (i.e. either
+        covariant or contravariant) and type.
+      </li>
+    </ul>
+    These are of course just the usual rules for indices in tensor analysis.
+    <p>
+      The net index structure of the expression, obtained by eliminating the
+      contractions and fixed indices, will be the same as that of the object to
+      which the expression will eventually be assigned. Ideally, this object
+      would be created by the user before the assignment takes place, so that
+      proper checking of the index structure of the expression relative to that
+      expected in the output object can be done. The user can also avoid
+      declaring the object, in which case the system will prompt as soon as an
+      index is placed on it, or the user can make a ``bare'' declaration (see
+      page
+      <a href="node20.html#mkobjbare"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/cross_ref_motif.png" /></a
+      >), and the system will determine the net index structure of the
+      expression and place the indextype parameter on the object. This is not
+      recommended.
+    </p>
+    <p>
+      The net symmetries of the expression are in general very difficult to
+      determine by a simple algorithm, thus it is up to the user to correctly
+      place these on the output object. Failing to do so can result in very long
+      run times for some expressions, since the system uses the output objects'
+      symmetries to generate the indices it uses to perform the evaluation.
+    </p>
+    <p>
+      Continuing with the Robertson-Walker metric example from the last chapter,
+      we can now construct the two kinds of Christoffel symbols
+      <a name="823" id="823"></a> from the metric tensor. In tensor notation
+      these are defined by:
+    </p>
+    <p>
+      <a name="eqc2" id="eqc2"></a> <a name="eqc1" id="eqc1"></a
+      ><img align="bottom" src="_10787_eqnarray824.png" />
+    </p>
+    <p>
+      where <img align="bottom" src="_10787_tex2html_wrap6246.png" /> is the
+      metric tensor. Unfortunately, REDTEN does not have quite the flexibility
+      of input for the user to use this exact formalism, so we must resort to
+      making these rank-3 objects with, for example, the names
+      <span class="c1">hc1</span> and <span class="c1">hc2</span> respectively.
+      In actual fact, neither of the Christoffel symbols is a tensor, but in the
+      GR package of REDTEN they are declared as such (with the generic names c1
+      and c2), since certain combinations of these objects are tensors.
+    </p>
+    <p>
+      It can be seen that the first Christoffel symbol is symmetric in its first
+      two indices <img align="bottom" src="_10787_tex2html_wrap6252.png" /> and
+      <img align="bottom" src="_10787_tex2html_wrap6254.png" />, while the
+      second Christoffel symbol is symmetric in its second and third indices,
+      again <img align="bottom" src="_10787_tex2html_wrap6252.png" /> and
+      <img align="bottom" src="_10787_tex2html_wrap6254.png" />, taking the
+      upper index <img align="bottom" src="_10787_tex2html_wrap6408.png" /> to
+      be the first. We can then declare these objects, giving them the proper
+      index structure and symmetries:
+    </p>
+    <pre> 
 <SPAN class=
 "c1">#: <I>mkobj ('hc1, '(-1 -1 -1), '((1 1 2)), '(), 'christoffel1);</I>
 
@@ -130,8 +185,9 @@ except for the following restrictions:
  hc2
       b c
 
-</SPAN></PRE>The Christoffel symbols can be evaluated by:
-  <PRE> 
+</SPAN></PRE>
+    The Christoffel symbols can be evaluated by:
+    <pre> 
 <SPAN class=
 "c1">#: <I>hc1[i,j,k] == (h[i,k,|j] + h[j,k,|i] - h[i,j,|k])/2;</I>
 
@@ -157,84 +213,106 @@ except for the following restrictions:
 
   - rt  rt
       t
-</SPAN></PRE>We first observe that indexed assignments are done using the
-same <SPAN class="c1">==</SPAN> operator that was used to write individual
-components to indexed <A name="855" id="855"></A> <A name="4123" id=
-"4123"></A> objects, since that operation is a simple form of indexed
-assignment. Immediately after the input line has been parsed and depending on
-the setting of the switch rewrite the system will ``pretty-print'' the
-expression to show the user the index structure of the left and right hand
-sides. If these do not match, an error message will be forthcoming.
-  <P>The system then begins the process of parsing the expression and
-  evaluating each component for the left hand object. If the switch
-  showindices is on, each components index is displayed on the screen as the
-  assignment proceeds. This is useful for complicated objects, where the time
-  to accomplish the assignment may be several minutes and it is desired to
-  monitor the progress of the calculation. The proper display of these
-  indices depends on the correct setting of the variable upcursor, see
-  Appendix <A href="node66.html#starting">F</A> for more information. A
-  related switch is peek which also shows if the current component evaluates
-  to zero or non-zero.</P>
-  <P>The expression for <SPAN class="c1">hc1</SPAN> involves the ordinary
-  differentiation operator <SPAN class="c1">|</SPAN>; when this is
-  encountered the system will create a new object to store the derivatives
-  for future reference. This is described more fully in §<A href=
-  "node34.html#secodf">4.1</A>. In the calculation of <SPAN class=
-  "c1">hc2</SPAN> it will be observed that the shift operator <SPAN class=
-  "c1">@</SPAN> has been used on the metric indices. In general, when an
-  indexed object reference is parsed, the system checks for these operators,
-  and, if the corresponding shifted object exists, the reference is rewritten
-  in terms of this object directly. Thus, typing <SPAN class=
-  "c1">h[@a,@b]</SPAN> is equivalent to typing <SPAN class=
-  "c1">h_inv[a,b]</SPAN>, since the inverse object already exists. If it did
-  not, the operations would be held pending an indexed assignment, and at
-  that time the shift() function would be called to construct the new object.
-  That is, the system does as much simplifcation as it can on the expression
-  as initially entered, but waits until it is involved in an indexed
-  assignment to undertake any time-consuming calculations. The expression for
-  <SPAN class="c1">hc2</SPAN> also contains a contraction representing the
-  summation over the index <SPAN class="c1">k</SPAN>. It is here that the
-  diagonal symmetry of the metric can be used effectively, since the
-  summation in this case reduces to a single term.</P>
-  <P>It will also be observed that the indexed objects in the first of these
-  calculations are involved in an algebraic expression (a quotient). This is
-  a very simple case of a more general property of indexed expressions in
-  REDTEN: an indexed object can be an argument to an algebraic function; the
-  components of the indexed object are evaluated in the context of the
-  function as the indexed expression is evaluated. For example,</P>
-  <PRE> 
+</SPAN></PRE>
+    We first observe that indexed assignments are done using the same
+    <span class="c1">==</span> operator that was used to write individual
+    components to indexed <a name="855" id="855"></a>
+    <a name="4123" id="4123"></a> objects, since that operation is a simple form
+    of indexed assignment. Immediately after the input line has been parsed and
+    depending on the setting of the switch rewrite the system will
+    ``pretty-print'' the expression to show the user the index structure of the
+    left and right hand sides. If these do not match, an error message will be
+    forthcoming.
+    <p>
+      The system then begins the process of parsing the expression and
+      evaluating each component for the left hand object. If the switch
+      showindices is on, each components index is displayed on the screen as the
+      assignment proceeds. This is useful for complicated objects, where the
+      time to accomplish the assignment may be several minutes and it is desired
+      to monitor the progress of the calculation. The proper display of these
+      indices depends on the correct setting of the variable upcursor, see
+      Appendix <a href="node66.html#starting">F</a> for more information. A
+      related switch is peek which also shows if the current component evaluates
+      to zero or non-zero.
+    </p>
+    <p>
+      The expression for <span class="c1">hc1</span> involves the ordinary
+      differentiation operator <span class="c1">|</span>; when this is
+      encountered the system will create a new object to store the derivatives
+      for future reference. This is described more fully in §<a
+        href="node34.html#secodf"
+        >4.1</a
+      >. In the calculation of <span class="c1">hc2</span> it will be observed
+      that the shift operator <span class="c1">@</span> has been used on the
+      metric indices. In general, when an indexed object reference is parsed,
+      the system checks for these operators, and, if the corresponding shifted
+      object exists, the reference is rewritten in terms of this object
+      directly. Thus, typing <span class="c1">h[@a,@b]</span> is equivalent to
+      typing <span class="c1">h_inv[a,b]</span>, since the inverse object
+      already exists. If it did not, the operations would be held pending an
+      indexed assignment, and at that time the shift() function would be called
+      to construct the new object. That is, the system does as much
+      simplifcation as it can on the expression as initially entered, but waits
+      until it is involved in an indexed assignment to undertake any
+      time-consuming calculations. The expression for
+      <span class="c1">hc2</span> also contains a contraction representing the
+      summation over the index <span class="c1">k</span>. It is here that the
+      diagonal symmetry of the metric can be used effectively, since the
+      summation in this case reduces to a single term.
+    </p>
+    <p>
+      It will also be observed that the indexed objects in the first of these
+      calculations are involved in an algebraic expression (a quotient). This is
+      a very simple case of a more general property of indexed expressions in
+      REDTEN: an indexed object can be an argument to an algebraic function; the
+      components of the indexed object are evaluated in the context of the
+      function as the indexed expression is evaluated. For example,
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>k[a,b]==sub(s=1, h[a,b])$</I>
 
 #: <I>l[a,b]==df(h[a,b],om)$</I>
 </SPAN></PRE>
-  <P>With the Christoffel symbols in hand, we can now proceed to evaluate the
-  Riemann curvature tensor, which is defined in terms of the Christoffel
-  symbols by:</P>
-  <P><A name="eqriemann" id="eqriemann"></A><IMG align="bottom" src=
-  "_10787_equation878.png"></P>
-  <P>It can be shown from symmetry considerations that there are only 21
-  independent components of the Riemann tensor in a four-dimensional
-  space-time, rather than the 256 components there appear to be<A name=
-  "tex2html74" href="footnode.html#4128" id="tex2html74"><IMG align="bottom"
-  alt=".png&quot;" src="../../../images/latex/foot_motif.png"></A>. The
-  Riemann tensor is anti-symmetric in the first and second indices,
-  anti-symmetric in the third and fourth indices, and symmetric in blocks of
-  two indices starting at the first and third. In REDTEN notation, this
-  symmetry list is written as <SPAN class="c1">'((-1 1 2) (-1 3 4) (2 1
-  3))</SPAN> and the Riemann tensor <SPAN class="c1">hR</SPAN> can be made
-  with the command:</P>
-  <PRE> 
+    <p>
+      With the Christoffel symbols in hand, we can now proceed to evaluate the
+      Riemann curvature tensor, which is defined in terms of the Christoffel
+      symbols by:
+    </p>
+    <p>
+      <a name="eqriemann" id="eqriemann"></a
+      ><img align="bottom" src="_10787_equation878.png" />
+    </p>
+    <p>
+      It can be shown from symmetry considerations that there are only 21
+      independent components of the Riemann tensor in a four-dimensional
+      space-time, rather than the 256 components there appear to be<a
+        name="tex2html74"
+        href="footnode.html#4128"
+        id="tex2html74"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png" /></a
+      >. The Riemann tensor is anti-symmetric in the first and second indices,
+      anti-symmetric in the third and fourth indices, and symmetric in blocks of
+      two indices starting at the first and third. In REDTEN notation, this
+      symmetry list is written as
+      <span class="c1">'((-1 1 2) (-1 3 4) (2 1 3))</span> and the Riemann
+      tensor <span class="c1">hR</span> can be made with the command:
+    </p>
+    <pre> 
 <SPAN class=
 "c1">#: <I>mkobj ('hR, '(-1 -1 -1 -1), '((-1 1 2) (-1 3 4) (2 1 3)), '(),
 'riemann);</I>
 
  hR
    a b c d
-</SPAN></PRE>Recall that the name R is declared generic in REDTEN and should
-not be used to create a Riemann tensor (the name <SPAN class="c1">R</SPAN> is
-however closely related to the Riemann tensors created with the GR package).
-The assignment to the Riemann tensor is made as follows:
-  <PRE> 
+</SPAN></PRE>
+    Recall that the name R is declared generic in REDTEN and should not be used
+    to create a Riemann tensor (the name <span class="c1">R</span> is however
+    closely related to the Riemann tensors created with the GR package). The
+    assignment to the Riemann tensor is made as follows:
+    <pre> 
 <SPAN class=
 "c1">#: <I>hR[h,i,j,k] == hc1[i,k,h,|j]-hc1[i,j,h,|k]+hc2[l,i,j]*hc1[h,k,l]
   -hc2[l,i,k]*hc1[h,j,l];</I>
@@ -249,30 +327,38 @@ The assignment to the Riemann tensor is made as follows:
  hR
    h i j k
 
-</SPAN></PRE>If the user examines this object it will be seen that there are
-only 6 non-zero components. On a reasonably fast computer (eg. a 25Mhz 386 or
-a SUN) this calculation takes only a few seconds for this metric; for more
-complicated metrics it will of course take longer.
-  <P>The next objects to create are the Ricci tensor and the associated Ricci
-  scalar (also called the scalar curvature). These are defined by</P>
-  <P><A name="eqricsc" id="eqricsc"></A> <A name="eqricci" id=
-  "eqricci"></A><IMG align="bottom" src="_10787_eqnarray909.png"></P>
-  <P>The Ricci tensor is symmetric, hence:</P>
-  <PRE> 
+</SPAN></PRE>
+    If the user examines this object it will be seen that there are only 6
+    non-zero components. On a reasonably fast computer (eg. a 25Mhz 386 or a
+    SUN) this calculation takes only a few seconds for this metric; for more
+    complicated metrics it will of course take longer.
+    <p>
+      The next objects to create are the Ricci tensor and the associated Ricci
+      scalar (also called the scalar curvature). These are defined by
+    </p>
+    <p>
+      <a name="eqricsc" id="eqricsc"></a> <a name="eqricci" id="eqricci"></a
+      ><img align="bottom" src="_10787_eqnarray909.png" />
+    </p>
+    <p>The Ricci tensor is symmetric, hence:</p>
+    <pre> 
 <SPAN class="c1">#: <I>mkobj('hRic, '(-1 -1), '((1 1 2)), '(), 'ricci);</I>
 
  hRic
      a b
 
-</SPAN></PRE>is the command to make the object. There are two ways to compute
-the components of both the Ricci tensor and the Ricci scalar, in REDTEN one
-method is somewhat more efficient than the other. The first method is to
-indicate a shift operation with the <SPAN class="c1">@</SPAN> operator, this
-will cause the system to create a new object (whose name is derived from the
-name of the object being shifted, see §<A href=
-"node32.html#ssecshift">3.1.2</A> for more detail). The internal contraction
-of the object is then done to yield the output object:
-  <PRE> 
+</SPAN></PRE>
+    is the command to make the object. There are two ways to compute the
+    components of both the Ricci tensor and the Ricci scalar, in REDTEN one
+    method is somewhat more efficient than the other. The first method is to
+    indicate a shift operation with the <span class="c1">@</span> operator, this
+    will cause the system to create a new object (whose name is derived from the
+    name of the object being shifted, see §<a href="node32.html#ssecshift"
+      >3.1.2</a
+    >
+    for more detail). The internal contraction of the object is then done to
+    yield the output object:
+    <pre> 
 <SPAN class="c1">#: <I>hRic[i,j] == hR[@k,i,j,k];</I>
 
                k
@@ -284,16 +370,17 @@ SHIFT finished.
 
   hRic
       i j
-</SPAN></PRE>A side effect of this method is the creation of <SPAN class=
-"c1">hR_b</SPAN>, a Riemann tensor with the first index raised, and,
-incidentally, fewer symmetries than the original Riemann tensor. Thus, it can
-take appreciably longer to compute this object since it has many more
-components (12 non-zero ones for this metric). Since we probably are not
-interested in this object this particular method is not the most efficient
-way to compute the Ricci tensor. Instead, we shall write the metric
-contraction explicitly, so that the system simply does a two-index
-contraction:
-  <PRE> 
+</SPAN></PRE>
+    A side effect of this method is the creation of
+    <span class="c1">hR_b</span>, a Riemann tensor with the first index raised,
+    and, incidentally, fewer symmetries than the original Riemann tensor. Thus,
+    it can take appreciably longer to compute this object since it has many more
+    components (12 non-zero ones for this metric). Since we probably are not
+    interested in this object this particular method is not the most efficient
+    way to compute the Ricci tensor. Instead, we shall write the metric
+    contraction explicitly, so that the system simply does a two-index
+    contraction:
+    <pre> 
 <SPAN class="c1">#: <I>hRic[i,j] == h[@l,@k]*hR[l,i,j,k];</I>
 
                            k l
@@ -303,17 +390,20 @@ contraction:
  hRic
      i j
 
-</SPAN></PRE>This calculation computes directly the object of interest and
-proceeds much more quickly than the first method. Since the contraction
-involves all the indices of the metric inverse, it will be read-out when the
-expression is processed (before the actual evaluation of output components
-begins) yeilding a substantial simplification. It will also be observed that
-the expression as echoed by the system is not identical to that typed in,
-since the indices have been canonicalized and, in the case of the Riemann
-tensor, a sign change was introduced.
-  <P>We can similarly evaluate the Ricci scalar using the more efficient
-  metric contraction:</P>
-  <PRE> 
+</SPAN></PRE>
+    This calculation computes directly the object of interest and proceeds much
+    more quickly than the first method. Since the contraction involves all the
+    indices of the metric inverse, it will be read-out when the expression is
+    processed (before the actual evaluation of output components begins)
+    yeilding a substantial simplification. It will also be observed that the
+    expression as echoed by the system is not identical to that typed in, since
+    the indices have been canonicalized and, in the case of the Riemann tensor,
+    a sign change was introduced.
+    <p>
+      We can similarly evaluate the Ricci scalar using the more efficient metric
+      contraction:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>hRsc == h[@i,@j]*hRic[i,j];</I>
 
                   i j
@@ -327,27 +417,29 @@ tensor, a sign change was introduced.
               2
             rt
 
-</SPAN></PRE>Note that we did <EM>not</EM> declare <SPAN class=
-"c1">hRsc</SPAN> in advance. The indexed expression on the right hand side
-evaluates to a scalar and REDTEN will accept a REDUCE scalar as the output
-object in this case. In fact, the left hand side can either be an indexed
-object or a scalar, and the right hand side can be any indexed expression,
-scalar expression, or simple scalar.
-  <PRE> 
+</SPAN></PRE>
+    Note that we did <em>not</em> declare <span class="c1">hRsc</span> in
+    advance. The indexed expression on the right hand side evaluates to a scalar
+    and REDTEN will accept a REDUCE scalar as the output object in this case. In
+    fact, the left hand side can either be an indexed object or a scalar, and
+    the right hand side can be any indexed expression, scalar expression, or
+    simple scalar.
+    <pre> 
 <SPAN class="c1">#: <I>w[a,b] == 99; % write 99 into every component of w</I>
 
   w
    a b
-</SPAN></PRE>This example is not generally very useful unless perhaps to set
-every component of an object to zero. Of course, mixed indices may also be
-used, in order to limit the assignment to a row or column etc. Only if the
-right hand side is indexed is it necessary for the left-hand side to be
-similarly indexed. One can always assign an indexed expression to an object
-of higher rank; the extra indices may be fixed or pattern indices, if the
-latter, then the expression is assigned to every possible combination of
-indices. An error will occur if a pattern index-element on the right hand
-side is unmatched by a similar one on the left.
-  <PRE> 
+</SPAN></PRE>
+    This example is not generally very useful unless perhaps to set every
+    component of an object to zero. Of course, mixed indices may also be used,
+    in order to limit the assignment to a row or column etc. Only if the right
+    hand side is indexed is it necessary for the left-hand side to be similarly
+    indexed. One can always assign an indexed expression to an object of higher
+    rank; the extra indices may be fixed or pattern indices, if the latter, then
+    the expression is assigned to every possible combination of indices. An
+    error will occur if a pattern index-element on the right hand side is
+    unmatched by a similar one on the left.
+    <pre> 
 <SPAN class="c1">#: <I>w[a,b] == p[a]; % this is ok</I>
 
  w
@@ -356,31 +448,38 @@ side is unmatched by a similar one on the left.
 #: <I>p[a] == w[a,b]; % this is an error</I>
 
 Error: free index element b in w[a,b].
-</SPAN></PRE>The first assignment will replicate <SPAN class="c1">p</SPAN>
-(assumed to have been created and given some values) into the columns of
-<SPAN class="c1">w</SPAN>. The second assignment fails because there is no
-index element corresponding to <SPAN class="c1">b</SPAN> on the left hand
-side (it is a ``free'' index element). If, however, <SPAN class="c1">w</SPAN>
-were zero (i.e. with no explicit components and also not implicit) then the
-assignment would proceed, because the expression
-  <PRE> 
+</SPAN></PRE>
+    The first assignment will replicate <span class="c1">p</span>
+    (assumed to have been created and given some values) into the columns of
+    <span class="c1">w</span>. The second assignment fails because there is no
+    index element corresponding to <span class="c1">b</span> on the left hand
+    side (it is a ``free'' index element). If, however,
+    <span class="c1">w</span>
+    were zero (i.e. with no explicit components and also not implicit) then the
+    assignment would proceed, because the expression
+    <pre> 
 <SPAN class="c1">w
  a b
-</SPAN></PRE>is replaced by zero before the index checking is done. If
-<SPAN class="c1">b</SPAN> were replaced by a valid integer then the
-assignment could again proceed.
-  <P>As noted above, the index of the output object can be such that only a
-  portion of the object is referenced during the indexed assignment
-  operation. In this case, any components that are not included in the scope
-  of the index remain unchanged; the new components are merged with the old.
-  If the user decides that an indexed assignment applied to an object with
-  previously defined components has been an error, the old value of the
-  object can be recovered by calling restoreobj() immediately.</P>
-  <P>The function seval() is used to perform the evaluation of an indexed
-  expression that reduces to a scalar, without the need for an indexed
-  assignment using <SPAN class="c1">==</SPAN>. Thus, the dimension of the
-  space-time can be found by</P>
-  <PRE> 
+</SPAN></PRE>
+    is replaced by zero before the index checking is done. If
+    <span class="c1">b</span> were replaced by a valid integer then the
+    assignment could again proceed.
+    <p>
+      As noted above, the index of the output object can be such that only a
+      portion of the object is referenced during the indexed assignment
+      operation. In this case, any components that are not included in the scope
+      of the index remain unchanged; the new components are merged with the old.
+      If the user decides that an indexed assignment applied to an object with
+      previously defined components has been an error, the old value of the
+      object can be recovered by calling restoreobj() immediately.
+    </p>
+    <p>
+      The function seval() is used to perform the evaluation of an indexed
+      expression that reduces to a scalar, without the need for an indexed
+      assignment using <span class="c1">==</span>. Thus, the dimension of the
+      space-time can be found by
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>seval(h[@a,@b]*h[a,b]);</I>
 
                 a b
@@ -389,23 +488,32 @@ assignment could again proceed.
 
   4
 
-</SPAN></PRE>In fact, this function calls the indexed assignment operator and
-assigns the result to the name seval.
-  <P>The left hand side of these scalar expression can also be an indexed
-  scalar, declared by giving mkobj() an empty indextype property (see
-  §<A href="node13.html#mkobjindextype">2.2.2</A>). In this case the empty
-  index must be attached to the object name.</P>
-  <P>Another scalar of interest is formed by contracting the Riemann tensor
-  with itself. The Kretschmann scalar is defined by</P>
-  <P><A name="eqkretsch" id="eqkretsch"></A><IMG align="bottom" src=
-  "_10787_equation967.png"></P>
-  <P>We can declare it to be an indexed scalar via</P>
-  <PRE> 
+</SPAN></PRE>
+    In fact, this function calls the indexed assignment operator and assigns the
+    result to the name seval.
+    <p>
+      The left hand side of these scalar expression can also be an indexed
+      scalar, declared by giving mkobj() an empty indextype property (see §<a
+        href="node13.html#mkobjindextype"
+        >2.2.2</a
+      >). In this case the empty index must be attached to the object name.
+    </p>
+    <p>
+      Another scalar of interest is formed by contracting the Riemann tensor
+      with itself. The Kretschmann scalar is defined by
+    </p>
+    <p>
+      <a name="eqkretsch" id="eqkretsch"></a
+      ><img align="bottom" src="_10787_equation967.png" />
+    </p>
+    <p>We can declare it to be an indexed scalar via</p>
+    <pre> 
 <SPAN class="c1">#: <I>mkobj('hkrtch, '(), '(), '(), 'kretschmann);</I>
 
  hkrtch
-</SPAN></PRE>and evaluate it as follows:
-  <PRE> 
+</SPAN></PRE>
+    and evaluate it as follows:
+    <pre> 
 <SPAN class="c1">#: <I>hkrtch[] == hR[@a,@b,@c,@d]*hR[a,b,c,d];</I>
 
 computing hR_p
@@ -418,24 +526,33 @@ shift finished.
                      4
                    rt
 
-</SPAN></PRE>In this instance we allowed the system to create the shifted
-Riemann tensor <SPAN class="c1">hR_p</SPAN> because it has the same
-symmetries as <SPAN class="c1">hR</SPAN> (and is not too expensive to
-compute), but the expression could have been written with the metric inverse
-explicitly. Note that forgetting the empty index on <SPAN class=
-"c1">hkrtch</SPAN> is likely to lead to a syntax error. In order to examine
-the value of <SPAN class="c1">hkrtch</SPAN> it is also necessary to add the
-expty index, the name alone has itself as its value.
-  <P>The remaining objects of interest for the RW metric are the Einstein
-  tensor and the Weyl curvature tensor, defined by:</P>
-  <P><A name="eqweyl" id="eqweyl"></A> <A name="eqeinstein" id=
-  "eqeinstein"></A><IMG align="bottom" src="_10787_eqnarray982.png"></P>
-  <P>These object are closely related to the Ricci tensor and the Riemann
-  tensor, respectively, with the same index structure and symmetries and can
-  be created in the following way using the extended mkobj() syntax described
-  in §<A href="node13.html#mkobjindextype">2.2.2</A> and §<A href=
-  "node14.html#mkobjsym">2.2.3</A>:</P>
-  <PRE> 
+</SPAN></PRE>
+    In this instance we allowed the system to create the shifted Riemann tensor
+    <span class="c1">hR_p</span> because it has the same symmetries as
+    <span class="c1">hR</span> (and is not too expensive to compute), but the
+    expression could have been written with the metric inverse explicitly. Note
+    that forgetting the empty index on <span class="c1">hkrtch</span> is likely
+    to lead to a syntax error. In order to examine the value of
+    <span class="c1">hkrtch</span> it is also necessary to add the expty index,
+    the name alone has itself as its value.
+    <p>
+      The remaining objects of interest for the RW metric are the Einstein
+      tensor and the Weyl curvature tensor, defined by:
+    </p>
+    <p>
+      <a name="eqweyl" id="eqweyl"></a> <a name="eqeinstein" id="eqeinstein"></a
+      ><img align="bottom" src="_10787_eqnarray982.png" />
+    </p>
+    <p>
+      These object are closely related to the Ricci tensor and the Riemann
+      tensor, respectively, with the same index structure and symmetries and can
+      be created in the following way using the extended mkobj() syntax
+      described in §<a href="node13.html#mkobjindextype">2.2.2</a> and §<a
+        href="node14.html#mkobjsym"
+        >2.2.3</a
+      >:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>mkobj('hG,'hRic,'hRic, '(), 'einstein);</I>
 
  hG
@@ -446,10 +563,11 @@ expty index, the name alone has itself as its value.
  hC
    a b c d
 
-</SPAN></PRE>The evaluation of these objects is straightforward (some of the
-constants below depend on the dimension of the space; here <IMG align=
-"bottom" src="_10787_tex2html_wrap6258.png">):
-  <PRE> 
+</SPAN></PRE>
+    The evaluation of these objects is straightforward (some of the constants
+    below depend on the dimension of the space; here
+    <img align="bottom" src="_10787_tex2html_wrap6258.png" />):
+    <pre> 
 <SPAN class="c1">#: <I>hG[i,j] == hRic[i,j]-hRsc*h[i,j]/2;</I>
 
  hG     =
@@ -474,55 +592,89 @@ constants below depend on the dimension of the space; here <IMG align=
  hC
    h i j k
 
-</SPAN></PRE>It will be observed that in the expression for the Weyl tensor
-the name <SPAN class="c1">h</SPAN> is used both for an index and as the
-metric. Ordinarily there is no conflict between a name used in an index and
-the same name used for any other indexed object or algebraic variable, unless
-the switch evalindex is on (qv). If the contents of the Weyl tensor are
-examined, it will be found that there are no explicit values, as is to be
-expected since the RW metric is conformally flat.
-  <P><BR></P>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html635" href="node30.html#SECTION00410000000000000000"
-      id="tex2html635">Metric Contractions</A>
-      <UL>
-        <LI>
-          <A name="tex2html636" href=
-          "node31.html#SECTION00411000000000000000" id=
-          "tex2html636">metrics</A>
-        </LI>
-        <LI>
-          <A name="tex2html637" href=
-          "node32.html#SECTION00412000000000000000" id=
-          "tex2html637"><SPAN class="c1">shift()</SPAN></A>
-        </LI>
-      </UL>
-    </LI>
-  </UL><BR>
-  <HR>
-  <A name="tex2html631" href="node30.html" id="tex2html631"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html629" href="root.html" id="tex2html629"><IMG align="bottom"
-  alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html623" href="node28.html" id="tex2html623"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html633" href="node1.html" id="tex2html633"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html634" href="node70.html" id="tex2html634"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html632" href="node30.html" id=
-  "tex2html632">Metric Contractions</A> <B>Up:</B> <A name="tex2html630"
-  href="root.html" id="tex2html630">No Title</A> <B>Previous:</B> <A name=
-  "tex2html624" href="node28.html" id="tex2html624">Accessing and
-  Displaying</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    It will be observed that in the expression for the Weyl tensor the name
+    <span class="c1">h</span> is used both for an index and as the metric.
+    Ordinarily there is no conflict between a name used in an index and the same
+    name used for any other indexed object or algebraic variable, unless the
+    switch evalindex is on (qv). If the contents of the Weyl tensor are
+    examined, it will be found that there are no explicit values, as is to be
+    expected since the RW metric is conformally flat.
+    <p><br /></p>
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html635"
+          href="node30.html#SECTION00410000000000000000"
+          id="tex2html635"
+          >Metric Contractions</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html636"
+              href="node31.html#SECTION00411000000000000000"
+              id="tex2html636"
+              >metrics</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html637"
+              href="node32.html#SECTION00412000000000000000"
+              id="tex2html637"
+              ><span class="c1">shift()</span></a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <a name="tex2html631" href="node30.html" id="tex2html631"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html629" href="root.html" id="tex2html629"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html623" href="node28.html" id="tex2html623"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html633" href="node1.html" id="tex2html633"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html634" href="node70.html" id="tex2html634"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html632" href="node30.html" id="tex2html632"
+      >Metric Contractions</a
+    >
+    <b>Up:</b>
+    <a name="tex2html630" href="root.html" id="tex2html630">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html624" href="node28.html" id="tex2html624"
+      >Accessing and Displaying</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

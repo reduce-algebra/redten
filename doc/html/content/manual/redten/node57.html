@@ -1,66 +1,99 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Miscellaneous</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Miscellaneous">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html980" href="node58.html" id="tex2html980"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html978" href="node53.html" id="tex2html978"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html972" href="node56.html" id="tex2html972"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html982" href="node1.html" id="tex2html982"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html983" href="node70.html" id="tex2html983"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html981" href="node58.html" id="tex2html981">Case
-  Mapping</A> <B>Up:</B> <A name="tex2html979" href="node53.html" id=
-  "tex2html979">Enhancements</A> <B>Previous:</B> <A name="tex2html973" href=
-  "node56.html" id="tex2html973">The Pager</A><BR>
-  <HR>
-  <H1><A name="SECTION00830000000000000000" id=
-  "SECTION00830000000000000000">Miscellaneous</A></H1>
-  <P><A name="secmisc" id="secmisc"></A> <A name="dfprint" id="dfprint"></A>
-  In pre-3.4 versions of REDUCE the display of derivatives of functional
-  forms (i.e. things declared with the depend() command) was somewhat dull. A
-  quick fix was made in REDTEN to allow these forms to display as, for
-  example,</P>
-  <PRE> 
+<html>
+  <head>
+    <title>Miscellaneous</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Miscellaneous" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html980" href="node58.html" id="tex2html980"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html978" href="node53.html" id="tex2html978"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html972" href="node56.html" id="tex2html972"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html982" href="node1.html" id="tex2html982"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html983" href="node70.html" id="tex2html983"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html981" href="node58.html" id="tex2html981">Case Mapping</a>
+    <b>Up:</b>
+    <a name="tex2html979" href="node53.html" id="tex2html979">Enhancements</a>
+    <b>Previous:</b>
+    <a name="tex2html973" href="node56.html" id="tex2html973">The Pager</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00830000000000000000" id="SECTION00830000000000000000"
+        >Miscellaneous</a
+      >
+    </h1>
+    <p>
+      <a name="secmisc" id="secmisc"></a> <a name="dfprint" id="dfprint"></a> In
+      pre-3.4 versions of REDUCE the display of derivatives of functional forms
+      (i.e. things declared with the depend() command) was somewhat dull. A
+      quick fix was made in REDTEN to allow these forms to display as, for
+      example,
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>depend f,r$</I>
 
 #: <I>df(f,r);</I>
 
    f
     r
-</SPAN></PRE>rather than
-  <PRE> 
+</SPAN></PRE>
+    rather than
+    <pre> 
 <SPAN class="c1">#: <I>df(f,r);</I>
 
    df(f,r)
-</SPAN></PRE>In REDUCE 3.4 a very similar package exists, controlled by the
-switch dfprint, which has been turned on in REDTEN.
-  <P>In addition, to handle the display of certain constructs that can appear
-  in REDTEN (derivatives with respect to coordinate vectors), another display
-  package has been introduced for this case. If the switch <SPAN class=
-  "c1">fancydf[off]</SPAN> is on, then this package is used for all
-  derivatives of functional forms. The format is of a fraction involving
-  differentials, with the appropriate degrees located in the conventional
-  places.</P>
-  <PRE> 
+</SPAN></PRE>
+    In REDUCE 3.4 a very similar package exists, controlled by the switch
+    dfprint, which has been turned on in REDTEN.
+    <p>
+      In addition, to handle the display of certain constructs that can appear
+      in REDTEN (derivatives with respect to coordinate vectors), another
+      display package has been introduced for this case. If the switch
+      <span class="c1">fancydf[off]</span> is on, then this package is used for
+      all derivatives of functional forms. The format is of a fraction involving
+      differentials, with the appropriate degrees located in the conventional
+      places.
+    </p>
+    <pre> 
 <SPAN class=
 "c1">#: <I>df (f,x[a]); % note f must depend on at least one coordinate.</I>
 
@@ -78,39 +111,62 @@ switch dfprint, which has been turned on in REDTEN.
   ------
       2
    d r
-</SPAN></PRE>A minor enhancement is obtained when the switch bell is turned
-on, in this case the terminal bell is sounded after every prompt. The only
-use for this is to notify the user at the end of a long calculation, at other
-times the bell is annoying.
-  <P>To enable easier timing of the entire process of evaluating a metric
-  family, two new timing functions have been added to REDTEN. To start the
-  timer the function stime() can be called; the elapsed CPU time since the
-  last call to this function is returned by the function etime(). The timer
-  is not reset by etime(), so it can be called many times in succession, and
-  will show progressively larger elapsed times until a new call to stime() is
-  made.</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html980" href="node58.html" id="tex2html980"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html978" href="node53.html" id="tex2html978"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html972" href="node56.html" id="tex2html972"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html982" href="node1.html" id="tex2html982"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html983" href="node70.html" id="tex2html983"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html981" href="node58.html" id="tex2html981">Case
-  Mapping</A> <B>Up:</B> <A name="tex2html979" href="node53.html" id=
-  "tex2html979">Enhancements</A> <B>Previous:</B> <A name="tex2html973" href=
-  "node56.html" id="tex2html973">The Pager</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    A minor enhancement is obtained when the switch bell is turned on, in this
+    case the terminal bell is sounded after every prompt. The only use for this
+    is to notify the user at the end of a long calculation, at other times the
+    bell is annoying.
+    <p>
+      To enable easier timing of the entire process of evaluating a metric
+      family, two new timing functions have been added to REDTEN. To start the
+      timer the function stime() can be called; the elapsed CPU time since the
+      last call to this function is returned by the function etime(). The timer
+      is not reset by etime(), so it can be called many times in succession, and
+      will show progressively larger elapsed times until a new call to stime()
+      is made.
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html980" href="node58.html" id="tex2html980"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html978" href="node53.html" id="tex2html978"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html972" href="node56.html" id="tex2html972"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html982" href="node1.html" id="tex2html982"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html983" href="node70.html" id="tex2html983"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html981" href="node58.html" id="tex2html981">Case Mapping</a>
+    <b>Up:</b>
+    <a name="tex2html979" href="node53.html" id="tex2html979">Enhancements</a>
+    <b>Previous:</b>
+    <a name="tex2html973" href="node56.html" id="tex2html973">The Pager</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

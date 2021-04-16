@@ -1,50 +1,89 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>...</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <SPAN class="c1">mapfi()</SPAN>
-  <META name="description" value=" mapfi()">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html805" href="node44.html" id="tex2html805"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html803" href="node42.html" id="tex2html803"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html799" href="node42.html" id="tex2html799"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html807" href="node1.html" id="tex2html807"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html808" href="node70.html" id="tex2html808"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html806" href="node44.html" id=
-  "tex2html806">Other Utilities</A> <B>Up:</B> <A name="tex2html804" href=
-  "node42.html" id="tex2html804">Expression Management</A> <B>Previous:</B>
-  <A name="tex2html800" href="node42.html" id="tex2html800">Expression
-  Management</A><BR>
-  <HR>
-  <H2><A name="SECTION00611000000000000000" id=
-  "SECTION00611000000000000000"><SPAN class="c1">mapfi()</SPAN></A></H2>
-  <P><A name="ssecmapfi" id="ssecmapfi"></A> mapfi() To re-evaluate each of
-  the components of the metric and its inverse and actually change the stored
-  components the function mapfi()<A name="tex2html92" href=
-  "footnode.html#1563" id="tex2html92"><IMG align="bottom" alt=".png&quot;"
-  src="../../../images/latex/foot_motif.png"></A> is used. In its simplest
-  form, mapfi() takes an indexed object name and re-evaluates in-place each
-  component of the object. We can apply the new <SPAN class="c1">let</SPAN>
-  rule to the metric and its inverse by</P>
-  <PRE> 
+<html>
+  <head>
+    <title>...</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="c1">mapfi()</span>
+    <meta name="description" value=" mapfi()" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html805" href="node44.html" id="tex2html805"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html803" href="node42.html" id="tex2html803"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html799" href="node42.html" id="tex2html799"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html807" href="node1.html" id="tex2html807"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html808" href="node70.html" id="tex2html808"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html806" href="node44.html" id="tex2html806"
+      >Other Utilities</a
+    >
+    <b>Up:</b>
+    <a name="tex2html804" href="node42.html" id="tex2html804"
+      >Expression Management</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html800" href="node42.html" id="tex2html800"
+      >Expression Management</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00611000000000000000" id="SECTION00611000000000000000"
+        ><span class="c1">mapfi()</span></a
+      >
+    </h2>
+    <p>
+      <a name="ssecmapfi" id="ssecmapfi"></a> mapfi() To re-evaluate each of the
+      components of the metric and its inverse and actually change the stored
+      components the function mapfi()<a
+        name="tex2html92"
+        href="footnode.html#1563"
+        id="tex2html92"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png"
+      /></a>
+      is used. In its simplest form, mapfi() takes an indexed object name and
+      re-evaluates in-place each component of the object. We can apply the new
+      <span class="c1">let</span> rule to the metric and its inverse by
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>mapfi(g);</I>
 
  g2
@@ -52,54 +91,64 @@
 #: <I>mapfi(g_inv);</I>
 
  g2_inv
-</SPAN></PRE>If the switch showindices is on, the index of each component is
-displayed during the computation. A side effect of mapfi() is that the
-multiplier of an object is combined with each of its components, and the
-multiplier property is reset to 1. The old values of the object are saved,
-and can be recovered if the user immediately executes the restoreobj()
-command. Only one object is saved by the system at a time, hence the need to
-immediately recover. If in doubt, the user can also make a backup by copying
-the object with the icopy() function (see below).
-  <P>The mapfi() function is not limited to such simple things as
-  re-evaluating an indexed object in a new environment, it can also be used
-  to apply specific functions to specific portions of the object. The most
-  general format of the call to mapfi() is</P>
-  <PRE> 
+</SPAN></PRE>
+    If the switch showindices is on, the index of each component is displayed
+    during the computation. A side effect of mapfi() is that the multiplier of
+    an object is combined with each of its components, and the multiplier
+    property is reset to 1. The old values of the object are saved, and can be
+    recovered if the user immediately executes the restoreobj() command. Only
+    one object is saved by the system at a time, hence the need to immediately
+    recover. If in doubt, the user can also make a backup by copying the object
+    with the icopy() function (see below).
+    <p>
+      The mapfi() function is not limited to such simple things as re-evaluating
+      an indexed object in a new environment, it can also be used to apply
+      specific functions to specific portions of the object. The most general
+      format of the call to mapfi() is
+    </p>
+    <pre> 
 <SPAN class="c1">  mapfi(function(name{index},{args}));
-</SPAN></PRE>where <SPAN class="c1">&lt;function&gt;</SPAN> is some function
-that operates on algebraic expressions. The indexed object can either be just
-a name (so that the function is applied to the whole object) or an index that
-isolates part of the object, or even a fixed index, so that a single element
-is affected. mapfi() works by inserting each component of the indexed object
-into the input expression and evaluating it. The input can in fact be any
-expression but is most often a sub() command or occasionally a Taylor series
-function such as ps().
-  <P>For example, if the user entered a general static spherically symmetric
-  metric, and then wanted to substitute <IMG align="bottom" src=
-  "_10787_tex2html_wrap6314.png">, it could be done in two ways. First, an
-  actual assignment to the variable <SPAN class="c1">f</SPAN> could be made,
-  followed by an application of mapfi() similar to that demonstrated above.
-  However, other objects involving <SPAN class="c1">f</SPAN> would also be
-  affected if they were involved in indexed assignments, or if mapfi() were
-  applied. To make the substitution into only a single object can be done as
-  follows:</P>
-  <PRE> 
+</SPAN></PRE>
+    where <span class="c1">&lt;function&gt;</span> is some function that
+    operates on algebraic expressions. The indexed object can either be just a
+    name (so that the function is applied to the whole object) or an index that
+    isolates part of the object, or even a fixed index, so that a single element
+    is affected. mapfi() works by inserting each component of the indexed object
+    into the input expression and evaluating it. The input can in fact be any
+    expression but is most often a sub() command or occasionally a Taylor series
+    function such as ps().
+    <p>
+      For example, if the user entered a general static spherically symmetric
+      metric, and then wanted to substitute
+      <img align="bottom" src="_10787_tex2html_wrap6314.png" />, it could be
+      done in two ways. First, an actual assignment to the variable
+      <span class="c1">f</span> could be made, followed by an application of
+      mapfi() similar to that demonstrated above. However, other objects
+      involving <span class="c1">f</span> would also be affected if they were
+      involved in indexed assignments, or if mapfi() were applied. To make the
+      substitution into only a single object can be done as follows:
+    </p>
+    <pre> 
 <SPAN class=
 "c1">#: <I>mapfi(sub(f=1-2*m/r,g3));  % g3 is a metric defined in terms of f</I>
 
    g3
-</SPAN></PRE>If it were necessary to use a series approximation to the metric
-coefficients about <IMG align="bottom" src="_10787_tex2html_wrap6316.png">,
-this could be done via
-  <PRE> 
+</SPAN></PRE>
+    If it were necessary to use a series approximation to the metric
+    coefficients about
+    <img align="bottom" src="_10787_tex2html_wrap6316.png" />, this could be
+    done via
+    <pre> 
 <SPAN class="c1">#: <I>mapfi(ps(g3,r,2*m));</I>
 
    g3
 </SPAN></PRE>
-  <P>Continuing with the Kerr metric example, we can define the derivatives
-  of the as yet unevaluated symbols <SPAN class="c1">rho2</SPAN> and
-  <SPAN class="c1">delta</SPAN>, and compute the Ricci tensor:</P>
-  <PRE> 
+    <p>
+      Continuing with the Kerr metric example, we can define the derivatives of
+      the as yet unevaluated symbols <span class="c1">rho2</span> and
+      <span class="c1">delta</span>, and compute the Ricci tensor:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>depend delta,r;</I>
 
 #: <I>depend rho2,r,th;</I>
@@ -121,80 +170,113 @@ computing g2_ric
   riemann finished.
 
  g2_ric
-</SPAN></PRE>At this point in the calculation, the Ricci tensor
-  <SPAN class="c1">g2_ric</SPAN> will still appear to have non-zero
-  components, since <SPAN class="c1">rho2</SPAN> and <SPAN class=
-  "c1">delta</SPAN> remain unevaluated. For other metrics it may be found
-  that it is better to not evaluate the derivatives, or it may be best to
-  fully evaluate everything from the start. It is a matter of trying
-  different possibilities to determine which allows the successful completion
-  of the calculation. If certain terms remain unevaluated, then sooner or
-  later they must be given their actual values; the issue is when to do this
-  so as to balance the growth of expressions. Evaluating too soon may mean
-  the expressions swell (especially if a sum in a denominator is formed in
-  the metric inverse), whereas delayed evaluation may mean that many
-  cancellations have not occurred, and a large amount of work must now be
-  done to insert the terms. For another example of this sort of work, see the
-  Sato metric in Appendix <A href="node60.html#appsato">B</A>. <A name="1607"
-  id="1607"></A>
-  <P>It is in all cases, however, best to avoid the occurrence of radicals
-  such as would be formed if the substitution in the Kerr metric were for
-  <IMG align="bottom" src="_10787_tex2html_wrap6432.png"> rather than
-  <IMG align="bottom" src="_10787_tex2html_wrap6306.png">. Many algebraic
-  systems seem to have difficulties where radicals are concerned, and since
-  the computation of the higher order tensors involves differentiation more
-  radicals will be formed. It is almost always best to make a substitution
-  for the radical since its derivatives can be defined in terms of itself,
-  and this often reduces the complexity of expressions.</P>
-  <P>The final simplication of the Ricci tensor for the Kerr metric can be
-  done with a single mapfi() command:</P>
-  <PRE> 
+</SPAN></PRE>
+    At this point in the calculation, the Ricci tensor
+    <span class="c1">g2_ric</span> will still appear to have non-zero
+    components, since <span class="c1">rho2</span> and
+    <span class="c1">delta</span> remain unevaluated. For other metrics it may
+    be found that it is better to not evaluate the derivatives, or it may be
+    best to fully evaluate everything from the start. It is a matter of trying
+    different possibilities to determine which allows the successful completion
+    of the calculation. If certain terms remain unevaluated, then sooner or
+    later they must be given their actual values; the issue is when to do this
+    so as to balance the growth of expressions. Evaluating too soon may mean the
+    expressions swell (especially if a sum in a denominator is formed in the
+    metric inverse), whereas delayed evaluation may mean that many cancellations
+    have not occurred, and a large amount of work must now be done to insert the
+    terms. For another example of this sort of work, see the Sato metric in
+    Appendix <a href="node60.html#appsato">B</a>. <a name="1607" id="1607"></a>
+    <p>
+      It is in all cases, however, best to avoid the occurrence of radicals such
+      as would be formed if the substitution in the Kerr metric were for
+      <img align="bottom" src="_10787_tex2html_wrap6432.png" /> rather than
+      <img align="bottom" src="_10787_tex2html_wrap6306.png" />. Many algebraic
+      systems seem to have difficulties where radicals are concerned, and since
+      the computation of the higher order tensors involves differentiation more
+      radicals will be formed. It is almost always best to make a substitution
+      for the radical since its derivatives can be defined in terms of itself,
+      and this often reduces the complexity of expressions.
+    </p>
+    <p>
+      The final simplication of the Ricci tensor for the Kerr metric can be done
+      with a single mapfi() command:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>clear r^2;</I>
 
 #: <I>mapfi(sub(delta = r^2+a^2-2*m*r,rho2=r^2+a^2*cos(th)^2,ric));</I>
 
  g2_ric
-</SPAN></PRE>Note that is was necessary to clear the substitution rule for
-<SPAN class="c1">r^2</SPAN>, since otherwise this would result in a circular
-evaluation for <SPAN class="c1">rho2</SPAN>. A package for managing the
-various let rules and assignments in the system is described in §<A href=
-"node54.html#secredenv">7.1</A>.
-  <P>It may be observed that attempting to evaluate the Ricci tensor for this
-  metric when <SPAN class="c1">delta</SPAN> and <SPAN class="c1">rho2</SPAN>
-  are given their actual values at the outset results in a <SPAN class=
-  "c1">Heap space exhausted</SPAN> fatal error on some systems. The value of
-  carefully controlling evaluations is therefore apparent. It is useful to
-  turn on the showindices switch when working with an unfamiliar metric,
-  because a judgement can then be made as to whether the calculations are
-  proceeding at an acceptable rate, and whether a different approach might be
-  more profitable. The switch peek when on acts like showindices, but causes
-  the system to indicate whether a component has evaluated to zero or not.
-  The user can then immediately see if the calculation is proceeding
-  correctly (assuming, as is often the case, that zero is the expected
-  answer).</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html805" href="node44.html" id="tex2html805"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html803" href="node42.html" id="tex2html803"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html799" href="node42.html" id="tex2html799"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html807" href="node1.html" id="tex2html807"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html808" href="node70.html" id="tex2html808"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html806" href="node44.html" id=
-  "tex2html806">Other Utilities</A> <B>Up:</B> <A name="tex2html804" href=
-  "node42.html" id="tex2html804">Expression Management</A> <B>Previous:</B>
-  <A name="tex2html800" href="node42.html" id="tex2html800">Expression
-  Management</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    Note that is was necessary to clear the substitution rule for
+    <span class="c1">r^2</span>, since otherwise this would result in a circular
+    evaluation for <span class="c1">rho2</span>. A package for managing the
+    various let rules and assignments in the system is described in §<a
+      href="node54.html#secredenv"
+      >7.1</a
+    >.
+    <p>
+      It may be observed that attempting to evaluate the Ricci tensor for this
+      metric when <span class="c1">delta</span> and
+      <span class="c1">rho2</span> are given their actual values at the outset
+      results in a <span class="c1">Heap space exhausted</span> fatal error on
+      some systems. The value of carefully controlling evaluations is therefore
+      apparent. It is useful to turn on the showindices switch when working with
+      an unfamiliar metric, because a judgement can then be made as to whether
+      the calculations are proceeding at an acceptable rate, and whether a
+      different approach might be more profitable. The switch peek when on acts
+      like showindices, but causes the system to indicate whether a component
+      has evaluated to zero or not. The user can then immediately see if the
+      calculation is proceeding correctly (assuming, as is often the case, that
+      zero is the expected answer).
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html805" href="node44.html" id="tex2html805"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html803" href="node42.html" id="tex2html803"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html799" href="node42.html" id="tex2html799"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html807" href="node1.html" id="tex2html807"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html808" href="node70.html" id="tex2html808"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html806" href="node44.html" id="tex2html806"
+      >Other Utilities</a
+    >
+    <b>Up:</b>
+    <a name="tex2html804" href="node42.html" id="tex2html804"
+      >Expression Management</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html800" href="node42.html" id="tex2html800"
+      >Expression Management</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

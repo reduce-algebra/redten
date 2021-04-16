@@ -1,85 +1,132 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>New Features</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" New Features">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html1122" href="node70.html" id="tex2html1122"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html1120" href="root.html" id="tex2html1120"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html1114" href="node68.html" id="tex2html1114"><IMG align="bottom"
-  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html1124" href="node1.html" id="tex2html1124"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html1125" href="node70.html" id="tex2html1125"><IMG align="bottom"
-  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html1123" href="node70.html" id=
-  "tex2html1123">Index</A> <B>Up:</B> <A name="tex2html1121" href="root.html"
-  id="tex2html1121">No Title</A> <B>Previous:</B> <A name="tex2html1115"
-  href="node68.html" id="tex2html1115">Modifications to REDUCE</A><BR>
-  <HR>
-  <H1><A name="SECTION001900000000000000000" id=
-  "SECTION001900000000000000000">New Features</A></H1>
-  <P>New in Version 4.0:</P>
-  <UL>
-    <LI>Completely rewritten symmetrization code using new operators
-    <SPAN class="c1">:[</SPAN> etc. Also can now do symmetrizations across a
-    product of objects using <SPAN class="c1">symz()</SPAN>.</LI>
-    <LI>Many internal changes.</LI>
-  </UL>
-  <P>New in Version 3.5:</P>
-  <UL>
-    <LI>New code to handle connections between various index-types, much more
-    flexible than prevously.</LI>
-    <LI>As of this version, the default build scripts rename nearly all
-    internal function names and variables by prepending them with
-    <SPAN class="c1">r10!-</SPAN>. Only names that are used directly by the
-    user are unchanged. This manual still refers to the original names, as
-    these are what actually appear in the source code.</LI>
-  </UL>New in Version 3.4:
-  <UL>
-    <LI>Various bug fixes.</LI>
-    <LI><SPAN class="c1">mkobjsafe</SPAN> switch; including objects in
-    arguments to <SPAN class="c1">mkobj()</SPAN>.</LI>
-  </UL>New in Version 3.12:
-  <UL>
-    <LI>Functions <SPAN class="c1">savenv()</SPAN>, <SPAN class=
-    "c1">restorenv()</SPAN> and related functions that allow the user to save
-    and restore named REDUCE environments. A REDUCE environment consists of
-    all algebraic assignments, <SPAN class="c1">let</SPAN> and <SPAN class=
-    "c1">match</SPAN> rules, and all defined operators.</LI>
-    <LI>A Newman-Penrose package, still under development.</LI>
-  </UL>New (changed) since the last wide-spread release (v2.80):
-  <UL>
-    <LI><SPAN class="c1">mkobj()</SPAN> is the preferred way to create a new
-    object, <SPAN class="c1">mktnsr()</SPAN> remains for backward
-    compatibility.</LI>
-    <LI>relaced use of # with _ in all names.</LI>
-    <LI>function <I>coords()</I> now sets the coordinates.</LI>
-    <LI>generic names, allowing the user to conveniently refer to the
-    unweildly names required to support multiple metrics.</LI>
-    <LI><SPAN class="c1">mkscalar()</SPAN> routine removed, its funtionality
-    is taken over by <SPAN class="c1">mkobj()</SPAN>.</LI>
-  </UL>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>New Features</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" New Features" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html1122" href="node70.html" id="tex2html1122"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html1120" href="root.html" id="tex2html1120"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html1114" href="node68.html" id="tex2html1114"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html1124" href="node1.html" id="tex2html1124"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html1125" href="node70.html" id="tex2html1125"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html1123" href="node70.html" id="tex2html1123">Index</a>
+    <b>Up:</b>
+    <a name="tex2html1121" href="root.html" id="tex2html1121">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html1115" href="node68.html" id="tex2html1115"
+      >Modifications to REDUCE</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION001900000000000000000" id="SECTION001900000000000000000"
+        >New Features</a
+      >
+    </h1>
+    <p>New in Version 4.0:</p>
+    <ul>
+      <li>
+        Completely rewritten symmetrization code using new operators
+        <span class="c1">:[</span> etc. Also can now do symmetrizations across a
+        product of objects using <span class="c1">symz()</span>.
+      </li>
+      <li>Many internal changes.</li>
+    </ul>
+    <p>New in Version 3.5:</p>
+    <ul>
+      <li>
+        New code to handle connections between various index-types, much more
+        flexible than prevously.
+      </li>
+      <li>
+        As of this version, the default build scripts rename nearly all internal
+        function names and variables by prepending them with
+        <span class="c1">r10!-</span>. Only names that are used directly by the
+        user are unchanged. This manual still refers to the original names, as
+        these are what actually appear in the source code.
+      </li>
+    </ul>
+    New in Version 3.4:
+    <ul>
+      <li>Various bug fixes.</li>
+      <li>
+        <span class="c1">mkobjsafe</span> switch; including objects in arguments
+        to <span class="c1">mkobj()</span>.
+      </li>
+    </ul>
+    New in Version 3.12:
+    <ul>
+      <li>
+        Functions <span class="c1">savenv()</span>,
+        <span class="c1">restorenv()</span> and related functions that allow the
+        user to save and restore named REDUCE environments. A REDUCE environment
+        consists of all algebraic assignments, <span class="c1">let</span> and
+        <span class="c1">match</span> rules, and all defined operators.
+      </li>
+      <li>A Newman-Penrose package, still under development.</li>
+    </ul>
+    New (changed) since the last wide-spread release (v2.80):
+    <ul>
+      <li>
+        <span class="c1">mkobj()</span> is the preferred way to create a new
+        object, <span class="c1">mktnsr()</span> remains for backward
+        compatibility.
+      </li>
+      <li>relaced use of # with _ in all names.</li>
+      <li>function <i>coords()</i> now sets the coordinates.</li>
+      <li>
+        generic names, allowing the user to conveniently refer to the unweildly
+        names required to support multiple metrics.
+      </li>
+      <li>
+        <span class="c1">mkscalar()</span> routine removed, its funtionality is
+        taken over by <span class="c1">mkobj()</span>.
+      </li>
+    </ul>
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

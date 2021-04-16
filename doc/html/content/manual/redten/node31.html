@@ -1,74 +1,108 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>metrics</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" metrics">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html658" href="node32.html" id="tex2html658"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html656" href="node30.html" id="tex2html656"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html650" href="node30.html" id="tex2html650"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html660" href="node1.html" id="tex2html660"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html661" href="node70.html" id="tex2html661"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html659" href="node32.html" id=
-  "tex2html659">shift()</A> <B>Up:</B> <A name="tex2html657" href=
-  "node30.html" id="tex2html657">Metric Contractions</A> <B>Previous:</B>
-  <A name="tex2html651" href="node30.html" id="tex2html651">Metric
-  Contractions</A><BR>
-  <HR>
-  <H2><A name="SECTION00411000000000000000" id=
-  "SECTION00411000000000000000">metrics</A></H2>
-  <P><A name="ssecmetrics" id="ssecmetrics"></A> A prerequisite of using
-  shift() is the existence of a metric for the appropriate index-type. We
-  have seen in §<A href="node25.html#secRW">2.4</A> how to construct a tensor
-  metric from either an indexed object or a line-element. The function
-  metric(), when it creates a metric, declares it to be the
-  ``current-metric'' by updating the variable currentmetric. This variable is
-  a list of names of metrics for each type of index defined by the
-  defindextype!* variable, starting with the tensor metric (see table
-  <A href="node13.html#tabindextype">2.1</A> for a list of the initial
-  index-types defined in the system). After creating the metric <SPAN class=
-  "c1">h</SPAN> for the RW metric we can examine the value of this
-  variable:</P>
-  <PRE> 
+<html>
+  <head>
+    <title>metrics</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" metrics" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html658" href="node32.html" id="tex2html658"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html656" href="node30.html" id="tex2html656"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html650" href="node30.html" id="tex2html650"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html660" href="node1.html" id="tex2html660"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html661" href="node70.html" id="tex2html661"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html659" href="node32.html" id="tex2html659">shift()</a>
+    <b>Up:</b>
+    <a name="tex2html657" href="node30.html" id="tex2html657"
+      >Metric Contractions</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html651" href="node30.html" id="tex2html651"
+      >Metric Contractions</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00411000000000000000" id="SECTION00411000000000000000"
+        >metrics</a
+      >
+    </h2>
+    <p>
+      <a name="ssecmetrics" id="ssecmetrics"></a> A prerequisite of using
+      shift() is the existence of a metric for the appropriate index-type. We
+      have seen in §<a href="node25.html#secRW">2.4</a> how to construct a
+      tensor metric from either an indexed object or a line-element. The
+      function metric(), when it creates a metric, declares it to be the
+      ``current-metric'' by updating the variable currentmetric. This variable
+      is a list of names of metrics for each type of index defined by the
+      defindextype!* variable, starting with the tensor metric (see table
+      <a href="node13.html#tabindextype">2.1</a> for a list of the initial
+      index-types defined in the system). After creating the metric
+      <span class="c1">h</span> for the RW metric we can examine the value of
+      this variable:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>lisp currentmetric;</I>
 
 (h)
-</SPAN></PRE>The current-metric for any index-type can be set with the
-function setmetric() and the name of the current-metric can be obtained with
-the function getmetric(). The argument to setmetric() is the name of a rank-2
-covariant object that must be of itype <SPAN class="c1">metric</SPAN>, it
-should also have a metric inverse defined by applying the function invert()
-to it, if the object was not created by one of the system metric functions.
-If the tensor metric is being changed, the system coordinates (in coords!*)
-are changed to reflect those on the new metric. In addition, setmetric() also
-flags the old metric to be <SPAN class="c1">nodir</SPAN>, so that it and its
-family (see §<A href="node33.html#gr">4</A>) are not displayed by dir(). With
-setmetric() it is possible for the user to maintain several metrics in the
-system simultaneously, switching between them as required. The GR package in
-REDTEN makes this even easier.
-  <P>The argument to getmetric() is an integer index-type value whose sign is
-  the <EM>opposite</EM> of the actual entries in the indextype property of
-  the metric. Thus, the value 1 will return the tensor metric, while -1 will
-  return the metric inverse:</P>
-  <PRE> 
+</SPAN></PRE>
+    The current-metric for any index-type can be set with the function
+    setmetric() and the name of the current-metric can be obtained with the
+    function getmetric(). The argument to setmetric() is the name of a rank-2
+    covariant object that must be of itype <span class="c1">metric</span>, it
+    should also have a metric inverse defined by applying the function invert()
+    to it, if the object was not created by one of the system metric functions.
+    If the tensor metric is being changed, the system coordinates (in coords!*)
+    are changed to reflect those on the new metric. In addition, setmetric()
+    also flags the old metric to be <span class="c1">nodir</span>, so that it
+    and its family (see §<a href="node33.html#gr">4</a>) are not displayed by
+    dir(). With setmetric() it is possible for the user to maintain several
+    metrics in the system simultaneously, switching between them as required.
+    The GR package in REDTEN makes this even easier.
+    <p>
+      The argument to getmetric() is an integer index-type value whose sign is
+      the <em>opposite</em> of the actual entries in the indextype property of
+      the metric. Thus, the value 1 will return the tensor metric, while -1 will
+      return the metric inverse:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>getmetric(1);</I>
 
   h
@@ -76,31 +110,53 @@ REDTEN makes this even easier.
 #: <I>getmetric(-1);</I>
 
   h_inv
-</SPAN></PRE>It is an error to ask for a metric that has not yet been
-defined.
-  <P><BR></P>
-  <HR>
-  <A name="tex2html658" href="node32.html" id="tex2html658"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html656" href="node30.html" id="tex2html656"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html650" href="node30.html" id="tex2html650"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html660" href="node1.html" id="tex2html660"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html661" href="node70.html" id="tex2html661"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html659" href="node32.html" id=
-  "tex2html659">shift()</A> <B>Up:</B> <A name="tex2html657" href=
-  "node30.html" id="tex2html657">Metric Contractions</A> <B>Previous:</B>
-  <A name="tex2html651" href="node30.html" id="tex2html651">Metric
-  Contractions</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    It is an error to ask for a metric that has not yet been defined.
+    <p><br /></p>
+    <hr />
+    <a name="tex2html658" href="node32.html" id="tex2html658"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html656" href="node30.html" id="tex2html656"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html650" href="node30.html" id="tex2html650"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html660" href="node1.html" id="tex2html660"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html661" href="node70.html" id="tex2html661"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html659" href="node32.html" id="tex2html659">shift()</a>
+    <b>Up:</b>
+    <a name="tex2html657" href="node30.html" id="tex2html657"
+      >Metric Contractions</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html651" href="node30.html" id="tex2html651"
+      >Metric Contractions</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

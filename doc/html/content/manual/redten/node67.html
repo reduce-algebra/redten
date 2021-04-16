@@ -1,65 +1,98 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Renaming Internal Functions</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Renaming Internal Functions">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html1098" href="node68.html" id="tex2html1098"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html1096" href="root.html" id="tex2html1096"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html1090" href="node66.html" id="tex2html1090"><IMG align="bottom"
-  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html1100" href="node1.html" id="tex2html1100"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html1101" href="node70.html" id="tex2html1101"><IMG align="bottom"
-  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html1099" href="node68.html" id=
-  "tex2html1099">Modifications to REDUCE</A> <B>Up:</B> <A name=
-  "tex2html1097" href="root.html" id="tex2html1097">No Title</A>
-  <B>Previous:</B> <A name="tex2html1091" href="node66.html" id=
-  "tex2html1091">Getting Started</A><BR>
-  <HR>
-  <H1><A name="SECTION001700000000000000000" id=
-  "SECTION001700000000000000000">Renaming Internal Functions</A></H1>
-  <P><A name="rename" id="rename"></A> To avoid the possibility of collisions
-  with the names of other functions in other packages that may be used with
-  REDTEN in REDUCE, nearly all of the function and variable names in the
-  REDTEN sources are in fact prepended with the string <SPAN class=
-  "c1">r10!-</SPAN>, so that, for example, the actual name of the lisp
-  function executed when computing the Riemann tensor is <SPAN class=
-  "c1">r10!-riemann!*</SPAN>. Only the names actually required by the user
-  are left unchanged. This manual uses the source code names, thus to access
-  a variable described in the manual the <SPAN class="c1">r10!-</SPAN> should
-  be prepended.</P>
-  <P>The sources themselves <EM>do not</EM> contain these names; it was
-  considered too much trouble to rewrite everything. Instead, the REDUCE
-  parser is modified while it loads the REDTEN source, and converts nearly
-  all the names into the format described above. The code for this is in the
-  file <SPAN class="c1">rename.red</SPAN>, which is loaded before any other
-  files by the <SPAN class="c1">redten.gen</SPAN> build file. It must be
-  emphasized that it is the <EM>compiling</EM> REDUCE whose parser is
-  changed, the modifications are not part of the final REDTEN system (it also
-  means that this file should not be loaded if the lisp system must be
-  dumped, as opposed to creating fasl files).</P>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Renaming Internal Functions</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Renaming Internal Functions" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html1098" href="node68.html" id="tex2html1098"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html1096" href="root.html" id="tex2html1096"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html1090" href="node66.html" id="tex2html1090"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html1100" href="node1.html" id="tex2html1100"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html1101" href="node70.html" id="tex2html1101"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html1099" href="node68.html" id="tex2html1099"
+      >Modifications to REDUCE</a
+    >
+    <b>Up:</b>
+    <a name="tex2html1097" href="root.html" id="tex2html1097">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html1091" href="node66.html" id="tex2html1091"
+      >Getting Started</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION001700000000000000000" id="SECTION001700000000000000000"
+        >Renaming Internal Functions</a
+      >
+    </h1>
+    <p>
+      <a name="rename" id="rename"></a> To avoid the possibility of collisions
+      with the names of other functions in other packages that may be used with
+      REDTEN in REDUCE, nearly all of the function and variable names in the
+      REDTEN sources are in fact prepended with the string
+      <span class="c1">r10!-</span>, so that, for example, the actual name of
+      the lisp function executed when computing the Riemann tensor is
+      <span class="c1">r10!-riemann!*</span>. Only the names actually required
+      by the user are left unchanged. This manual uses the source code names,
+      thus to access a variable described in the manual the
+      <span class="c1">r10!-</span> should be prepended.
+    </p>
+    <p>
+      The sources themselves <em>do not</em> contain these names; it was
+      considered too much trouble to rewrite everything. Instead, the REDUCE
+      parser is modified while it loads the REDTEN source, and converts nearly
+      all the names into the format described above. The code for this is in the
+      file <span class="c1">rename.red</span>, which is loaded before any other
+      files by the <span class="c1">redten.gen</span> build file. It must be
+      emphasized that it is the <em>compiling</em> REDUCE whose parser is
+      changed, the modifications are not part of the final REDTEN system (it
+      also means that this file should not be loaded if the lisp system must be
+      dumped, as opposed to creating fasl files).
+    </p>
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

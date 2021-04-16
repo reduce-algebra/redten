@@ -1,49 +1,77 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Other Utilities</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Other Utilities">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html815" href="node45.html" id="tex2html815"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html813" href="node41.html" id="tex2html813"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html809" href="node43.html" id="tex2html809"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html817" href="node1.html" id="tex2html817"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html818" href="node70.html" id="tex2html818"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html816" href="node45.html" id=
-  "tex2html816">Other Packages</A> <B>Up:</B> <A name="tex2html814" href=
-  "node41.html" id="tex2html814">Utilities</A> <B>Previous:</B> <A name=
-  "tex2html810" href="node43.html" id="tex2html810">mapfi()</A><BR>
-  <HR>
-  <H1><A name="SECTION00620000000000000000" id=
-  "SECTION00620000000000000000">Other Utilities</A></H1>
-  <P><A name="secotherutil" id="secotherutil"></A> There are several
-  functions in REDTEN whose intention is to make the usage of the system more
-  convenient for the user. Of these functions, dir() has been previously
-  introduced. The function dir() displays the indexed objects in the system,
-  showing the full name of the object, its type and number of explicit
-  elements (components), the protection flags, the coordinates and the index
-  structure. For example, after the Ricci tensor of the Kerr metric is
-  simplified, a directory shows the following: <A name="direg" id=
-  "direg"></A></P>
-  <PRE> 
+<html>
+  <head>
+    <title>Other Utilities</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Other Utilities" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html815" href="node45.html" id="tex2html815"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html813" href="node41.html" id="tex2html813"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html809" href="node43.html" id="tex2html809"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html817" href="node1.html" id="tex2html817"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html818" href="node70.html" id="tex2html818"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html816" href="node45.html" id="tex2html816">Other Packages</a>
+    <b>Up:</b>
+    <a name="tex2html814" href="node41.html" id="tex2html814">Utilities</a>
+    <b>Previous:</b>
+    <a name="tex2html810" href="node43.html" id="tex2html810">mapfi()</a><br />
+    <hr />
+    <h1>
+      <a name="SECTION00620000000000000000" id="SECTION00620000000000000000"
+        >Other Utilities</a
+      >
+    </h1>
+    <p>
+      <a name="secotherutil" id="secotherutil"></a> There are several functions
+      in REDTEN whose intention is to make the usage of the system more
+      convenient for the user. Of these functions, dir() has been previously
+      introduced. The function dir() displays the indexed objects in the system,
+      showing the full name of the object, its type and number of explicit
+      elements (components), the protection flags, the coordinates and the index
+      structure. For example, after the Ricci tensor of the Kerr metric is
+      simplified, a directory shows the following:
+      <a name="direg" id="direg"></a>
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>dir(!*);</I>
   name          type          comp    prot  coordinates     indextype
   x             coordinates    4       w    (t r th ph)      (1)
@@ -60,135 +88,175 @@
 
  t
 
-</SPAN></PRE>Notice that the Ricci tensor has no components, as it should for
-a vacuum solution. The current metric and its inverse are flagged by a
-leading <SPAN class="c1">*</SPAN> on the display line. Objects that are
-implicit have a <SPAN class="c1">+</SPAN> symbol following the number of
-components to indicate that there are more values than are explicitly stored.
-Ordinary derivatives (which are not normally displayed, see §<A href=
-"node34.html#secodf">4.1</A>) may have a <SPAN class="c1">?</SPAN> following
-the number of components to indicate that there are undefined components.
-Objects that are write-protected will have a <SPAN class="c1">W</SPAN> in the
-protection column, if they are kill-protected there will be a <SPAN class=
-"c1">K</SPAN>, and if they are write- and kill-protected then there will be a
-<SPAN class="c1">KW</SPAN>. If there are no objects in the system, the
-message <SPAN class="c1">no objects</SPAN> is displayed.
-  <P>With no arguments dir() shows all objects in order of creation, any
-  arguments are taken as the names of objects to display alone. If the switch
-  reversedir is turned off, the display proceeds in the reverse order, with
-  the most recently created objects displayed first. The function nodir()
-  flags objects so that they do not appear in a directory listing, the flag
-  can be cleared by calling dir() with the object name as an argument. Some
-  objects created by the system, such as the delta-functions, are hidden from
-  dir() and are never displayed. <A name="4149" id="4149"></A> <A name="4150"
-  id="4150"></A> If the keyword <SPAN class="c1">all</SPAN> is the single
-  argument to dir(), then all objects are displayed regardless of the nodir
-  flags. Scalar objects are not displayed in line with the other objects,
-  their names are displayed at the end of the listing.</P>
-  <P>A rudimentary pattern matcher is used by dir() to expand names <A name=
-  "patterns" id="patterns"></A> containing certain special characters. A
-  <SPAN class="c1">!*</SPAN> matches any number of characters (including
-  none), while a <SPAN class="c1">!?</SPAN> matches exactly one character.
-  Thus, the pattern <SPAN class="c1">!*</SPAN> matches all names and is
-  equivalent to the keyword <SPAN class="c1">all</SPAN>. The user can display
-  the family of a given object with the pattern <SPAN class=
-  "c1">&lt;name&gt;!*</SPAN> or find all objects of a certain type, such as
-  the Riemann tensor, with <SPAN class="c1">!*R</SPAN>. Objects selected in
-  this way are displayed regardless of the nodir flags.</P>
-  <P>For metrics, the setmetric() function uses nodir() to hide the metric
-  that was previously the current-metric, dir() will not display that metric
-  or any of its family until it is again the current-metric or it appears as
-  an explicit argument to dir(). This is intended to keep the directory
-  listing short and concise, rather than being cluttered by objects that are
-  not currently in use.</P>
-  <P><B><SPAN class="c1">iprop()</SPAN></B>Each indexed object carries a
-  large number of properties describing the objects' structure and
-  characteristics, these are described in §<A href=
-  "node19.html#sseciobprops">2.2.6</A>. The function iprop() will display
-  those properties named in the iprop!*!* variable, the defaults are
-  specially marked in §<A href="node19.html#sseciobprops">2.2.6</A>. If the
-  switch iprop is on, then iprop() is called whenever the user has requested
-  a display of the object's values.</P>
-  <P><B><SPAN class="c1">rem(), remi()</SPAN></B>The rem() functions are used
-  to remove indexed objects from the system, deleting all of their properties
-  and values. With rem() the user can delete specified objects, remi()
-  deletes objects interactively. Both functions will accept the same patterns
-  as dir(), as well as the keyword <SPAN class="c1">all</SPAN> which is a
-  synonym for the pattern <SPAN class="c1">!*</SPAN>. Once an object is
-  deleted there is no way to recover its values, hence the need for the
-  protect() function (qv).</P>
-  <P>To use rem(), the user simply types the names of the objects to delete
-  as the arguments, so, for example,</P>
-  <PRE> 
+</SPAN></PRE>
+    Notice that the Ricci tensor has no components, as it should for a vacuum
+    solution. The current metric and its inverse are flagged by a leading
+    <span class="c1">*</span> on the display line. Objects that are implicit
+    have a <span class="c1">+</span> symbol following the number of components
+    to indicate that there are more values than are explicitly stored. Ordinary
+    derivatives (which are not normally displayed, see §<a
+      href="node34.html#secodf"
+      >4.1</a
+    >) may have a <span class="c1">?</span> following the number of components
+    to indicate that there are undefined components. Objects that are
+    write-protected will have a <span class="c1">W</span> in the protection
+    column, if they are kill-protected there will be a
+    <span class="c1">K</span>, and if they are write- and kill-protected then
+    there will be a <span class="c1">KW</span>. If there are no objects in the
+    system, the message <span class="c1">no objects</span> is displayed.
+    <p>
+      With no arguments dir() shows all objects in order of creation, any
+      arguments are taken as the names of objects to display alone. If the
+      switch reversedir is turned off, the display proceeds in the reverse
+      order, with the most recently created objects displayed first. The
+      function nodir() flags objects so that they do not appear in a directory
+      listing, the flag can be cleared by calling dir() with the object name as
+      an argument. Some objects created by the system, such as the
+      delta-functions, are hidden from dir() and are never displayed.
+      <a name="4149" id="4149"></a> <a name="4150" id="4150"></a> If the keyword
+      <span class="c1">all</span> is the single argument to dir(), then all
+      objects are displayed regardless of the nodir flags. Scalar objects are
+      not displayed in line with the other objects, their names are displayed at
+      the end of the listing.
+    </p>
+    <p>
+      A rudimentary pattern matcher is used by dir() to expand names
+      <a name="patterns" id="patterns"></a> containing certain special
+      characters. A <span class="c1">!*</span> matches any number of characters
+      (including none), while a <span class="c1">!?</span> matches exactly one
+      character. Thus, the pattern <span class="c1">!*</span> matches all names
+      and is equivalent to the keyword <span class="c1">all</span>. The user can
+      display the family of a given object with the pattern
+      <span class="c1">&lt;name&gt;!*</span> or find all objects of a certain
+      type, such as the Riemann tensor, with <span class="c1">!*R</span>.
+      Objects selected in this way are displayed regardless of the nodir flags.
+    </p>
+    <p>
+      For metrics, the setmetric() function uses nodir() to hide the metric that
+      was previously the current-metric, dir() will not display that metric or
+      any of its family until it is again the current-metric or it appears as an
+      explicit argument to dir(). This is intended to keep the directory listing
+      short and concise, rather than being cluttered by objects that are not
+      currently in use.
+    </p>
+    <p>
+      <b><span class="c1">iprop()</span></b
+      >Each indexed object carries a large number of properties describing the
+      objects' structure and characteristics, these are described in §<a
+        href="node19.html#sseciobprops"
+        >2.2.6</a
+      >. The function iprop() will display those properties named in the
+      iprop!*!* variable, the defaults are specially marked in §<a
+        href="node19.html#sseciobprops"
+        >2.2.6</a
+      >. If the switch iprop is on, then iprop() is called whenever the user has
+      requested a display of the object's values.
+    </p>
+    <p>
+      <b><span class="c1">rem(), remi()</span></b
+      >The rem() functions are used to remove indexed objects from the system,
+      deleting all of their properties and values. With rem() the user can
+      delete specified objects, remi() deletes objects interactively. Both
+      functions will accept the same patterns as dir(), as well as the keyword
+      <span class="c1">all</span> which is a synonym for the pattern
+      <span class="c1">!*</span>. Once an object is deleted there is no way to
+      recover its values, hence the need for the protect() function (qv).
+    </p>
+    <p>
+      To use rem(), the user simply types the names of the objects to delete as
+      the arguments, so, for example,
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>rem(c1,c2,R);</I>
 
   (g2_R g2_c2 g2_c1) 
-</SPAN></PRE>will remove the Christoffel symbols and the Riemann tensor.
-Notice that generic names were used as arguments to rem() but the correct
-target objects were deleted, as shown by the displayed list of deleted
-objects. If a name that was requested be deleted does not appear in this
-list, then the object is kill-protected and cannot be removed until the
-protection is cleared with protect(). If a name not of an indexed object is
-included in the arguments to rem() it will be ignored.
-  <P>In the interactive mode, remi() presents each indexed object specified
-  to the user an asks if is to be deleted. Valid responses are <SPAN class=
-  "c1">y</SPAN> to delete and move on to the next object, <SPAN class=
-  "c1">n</SPAN> to keep the object, <SPAN class="c1">g</SPAN> to go on and
-  delete all remaining objects and <SPAN class="c1">q</SPAN> to quit out of
-  rem(). Each reponse must be followed by a carriage return; the <SPAN class=
-  "c1">g</SPAN> response will cause a further query to ensure the user really
-  wants to delete everything.</P>
-  <P>Removing certain objects causes the rem() functions to remove others as
-  well, so as not to leave orphaned objects in the system. Specifically,
-  removing a metric also removes its entire family of objects, while removing
-  a parent object causes all of its offspring to be removed. If an indexed
-  scalar is removed and it had a value, that value is placed as a normal
-  algebraic value on the now non-indexed name.</P>
-  <P><B><SPAN class="c1">protect()</SPAN></B>The function protect() sets or
-  clears an objects' protection flags. The only protections available are
-  write-protection, kill-protection, or both. The first argument to protect()
-  is the name the object whose protections are being modifed, and the second
-  argument sets the new protections (a missing second argument is equivalent
-  to <SPAN class="c1">nil</SPAN>). The values for the second argument may be
-  one of the following:</P>
-  <P><IMG align="bottom" src="_10787_tabular1703.png"></P>
-  <P>The protection flags are displayed by dir() and by iprop(), however, the
-  output from iprop() will show the internal format of the protection flags,
-  which are simply the numbers 2, 3, or 6 for write-protection,
-  kill-protection, or both, respectively.</P>
-  <P><B><SPAN class="c1">icopy()</SPAN></B>icopy() The function icopy()
-  copies its first argument to a new object whose name is the second
-  argument. The new objects' name should be unused; however, if it is an
-  unprotected indexed object it will be removed, but its properties are saved
-  and can be restored by an immediate call to restoreobj(). The shift
-  property of the restoreobj() output will no longer refer to the offspring
-  of the input, but all other properties are copied exactly. A more complete
-  copy is offered by the function copyfam(), described below.</P>
-  <P><B><SPAN class="c1">copyfam(), getfam()</SPAN></B>The copyfam() function
-  allows the user to copy an object and its entire family (either metric or
-  shifted offspring) to another parent. This routine rebuilds the family
-  structures of each member so that they all correctly refer to new objects.
-  Usually the family of the first named argument is copied to the second
-  argument, but, in the case of a metric, the second argument may be omitted
-  and the default is the next metric name in the sequence used by metric().
-  The copied metric is not made the current-metric.</P>
-  <P>A family of objects is primarily a relation such that the offspring
-  <A name="1724" id="1724"></A> objects are derived in some manner from the
-  parent, either by shifting indices, taking derivatives, or more complicated
-  relations such as among the tensor metric and various GR quantities. In
-  REDTEN a family is defined by the construction of object names. A family
-  member has the parent name, a separating underscore ``<SPAN class=
-  "c1">_</SPAN>'', and some further identifying name. These constructions can
-  be carried out repeatedly, yielding a family tree of related objects. For
-  example, in the dir() listing on page <A href=
-  "node44.html#direg"><IMG align="bottom" alt=".png&quot;" src=
-  "../../../images/latex/cross_ref_motif.png"></A> one can see that
-  <SPAN class="c1">g1</SPAN> is the parent of many objects, while
-  <SPAN class="c1">c1</SPAN> is itself the parent of an object, namely
-  <SPAN class="c1">g1_c1_DF</SPAN>. The function getfam() will return a lisp
-  list of all objects in the family of its argument, including the parent.
-  Thus,</P>
-  <PRE> 
+</SPAN></PRE>
+    will remove the Christoffel symbols and the Riemann tensor. Notice that
+    generic names were used as arguments to rem() but the correct target objects
+    were deleted, as shown by the displayed list of deleted objects. If a name
+    that was requested be deleted does not appear in this list, then the object
+    is kill-protected and cannot be removed until the protection is cleared with
+    protect(). If a name not of an indexed object is included in the arguments
+    to rem() it will be ignored.
+    <p>
+      In the interactive mode, remi() presents each indexed object specified to
+      the user an asks if is to be deleted. Valid responses are
+      <span class="c1">y</span> to delete and move on to the next object,
+      <span class="c1">n</span> to keep the object, <span class="c1">g</span> to
+      go on and delete all remaining objects and <span class="c1">q</span> to
+      quit out of rem(). Each reponse must be followed by a carriage return; the
+      <span class="c1">g</span> response will cause a further query to ensure
+      the user really wants to delete everything.
+    </p>
+    <p>
+      Removing certain objects causes the rem() functions to remove others as
+      well, so as not to leave orphaned objects in the system. Specifically,
+      removing a metric also removes its entire family of objects, while
+      removing a parent object causes all of its offspring to be removed. If an
+      indexed scalar is removed and it had a value, that value is placed as a
+      normal algebraic value on the now non-indexed name.
+    </p>
+    <p>
+      <b><span class="c1">protect()</span></b
+      >The function protect() sets or clears an objects' protection flags. The
+      only protections available are write-protection, kill-protection, or both.
+      The first argument to protect() is the name the object whose protections
+      are being modifed, and the second argument sets the new protections (a
+      missing second argument is equivalent to <span class="c1">nil</span>). The
+      values for the second argument may be one of the following:
+    </p>
+    <p><img align="bottom" src="_10787_tabular1703.png" /></p>
+    <p>
+      The protection flags are displayed by dir() and by iprop(), however, the
+      output from iprop() will show the internal format of the protection flags,
+      which are simply the numbers 2, 3, or 6 for write-protection,
+      kill-protection, or both, respectively.
+    </p>
+    <p>
+      <b><span class="c1">icopy()</span></b
+      >icopy() The function icopy() copies its first argument to a new object
+      whose name is the second argument. The new objects' name should be unused;
+      however, if it is an unprotected indexed object it will be removed, but
+      its properties are saved and can be restored by an immediate call to
+      restoreobj(). The shift property of the restoreobj() output will no longer
+      refer to the offspring of the input, but all other properties are copied
+      exactly. A more complete copy is offered by the function copyfam(),
+      described below.
+    </p>
+    <p>
+      <b><span class="c1">copyfam(), getfam()</span></b
+      >The copyfam() function allows the user to copy an object and its entire
+      family (either metric or shifted offspring) to another parent. This
+      routine rebuilds the family structures of each member so that they all
+      correctly refer to new objects. Usually the family of the first named
+      argument is copied to the second argument, but, in the case of a metric,
+      the second argument may be omitted and the default is the next metric name
+      in the sequence used by metric(). The copied metric is not made the
+      current-metric.
+    </p>
+    <p>
+      A family of objects is primarily a relation such that the offspring
+      <a name="1724" id="1724"></a> objects are derived in some manner from the
+      parent, either by shifting indices, taking derivatives, or more
+      complicated relations such as among the tensor metric and various GR
+      quantities. In REDTEN a family is defined by the construction of object
+      names. A family member has the parent name, a separating underscore
+      ``<span class="c1">_</span>'', and some further identifying name. These
+      constructions can be carried out repeatedly, yielding a family tree of
+      related objects. For example, in the dir() listing on page
+      <a href="node44.html#direg"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/cross_ref_motif.png"
+      /></a>
+      one can see that <span class="c1">g1</span> is the parent of many objects,
+      while <span class="c1">c1</span> is itself the parent of an object, namely
+      <span class="c1">g1_c1_DF</span>. The function getfam() will return a lisp
+      list of all objects in the family of its argument, including the parent.
+      Thus,
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>getfam('g);</I>
 
  (g1_inv g1_ric g1_R g1_c1 g1_DF g1_c2 g1_c1_DF g1)
@@ -196,17 +264,20 @@ included in the arguments to rem() it will be ignored.
 #: <I>getfam('c1);</I>
 
  (g1_c1_DF g1_c1)
-</SPAN></PRE>and observe that the argument must be quoted to ensure the
-command line is parsed in symbolic mode. Also note that the argument may be
-either a generic name or the true name.
-  <P>A common use of copyfam() and getfam() is to copy a metric family and
-  then apply a consitent set of substitutions to the family without
-  disturbing the original set of objects. For example, if <SPAN class=
-  "c1">g1</SPAN> is a general spherically symmetric metric with a parameter
-  <IMG align="bottom" src="_10787_tex2html_wrap6324.png">, and with a family
-  of computed objects, then the following will copy the family and substitute
-  for <IMG align="bottom" src="_10787_tex2html_wrap6324.png">:</P>
-  <PRE> 
+</SPAN></PRE>
+    and observe that the argument must be quoted to ensure the command line is
+    parsed in symbolic mode. Also note that the argument may be either a generic
+    name or the true name.
+    <p>
+      A common use of copyfam() and getfam() is to copy a metric family and then
+      apply a consitent set of substitutions to the family without disturbing
+      the original set of objects. For example, if <span class="c1">g1</span> is
+      a general spherically symmetric metric with a parameter
+      <img align="bottom" src="_10787_tex2html_wrap6324.png" />, and with a
+      family of computed objects, then the following will copy the family and
+      substitute for <img align="bottom" src="_10787_tex2html_wrap6324.png" />:
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>%create g1 and family</I>
 
 #: <I>copyfam(g1);</I>
@@ -221,134 +292,187 @@ either a generic name or the true name.
         write algebraic mapfi (x);</I>
 
  &lt;output&gt;
-</SPAN></PRE>The first foreach can be used to apply a substitution to all
-objects in the family, note the use of the write command to ensure that the
-mapfi() output is seen, and the use of the algebraic command to change mode
-partway along the command line. The second foreach command demonstrates the
-application of mapfi() to a specific class of objects, in this case ordinary
-derivatives. It is also possible to use these constructs with other list
-generating functions or with the indexed!-names list directly, to access all
-objects in the system.
-  <P><B><SPAN class="c1">describe()</SPAN></B>The describe() function is used
-  to retrieve or set a string containing a description an object. Most
-  generating functions put a description string on their output specifying
-  what kind of object has been created, and from what object it was derived.
-  A string supplied as the second argument will replace the description on
-  the object whose name is the first argument to describe().</P>
-  <P><B><SPAN class="c1">help()</SPAN></B>The REDTEN help() function
-  implements a rudimentary help utility to remind the user of the correct
-  number and types of arguments to various REDTEN functions. help() takes any
-  number of arguments, which may be patterns of the sort described on page
-  <A href="node44.html#patterns"><IMG align="bottom" alt=".png&quot;" src=
-  "../../../images/latex/cross_ref_motif.png"></A>; a <SPAN class=
-  "c1">!*</SPAN> pattern will show all help strings, while, for example, the
-  pattern <SPAN class="c1">!*env</SPAN> will give help for all the functions
-  that deal with the REDUCE environment. With no arguments, help() prints a
-  list of the names of functions and switches for which help is
-  available.</P>
-  <P><B><SPAN class="c1">defindextype()</SPAN></B>The defindextype() function
-  allows the user to define new types of indices or to modify the range of
-  the pre-defined index-types. See §<A href=
-  "node13.html#mkobjindextype">2.2.2</A> for a description of the pre-defined
-  index-types and table <A href="node13.html#tabindextype">2.1</A> for their
-  properties. The call to defindextype() takes the form:</P>
-  <PRE> 
+</SPAN></PRE>
+    The first foreach can be used to apply a substitution to all objects in the
+    family, note the use of the write command to ensure that the mapfi() output
+    is seen, and the use of the algebraic command to change mode partway along
+    the command line. The second foreach command demonstrates the application of
+    mapfi() to a specific class of objects, in this case ordinary derivatives.
+    It is also possible to use these constructs with other list generating
+    functions or with the indexed!-names list directly, to access all objects in
+    the system.
+    <p>
+      <b><span class="c1">describe()</span></b
+      >The describe() function is used to retrieve or set a string containing a
+      description an object. Most generating functions put a description string
+      on their output specifying what kind of object has been created, and from
+      what object it was derived. A string supplied as the second argument will
+      replace the description on the object whose name is the first argument to
+      describe().
+    </p>
+    <p>
+      <b><span class="c1">help()</span></b
+      >The REDTEN help() function implements a rudimentary help utility to
+      remind the user of the correct number and types of arguments to various
+      REDTEN functions. help() takes any number of arguments, which may be
+      patterns of the sort described on page
+      <a href="node44.html#patterns"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/cross_ref_motif.png" /></a
+      >; a <span class="c1">!*</span> pattern will show all help strings, while,
+      for example, the pattern <span class="c1">!*env</span> will give help for
+      all the functions that deal with the REDUCE environment. With no
+      arguments, help() prints a list of the names of functions and switches for
+      which help is available.
+    </p>
+    <p>
+      <b><span class="c1">defindextype()</span></b
+      >The defindextype() function allows the user to define new types of
+      indices or to modify the range of the pre-defined index-types. See §<a
+        href="node13.html#mkobjindextype"
+        >2.2.2</a
+      >
+      for a description of the pre-defined index-types and table
+      <a href="node13.html#tabindextype">2.1</a> for their properties. The call
+      to defindextype() takes the form:
+    </p>
+    <pre> 
 <SPAN class=
 "c1">defindextype ('range:<I>int-list</I>, index-type-val:<I>int</I>,
 {'name:<I>id</I>}, {'format:<I>string</I>}, {'chsymgen:<I>func</I>});
-</SPAN></PRE>where <SPAN class="c1">range</SPAN> is a list of two ordered
-non-negative integers representing the range of the indices of type
-<SPAN class="c1">index-type-val</SPAN> (the range must consist of
-non-negative numbers <IMG align="bottom" src="_10787_tex2html_wrap6326.png">
-   ). For example, the default range is <SPAN class="c1">'(0 3)</SPAN> for
-  the tensor indices, which have <SPAN class="c1">index-type-val</SPAN> 1.
-  For the pre-defined index-types only the range may be changed, other
-  arguments after <SPAN class="c1">index-type-val</SPAN> are ignored. For new
-  index-types (<SPAN class="c1">index-type-val</SPAN> <IMG align="bottom"
-  src="_10787_tex2html_wrap6328.png">), the remaining arguments are: the name
-  by which the new index-type is to be known (eg. tensor, spinor, etc.), the
-  format in which indices are to be printed, and a function that will
-  generate a Christoffel symbol for this index-type for use by cov().
-  <P>The <SPAN class="c1">name</SPAN> argument is used by mkobj() to
-  determine the indexed property of a new object, different index-types may
-  have the same name (such as the spinor or dyad types) so that an apparently
-  mixed object will be given a meaningful property. The format is a string
-  which must include a '%' mark to indicate the placement of the
-  corresponding index element, any other characters are printed literally, so
-  for example, the format for the frame indices is ``(%)''. The Christoffel
-  symbol generation function is used by cov() to determine the appropriate
-  Christoffel symbol to use, some index-types do not have a Christoffel
-  symbol, in which case <SPAN class="c1">chsymgen</SPAN> is <SPAN class=
-  "c1">'nil</SPAN>. In other cases the function is of the form</P>
-  <PRE> 
+</SPAN></PRE>
+    where <span class="c1">range</span> is a list of two ordered non-negative
+    integers representing the range of the indices of type
+    <span class="c1">index-type-val</span> (the range must consist of
+    non-negative numbers
+    <img align="bottom" src="_10787_tex2html_wrap6326.png" /> ). For example,
+    the default range is <span class="c1">'(0 3)</span> for the tensor indices,
+    which have <span class="c1">index-type-val</span> 1. For the pre-defined
+    index-types only the range may be changed, other arguments after
+    <span class="c1">index-type-val</span> are ignored. For new index-types
+    (<span class="c1">index-type-val</span>
+    <img align="bottom" src="_10787_tex2html_wrap6328.png" />), the remaining
+    arguments are: the name by which the new index-type is to be known (eg.
+    tensor, spinor, etc.), the format in which indices are to be printed, and a
+    function that will generate a Christoffel symbol for this index-type for use
+    by cov().
+    <p>
+      The <span class="c1">name</span> argument is used by mkobj() to determine
+      the indexed property of a new object, different index-types may have the
+      same name (such as the spinor or dyad types) so that an apparently mixed
+      object will be given a meaningful property. The format is a string which
+      must include a '%' mark to indicate the placement of the corresponding
+      index element, any other characters are printed literally, so for example,
+      the format for the frame indices is ``(%)''. The Christoffel symbol
+      generation function is used by cov() to determine the appropriate
+      Christoffel symbol to use, some index-types do not have a Christoffel
+      symbol, in which case <span class="c1">chsymgen</span> is
+      <span class="c1">'nil</span>. In other cases the function is of the form
+    </p>
+    <pre> 
 <SPAN class="c1">'(lambda nil (car christoffel2!* '(nil)))
-</SPAN></PRE>where <SPAN class="c1">christoffel2!*</SPAN> may be replaced by
-whatever is the correct lisp function. This complicated form is required
-since the function, following the usual convention, has a return value of the
-form <SPAN class="c1">'(name . 1)</SPAN>. It is not really intended that the
-casual user be concerned with this.
-  <P>defindextype() calls the delta function generator delta() to create or
-  modify the system delta functions for the new or updated index-type. If no
-  arguments are given, defindextype() prints out the currently defined
-  index-types, which are stored in the variable defindextype!*.</P>
-  <P><B><SPAN class="c1">restrict()</SPAN></B>The indices property of an
-  indexed object are derived from the range parameter to defindextype() and
-  specify the inclusive group range of the entire index of the object. The
-  restrict() function allows the user to narrow this range, so that indexed
-  references apply to only a part of the full range. A new property,
-  restricted, is placed on the indexed object that is the first argument to
-  restrict() (the name must be quoted to ensure parsing in symbolic mode).
-  The next two arguments are the lower and upper bounds of the group range,
-  these are lists of integers. If either of these arguments is left out, the
-  default is the original group range obtained from the indices property on
-  the object. Leaving both bounds off returns the group range to that present
-  when the object was created, but the restricted property is not removed,
-  just set to the new values.</P>
-  <P>For most object types, the restricted ranges must be contained within
-  the original range. For <SPAN class="c1">array</SPAN> type objects, the
-  user can reset the bounds to any desired values. Attempting to access
-  components of the object outside the currently defined range, even if they
-  are present, will yield 0 from a read or write operation. Indexed
-  assignments will apply only to the current range, as will applications of
-  mapfi(). The user can therefore work with a restricted section of an
-  indexed object, without disturbing the remaining portion of the object.</P>
-  <P><B><SPAN class="c1">saveobj()</SPAN></B>If the user is about to modify
-  an object, the value of that object can be saved by a call to saveobj(). If
-  something goes wrong, the object's value can be recovered by calling
-  restoreobj(). Only one object at a time can be saved, and the system also
-  saves objects during indexed asignments and when mapfi() is used.</P>
-  <P><B><SPAN class="c1">mclear()</SPAN></B>The REDTEN hooks in the REDUCE
-  parser in some places make use of global variables that control the parsing
-  action. If an error has occured or the user has aborted an operation, these
-  variables may be left in an inconsistent state. It may then be impossible
-  to correctly enter indexed objects and output may be distorted. The
-  function mclear() should always be called if the user suspects a parsing
-  problem or has forced an abort.</P>
-  <P>If a directory listing shows objects with names of the form <SPAN class=
-  "c1">#tmp1</SPAN> etc, then an abort has been made, but mclear() still
-  needs to be called. These object are the temporaries used by the system
-  during the evaluation of an indexed expression.<BR></P>
-  <HR>
-  <A name="tex2html815" href="node45.html" id="tex2html815"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html813" href="node41.html" id="tex2html813"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html809" href="node43.html" id="tex2html809"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html817" href="node1.html" id="tex2html817"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html818" href="node70.html" id="tex2html818"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html816" href="node45.html" id=
-  "tex2html816">Other Packages</A> <B>Up:</B> <A name="tex2html814" href=
-  "node41.html" id="tex2html814">Utilities</A> <B>Previous:</B> <A name=
-  "tex2html810" href="node43.html" id="tex2html810">mapfi()</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    where <span class="c1">christoffel2!*</span> may be replaced by whatever is
+    the correct lisp function. This complicated form is required since the
+    function, following the usual convention, has a return value of the form
+    <span class="c1">'(name . 1)</span>. It is not really intended that the
+    casual user be concerned with this.
+    <p>
+      defindextype() calls the delta function generator delta() to create or
+      modify the system delta functions for the new or updated index-type. If no
+      arguments are given, defindextype() prints out the currently defined
+      index-types, which are stored in the variable defindextype!*.
+    </p>
+    <p>
+      <b><span class="c1">restrict()</span></b
+      >The indices property of an indexed object are derived from the range
+      parameter to defindextype() and specify the inclusive group range of the
+      entire index of the object. The restrict() function allows the user to
+      narrow this range, so that indexed references apply to only a part of the
+      full range. A new property, restricted, is placed on the indexed object
+      that is the first argument to restrict() (the name must be quoted to
+      ensure parsing in symbolic mode). The next two arguments are the lower and
+      upper bounds of the group range, these are lists of integers. If either of
+      these arguments is left out, the default is the original group range
+      obtained from the indices property on the object. Leaving both bounds off
+      returns the group range to that present when the object was created, but
+      the restricted property is not removed, just set to the new values.
+    </p>
+    <p>
+      For most object types, the restricted ranges must be contained within the
+      original range. For <span class="c1">array</span> type objects, the user
+      can reset the bounds to any desired values. Attempting to access
+      components of the object outside the currently defined range, even if they
+      are present, will yield 0 from a read or write operation. Indexed
+      assignments will apply only to the current range, as will applications of
+      mapfi(). The user can therefore work with a restricted section of an
+      indexed object, without disturbing the remaining portion of the object.
+    </p>
+    <p>
+      <b><span class="c1">saveobj()</span></b
+      >If the user is about to modify an object, the value of that object can be
+      saved by a call to saveobj(). If something goes wrong, the object's value
+      can be recovered by calling restoreobj(). Only one object at a time can be
+      saved, and the system also saves objects during indexed asignments and
+      when mapfi() is used.
+    </p>
+    <p>
+      <b><span class="c1">mclear()</span></b
+      >The REDTEN hooks in the REDUCE parser in some places make use of global
+      variables that control the parsing action. If an error has occured or the
+      user has aborted an operation, these variables may be left in an
+      inconsistent state. It may then be impossible to correctly enter indexed
+      objects and output may be distorted. The function mclear() should always
+      be called if the user suspects a parsing problem or has forced an abort.
+    </p>
+    <p>
+      If a directory listing shows objects with names of the form
+      <span class="c1">#tmp1</span> etc, then an abort has been made, but
+      mclear() still needs to be called. These object are the temporaries used
+      by the system during the evaluation of an indexed expression.<br />
+    </p>
+    <hr />
+    <a name="tex2html815" href="node45.html" id="tex2html815"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html813" href="node41.html" id="tex2html813"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html809" href="node43.html" id="tex2html809"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html817" href="node1.html" id="tex2html817"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html818" href="node70.html" id="tex2html818"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html816" href="node45.html" id="tex2html816">Other Packages</a>
+    <b>Up:</b>
+    <a name="tex2html814" href="node41.html" id="tex2html814">Utilities</a>
+    <b>Previous:</b>
+    <a name="tex2html810" href="node43.html" id="tex2html810">mapfi()</a><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

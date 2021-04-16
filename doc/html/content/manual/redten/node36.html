@@ -1,84 +1,126 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Covariant Differentiation</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Covariant Differentiation">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html722" href="node37.html" id="tex2html722"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html720" href="node33.html" id="tex2html720"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html714" href="node35.html" id="tex2html714"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html724" href="node1.html" id="tex2html724"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html725" href="node70.html" id="tex2html725"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html723" href="node37.html" id=
-  "tex2html723">Covariant derivatives of</A> <B>Up:</B> <A name="tex2html721"
-  href="node33.html" id="tex2html721">The General Relativity</A>
-  <B>Previous:</B> <A name="tex2html715" href="node35.html" id=
-  "tex2html715">Partial Differentiation</A><BR>
-  <HR>
-  <H1><A name="SECTION00520000000000000000" id=
-  "SECTION00520000000000000000">Covariant Differentiation</A></H1>
-  <P><A name="seccov" id="seccov"></A> <A name="1244" id="1244"></A> <A name=
-  "1245" id="1245"></A></P>
-  <P>Unlike ordinary differentiation, which requires only the coordinate
-  names, covariant differentiation requires the existence of Christoffel
-  symbols of the second kind, and hence of a metric. Covariant
-  differentiation is accomplised by first taking the ordinary derivative of
-  the object in question, and then forming contractions of each of the
-  objects' indices with those of the Christoffel symbol:</P>
-  <P><IMG align="bottom" src="_10787_eqnarray1246.png"></P>
-  <P>It is apparent from this definition that covariant derivatives are
-  non-trivial to compute. Although for a simple metric like RW it takes only
-  a few seconds to compute the covariant derivative of the Riemann tensor,
-  for more complicated metrics it can take quite some time; and higher level
-  derivatives can take several minutes to compute even for simple
-  metrics.</P>
-  <P>The <SPAN class="c1">||</SPAN> operator placed in an objects' index
-  causes the covariant derivative to be computed when the object is involved
-  in an indexed assignment. The function cov(), which is also callable by the
-  user and takes an indexed object as its single argument, is used to do the
-  computation. The output is the name of an indexed object in the form
-  <SPAN class="c1">&lt;input&gt;_CD&lt;#&gt;</SPAN>, where <SPAN class=
-  "c1">&lt;#&gt;</SPAN> is an integer that distinguishes higher order
-  derivatives. The covariant derivative will have the same symmetries as the
-  input, and the same index structure with the addition of a single covariant
-  tensor index. The covariant derivative is stored on the input object's
-  property list under the key cov, in the same format as used for ordinary
-  derivatives; whenever cov() is called it looks there first to determine if
-  the covariant derivative object already exists.</P>
-  <P>Although the user can indicate multiple covariant derivatives, as in
-  <SPAN class="c1">T[a,b,||e,f]</SPAN>, cov() computes them individually;
-  higher order derivatives have the order appended to the name, as noted
-  above. The argument to cov() can include an index, but it is not used
-  except to determine if a shift is also being requested (see below). Note
-  that any index used in the argument to cov() should <EM>not</EM> contain
-  the covariant derivative operator <SPAN class="c1">||</SPAN> or an extra
-  index, since the index applies to the object whose derivative is being
-  computed. The printed output of a covariant derivative is similar to that
-  for ordinary derivatives: the printname is that of the parent and the index
-  is printed with the covariant derivative operator in place.</P>
-  <P>As with the ordinary derivative, a fixed index including a covariant
-  derivative operator may be applied to an object to access the specified
-  value, but only after the covariant derivative has been computed. If it has
-  not, the operation returns unevaluated.</P>
-  <PRE> 
+<html>
+  <head>
+    <title>Covariant Differentiation</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Covariant Differentiation" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html722" href="node37.html" id="tex2html722"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html720" href="node33.html" id="tex2html720"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html714" href="node35.html" id="tex2html714"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html724" href="node1.html" id="tex2html724"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html725" href="node70.html" id="tex2html725"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html723" href="node37.html" id="tex2html723"
+      >Covariant derivatives of</a
+    >
+    <b>Up:</b>
+    <a name="tex2html721" href="node33.html" id="tex2html721"
+      >The General Relativity</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html715" href="node35.html" id="tex2html715"
+      >Partial Differentiation</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00520000000000000000" id="SECTION00520000000000000000"
+        >Covariant Differentiation</a
+      >
+    </h1>
+    <p>
+      <a name="seccov" id="seccov"></a> <a name="1244" id="1244"></a>
+      <a name="1245" id="1245"></a>
+    </p>
+    <p>
+      Unlike ordinary differentiation, which requires only the coordinate names,
+      covariant differentiation requires the existence of Christoffel symbols of
+      the second kind, and hence of a metric. Covariant differentiation is
+      accomplised by first taking the ordinary derivative of the object in
+      question, and then forming contractions of each of the objects' indices
+      with those of the Christoffel symbol:
+    </p>
+    <p><img align="bottom" src="_10787_eqnarray1246.png" /></p>
+    <p>
+      It is apparent from this definition that covariant derivatives are
+      non-trivial to compute. Although for a simple metric like RW it takes only
+      a few seconds to compute the covariant derivative of the Riemann tensor,
+      for more complicated metrics it can take quite some time; and higher level
+      derivatives can take several minutes to compute even for simple metrics.
+    </p>
+    <p>
+      The <span class="c1">||</span> operator placed in an objects' index causes
+      the covariant derivative to be computed when the object is involved in an
+      indexed assignment. The function cov(), which is also callable by the user
+      and takes an indexed object as its single argument, is used to do the
+      computation. The output is the name of an indexed object in the form
+      <span class="c1">&lt;input&gt;_CD&lt;#&gt;</span>, where
+      <span class="c1">&lt;#&gt;</span> is an integer that distinguishes higher
+      order derivatives. The covariant derivative will have the same symmetries
+      as the input, and the same index structure with the addition of a single
+      covariant tensor index. The covariant derivative is stored on the input
+      object's property list under the key cov, in the same format as used for
+      ordinary derivatives; whenever cov() is called it looks there first to
+      determine if the covariant derivative object already exists.
+    </p>
+    <p>
+      Although the user can indicate multiple covariant derivatives, as in
+      <span class="c1">T[a,b,||e,f]</span>, cov() computes them individually;
+      higher order derivatives have the order appended to the name, as noted
+      above. The argument to cov() can include an index, but it is not used
+      except to determine if a shift is also being requested (see below). Note
+      that any index used in the argument to cov() should <em>not</em> contain
+      the covariant derivative operator <span class="c1">||</span> or an extra
+      index, since the index applies to the object whose derivative is being
+      computed. The printed output of a covariant derivative is similar to that
+      for ordinary derivatives: the printname is that of the parent and the
+      index is printed with the covariant derivative operator in place.
+    </p>
+    <p>
+      As with the ordinary derivative, a fixed index including a covariant
+      derivative operator may be applied to an object to access the specified
+      value, but only after the covariant derivative has been computed. If it
+      has not, the operation returns unevaluated.
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>cov(g1_R);</I>
   computing g1_R_CD
 
@@ -89,62 +131,95 @@
  rt    rt - rt    rt
    t,3        t,2   t
 
-</SPAN></PRE>Covariant differentiation is not restricted to tensors alone,
-objects with other types of indices may also be arguments to cov(). In each
-case the single new index will be a covariant tensor index. The Christoffel
-symbols used are computed by functions attached to each index-type by
-defindextype(); for tensor indices the Christoffel symbols are computed by
-christoffel2(), for spinor indices by the function spchristoffel(), neither
-frame nor dyad indices have Christoffel symbols. In these cases the covariant
-derivative reduces to the ordinary derivative. Covariant differentiation is
-not defined for array indices.
-  <P>To ensure the correct Christoffel symbols (and the correct coordinates
-  for ordinary differentiation) are used, cov() will change the
-  current-metric to that specified on the altmetric property of the input.
-  When christoffel2() is called to compute or find the second Christoffel
-  symbols, it will look at that metric under the christoffel2 property for
-  the name of an indexed object with the proper index structure (i.e.
-  <SPAN class="c1">'(1 -1 -1)</SPAN>). In the example of the last chapter,
-  since christoffel2() was not called by the user it would not have found a
-  pre-made object, and would have attempted to compute it. This could have
-  been prevented by the command</P>
-  <PRE> 
+</SPAN></PRE>
+    Covariant differentiation is not restricted to tensors alone, objects with
+    other types of indices may also be arguments to cov(). In each case the
+    single new index will be a covariant tensor index. The Christoffel symbols
+    used are computed by functions attached to each index-type by
+    defindextype(); for tensor indices the Christoffel symbols are computed by
+    christoffel2(), for spinor indices by the function spchristoffel(), neither
+    frame nor dyad indices have Christoffel symbols. In these cases the
+    covariant derivative reduces to the ordinary derivative. Covariant
+    differentiation is not defined for array indices.
+    <p>
+      To ensure the correct Christoffel symbols (and the correct coordinates for
+      ordinary differentiation) are used, cov() will change the current-metric
+      to that specified on the altmetric property of the input. When
+      christoffel2() is called to compute or find the second Christoffel
+      symbols, it will look at that metric under the christoffel2 property for
+      the name of an indexed object with the proper index structure (i.e.
+      <span class="c1">'(1 -1 -1)</span>). In the example of the last chapter,
+      since christoffel2() was not called by the user it would not have found a
+      pre-made object, and would have attempted to compute it. This could have
+      been prevented by the command
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>lisp put ('h, 'christoffel2, 'hc2);</I>
 
  hc2
-</SPAN></PRE>Some objects, specifically metrics and the Einstein tensor, have
-known covariant derivatives, namely 0. The functions that create metrics put
-the value 0 under the cov property so that cov() will immediately return 0.
-  <P><BR></P>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html726" href="node37.html#SECTION00521000000000000000"
-      id="tex2html726">Covariant derivatives of shifted objects</A>
-    </LI>
-  </UL><BR>
-  <HR>
-  <A name="tex2html722" href="node37.html" id="tex2html722"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html720" href="node33.html" id="tex2html720"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html714" href="node35.html" id="tex2html714"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html724" href="node1.html" id="tex2html724"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html725" href="node70.html" id="tex2html725"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html723" href="node37.html" id=
-  "tex2html723">Covariant derivatives of</A> <B>Up:</B> <A name="tex2html721"
-  href="node33.html" id="tex2html721">The General Relativity</A>
-  <B>Previous:</B> <A name="tex2html715" href="node35.html" id=
-  "tex2html715">Partial Differentiation</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    Some objects, specifically metrics and the Einstein tensor, have known
+    covariant derivatives, namely 0. The functions that create metrics put the
+    value 0 under the cov property so that cov() will immediately return 0.
+    <p><br /></p>
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html726"
+          href="node37.html#SECTION00521000000000000000"
+          id="tex2html726"
+          >Covariant derivatives of shifted objects</a
+        >
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <a name="tex2html722" href="node37.html" id="tex2html722"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html720" href="node33.html" id="tex2html720"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html714" href="node35.html" id="tex2html714"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html724" href="node1.html" id="tex2html724"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html725" href="node70.html" id="tex2html725"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html723" href="node37.html" id="tex2html723"
+      >Covariant derivatives of</a
+    >
+    <b>Up:</b>
+    <a name="tex2html721" href="node33.html" id="tex2html721"
+      >The General Relativity</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html715" href="node35.html" id="tex2html715"
+      >Partial Differentiation</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

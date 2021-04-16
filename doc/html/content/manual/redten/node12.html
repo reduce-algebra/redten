@@ -1,97 +1,150 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>name</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" name">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html429" href="node13.html" id="tex2html429"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html427" href="node11.html" id="tex2html427"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html421" href="node11.html" id="tex2html421"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html431" href="node1.html" id="tex2html431"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html432" href="node70.html" id="tex2html432"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html430" href="node13.html" id=
-  "tex2html430">indextype</A> <B>Up:</B> <A name="tex2html428" href=
-  "node11.html" id="tex2html428">Using mkobj()</A> <B>Previous:</B> <A name=
-  "tex2html422" href="node11.html" id="tex2html422">Using mkobj()</A><BR>
-  <HR>
-  <H2><A name="SECTION00321000000000000000" id=
-  "SECTION00321000000000000000">name</A></H2>
-  <P><A name="mkobjname" id="mkobjname"></A> <A name="4102" id="4102"></A> In
-  REDTEN the name of an indexed object is reserved: it stands for itself and
-  cannot be assigned an algebraic value. The name carries a property list
-  containing all the information needed to fully describe the object,
-  including the index structure, symmetries, and component values. If the
-  switch mkobjsafe is on and if <SPAN class="c1">name</SPAN> already has an
-  algebraic value, dependencies, or is flagged used!* then mkobj() will warn
-  that the name is in use and exit. This is intended to protect the user from
-  accidentally supplying a name that might be part of an algebraic expression
-  and which might lead to conflict between the uses of the name. The used!*
-  flag (a REDUCE internal flag) is set whenever a name is typed to the
-  algebraic parser (hence it also includes names with values or
-  dependencies), thus it may be that this behaviour is somewhat restrictive.
-  If the user immediately repeats the call to mkobj() with the same object
-  name, the mkobjsafe switch is over-ridden and the object will be
-  created.</P>
-  <P>In many cases an indexed object name can be used as a variable without
-  serious difficulty, but problems, especially where dependencies are
-  involved, can occur. If mkobjsafe is off, and if <SPAN class=
-  "c1">&lt;name&gt;</SPAN> originally had an algebraic value, that value is
-  lost, and in fact, any values or properties associated with <SPAN class=
-  "c1">&lt;name&gt;</SPAN> are removed when it is made into an indexed
-  object. The only other time mkobj() will fail to create a new object is
-  when <SPAN class="c1">name</SPAN> is that of a kill-protected indexed
-  object (see <A href="node44.html#secotherutil">5.2</A>), or has been
-  flagged reserved. If the user is creating an object whose name is that of a
-  generic object (qv), the generic object is removed and a warning message is
-  printed. The name of the new object is stored in the list
-  indexed!-names.</P>
-  <P>As noted above, it is best to apply the lisp quote-character
-  <SPAN class="c1">'</SPAN> to the object name. Any special characters in the
-  name must also be quoted with the escape character <SPAN class=
-  "c1">!</SPAN>. Because the name has been quoted, it cannot be an expression
-  or operator that evaluates to a name. The <SPAN class="c1">name</SPAN>
-  argument to mkobj() can also be a quoted list of names, each of which will
-  be created with the same index structure and symmetries.</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html429" href="node13.html" id="tex2html429"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html427" href="node11.html" id="tex2html427"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html421" href="node11.html" id="tex2html421"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html431" href="node1.html" id="tex2html431"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html432" href="node70.html" id="tex2html432"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html430" href="node13.html" id=
-  "tex2html430">indextype</A> <B>Up:</B> <A name="tex2html428" href=
-  "node11.html" id="tex2html428">Using mkobj()</A> <B>Previous:</B> <A name=
-  "tex2html422" href="node11.html" id="tex2html422">Using mkobj()</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>name</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" name" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html429" href="node13.html" id="tex2html429"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html427" href="node11.html" id="tex2html427"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html421" href="node11.html" id="tex2html421"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html431" href="node1.html" id="tex2html431"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html432" href="node70.html" id="tex2html432"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html430" href="node13.html" id="tex2html430">indextype</a>
+    <b>Up:</b>
+    <a name="tex2html428" href="node11.html" id="tex2html428">Using mkobj()</a>
+    <b>Previous:</b>
+    <a name="tex2html422" href="node11.html" id="tex2html422">Using mkobj()</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00321000000000000000" id="SECTION00321000000000000000"
+        >name</a
+      >
+    </h2>
+    <p>
+      <a name="mkobjname" id="mkobjname"></a> <a name="4102" id="4102"></a> In
+      REDTEN the name of an indexed object is reserved: it stands for itself and
+      cannot be assigned an algebraic value. The name carries a property list
+      containing all the information needed to fully describe the object,
+      including the index structure, symmetries, and component values. If the
+      switch mkobjsafe is on and if <span class="c1">name</span> already has an
+      algebraic value, dependencies, or is flagged used!* then mkobj() will warn
+      that the name is in use and exit. This is intended to protect the user
+      from accidentally supplying a name that might be part of an algebraic
+      expression and which might lead to conflict between the uses of the name.
+      The used!* flag (a REDUCE internal flag) is set whenever a name is typed
+      to the algebraic parser (hence it also includes names with values or
+      dependencies), thus it may be that this behaviour is somewhat restrictive.
+      If the user immediately repeats the call to mkobj() with the same object
+      name, the mkobjsafe switch is over-ridden and the object will be created.
+    </p>
+    <p>
+      In many cases an indexed object name can be used as a variable without
+      serious difficulty, but problems, especially where dependencies are
+      involved, can occur. If mkobjsafe is off, and if
+      <span class="c1">&lt;name&gt;</span> originally had an algebraic value,
+      that value is lost, and in fact, any values or properties associated with
+      <span class="c1">&lt;name&gt;</span> are removed when it is made into an
+      indexed object. The only other time mkobj() will fail to create a new
+      object is when <span class="c1">name</span> is that of a kill-protected
+      indexed object (see <a href="node44.html#secotherutil">5.2</a>), or has
+      been flagged reserved. If the user is creating an object whose name is
+      that of a generic object (qv), the generic object is removed and a warning
+      message is printed. The name of the new object is stored in the list
+      indexed!-names.
+    </p>
+    <p>
+      As noted above, it is best to apply the lisp quote-character
+      <span class="c1">'</span> to the object name. Any special characters in
+      the name must also be quoted with the escape character
+      <span class="c1">!</span>. Because the name has been quoted, it cannot be
+      an expression or operator that evaluates to a name. The
+      <span class="c1">name</span> argument to mkobj() can also be a quoted list
+      of names, each of which will be created with the same index structure and
+      symmetries.
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html429" href="node13.html" id="tex2html429"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html427" href="node11.html" id="tex2html427"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html421" href="node11.html" id="tex2html421"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html431" href="node1.html" id="tex2html431"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html432" href="node70.html" id="tex2html432"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html430" href="node13.html" id="tex2html430">indextype</a>
+    <b>Up:</b>
+    <a name="tex2html428" href="node11.html" id="tex2html428">Using mkobj()</a>
+    <b>Previous:</b>
+    <a name="tex2html422" href="node11.html" id="tex2html422">Using mkobj()</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

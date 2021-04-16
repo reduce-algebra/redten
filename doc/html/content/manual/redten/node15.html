@@ -1,104 +1,166 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Combining Symmetries</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Combining Symmetries">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html467" href="node16.html" id="tex2html467"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html465" href="node14.html" id="tex2html465"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html459" href="node14.html" id="tex2html459"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html469" href="node1.html" id="tex2html469"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html470" href="node70.html" id="tex2html470"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html468" href="node16.html" id=
-  "tex2html468">Constraints</A> <B>Up:</B> <A name="tex2html466" href=
-  "node14.html" id="tex2html466">Symmetries</A> <B>Previous:</B> <A name=
-  "tex2html460" href="node14.html" id="tex2html460">Symmetries</A><BR>
-  <HR>
-  <H3><A name="SECTION00323100000000000000" id=
-  "SECTION00323100000000000000">Combining Symmetries</A></H3>
-  <P><A name="mkobjsymcomb" id="mkobjsymcomb"></A> <A name="386" id=
-  "386"></A> The independent symmetries can be combined to give more
-  complicated relations among an objects' indices. The simplest combination
-  is a set of symmetries that do not overlap, i.e. the indices involved in
-  one symmetry are not involved in any other. In this case, the symmetries
-  are simply listed one after another; it is conventional to order them by
-  each leading pointer. Interleaved symmetries are not supported.</P>
-  <P>If the symmetries are nested, more care is required (see also §<A href=
-  "node16.html#mkobjsymconstraints">2.2.3</A> below). A symmetry that fits
-  into a block of a larger symmetry should be matched by similar symmetries
-  in each remaining block, if this is not done the system will generate
-  incorrect results. The ordering of the symmetries is very important: the
-  small non-overlapping symmetries must come before the larger ones that
-  encompass them. The ordering should be first by block size, and then by
-  leading pointer. The correct ordering is not checked by REDTEN, and
-  unpredictable (and incorrect) results are likely. A Hermitian symmetry, if
-  any, must be the last indicated.</P>
-  <P>The full description of an objects' symmetries is a list of independent
-  symmetries, in order by block size and leading pointer. Some typical
-  examples follow:</P>
-  <DL>
-    <DT><SPAN class="c1">'((-1 1 2)(-1 3 4) (2 1 3))</SPAN></DT>
-    <DD>--- The full Riemann symmetry: anti-symmetric in the first pair of
-    indices, anti-symmetric in the second pair (the third and fourth
-    indices), and symmetric in blocks of two indices.</DD>
-    <DT><SPAN class="c1">'((1 1 2))</SPAN></DT>
-    <DD>--- The symmetry typical of a metric (or many other rank-2 symmetric
-    objects).</DD>
-    <DT><SPAN class="c1">'((c 1 2 3))</SPAN></DT>
-    <DD>
-      --- An object symmetric in the second and third indices, where odd
-      permutations also involve a conjugation (this is used for the
-      spin-matrices, see §<A href="node50.html#secspinor">6.2</A>).
-    </DD>
-  </DL>
-  <P>As with the indextype parameter, an extension to the symmetry list
-  syntax allows the user to create a new object with symmetries derived from
-  another object. If an indexed object name appears in place of the symmetry
-  list, that objects' symmetries are used for the new object. If an indexed
-  object name appears in the symmetry list, that objects symmetries are
-  inserted into the symmetry list for the new object. Currently, no
-  adjustment of pointers is made, so this is useful only if new symmetries
-  can be added after those of the other object.</P>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html467" href="node16.html" id="tex2html467"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html465" href="node14.html" id="tex2html465"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html459" href="node14.html" id="tex2html459"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html469" href="node1.html" id="tex2html469"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html470" href="node70.html" id="tex2html470"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html468" href="node16.html" id=
-  "tex2html468">Constraints</A> <B>Up:</B> <A name="tex2html466" href=
-  "node14.html" id="tex2html466">Symmetries</A> <B>Previous:</B> <A name=
-  "tex2html460" href="node14.html" id="tex2html460">Symmetries</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Combining Symmetries</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Combining Symmetries" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html467" href="node16.html" id="tex2html467"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html465" href="node14.html" id="tex2html465"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html459" href="node14.html" id="tex2html459"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html469" href="node1.html" id="tex2html469"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html470" href="node70.html" id="tex2html470"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html468" href="node16.html" id="tex2html468">Constraints</a>
+    <b>Up:</b>
+    <a name="tex2html466" href="node14.html" id="tex2html466">Symmetries</a>
+    <b>Previous:</b>
+    <a name="tex2html460" href="node14.html" id="tex2html460">Symmetries</a
+    ><br />
+    <hr />
+    <h3>
+      <a name="SECTION00323100000000000000" id="SECTION00323100000000000000"
+        >Combining Symmetries</a
+      >
+    </h3>
+    <p>
+      <a name="mkobjsymcomb" id="mkobjsymcomb"></a>
+      <a name="386" id="386"></a> The independent symmetries can be combined to
+      give more complicated relations among an objects' indices. The simplest
+      combination is a set of symmetries that do not overlap, i.e. the indices
+      involved in one symmetry are not involved in any other. In this case, the
+      symmetries are simply listed one after another; it is conventional to
+      order them by each leading pointer. Interleaved symmetries are not
+      supported.
+    </p>
+    <p>
+      If the symmetries are nested, more care is required (see also §<a
+        href="node16.html#mkobjsymconstraints"
+        >2.2.3</a
+      >
+      below). A symmetry that fits into a block of a larger symmetry should be
+      matched by similar symmetries in each remaining block, if this is not done
+      the system will generate incorrect results. The ordering of the symmetries
+      is very important: the small non-overlapping symmetries must come before
+      the larger ones that encompass them. The ordering should be first by block
+      size, and then by leading pointer. The correct ordering is not checked by
+      REDTEN, and unpredictable (and incorrect) results are likely. A Hermitian
+      symmetry, if any, must be the last indicated.
+    </p>
+    <p>
+      The full description of an objects' symmetries is a list of independent
+      symmetries, in order by block size and leading pointer. Some typical
+      examples follow:
+    </p>
+    <dl>
+      <dt><span class="c1">'((-1 1 2)(-1 3 4) (2 1 3))</span></dt>
+      <dd>
+        --- The full Riemann symmetry: anti-symmetric in the first pair of
+        indices, anti-symmetric in the second pair (the third and fourth
+        indices), and symmetric in blocks of two indices.
+      </dd>
+      <dt><span class="c1">'((1 1 2))</span></dt>
+      <dd>
+        --- The symmetry typical of a metric (or many other rank-2 symmetric
+        objects).
+      </dd>
+      <dt><span class="c1">'((c 1 2 3))</span></dt>
+      <dd>
+        --- An object symmetric in the second and third indices, where odd
+        permutations also involve a conjugation (this is used for the
+        spin-matrices, see §<a href="node50.html#secspinor">6.2</a>).
+      </dd>
+    </dl>
+    <p>
+      As with the indextype parameter, an extension to the symmetry list syntax
+      allows the user to create a new object with symmetries derived from
+      another object. If an indexed object name appears in place of the symmetry
+      list, that objects' symmetries are used for the new object. If an indexed
+      object name appears in the symmetry list, that objects symmetries are
+      inserted into the symmetry list for the new object. Currently, no
+      adjustment of pointers is made, so this is useful only if new symmetries
+      can be added after those of the other object.
+    </p>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html467" href="node16.html" id="tex2html467"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html465" href="node14.html" id="tex2html465"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html459" href="node14.html" id="tex2html459"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html469" href="node1.html" id="tex2html469"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html470" href="node70.html" id="tex2html470"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html468" href="node16.html" id="tex2html468">Constraints</a>
+    <b>Up:</b>
+    <a name="tex2html466" href="node14.html" id="tex2html466">Symmetries</a>
+    <b>Previous:</b>
+    <a name="tex2html460" href="node14.html" id="tex2html460">Symmetries</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

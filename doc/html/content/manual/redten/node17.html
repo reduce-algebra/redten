@@ -1,53 +1,80 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>implicit value</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" implicit value">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html489" href="node18.html" id="tex2html489"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html487" href="node11.html" id="tex2html487"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html481" href="node16.html" id="tex2html481"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html491" href="node1.html" id="tex2html491"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html492" href="node70.html" id="tex2html492"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html490" href="node18.html" id=
-  "tex2html490">itype</A> <B>Up:</B> <A name="tex2html488" href="node11.html"
-  id="tex2html488">Using mkobj()</A> <B>Previous:</B> <A name="tex2html482"
-  href="node16.html" id="tex2html482">Constraints</A><BR>
-  <HR>
-  <H2><A name="SECTION00324000000000000000" id=
-  "SECTION00324000000000000000">implicit value</A></H2>
-  <P><A name="mkobjimplicit" id="mkobjimplicit"></A> <A name="408" id=
-  "408"></A> <A name="409" id="409"></A> REDTEN stores the components of an
-  indexed object in a list attached to the tvalue property of the object. The
-  list is sparse: if a component is missing it is assumed to be zero. These
-  components are referred to as ``explicit'' components. If the object is
-  made with the implicit flag set, each non-existent explicit component is
-  replaced by an ``implicit'' component (unless the symmetries prevent this).
-  The implicit component is simply the object name and the index of the
-  component. This is particularly useful for unknowns such as the Killing
-  vectors, whose components are to be solved for from a set of equations. In
-  this case, however, explicitly zero components must also be stored. See
-  below for some examples of implicit objects.</P>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>implicit value</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" implicit value" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html489" href="node18.html" id="tex2html489"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html487" href="node11.html" id="tex2html487"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html481" href="node16.html" id="tex2html481"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html491" href="node1.html" id="tex2html491"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html492" href="node70.html" id="tex2html492"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html490" href="node18.html" id="tex2html490">itype</a>
+    <b>Up:</b>
+    <a name="tex2html488" href="node11.html" id="tex2html488">Using mkobj()</a>
+    <b>Previous:</b>
+    <a name="tex2html482" href="node16.html" id="tex2html482">Constraints</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00324000000000000000" id="SECTION00324000000000000000"
+        >implicit value</a
+      >
+    </h2>
+    <p>
+      <a name="mkobjimplicit" id="mkobjimplicit"></a>
+      <a name="408" id="408"></a> <a name="409" id="409"></a> REDTEN stores the
+      components of an indexed object in a list attached to the tvalue property
+      of the object. The list is sparse: if a component is missing it is assumed
+      to be zero. These components are referred to as ``explicit'' components.
+      If the object is made with the implicit flag set, each non-existent
+      explicit component is replaced by an ``implicit'' component (unless the
+      symmetries prevent this). The implicit component is simply the object name
+      and the index of the component. This is particularly useful for unknowns
+      such as the Killing vectors, whose components are to be solved for from a
+      set of equations. In this case, however, explicitly zero components must
+      also be stored. See below for some examples of implicit objects.
+    </p>
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

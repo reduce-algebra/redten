@@ -1,66 +1,111 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Concepts in REDUCE</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Concepts in REDUCE">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html303" href="node5.html" id="tex2html303"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html301" href="node2.html" id="tex2html301"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html297" href="node3.html" id="tex2html297"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html305" href="node1.html" id="tex2html305"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html306" href="node70.html" id="tex2html306"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html304" href="node5.html" id="tex2html304">Case
-  Sensitivity</A> <B>Up:</B> <A name="tex2html302" href="node2.html" id=
-  "tex2html302">Introduction</A> <B>Previous:</B> <A name="tex2html298" href=
-  "node3.html" id="tex2html298">History</A><BR>
-  <HR>
-  <H1><A name="SECTION00220000000000000000" id=
-  "SECTION00220000000000000000">Concepts in REDUCE</A></H1>
-  <P><A name="secrcon" id="secrcon"></A> It is assumed that the reader has a
-  basic familiarity with REDUCE 3.5, and also of tensor analysis in general.
-  The REDUCE Users Manual (Hearn 1987), or the books by Rayna (1987) and
-  MacCallum and Wright (1991) are good references for REDUCE. Books by
-  Stephani (19??) and Adler, Basin & Shiffler (19??) are good introductory
-  texts in tensor analysis and cosmology.</P>
-  <P><BR></P>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html307" href="node5.html#SECTION00221000000000000000" id=
-      "tex2html307">Case Sensitivity</A>
-    </LI>
-    <LI>
-      <A name="tex2html308" href="node6.html#SECTION00222000000000000000" id=
-      "tex2html308">Notation</A>
-    </LI>
-    <LI>
-      <A name="tex2html309" href="node7.html#SECTION00223000000000000000" id=
-      "tex2html309">Lisp Variables</A>
-    </LI>
-    <LI>
-      <A name="tex2html310" href="node8.html#SECTION00224000000000000000" id=
-      "tex2html310">Property Lists</A>
-    </LI>
-  </UL><BR>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Concepts in REDUCE</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Concepts in REDUCE" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html303" href="node5.html" id="tex2html303"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html301" href="node2.html" id="tex2html301"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html297" href="node3.html" id="tex2html297"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html305" href="node1.html" id="tex2html305"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html306" href="node70.html" id="tex2html306"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html304" href="node5.html" id="tex2html304"
+      >Case Sensitivity</a
+    >
+    <b>Up:</b>
+    <a name="tex2html302" href="node2.html" id="tex2html302">Introduction</a>
+    <b>Previous:</b>
+    <a name="tex2html298" href="node3.html" id="tex2html298">History</a><br />
+    <hr />
+    <h1>
+      <a name="SECTION00220000000000000000" id="SECTION00220000000000000000"
+        >Concepts in REDUCE</a
+      >
+    </h1>
+    <p>
+      <a name="secrcon" id="secrcon"></a> It is assumed that the reader has a
+      basic familiarity with REDUCE 3.5, and also of tensor analysis in general.
+      The REDUCE Users Manual (Hearn 1987), or the books by Rayna (1987) and
+      MacCallum and Wright (1991) are good references for REDUCE. Books by
+      Stephani (19??) and Adler, Basin & Shiffler (19??) are good introductory
+      texts in tensor analysis and cosmology.
+    </p>
+    <p><br /></p>
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html307"
+          href="node5.html#SECTION00221000000000000000"
+          id="tex2html307"
+          >Case Sensitivity</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html308"
+          href="node6.html#SECTION00222000000000000000"
+          id="tex2html308"
+          >Notation</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html309"
+          href="node7.html#SECTION00223000000000000000"
+          id="tex2html309"
+          >Lisp Variables</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html310"
+          href="node8.html#SECTION00224000000000000000"
+          id="tex2html310"
+          >Property Lists</a
+        >
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

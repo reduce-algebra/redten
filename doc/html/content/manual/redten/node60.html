@@ -1,57 +1,92 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>The Sato Metric</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" The Sato Metric">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html1014" href="node61.html" id="tex2html1014"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html1012" href="root.html" id="tex2html1012"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html1006" href="node59.html" id="tex2html1006"><IMG align="bottom"
-  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html1016" href="node1.html" id="tex2html1016"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html1017" href="node70.html" id="tex2html1017"><IMG align="bottom"
-  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html1015" href="node61.html" id=
-  "tex2html1015">REDTEN FunctionsVariables,</A> <B>Up:</B> <A name=
-  "tex2html1013" href="root.html" id="tex2html1013">No Title</A>
-  <B>Previous:</B> <A name="tex2html1007" href="node59.html" id=
-  "tex2html1007">Extending REDTEN</A><BR>
-  <HR>
-  <H1><A name="SECTION001000000000000000000" id=
-  "SECTION001000000000000000000">The Sato Metric</A></H1>
-  <P><A name="appsato" id="appsato"></A> This appendix provides an example of
-  a very complicated metric that pushes the limits of the capabilities of
-  REDUCE and REDTEN. A description of the metric may be found in The Sato
-  metric is axially-symmetric and .. The metric coefficients are comprised of
-  rational polynomials This metric provides a prime example of ``intermediate
-  expression swell'', since the combination of the rational coefficients
-  grows explosively, before the final collapse to zero. <A name="2635" id=
-  "2635"></A></P>
-  <P>Until the introduction of computers with large amounts of real and
-  virtual memory, this metric could not be shown to be vacuum by REDTEN. The
-  example below causes REDUCE to swell in size to somewhat more than 12
-  Megabytes, an alternative approach to the problem once yielded a REDUCE of
-  more than 50 Meg. in size.</P>
-  <P>This example can be found in the <SPAN class="c1">demo</SPAN> directory.
-  The output below was generated from REDTEN running in REDUCE 3.4 in CSL on
-  a MIPS M/120.</P>
-  <PRE> 
+<html>
+  <head>
+    <title>The Sato Metric</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" The Sato Metric" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html1014" href="node61.html" id="tex2html1014"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html1012" href="root.html" id="tex2html1012"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html1006" href="node59.html" id="tex2html1006"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html1016" href="node1.html" id="tex2html1016"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html1017" href="node70.html" id="tex2html1017"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html1015" href="node61.html" id="tex2html1015"
+      >REDTEN FunctionsVariables,</a
+    >
+    <b>Up:</b>
+    <a name="tex2html1013" href="root.html" id="tex2html1013">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html1007" href="node59.html" id="tex2html1007"
+      >Extending REDTEN</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION001000000000000000000" id="SECTION001000000000000000000"
+        >The Sato Metric</a
+      >
+    </h1>
+    <p>
+      <a name="appsato" id="appsato"></a> This appendix provides an example of a
+      very complicated metric that pushes the limits of the capabilities of
+      REDUCE and REDTEN. A description of the metric may be found in The Sato
+      metric is axially-symmetric and .. The metric coefficients are comprised
+      of rational polynomials This metric provides a prime example of
+      ``intermediate expression swell'', since the combination of the rational
+      coefficients grows explosively, before the final collapse to zero.
+      <a name="2635" id="2635"></a>
+    </p>
+    <p>
+      Until the introduction of computers with large amounts of real and virtual
+      memory, this metric could not be shown to be vacuum by REDTEN. The example
+      below causes REDUCE to swell in size to somewhat more than 12 Megabytes,
+      an alternative approach to the problem once yielded a REDUCE of more than
+      50 Meg. in size.
+    </p>
+    <p>
+      This example can be found in the <span class="c1">demo</span> directory.
+      The output below was generated from REDTEN running in REDUCE 3.4 in CSL on
+      a MIPS M/120.
+    </p>
+    <pre> 
 <SPAN class="c1">#: <I>coords '(t x y ph)$</I>
 #: <I>on time$</I>
 #: <I>depend a,x,y$</I>
@@ -79,8 +114,9 @@
  om := -----------
             a
 
-</SPAN></PRE><A name="2657" id="2657"></A>
-  <PRE> 
+</SPAN></PRE>
+    <a name="2657" id="2657"></a>
+    <pre> 
 <SPAN class="c1">#: <I>egam:=a/(p^4*tmp);</I>
 
             a
@@ -131,8 +167,9 @@ Time: 1150 ms
 
  g1
 
-</SPAN></PRE><A name="2674" id="2674"></A>
-  <PRE> 
+</SPAN></PRE>
+    <a name="2674" id="2674"></a>
+    <pre> 
 <SPAN class="c1">Time: 483 ms
 
 #: <I>mapfi(g_inv);</I>
@@ -173,8 +210,9 @@ computing g1_ric
  g1_ric
 
 Time: 7183 ms  plus GC time: 750 ms
-</SPAN></PRE><A name="2683" id="2683"></A>
-  <PRE> 
+</SPAN></PRE>
+    <a name="2683" id="2683"></a>
+    <pre> 
 <SPAN class="c1">#: <I>let q^2=1-p^2$</I>
 #: <I>A:=(p^2*(x^2-1)^2+q^2*(1-y^2)^2)^2-4*p^2*q^2*(x^2-1)*(1-y^2)*
      (x^2-y^2)^2;</I>
@@ -221,30 +259,53 @@ Time: 7183 ms  plus GC time: 750 ms
 <BR>
 Time: 590550 ms  plus GC time: 102667 ms
 
-</SPAN></PRE><A name="2731" id="2731"></A>
-  <P><BR></P>
-  <HR>
-  <A name="tex2html1014" href="node61.html" id="tex2html1014"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html1012" href="root.html" id="tex2html1012"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html1006" href="node59.html" id="tex2html1006"><IMG align="bottom"
-  alt="previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html1016" href="node1.html" id="tex2html1016"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html1017" href="node70.html" id="tex2html1017"><IMG align="bottom"
-  alt="index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html1015" href="node61.html" id=
-  "tex2html1015">REDTEN FunctionsVariables,</A> <B>Up:</B> <A name=
-  "tex2html1013" href="root.html" id="tex2html1013">No Title</A>
-  <B>Previous:</B> <A name="tex2html1007" href="node59.html" id=
-  "tex2html1007">Extending REDTEN</A><BR>
-  <HR>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+</SPAN></PRE>
+    <a name="2731" id="2731"></a>
+    <p><br /></p>
+    <hr />
+    <a name="tex2html1014" href="node61.html" id="tex2html1014"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html1012" href="root.html" id="tex2html1012"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html1006" href="node59.html" id="tex2html1006"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html1016" href="node1.html" id="tex2html1016"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html1017" href="node70.html" id="tex2html1017"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html1015" href="node61.html" id="tex2html1015"
+      >REDTEN FunctionsVariables,</a
+    >
+    <b>Up:</b>
+    <a name="tex2html1013" href="root.html" id="tex2html1013">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html1007" href="node59.html" id="tex2html1007"
+      >Extending REDTEN</a
+    ><br />
+    <hr />
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

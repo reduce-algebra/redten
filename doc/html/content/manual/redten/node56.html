@@ -1,73 +1,117 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>The Pager</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" The Pager">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html968" href="node57.html" id="tex2html968"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html966" href="node53.html" id="tex2html966"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html960" href="node55.html" id="tex2html960"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html970" href="node1.html" id="tex2html970"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html971" href="node70.html" id="tex2html971"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html969" href="node57.html" id=
-  "tex2html969">Miscellaneous</A> <B>Up:</B> <A name="tex2html967" href=
-  "node53.html" id="tex2html967">Enhancements</A> <B>Previous:</B> <A name=
-  "tex2html961" href="node55.html" id="tex2html961">Saving to Disk</A><BR>
-  <HR>
-  <H1><A name="SECTION00820000000000000000" id=
-  "SECTION00820000000000000000">The Pager</A></H1>
-  <P><A name="secpager" id="secpager"></A> Since the display of even a
-  relatively simple indexed object can occupy several screens it became
-  necessary to introduce a pager to handle the scrolling of output. By
-  redefining a REDUCE primitive REDTEN is able to page the output, allowing
-  the user a chance to see and examine each page at leisure without needing
-  to be quick with the no-scroll key; and to abort the output if it is too
-  long-winded, without needing to use the sometimes-dangerous abort
-  sequence.</P>
-  <P>If the switch dopaging is on, any output of an algebraic nature<A name=
-  "tex2html100" href="footnode.html#2324" id="tex2html100"><IMG align=
-  "bottom" alt=".png&quot;" src="../../../images/latex/foot_motif.png"></A>
-  will pause after a pre-determined number of lines. This number is stored in
-  lisp:screenlines!*[22] and can be set by the user directly, from a startup
-  file (assuming this is supported) or from the environment variable
-  SCREENLINES (again, assuming this is supported). At each pause the prompt
-  <SPAN class="c1">Continue?</SPAN> appears, asking the user for input before
-  continuing. Valid inputs are (case is ignored):</P>
-  <UL>
-    <LI><SPAN class="c1">q</SPAN> or <SPAN class="c1">n</SPAN> --- A throw to
-    the top-level input loop is made, thus aborting the output</LI>
-    <LI>c --- continue the output with no more pauses</LI>
-    <LI>d --- make the next page half-height</LI>
-    <LI>other --- any other response continues the output, pausing after the
-    next page.</LI>
-  </UL>All of the above responses must be followed by a carriage return to
-  become effective; a carriage return alone is ignored.
-  <P>For the pager to operate properly the up-cursor escape sequence
-  upcursor!* must be correctly defined. This allows the pager code to
-  overwrite the prompt and produce a seamless output.</P>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>The Pager</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" The Pager" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html968" href="node57.html" id="tex2html968"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html966" href="node53.html" id="tex2html966"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html960" href="node55.html" id="tex2html960"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html970" href="node1.html" id="tex2html970"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html971" href="node70.html" id="tex2html971"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html969" href="node57.html" id="tex2html969">Miscellaneous</a>
+    <b>Up:</b>
+    <a name="tex2html967" href="node53.html" id="tex2html967">Enhancements</a>
+    <b>Previous:</b>
+    <a name="tex2html961" href="node55.html" id="tex2html961">Saving to Disk</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00820000000000000000" id="SECTION00820000000000000000"
+        >The Pager</a
+      >
+    </h1>
+    <p>
+      <a name="secpager" id="secpager"></a> Since the display of even a
+      relatively simple indexed object can occupy several screens it became
+      necessary to introduce a pager to handle the scrolling of output. By
+      redefining a REDUCE primitive REDTEN is able to page the output, allowing
+      the user a chance to see and examine each page at leisure without needing
+      to be quick with the no-scroll key; and to abort the output if it is too
+      long-winded, without needing to use the sometimes-dangerous abort
+      sequence.
+    </p>
+    <p>
+      If the switch dopaging is on, any output of an algebraic nature<a
+        name="tex2html100"
+        href="footnode.html#2324"
+        id="tex2html100"
+        ><img
+          align="bottom"
+          alt='.png"'
+          src="../../../images/latex/foot_motif.png"
+      /></a>
+      will pause after a pre-determined number of lines. This number is stored
+      in lisp:screenlines!*[22] and can be set by the user directly, from a
+      startup file (assuming this is supported) or from the environment variable
+      SCREENLINES (again, assuming this is supported). At each pause the prompt
+      <span class="c1">Continue?</span> appears, asking the user for input
+      before continuing. Valid inputs are (case is ignored):
+    </p>
+    <ul>
+      <li>
+        <span class="c1">q</span> or <span class="c1">n</span> --- A throw to
+        the top-level input loop is made, thus aborting the output
+      </li>
+      <li>c --- continue the output with no more pauses</li>
+      <li>d --- make the next page half-height</li>
+      <li>
+        other --- any other response continues the output, pausing after the
+        next page.
+      </li>
+    </ul>
+    All of the above responses must be followed by a carriage return to become
+    effective; a carriage return alone is ignored.
+    <p>
+      For the pager to operate properly the up-cursor escape sequence upcursor!*
+      must be correctly defined. This allows the pager code to overwrite the
+      prompt and produce a seamless output.
+    </p>
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

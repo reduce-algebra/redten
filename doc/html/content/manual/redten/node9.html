@@ -1,151 +1,245 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Indexed Objects</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Indexed Objects">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html365" href="node10.html" id="tex2html365"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html363" href="root.html" id="tex2html363"><IMG align="bottom"
-  alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html357" href="node8.html" id="tex2html357"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html367" href="node1.html" id="tex2html367"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html368" href="node70.html" id="tex2html368"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html366" href="node10.html" id="tex2html366">The
-  Indexed Object</A> <B>Up:</B> <A name="tex2html364" href="root.html" id=
-  "tex2html364">No Title</A> <B>Previous:</B> <A name="tex2html358" href=
-  "node8.html" id="tex2html358">Property Lists</A><BR>
-  <HR>
-  <H1><A name="SECTION00300000000000000000" id=
-  "SECTION00300000000000000000">Indexed Objects</A></H1>
-  <P><A name="indexedobj" id="indexedobj"></A> This chapter is concerned with
-  the basic data structure (the ``indexed object'') used in REDTEN and how it
-  is created and accessed. The first part of the chapter describes the basic
-  concept of the indexed object, its properties and how it is used with an
-  index. The second part uses the Robertson-Walker metric as an example to
-  illustrate the user interaction with the system.</P>
-  <P><BR></P>
-  <HR>
-  <UL>
-    <LI>
-      <A name="tex2html369" href="node10.html#SECTION00310000000000000000"
-      id="tex2html369">The Indexed Object</A>
-    </LI>
-    <LI>
-      <A name="tex2html370" href="node11.html#SECTION00320000000000000000"
-      id="tex2html370">Using <SPAN class="c1">mkobj()</SPAN></A>
-      <UL>
-        <LI>
-          <A name="tex2html371" href=
-          "node12.html#SECTION00321000000000000000" id="tex2html371">name</A>
-        </LI>
-        <LI>
-          <A name="tex2html372" href=
-          "node13.html#SECTION00322000000000000000" id=
-          "tex2html372">indextype</A>
-        </LI>
-        <LI>
-          <A name="tex2html373" href=
-          "node14.html#SECTION00323000000000000000" id=
-          "tex2html373">Symmetries</A>
-          <UL>
-            <LI>
-              <A name="tex2html374" href=
-              "node15.html#SECTION00323100000000000000" id=
-              "tex2html374">Combining Symmetries</A>
-            </LI>
-            <LI>
-              <A name="tex2html375" href=
-              "node16.html#SECTION00323200000000000000" id=
-              "tex2html375">Constraints</A>
-            </LI>
-          </UL>
-        </LI>
-        <LI>
-          <A name="tex2html376" href=
-          "node17.html#SECTION00324000000000000000" id="tex2html376">implicit
-          value</A>
-        </LI>
-        <LI>
-          <A name="tex2html377" href=
-          "node18.html#SECTION00325000000000000000" id=
-          "tex2html377">itype</A>
-        </LI>
-        <LI>
-          <A name="tex2html378" href=
-          "node19.html#SECTION00326000000000000000" id="tex2html378">Other
-          properties</A>
-        </LI>
-        <LI>
-          <A name="tex2html379" href=
-          "node20.html#SECTION00327000000000000000" id=
-          "tex2html379"><SPAN class="c1">mkobj()</SPAN> Examples</A>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html380" href="node21.html#SECTION00330000000000000000"
-      id="tex2html380">The Index</A>
-      <UL>
-        <LI>
-          <A name="tex2html381" href=
-          "node22.html#SECTION00331000000000000000" id=
-          "tex2html381">Differentiation</A>
-        </LI>
-        <LI>
-          <A name="tex2html382" href=
-          "node23.html#SECTION00332000000000000000" id="tex2html382">Shift
-          Operations</A>
-        </LI>
-        <LI>
-          <A name="tex2html383" href=
-          "node24.html#SECTION00333000000000000000" id=
-          "tex2html383">Symmetrization</A>
-        </LI>
-      </UL>
-    </LI>
-    <LI>
-      <A name="tex2html384" href="node25.html#SECTION00340000000000000000"
-      id="tex2html384">The Robertson-Walker Metric</A>
-      <UL>
-        <LI>
-          <A name="tex2html385" href=
-          "node26.html#SECTION00341000000000000000" id=
-          "tex2html385"><SPAN class="c1">coords()</SPAN></A>
-        </LI>
-        <LI>
-          <A name="tex2html386" href=
-          "node27.html#SECTION00342000000000000000" id="tex2html386">Entering
-          Components</A>
-        </LI>
-        <LI>
-          <A name="tex2html387" href=
-          "node28.html#SECTION00343000000000000000" id=
-          "tex2html387">Accessing and Displaying Components</A>
-        </LI>
-      </UL>
-    </LI>
-  </UL><BR>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Indexed Objects</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Indexed Objects" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html365" href="node10.html" id="tex2html365"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html363" href="root.html" id="tex2html363"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html357" href="node8.html" id="tex2html357"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html367" href="node1.html" id="tex2html367"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html368" href="node70.html" id="tex2html368"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html366" href="node10.html" id="tex2html366"
+      >The Indexed Object</a
+    >
+    <b>Up:</b>
+    <a name="tex2html364" href="root.html" id="tex2html364">No Title</a>
+    <b>Previous:</b>
+    <a name="tex2html358" href="node8.html" id="tex2html358">Property Lists</a
+    ><br />
+    <hr />
+    <h1>
+      <a name="SECTION00300000000000000000" id="SECTION00300000000000000000"
+        >Indexed Objects</a
+      >
+    </h1>
+    <p>
+      <a name="indexedobj" id="indexedobj"></a> This chapter is concerned with
+      the basic data structure (the ``indexed object'') used in REDTEN and how
+      it is created and accessed. The first part of the chapter describes the
+      basic concept of the indexed object, its properties and how it is used
+      with an index. The second part uses the Robertson-Walker metric as an
+      example to illustrate the user interaction with the system.
+    </p>
+    <p><br /></p>
+    <hr />
+    <ul>
+      <li>
+        <a
+          name="tex2html369"
+          href="node10.html#SECTION00310000000000000000"
+          id="tex2html369"
+          >The Indexed Object</a
+        >
+      </li>
+      <li>
+        <a
+          name="tex2html370"
+          href="node11.html#SECTION00320000000000000000"
+          id="tex2html370"
+          >Using <span class="c1">mkobj()</span></a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html371"
+              href="node12.html#SECTION00321000000000000000"
+              id="tex2html371"
+              >name</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html372"
+              href="node13.html#SECTION00322000000000000000"
+              id="tex2html372"
+              >indextype</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html373"
+              href="node14.html#SECTION00323000000000000000"
+              id="tex2html373"
+              >Symmetries</a
+            >
+            <ul>
+              <li>
+                <a
+                  name="tex2html374"
+                  href="node15.html#SECTION00323100000000000000"
+                  id="tex2html374"
+                  >Combining Symmetries</a
+                >
+              </li>
+              <li>
+                <a
+                  name="tex2html375"
+                  href="node16.html#SECTION00323200000000000000"
+                  id="tex2html375"
+                  >Constraints</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              name="tex2html376"
+              href="node17.html#SECTION00324000000000000000"
+              id="tex2html376"
+              >implicit value</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html377"
+              href="node18.html#SECTION00325000000000000000"
+              id="tex2html377"
+              >itype</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html378"
+              href="node19.html#SECTION00326000000000000000"
+              id="tex2html378"
+              >Other properties</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html379"
+              href="node20.html#SECTION00327000000000000000"
+              id="tex2html379"
+              ><span class="c1">mkobj()</span> Examples</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html380"
+          href="node21.html#SECTION00330000000000000000"
+          id="tex2html380"
+          >The Index</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html381"
+              href="node22.html#SECTION00331000000000000000"
+              id="tex2html381"
+              >Differentiation</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html382"
+              href="node23.html#SECTION00332000000000000000"
+              id="tex2html382"
+              >Shift Operations</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html383"
+              href="node24.html#SECTION00333000000000000000"
+              id="tex2html383"
+              >Symmetrization</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          name="tex2html384"
+          href="node25.html#SECTION00340000000000000000"
+          id="tex2html384"
+          >The Robertson-Walker Metric</a
+        >
+        <ul>
+          <li>
+            <a
+              name="tex2html385"
+              href="node26.html#SECTION00341000000000000000"
+              id="tex2html385"
+              ><span class="c1">coords()</span></a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html386"
+              href="node27.html#SECTION00342000000000000000"
+              id="tex2html386"
+              >Entering Components</a
+            >
+          </li>
+          <li>
+            <a
+              name="tex2html387"
+              href="node28.html#SECTION00343000000000000000"
+              id="tex2html387"
+              >Accessing and Displaying Components</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <br />
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>

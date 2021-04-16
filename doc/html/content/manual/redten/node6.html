@@ -1,73 +1,111 @@
 <!DOCTYPE html>
 <!-- Converted with LaTeX2HTML 0.6.4 (Tues Aug 30 1994) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
-<HTML>
-<HEAD>
-  <TITLE>Notation</TITLE>
-  <STYLE type="text/css">
-  address.c1 {font-style: italic}
-  </STYLE>
-  <STYLE type="text/css">
-  span.c1 {font-family: monospace}
-  </STYLE>
-</HEAD>
-<BODY>
-  <META name="description" value=" Notation">
-  <META name="keywords" value="root">
-  <META name="resource-type" value="document">
-  <META name="distribution" value="global">
-  <P><BR></P>
-  <HR>
-  <A name="tex2html331" href="node7.html" id="tex2html331"><IMG align=
-  "bottom" alt="next" src="../../../images/latex/next_motif.png"></A>
-  <A name="tex2html329" href="node4.html" id="tex2html329"><IMG align=
-  "bottom" alt="up" src="../../../images/latex/up_motif.png"></A> <A name=
-  "tex2html323" href="node5.html" id="tex2html323"><IMG align="bottom" alt=
-  "previous" src="../../../images/latex/previous_motif.png"></A> <A name=
-  "tex2html333" href="node1.html" id="tex2html333"><IMG align="bottom" alt=
-  "contents" src="../../../images/latex/contents_motif.png"></A> <A name=
-  "tex2html334" href="node70.html" id="tex2html334"><IMG align="bottom" alt=
-  "index" src="../../../images/latex/index_motif.png"></A><BR>
-  <B>Next:</B> <A name="tex2html332" href="node7.html" id="tex2html332">Lisp
-  Variables</A> <B>Up:</B> <A name="tex2html330" href="node4.html" id=
-  "tex2html330">Concepts in REDUCE</A> <B>Previous:</B> <A name="tex2html324"
-  href="node5.html" id="tex2html324">Case Sensitivity</A><BR>
-  <HR>
-  <H2><A name="SECTION00222000000000000000" id=
-  "SECTION00222000000000000000">Notation</A></H2>
-  <P><A name="ssecnotation" id="ssecnotation"></A> Throughout this document
-  we shall use the following notation: square brackets (<SPAN class=
-  "c1">[]</SPAN>) shall denote the default value of a variable, braces
-  (<SPAN class="c1">{}</SPAN>) denote optional items, and a name enclosed in
-  angle brackets (<SPAN class="c1">&lt;&gt;</SPAN>) denotes the current value
-  of that name. Square brackets are also used to delimit indices in REDTEN,
-  however the usage should be clear from the context. REDUCE and REDTEN
-  keywords, variables, and functions will be indicated in <SPAN class=
-  "c1">typewriter font</SPAN>. User input will be shown in a <I>slanted
-  typewriter font</I>.</P>
-  <P>Certain REDUCE and REDTEN variables contain special characters that are
-  not ordinarily considered to be alpha-numeric. These characters (most often
-  '*', and occasionally '-') must be quoted with the escape-character,
-  <SPAN class="c1">!</SPAN>, <A name="4093" id="4093"></A> <A name="4094" id=
-  "4094"></A> <A name="4095" id="4095"></A> so for example to enter
-  <SPAN class="c1">coords*</SPAN> one must type <SPAN class=
-  "c1">coords!*</SPAN>. Forgetting to escape the special character can have
-  unexpected consequences, since these special characters usually have other
-  meanings by themselves. In this manual we shall always indicate the escape
-  character as if it were an actual part of the name, however, depending on
-  the print mechanism used, identifiers with special characters may or may
-  not be displayed with an embedded escape-character. The escape-character
-  can also be used to suppress the case-folding of the system, if this has
-  been re-enabled.</P>
-  <P>When showing the format of a call to a function, the type of each
-  argument is shown following the argument name and separated by a colon. In
-  some cases the type of the return value is indicated after the function
-  call template. The argument types are described in <A href=
-  "node62.html#func">C.1</A>.</P>
-  <P><BR></P>
-  <HR>
-  <ADDRESS class="c1">
-    John Harper<BR>
-    Wed Nov 16 13:34:23 EST 1994
-  </ADDRESS>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <title>Notation</title>
+    <style type="text/css">
+      address.c1 {
+        font-style: italic;
+      }
+    </style>
+    <style type="text/css">
+      span.c1 {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <meta name="description" value=" Notation" />
+    <meta name="keywords" value="root" />
+    <meta name="resource-type" value="document" />
+    <meta name="distribution" value="global" />
+    <p><br /></p>
+    <hr />
+    <a name="tex2html331" href="node7.html" id="tex2html331"
+      ><img
+        align="bottom"
+        alt="next"
+        src="../../../images/latex/next_motif.png"
+    /></a>
+    <a name="tex2html329" href="node4.html" id="tex2html329"
+      ><img align="bottom" alt="up" src="../../../images/latex/up_motif.png"
+    /></a>
+    <a name="tex2html323" href="node5.html" id="tex2html323"
+      ><img
+        align="bottom"
+        alt="previous"
+        src="../../../images/latex/previous_motif.png"
+    /></a>
+    <a name="tex2html333" href="node1.html" id="tex2html333"
+      ><img
+        align="bottom"
+        alt="contents"
+        src="../../../images/latex/contents_motif.png"
+    /></a>
+    <a name="tex2html334" href="node70.html" id="tex2html334"
+      ><img
+        align="bottom"
+        alt="index"
+        src="../../../images/latex/index_motif.png" /></a
+    ><br />
+    <b>Next:</b>
+    <a name="tex2html332" href="node7.html" id="tex2html332">Lisp Variables</a>
+    <b>Up:</b>
+    <a name="tex2html330" href="node4.html" id="tex2html330"
+      >Concepts in REDUCE</a
+    >
+    <b>Previous:</b>
+    <a name="tex2html324" href="node5.html" id="tex2html324">Case Sensitivity</a
+    ><br />
+    <hr />
+    <h2>
+      <a name="SECTION00222000000000000000" id="SECTION00222000000000000000"
+        >Notation</a
+      >
+    </h2>
+    <p>
+      <a name="ssecnotation" id="ssecnotation"></a> Throughout this document we
+      shall use the following notation: square brackets (<span class="c1"
+        >[]</span
+      >) shall denote the default value of a variable, braces (<span class="c1"
+        >{}</span
+      >) denote optional items, and a name enclosed in angle brackets (<span
+        class="c1"
+        >&lt;&gt;</span
+      >) denotes the current value of that name. Square brackets are also used
+      to delimit indices in REDTEN, however the usage should be clear from the
+      context. REDUCE and REDTEN keywords, variables, and functions will be
+      indicated in <span class="c1">typewriter font</span>. User input will be
+      shown in a <i>slanted typewriter font</i>.
+    </p>
+    <p>
+      Certain REDUCE and REDTEN variables contain special characters that are
+      not ordinarily considered to be alpha-numeric. These characters (most
+      often '*', and occasionally '-') must be quoted with the escape-character,
+      <span class="c1">!</span>, <a name="4093" id="4093"></a>
+      <a name="4094" id="4094"></a> <a name="4095" id="4095"></a> so for example
+      to enter <span class="c1">coords*</span> one must type
+      <span class="c1">coords!*</span>. Forgetting to escape the special
+      character can have unexpected consequences, since these special characters
+      usually have other meanings by themselves. In this manual we shall always
+      indicate the escape character as if it were an actual part of the name,
+      however, depending on the print mechanism used, identifiers with special
+      characters may or may not be displayed with an embedded escape-character.
+      The escape-character can also be used to suppress the case-folding of the
+      system, if this has been re-enabled.
+    </p>
+    <p>
+      When showing the format of a call to a function, the type of each argument
+      is shown following the argument name and separated by a colon. In some
+      cases the type of the return value is indicated after the function call
+      template. The argument types are described in
+      <a href="node62.html#func">C.1</a>.
+    </p>
+    <p><br /></p>
+    <hr />
+    <address class="c1">
+      John Harper<br />
+      Wed Nov 16 13:34:23 EST 1994
+    </address>
+  </body>
+</html>
